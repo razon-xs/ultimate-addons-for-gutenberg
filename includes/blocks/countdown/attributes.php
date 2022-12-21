@@ -12,6 +12,7 @@ $box_border_attribute = UAGB_Block_Helper::uag_generate_border_attribute( 'box' 
 return array_merge(
 	array(
 		'block_id'                    => '',
+		'timerEndAction'              => 'zero',
 		'endDateTime'                 => '2023-01-01T00:00:00Z',
 		'showSeparator'               => true,
 		'separatorType'               => 'colon',
