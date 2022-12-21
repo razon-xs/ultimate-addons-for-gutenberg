@@ -647,7 +647,7 @@ const attributes = {
 	},
 	separatorRightSpacingMobile: {
 		type: 'number',
-		default: 24,
+		default: 12,
 		isUAGStyle: true,
 		UAGCopyPaste: {
 			styleType: 'separator-right-spacing-mobile'
@@ -1072,6 +1072,7 @@ const attributes = {
 	},
 	boxSpacingMobile: {
 		type: 'number',
+		default: 18,
 		UAGCopyPaste: {
 			styleType: 'countdown-box-gap-mobile'
 		},

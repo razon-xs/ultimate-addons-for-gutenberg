@@ -99,7 +99,7 @@ return array_merge(
 		'separatorLineHeightTablet'   => '',
 		'separatorRightSpacing'       => 26,
 		'separatorRightSpacingTablet' => '',
-		'separatorRightSpacingMobile' => 24,
+		'separatorRightSpacingMobile' => 12,
 		'separatorTopSpacing'         => '',
 		'separatorTopSpacingTablet'   => '',
 		'separatorTopSpacingMobile'   => '',
@@ -161,7 +161,7 @@ return array_merge(
 		'boxAlignMobile'              => '',
 		// Box Spacing.
 		'boxSpacing'                  => 38,
-		'boxSpacingTablet'            => '',
+		'boxSpacingTablet'            => 18,
 		'boxSpacingMobile'            => '',
 		// Box Flex.
 		'boxFlex'                     => 'column',
