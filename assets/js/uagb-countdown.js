@@ -82,7 +82,18 @@ UAGBCountdown = { // eslint-disable-line no-undef
         secondsWrap.innerHTML = ( ! isOvertime ) ? seconds : 0;
 
 		if ( isOvertime ) {
+
 			clearInterval( this.countdownInterval[ mainSelector ] );
+
+			if ( data.timerEndAction === 'hide' && data.isFrontend ) {
+
+				const boxes = this.elements[ mainSelector ].countdownWrapper?.querySelectorAll( '.wp-block-uagb-countdown__box' );
+
+				boxes.forEach( box => {
+					box.style.display = 'none';
+				} );
+
+			}
 		}
 
     }
