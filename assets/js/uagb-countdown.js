@@ -81,6 +81,10 @@ UAGBCountdown = { // eslint-disable-line no-undef
         minutesWrap.innerHTML = ( ! isOvertime ) ? minutes : 0;
         secondsWrap.innerHTML = ( ! isOvertime ) ? seconds : 0;
 
+		if ( isOvertime ) {
+			clearInterval( this.countdownInterval[ mainSelector ] );
+		}
+
     }
 
 };
