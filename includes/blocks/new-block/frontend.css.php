@@ -6,7 +6,8 @@
  *
  * @package uagb
  */
-$block_name = 'new-block';
+
+$block_name               = 'new-block';
 $border_css               = UAGB_Block_Helper::uag_generate_border_css( $attr, 'block' );
 $border_css_tablet        = UAGB_Block_Helper::uag_generate_border_css( $attr, 'block', 'tablet' );
 $border_css_mobile        = UAGB_Block_Helper::uag_generate_border_css( $attr, 'block', 'mobile' );
@@ -86,7 +87,6 @@ $info_box_css = array_merge(
 		'margin-bottom'  => UAGB_Helper::get_css_value( $attr['bottomMarginDesktop'], $attr['marginType'] ) . ' !important',
 		'margin-left'    => UAGB_Helper::get_css_value( $attr['leftMarginDesktop'], $attr['marginType'] ),
 		'margin-right'   => UAGB_Helper::get_css_value( $attr['rightMarginDesktop'], $attr['marginType'] ),
-		'row-gap'        => UAGB_Helper::get_css_value( $row_gap_desktop_fallback, $attr['rowGapType'] ),
 	),
 	$border_css
 );
@@ -193,10 +193,10 @@ $m_selectors = array(
 // Adds Fonts.
 UAGB_Block_JS::blocks_info_box_gfont( $attr );
 
-
 $combined_selectors = array(
 	'desktop' => $selectors,
 	'tablet'  => $t_selectors,
 	'mobile'  => $m_selectors,
-);	
+);
+
 return UAGB_Helper::generate_all_css( $combined_selectors, '.uagb-block-' . $id );

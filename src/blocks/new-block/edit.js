@@ -10,9 +10,6 @@ import Settings from './settings';
 import Render from './render';
 import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
-//  Import CSS.
-import './style.scss';
-
 const UAGBContainer = ( props ) => {
 	const deviceType = useDeviceType();
 
