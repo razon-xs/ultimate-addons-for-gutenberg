@@ -62,6 +62,10 @@ export default function Settings( props ) {
 		digitLineHeightType,
 		digitLineHeightMobile,
 		digitLineHeightTablet,
+		digitLetterSpacing,
+		digitLetterSpacingType,
+		digitLetterSpacingMobile,
+		digitLetterSpacingTablet,
 		digitTopMargin,
 		digitRightMargin,
 		digitLeftMargin,
@@ -751,6 +755,22 @@ export default function Settings( props ) {
 				lineHeightTablet={ {
 					value: digitLineHeightTablet,
 					label: 'digitLineHeightTablet',
+				} }
+				letterSpacingType={ {
+					value: digitLetterSpacingType,
+					label: 'digitLetterSpacingType',
+				} }
+				letterSpacing={ {
+					value: digitLetterSpacing,
+					label: 'digitLetterSpacing',
+				} }
+				letterSpacingMobile={ {
+					value: digitLetterSpacingMobile,
+					label: 'digitLetterSpacingMobile',
+				} }
+				letterSpacingTablet={ {
+					value: digitLetterSpacingTablet,
+					label: 'digitLetterSpacingTablet',
 				} }
 			/>
             <SpacingControl

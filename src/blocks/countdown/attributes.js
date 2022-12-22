@@ -143,6 +143,14 @@ const attributes = {
 			styleType: 'digit-line-height-type'
 		},
 	},
+	digitLetterSpacingType: {
+		type: 'string',
+		default: 'em',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-letter-spacing-type'
+		},
+	},
 	digitFontSize: {
 		type: 'number',
 		isUAGStyle: true,
@@ -299,6 +307,27 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 		isUAGStyle: true,
+	},
+	digitLetterSpacing: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-letter-spacing'
+		},
+	},
+	digitLetterSpacingTablet: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-letter-spacing-tablet'
+		},
+	},
+	digitLetterSpacingMobile: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-letter-spacing-mobile'
+		},
 	},
 
 	// Label.
