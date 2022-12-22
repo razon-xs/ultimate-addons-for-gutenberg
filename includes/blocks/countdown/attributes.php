@@ -88,8 +88,6 @@ return array_merge(
 		'separatorFontStyle'          => '',
 		'separatorFontSize'           => '',
 		'separatorColor'              => '',
-		'separatorTransform'          => '',
-		'separatorDecoration'         => '',
 		'separatorFontSizeType'       => 'px',
 		'separatorFontSizeMobile'     => '',
 		'separatorFontSizeTablet'     => '',

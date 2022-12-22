@@ -249,8 +249,6 @@ if ( true === $attr['showSeparator'] ) {
 		'content'         => ( 'line' === $attr['separatorType'] ) ? '"|"' : '":"',
 		'font-family'     => $attr['separatorFontFamily'],
 		'font-style'      => $attr['separatorFontStyle'],
-		'text-decoration' => $attr['separatorDecoration'],
-		'text-transform'  => $attr['separatorTransform'],
 		'font-weight'     => $attr['separatorFontWeight'],
 		'font-size'       => UAGB_Helper::get_css_value( $attr['separatorFontSize'], $attr['separatorFontSizeType'] ),
 		'line-height'     => UAGB_Helper::get_css_value( $attr['separatorLineHeight'], $attr['separatorLineHeightType'] ),

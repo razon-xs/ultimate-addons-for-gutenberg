@@ -558,20 +558,6 @@ const attributes = {
 			styleType: 'separator-font-style'
 		},
 	},
-	separatorTransform: {
-		type: 'string',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'separator-transform'
-		}
-	},
-	separatorDecoration: {
-		type: 'string',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'separator-decoration'
-		}
-	},
 	separatorFontSizeType: {
 		type: 'string',
 		default: 'px',
