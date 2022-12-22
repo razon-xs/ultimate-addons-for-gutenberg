@@ -217,6 +217,7 @@
 
 hr.uagb-editor__separator {
 	border-bottom: 1px solid #e2e4e7;
+	margin-top: 0;
 }
 
 .uagb-inspect-tabs > .components-tab-panel__tabs button.active-tab,
@@ -768,6 +769,14 @@ button.components-button.uagb-review-select-btn.is-secondary {
 /* Spectra Page Level Settings */
 .is-pressed .spectra-page-settings-button path {
 	fill: #fff;
+}
+
+.spectra-page-settings-button path {
+	fill: #5733ff;
+}
+
+.spectra-page-settings-button:hover path {
+	fill: #007cba;
 }
 
 /* Spectra Sidebar Settings Notice */
