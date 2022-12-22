@@ -117,8 +117,6 @@ export default function Settings( props ) {
 		separatorFontStyle,
 		separatorFontSize,
 		separatorColor,
-		separatorTransform,
-		separatorDecoration,
 		separatorFontSizeType,
 		separatorFontSizeMobile,
 		separatorFontSizeTablet,
