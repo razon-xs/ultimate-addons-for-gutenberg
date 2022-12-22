@@ -246,15 +246,15 @@ $m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__label'] = array
 if ( true === $attr['showSeparator'] ) {
 
 	$selectors[ $separator_selector ] = array(
-		'content'         => ( 'line' === $attr['separatorType'] ) ? '"|"' : '":"',
-		'font-family'     => $attr['separatorFontFamily'],
-		'font-style'      => $attr['separatorFontStyle'],
-		'font-weight'     => $attr['separatorFontWeight'],
-		'font-size'       => UAGB_Helper::get_css_value( $attr['separatorFontSize'], $attr['separatorFontSizeType'] ),
-		'line-height'     => UAGB_Helper::get_css_value( $attr['separatorLineHeight'], $attr['separatorLineHeightType'] ),
-		'color'           => $attr['separatorColor'],
-		'right'           => UAGB_Helper::get_css_value( -$separator_right_spacing_fallback, 'px' ),
-		'top'             => UAGB_Helper::get_css_value( $attr['separatorTopSpacing'], 'px' ),
+		'content'     => ( 'line' === $attr['separatorType'] ) ? '"|"' : '":"',
+		'font-family' => $attr['separatorFontFamily'],
+		'font-style'  => $attr['separatorFontStyle'],
+		'font-weight' => $attr['separatorFontWeight'],
+		'font-size'   => UAGB_Helper::get_css_value( $attr['separatorFontSize'], $attr['separatorFontSizeType'] ),
+		'line-height' => UAGB_Helper::get_css_value( $attr['separatorLineHeight'], $attr['separatorLineHeightType'] ),
+		'color'       => $attr['separatorColor'],
+		'right'       => UAGB_Helper::get_css_value( -$separator_right_spacing_fallback, 'px' ),
+		'top'         => UAGB_Helper::get_css_value( $attr['separatorTopSpacing'], 'px' ),
 	);
 
 	$t_selectors[ $separator_selector ] = array(
