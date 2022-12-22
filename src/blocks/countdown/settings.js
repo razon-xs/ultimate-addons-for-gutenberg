@@ -1020,14 +1020,8 @@ export default function Settings( props ) {
 					value: separatorFontStyle,
 					label: 'separatorFontStyle',
 				} }
-				transform={ {
-					value: separatorTransform,
-					label: 'separatorTransform',
-				} }
-				decoration={ {
-					value: separatorDecoration,
-					label: 'separatorDecoration',
-				} }
+				disableTransform = { true }
+				disableDecoration = { true }
 				fontSizeType={ {
 					value: separatorFontSizeType,
 					label: 'separatorFontSizeType',
