@@ -188,13 +188,13 @@ $t_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = array(
 );
 
 $t_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__label'] = array(
-	'font-size'     => UAGB_Helper::get_css_value( $attr['labelFontSizeTablet'], $attr['labelFontSizeType'] ),
-	'line-height'   => UAGB_Helper::get_css_value( $attr['labelLineHeightTablet'], $attr['labelLineHeightType'] ),
+	'font-size'      => UAGB_Helper::get_css_value( $attr['labelFontSizeTablet'], $attr['labelFontSizeType'] ),
+	'line-height'    => UAGB_Helper::get_css_value( $attr['labelLineHeightTablet'], $attr['labelLineHeightType'] ),
 	'letter-spacing' => UAGB_Helper::get_css_value( $attr['labelLetterSpacingTablet'], $attr['labelLetterSpacingType'] ),
-	'margin-top'    => UAGB_Helper::get_css_value( $attr['labelTopMarginTablet'], $attr['labelMarginUnitTablet'] ),
-	'margin-right'  => UAGB_Helper::get_css_value( $attr['labelRightMarginTablet'], $attr['labelMarginUnitTablet'] ),
-	'margin-bottom' => UAGB_Helper::get_css_value( $attr['labelBottomMarginTablet'], $attr['labelMarginUnitTablet'] ),
-	'margin-left'   => UAGB_Helper::get_css_value( $attr['labelLeftMarginTablet'], $attr['labelMarginUnitTablet'] ),
+	'margin-top'     => UAGB_Helper::get_css_value( $attr['labelTopMarginTablet'], $attr['labelMarginUnitTablet'] ),
+	'margin-right'   => UAGB_Helper::get_css_value( $attr['labelRightMarginTablet'], $attr['labelMarginUnitTablet'] ),
+	'margin-bottom'  => UAGB_Helper::get_css_value( $attr['labelBottomMarginTablet'], $attr['labelMarginUnitTablet'] ),
+	'margin-left'    => UAGB_Helper::get_css_value( $attr['labelLeftMarginTablet'], $attr['labelMarginUnitTablet'] ),
 );
 
 // MOBILE SELECTORS.
@@ -237,13 +237,13 @@ $m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = array(
 );
 
 $m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__label'] = array(
-	'font-size'     => UAGB_Helper::get_css_value( $attr['labelFontSizeMobile'], $attr['labelFontSizeType'] ),
-	'line-height'   => UAGB_Helper::get_css_value( $attr['labelLineHeightMobile'], $attr['labelLineHeightType'] ),
+	'font-size'      => UAGB_Helper::get_css_value( $attr['labelFontSizeMobile'], $attr['labelFontSizeType'] ),
+	'line-height'    => UAGB_Helper::get_css_value( $attr['labelLineHeightMobile'], $attr['labelLineHeightType'] ),
 	'letter-spacing' => UAGB_Helper::get_css_value( $attr['labelLetterSpacingMobile'], $attr['labelLetterSpacingType'] ),
-	'margin-top'    => UAGB_Helper::get_css_value( $attr['labelTopMarginMobile'], $attr['labelMarginUnitMobile'] ),
-	'margin-right'  => UAGB_Helper::get_css_value( $attr['labelRightMarginMobile'], $attr['labelMarginUnitMobile'] ),
-	'margin-bottom' => UAGB_Helper::get_css_value( $attr['labelBottomMarginMobile'], $attr['labelMarginUnitMobile'] ),
-	'margin-left'   => UAGB_Helper::get_css_value( $attr['labelLeftMarginMobile'], $attr['labelMarginUnitMobile'] ),
+	'margin-top'     => UAGB_Helper::get_css_value( $attr['labelTopMarginMobile'], $attr['labelMarginUnitMobile'] ),
+	'margin-right'   => UAGB_Helper::get_css_value( $attr['labelRightMarginMobile'], $attr['labelMarginUnitMobile'] ),
+	'margin-bottom'  => UAGB_Helper::get_css_value( $attr['labelBottomMarginMobile'], $attr['labelMarginUnitMobile'] ),
+	'margin-left'    => UAGB_Helper::get_css_value( $attr['labelLeftMarginMobile'], $attr['labelMarginUnitMobile'] ),
 );
 
 if ( true === $attr['showSeparator'] ) {
