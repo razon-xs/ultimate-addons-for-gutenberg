@@ -366,6 +366,14 @@ const attributes = {
 			styleType: 'label-line-height-type'
 		},
 	},
+	labelLetterSpacingType: {
+		type: 'string',
+		default: 'em',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-letter-spacing-type'
+		},
+	},
 	labelFontSize: {
 		type: 'number',
 		isUAGStyle: true,
@@ -406,6 +414,27 @@ const attributes = {
 		isUAGStyle: true,
 		UAGCopyPaste: {
 			styleType: 'label-line-height-mobile'
+		},
+	},
+	labelLetterSpacing: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-letter-spacing'
+		},
+	},
+	labelLetterSpacingTablet: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-letter-spacing-tablet'
+		},
+	},
+	labelLetterSpacingMobile: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-letter-spacing-mobile'
 		},
 	},
 

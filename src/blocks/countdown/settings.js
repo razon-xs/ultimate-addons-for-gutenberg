@@ -94,6 +94,10 @@ export default function Settings( props ) {
 		labelLineHeightType,
 		labelLineHeightMobile,
 		labelLineHeightTablet,
+		labelLetterSpacing,
+		labelLetterSpacingType,
+		labelLetterSpacingMobile,
+		labelLetterSpacingTablet,
 		labelTopMargin,
 		labelRightMargin,
 		labelLeftMargin,
@@ -905,6 +909,22 @@ export default function Settings( props ) {
 				lineHeightTablet={ {
 					value: labelLineHeightTablet,
 					label: 'labelLineHeightTablet',
+				} }
+				letterSpacingType={ {
+					value: labelLetterSpacingType,
+					label: 'labelLetterSpacingType',
+				} }
+				letterSpacing={ {
+					value: labelLetterSpacing,
+					label: 'labelLetterSpacing',
+				} }
+				letterSpacingMobile={ {
+					value: labelLetterSpacingMobile,
+					label: 'labelLetterSpacingMobile',
+				} }
+				letterSpacingTablet={ {
+					value: labelLetterSpacingTablet,
+					label: 'labelLetterSpacingTablet',
 				} }
 			/>
             <SpacingControl
