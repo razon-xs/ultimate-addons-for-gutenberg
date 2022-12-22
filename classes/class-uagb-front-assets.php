@@ -133,7 +133,7 @@ class UAGB_Front_Assets {
 			or 404 page (which is an obvious case for 404), then get the current page ID and enqueue script.
 			*/
 			if ( ! $cached_wp_query ) {
-				$current_post_assets = new UAGB_Post_Assets( get_queried_object_id() );
+				$current_post_assets = new UAGB_Post_Assets( $current_object_id );
 				$current_post_assets->enqueue_scripts();
 			}
 		}

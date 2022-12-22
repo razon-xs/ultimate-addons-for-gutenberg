@@ -179,6 +179,7 @@ The awesome React FontIconPicker is developed by [Alessandro Benoit](http://code
 * Fix: Typography - Resolved google font console errors.
 * Improvement: Counter - Bar Layout - Added toggle to flip/swap the positions of bar and title.
 * Improvement: Global - Added hover color accessibility to Spectra block that has a button.
+* Fix: The archive page is getting slow.
 
 = 2.1.1 - WEDNESDAY, 14th DECEMBER 2022 =
 * Improvement: Call To Action - Added a width option for the CTA buttons.
