@@ -93,9 +93,9 @@ function styling( props ) {
 		yPositionType,
 		yPositionTypeTablet,
 		yPositionTypeMobile,
-		align,
-		alignTablet,
-		alignMobile,
+		// align,
+		// alignTablet,
+		// alignMobile,
 		rowGapDesktop,
 		rowGapTablet,
 		rowGapMobile,
@@ -134,10 +134,10 @@ function styling( props ) {
 	rightMarginMobile = 'undefined' !== typeof rightMarginMobile ? rightMarginMobile : rightMarginTablet;
 
 	const selectors = {
-		' .block-editor-inner-blocks .block-editor-block-list__layout > *' : {
-			'text-align': align
-		},
-		' .block-editor-inner-blocks .block-editor-block-list__layout .wp-block ': {
+		// ' .block-editor-inner-blocks .block-editor-block-list__layout > *' : {
+		// 	'text-align': align
+		// },
+		'.uagb-info-box__wrap > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapDesktop, rowGapType ),
 		}
 	};
@@ -196,7 +196,6 @@ function styling( props ) {
 	selectors['.uagb-info-box__wrap'] = containerCSS;
 	selectors['.uagb-info-box__wrap:hover'] = {
 		'border-color': blockBorderHColor,
-		'box-shadow': '',
 	};
 
 	boxShadowBlurHover = isNaN( boxShadowBlurHover ) ? '' : boxShadowBlurHover;
@@ -246,10 +245,10 @@ function styling( props ) {
 			...infoBoxBackgroundCSSTablet,
 			...borderCSSTablet
 		},
-		' .block-editor-inner-blocks .block-editor-block-list__layout > *' : {
-			'text-align': alignTablet
-		},
-		' .block-editor-inner-blocks .block-editor-block-list__layout .wp-block ': {
+		// ' .block-editor-inner-blocks .block-editor-block-list__layout > *' : {
+		// 	'text-align': alignTablet
+		// },
+		'.uagb-info-box__wrap > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapTablet, rowGapTypeTablet ),
 		}
 	};
@@ -289,10 +288,10 @@ function styling( props ) {
 			...containerBackgroundCSSMobile,
 			...borderCSSMobile
 		},
-		' .block-editor-inner-blocks .block-editor-block-list__layout > *' : {
-			'text-align': alignMobile
-		},
-		' .block-editor-inner-blocks .block-editor-block-list__layout .wp-block ': {
+		// ' .block-editor-inner-blocks .block-editor-block-list__layout > *' : {
+		// 	'text-align': alignMobile
+		// },
+		'.uagb-info-box__wrap .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapMobile, rowGapTypeMobile ),
 		}
 

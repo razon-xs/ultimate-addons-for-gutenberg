@@ -93,6 +93,9 @@ $info_box_css = array_merge(
 $info_box_css = array_merge( $info_box_css, $bg_css_desktop );
 $selectors    = array(
 	'.uagb-info-box__wrap' => $info_box_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+	'.uagb-info-box__wrap > div' => array(
+		'margin-bottom'        => UAGB_Helper::get_css_value( $row_gap_desktop_fallback, $attr['rowGapType'] ),
+	)
 );
 $selectors['.uagb-info-box__wrap:hover']['border-color'] = $attr['blockBorderHColor'];
 if ( ( ( '' !== $attr['boxShadowBlurHover'] ) && ( null !== $attr['boxShadowBlurHover'] ) ) || '' !== $attr['boxShadowColorHover'] ) {
@@ -149,6 +152,9 @@ $tablet_css    = array_merge( $tablet_css, $bg_css_tablet );
 
 $t_selectors = array(
 	'.uagb-info-box__wrap' => $tablet_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+	'.uagb-info-box__wrap > div' => array(
+		'margin-bottom'        => UAGB_Helper::get_css_value( $attr['rowGapTablet'], $attr['rowGapTypeTablet'] ),
+	)
 );
 
 $bg_obj_mobile = array(
@@ -181,7 +187,6 @@ $mobile_css    = array_merge(
 		'margin-bottom'  => UAGB_Helper::get_css_value( $bottom_margin_mobile, $attr['marginTypeMobile'] ) . ' !important',
 		'margin-left'    => UAGB_Helper::get_css_value( $left_margin_mobile, $attr['marginTypeMobile'] ),
 		'margin-right'   => UAGB_Helper::get_css_value( $right_margin_mobile, $attr['marginTypeMobile'] ),
-		'row-gap'        => UAGB_Helper::get_css_value( $attr['rowGapMobile'], $attr['rowGapTypeMobile'] ),
 	),
 	$border_css_mobile
 );
@@ -189,6 +194,9 @@ $mobile_css    = array_merge( $mobile_css, $bg_css_mobile );
 
 $m_selectors = array(
 	'.uagb-info-box__wrap' => $mobile_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+	'.uagb-info-box__wrap > div' => array(
+		'margin-bottom'        => UAGB_Helper::get_css_value( $attr['rowGapMobile'], $attr['rowGapTypeMobile'] ),
+	)
 );
 // Adds Fonts.
 UAGB_Block_JS::blocks_info_box_gfont( $attr );
