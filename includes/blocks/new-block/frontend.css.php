@@ -2,7 +2,7 @@
 /**
  * Frontend CSS & Google Fonts loading File.
  *
- * @since 2.2
+ * @since 2.2.0
  *
  * @package uagb
  */
