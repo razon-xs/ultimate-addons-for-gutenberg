@@ -6,7 +6,7 @@
  *
  * @package uagb
  */
-
+$block_name = 'new-block';
 $border_css               = UAGB_Block_Helper::uag_generate_border_css( $attr, 'block' );
 $border_css_tablet        = UAGB_Block_Helper::uag_generate_border_css( $attr, 'block', 'tablet' );
 $border_css_mobile        = UAGB_Block_Helper::uag_generate_border_css( $attr, 'block', 'mobile' );
@@ -42,7 +42,6 @@ $bg_obj_desktop = array(
 	'yPositionType'            => $attr['yPositionType'],
 );
 $bg_css_desktop = UAGB_Block_Helper::uag_get_background_obj( $bg_obj_desktop );
-
 // Tablet.
 $left_padding_tablet   = '' !== $attr['leftPaddingTablet'] ? $attr['leftPaddingTablet'] : $attr['leftPaddingDesktop'];
 $right_padding_tablet  = '' !== $attr['rightPaddingTablet'] ? $attr['rightPaddingTablet'] : $attr['rightPaddingDesktop'];
@@ -64,8 +63,6 @@ $left_margin_mobile   = '' !== $attr['leftMarginMobile'] ? $attr['leftMarginMobi
 $right_margin_mobile  = '' !== $attr['rightMarginMobile'] ? $attr['rightMarginMobile'] : $right_margin_tablet;
 $top_margin_mobile    = '' !== $attr['topMarginMobile'] ? $attr['topMarginMobile'] : $top_margin_tablet;
 $bottom_margin_mobile = '' !== $attr['bottomMarginMobile'] ? $attr['bottomMarginMobile'] : $bottom_margin_tablet;
-
-var_dump('dgdsgd');
 
 $info_box_css = array_merge(
 	array(
@@ -91,16 +88,16 @@ $info_box_css = array_merge(
 		'margin-right'   => UAGB_Helper::get_css_value( $attr['rightMarginDesktop'], $attr['marginType'] ),
 		'row-gap'        => UAGB_Helper::get_css_value( $row_gap_desktop_fallback, $attr['rowGapType'] ),
 	),
-	$border
+	$border_css
 );
 $info_box_css = array_merge( $info_box_css, $bg_css_desktop );
 $selectors    = array(
 	'.uagb-info-box__wrap' => $info_box_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 );
-
+$selectors['.uagb-info-box__wrap:hover']['border-color'] = $attr['blockBorderHColor'];
 if ( ( ( '' !== $attr['boxShadowBlurHover'] ) && ( null !== $attr['boxShadowBlurHover'] ) ) || '' !== $attr['boxShadowColorHover'] ) {
 
-	$selectors['.uagb-info-box__wrap:hover']['box-shadow'] = UAGB_Helper::get_css_value( $attr['boxShadowHOffsetHover'], 'px' ) .
+	$selectors[':hover']['box-shadow'] = UAGB_Helper::get_css_value( $attr['boxShadowHOffsetHover'], 'px' ) .
 																' ' .
 																UAGB_Helper::get_css_value( $attr['boxShadowVOffsetHover'], 'px' ) .
 																' ' .
@@ -146,7 +143,7 @@ $tablet_css    = array_merge(
 		'margin-right'   => UAGB_Helper::get_css_value( $right_margin_tablet, $attr['marginTypeTablet'] ),
 		'row-gap'        => UAGB_Helper::get_css_value( $attr['rowGapTablet'], $attr['rowGapTypeTablet'] ),
 	),
-	$border_tablet
+	$border_css_tablet
 );
 $tablet_css    = array_merge( $tablet_css, $bg_css_tablet );
 
@@ -186,7 +183,7 @@ $mobile_css    = array_merge(
 		'margin-right'   => UAGB_Helper::get_css_value( $right_margin_mobile, $attr['marginTypeMobile'] ),
 		'row-gap'        => UAGB_Helper::get_css_value( $attr['rowGapMobile'], $attr['rowGapTypeMobile'] ),
 	),
-	$border_mobile
+	$border_css_mobile
 );
 $mobile_css    = array_merge( $mobile_css, $bg_css_mobile );
 
@@ -196,15 +193,10 @@ $m_selectors = array(
 // Adds Fonts.
 UAGB_Block_JS::blocks_info_box_gfont( $attr );
 
-$m_selectors = array();
-$t_selectors = array();
-
-$block_name = 'new-block';
 
 $combined_selectors = array(
 	'desktop' => $selectors,
 	'tablet'  => $t_selectors,
 	'mobile'  => $m_selectors,
-);
-
-return UAGB_Helper::generate_all_css( $combined_selectors, '' . $id );
+);	
+return UAGB_Helper::generate_all_css( $combined_selectors, '.uagb-block-' . $id );
