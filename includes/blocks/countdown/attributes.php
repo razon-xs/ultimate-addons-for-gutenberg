@@ -2,7 +2,7 @@
 /**
  * Attributes File.
  *
- * @since 2.1.0
+ * @since x.x.x
  *
  * @package uagb
  */
@@ -31,12 +31,16 @@ return array_merge(
 		'digitDecoration'             => '',
 		'digitFontSizeType'           => 'px',
 		'digitLineHeightType'         => 'em',
+		'digitLetterSpacingType'      => 'em',
 		'digitFontSize'               => '',
 		'digitFontSizeTablet'         => '',
 		'digitFontSizeMobile'         => '',
 		'digitLineHeight'             => '',
 		'digitLineHeightTablet'       => '',
 		'digitLineHeightMobile'       => '',
+		'digitLetterSpacing'          => '',
+		'digitLetterSpacingTablet'    => '',
+		'digitLetterSpacingMobile'    => '',
 		'digitTopMargin'              => '',
 		'digitRightMargin'            => '',
 		'digitBottomMargin'           => '',
@@ -62,12 +66,16 @@ return array_merge(
 		'labelDecoration'             => '',
 		'labelFontSizeType'           => 'px',
 		'labelLineHeightType'         => 'em',
+		'labelLetterSpacingType'      => 'em',
 		'labelFontSize'               => '',
 		'labelFontSizeTablet'         => '',
 		'labelFontSizeMobile'         => '',
 		'labelLineHeight'             => '',
 		'labelLineHeightTablet'       => '',
 		'labelLineHeightMobile'       => '',
+		'labelLetterSpacing'          => '',
+		'labelLetterSpacingTablet'    => '',
+		'labelLetterSpacingMobile'    => '',
 		'labelTopMargin'              => '',
 		'labelRightMargin'            => '',
 		'labelBottomMargin'           => '',
@@ -89,8 +97,6 @@ return array_merge(
 		'separatorFontStyle'          => '',
 		'separatorFontSize'           => '',
 		'separatorColor'              => '',
-		'separatorTransform'          => '',
-		'separatorDecoration'         => '',
 		'separatorFontSizeType'       => 'px',
 		'separatorFontSizeMobile'     => '',
 		'separatorFontSizeTablet'     => '',
@@ -100,7 +106,7 @@ return array_merge(
 		'separatorLineHeightTablet'   => '',
 		'separatorRightSpacing'       => 26,
 		'separatorRightSpacingTablet' => '',
-		'separatorRightSpacingMobile' => 24,
+		'separatorRightSpacingMobile' => 12,
 		'separatorTopSpacing'         => '',
 		'separatorTopSpacingTablet'   => '',
 		'separatorTopSpacingMobile'   => '',
@@ -162,7 +168,7 @@ return array_merge(
 		'boxAlignMobile'              => '',
 		// Box Spacing.
 		'boxSpacing'                  => 38,
-		'boxSpacingTablet'            => '',
+		'boxSpacingTablet'            => 18,
 		'boxSpacingMobile'            => '',
 		// Box Flex.
 		'boxFlex'                     => 'column',

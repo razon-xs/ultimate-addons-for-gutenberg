@@ -2,7 +2,7 @@
 /**
  * Block Information & Attributes File.
  *
- * @since 2.1.0
+ * @since x.x.x
  *
  * @package uagb
  */
@@ -11,7 +11,7 @@ $block_slug = 'uagb/countdown';
 $block_data = array(
 	'doc'                 => 'countdown',
 	'slug'                => '',
-	'admin_categories'    => array( 'content', 'post' ),
+	'admin_categories'    => array( 'creative' ),
 	'link'                => 'countdown',
 	'title'               => __( 'Countdown', 'ultimate-addons-for-gutenberg' ),
 	'description'         => __( 'This block allows you to add countdown timers.', 'ultimate-addons-for-gutenberg' ),

@@ -143,6 +143,14 @@ const attributes = {
 			styleType: 'digit-line-height-type'
 		},
 	},
+	digitLetterSpacingType: {
+		type: 'string',
+		default: 'em',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-letter-spacing-type'
+		},
+	},
 	digitFontSize: {
 		type: 'number',
 		isUAGStyle: true,
@@ -300,6 +308,27 @@ const attributes = {
 		default: false,
 		isUAGStyle: true,
 	},
+	digitLetterSpacing: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-letter-spacing'
+		},
+	},
+	digitLetterSpacingTablet: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-letter-spacing-tablet'
+		},
+	},
+	digitLetterSpacingMobile: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-letter-spacing-mobile'
+		},
+	},
 
 	// Label.
 	labelLoadGoogleFonts: {
@@ -366,6 +395,14 @@ const attributes = {
 			styleType: 'label-line-height-type'
 		},
 	},
+	labelLetterSpacingType: {
+		type: 'string',
+		default: 'em',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-letter-spacing-type'
+		},
+	},
 	labelFontSize: {
 		type: 'number',
 		isUAGStyle: true,
@@ -406,6 +443,27 @@ const attributes = {
 		isUAGStyle: true,
 		UAGCopyPaste: {
 			styleType: 'label-line-height-mobile'
+		},
+	},
+	labelLetterSpacing: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-letter-spacing'
+		},
+	},
+	labelLetterSpacingTablet: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-letter-spacing-tablet'
+		},
+	},
+	labelLetterSpacingMobile: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-letter-spacing-mobile'
 		},
 	},
 
@@ -558,20 +616,6 @@ const attributes = {
 			styleType: 'separator-font-style'
 		},
 	},
-	separatorTransform: {
-		type: 'string',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'separator-transform'
-		}
-	},
-	separatorDecoration: {
-		type: 'string',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'separator-decoration'
-		}
-	},
 	separatorFontSizeType: {
 		type: 'string',
 		default: 'px',
@@ -647,7 +691,7 @@ const attributes = {
 	},
 	separatorRightSpacingMobile: {
 		type: 'number',
-		default: 24,
+		default: 12,
 		isUAGStyle: true,
 		UAGCopyPaste: {
 			styleType: 'separator-right-spacing-mobile'
@@ -1072,6 +1116,7 @@ const attributes = {
 	},
 	boxSpacingMobile: {
 		type: 'number',
+		default: 18,
 		UAGCopyPaste: {
 			styleType: 'countdown-box-gap-mobile'
 		},
