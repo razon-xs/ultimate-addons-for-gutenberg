@@ -9,8 +9,6 @@ UAGBCountdown = { // eslint-disable-line no-undef
 		this.countdownInterval[ mainSelector ] = setInterval( () => {
 			this.updateCountdown( mainSelector, data, true, countdownRef );
 		}, 1000 );
-		console.log( mainSelector )
-		console.log( this.countdownInterval[ mainSelector ] )
 	},
 
 	init( mainSelector, data = {} ) {
