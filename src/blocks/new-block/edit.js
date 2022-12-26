@@ -39,10 +39,10 @@ const UAGBContainer = ( props ) => {
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
 	return (
-			<>
-				<Settings parentProps={ props } />
-				<Render parentProps={ props } />
-			</>
+		<>
+			<Settings parentProps={ props } />
+			<Render parentProps={ props } />
+		</>
 	);
 };
 

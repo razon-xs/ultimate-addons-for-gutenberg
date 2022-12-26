@@ -35,7 +35,7 @@ const Render = ( props ) => {
 					`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`
 				) }
 			>
-					<InnerBlocks allowedBlocks={ ALLOWED_BLOCKS } />
+				<InnerBlocks allowedBlocks={ ALLOWED_BLOCKS } />
 			</div>
 		</>
 	);
