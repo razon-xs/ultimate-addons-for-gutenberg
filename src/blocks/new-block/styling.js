@@ -93,9 +93,9 @@ function styling( props ) {
 		yPositionType,
 		yPositionTypeTablet,
 		yPositionTypeMobile,
-		// align,
-		// alignTablet,
-		// alignMobile,
+		align,
+		alignTablet,
+		alignMobile,
 		rowGapDesktop,
 		rowGapTablet,
 		rowGapMobile,
@@ -134,14 +134,26 @@ function styling( props ) {
 	rightMarginMobile = 'undefined' !== typeof rightMarginMobile ? rightMarginMobile : rightMarginTablet;
 
 	const selectors = {
-		// ' .block-editor-inner-blocks .block-editor-block-list__layout > *' : {
-		// 	'text-align': align
-		// },
 		'.uagb-info-box__wrap > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapDesktop, rowGapType ),
 		}
 	};
-
+	if( 'left' === align ) {
+		selectors[ '.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+			'text-align': align,
+			'justify-content': 'flex-start'
+		}
+	} else if( 'right' === align ) {
+		selectors[ '.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+			'text-align': align,
+			'justify-content': 'flex-end'
+		}
+	} else {
+		selectors[ '.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+			'text-align': align,
+			'justify-content': align
+		}
+	}
 	const backgroundAttributesDesktop = {
         'backgroundType': backgroundType,
         'backgroundImage': backgroundImageDesktop,
@@ -162,7 +174,7 @@ function styling( props ) {
 		'yPositionType': yPositionType,
     };
 
-	const containerBackgroundCSSDesktop = generateBackgroundCSS( backgroundAttributesDesktop );
+	const newBlockBackgroundCSSDesktop = generateBackgroundCSS( backgroundAttributesDesktop );
 
 	let boxShadowPositionCSS = boxShadowPosition;
 
@@ -181,11 +193,11 @@ function styling( props ) {
 		'padding-bottom': generateCSSUnit( bottomPaddingDesktop, paddingType ),
 		'padding-left': generateCSSUnit( leftPaddingDesktop, paddingType ),
 		'padding-right': generateCSSUnit( rightPaddingDesktop, paddingType ),
-		'margin-top': generateCSSUnit( topMarginDesktop, marginType )+	' !important',
-		'margin-bottom': generateCSSUnit( bottomMarginDesktop, marginType )+	' !important',
-		'margin-left': generateCSSUnit( leftMarginDesktop, marginType )+	' !important',
-		'margin-right': generateCSSUnit( rightMarginDesktop, marginType )+	' !important',
-		...containerBackgroundCSSDesktop,
+		'margin-top': generateCSSUnit( topMarginDesktop, marginType ),
+		'margin-bottom': generateCSSUnit( bottomMarginDesktop, marginType ),
+		'margin-left': generateCSSUnit( leftMarginDesktop, marginType ),
+		'margin-right': generateCSSUnit( rightMarginDesktop, marginType ),
+		...newBlockBackgroundCSSDesktop,
 		'box-shadow':
 		generateCSSUnit( boxShadowHOffset, 'px' ) + ' ' + generateCSSUnit( boxShadowVOffset, 'px' ) +	' ' +
 		generateCSSUnit( boxShadowBlur, 'px' ) + ' ' +	generateCSSUnit( boxShadowSpread, 'px' ) + ' ' +
@@ -238,20 +250,33 @@ function styling( props ) {
 			'padding-bottom': generateCSSUnit( bottomPaddingTablet, paddingTypeTablet ),
 			'padding-left': generateCSSUnit( leftPaddingTablet, paddingTypeTablet ),
 			'padding-right': generateCSSUnit( rightPaddingTablet, paddingTypeTablet ),
-			'margin-top': generateCSSUnit( topMarginTablet, marginTypeTablet )+	' !important',
+			'margin-top': generateCSSUnit( topMarginTablet, marginTypeTablet ),
 			'margin-bottom': generateCSSUnit( bottomMarginTablet, marginTypeTablet )+' !important',
-			'margin-left': generateCSSUnit( leftMarginTablet, marginTypeTablet )+	' !important',
-			'margin-right': generateCSSUnit( rightMarginTablet, marginTypeTablet )+	' !important',
+			'margin-left': generateCSSUnit( leftMarginTablet, marginTypeTablet ),
+			'margin-right': generateCSSUnit( rightMarginTablet, marginTypeTablet ),
 			...infoBoxBackgroundCSSTablet,
 			...borderCSSTablet
 		},
-		// ' .block-editor-inner-blocks .block-editor-block-list__layout > *' : {
-		// 	'text-align': alignTablet
-		// },
 		'.uagb-info-box__wrap > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapTablet, rowGapTypeTablet ),
 		}
 	};
+	if( 'left' === alignTablet ) {
+		tablet_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+			'text-align': alignTablet,
+			'justify-content': 'flex-start'
+		}
+	} else if( 'right' === alignTablet ) {
+		tablet_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+			'text-align': alignTablet,
+			'justify-content': 'flex-end'
+		}
+	} else {
+		tablet_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+			'text-align': alignTablet,
+			'justify-content': alignTablet
+		}
+	}
 
 	const backgroundAttributesMobile = {
         'backgroundType': backgroundType,
@@ -281,21 +306,34 @@ function styling( props ) {
 			'padding-bottom': generateCSSUnit( bottomPaddingMobile, paddingTypeMobile ),
 			'padding-left': generateCSSUnit( leftPaddingMobile, paddingTypeMobile ),
 			'padding-right': generateCSSUnit( rightPaddingMobile, paddingTypeMobile ),
-			'margin-top': generateCSSUnit( topMarginMobile, marginTypeMobile )+	' !important',
-			'margin-bottom': generateCSSUnit( bottomMarginMobile, marginTypeMobile )+	' !important',
-			'margin-left': generateCSSUnit( leftMarginMobile, marginTypeMobile )+	' !important',
-			'margin-right': generateCSSUnit( rightMarginMobile, marginTypeMobile )+	' !important',
+			'margin-top': generateCSSUnit( topMarginMobile, marginTypeMobile ),
+			'margin-bottom': generateCSSUnit( bottomMarginMobile, marginTypeMobile ),
+			'margin-left': generateCSSUnit( leftMarginMobile, marginTypeMobile ),
+			'margin-right': generateCSSUnit( rightMarginMobile, marginTypeMobile ),
 			...containerBackgroundCSSMobile,
 			...borderCSSMobile
 		},
-		// ' .block-editor-inner-blocks .block-editor-block-list__layout > *' : {
-		// 	'text-align': alignMobile
-		// },
 		'.uagb-info-box__wrap .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapMobile, rowGapTypeMobile ),
 		}
 
 	};
+	if( 'left' === alignMobile ) {
+		mobile_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+			'text-align': alignMobile,
+			'justify-content': 'flex-start'
+		}
+	} else if( 'right' === alignMobile ) {
+		mobile_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+			'text-align': alignMobile,
+			'justify-content': 'flex-end'
+		}
+	} else {
+		mobile_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+			'text-align': alignMobile,
+			'justify-content': alignMobile
+		}
+	}
 
 	const id = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr(
 		0,

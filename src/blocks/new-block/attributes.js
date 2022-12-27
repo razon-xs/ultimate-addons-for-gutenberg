@@ -15,21 +15,19 @@ const attributes = {
 	},
 	alignTablet: {
 		type: 'string',
-		default: 'center',
 		UAGCopyPaste: {
 			styleType: 'overall-align-tablet'
 		}
 	},
 	alignMobile: {
 		type: 'string',
-		default: 'center',
 		UAGCopyPaste: {
 			styleType: 'overall-align-mobile'
 		}
 	},
 	backgroundType: {
 		type: 'string',
-		default: 'none',
+		default: 'color',
 		UAGCopyPaste: {
 			styleType: 'block-bg-type'
 		},
@@ -136,6 +134,7 @@ const attributes = {
 		UAGCopyPaste: {
 			styleType: 'block-bg-color'
 		},
+		default: '#F9F9F9'
 	},
 	backgroundOpacity: {
 		type: 'number',

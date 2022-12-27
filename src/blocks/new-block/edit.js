@@ -2,15 +2,20 @@
  * BLOCK: Info-Box 2.0
  */
 import styling from './styling';
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import { useDeviceType } from '@Controls/getPreviewType';
-
+import { __experimentalBlockVariationPicker } from '@wordpress/block-editor';
+import { createBlock } from '@wordpress/blocks';
+import { useSelect, useDispatch } from '@wordpress/data';
 import Settings from './settings';
 import Render from './render';
 import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
+import { withNotices } from '@wordpress/components';
+import { compose, createHigherOrderComponent } from '@wordpress/compose';
+import { __ } from '@wordpress/i18n';
 
-const UAGBContainer = ( props ) => {
+const UAGBNewBlock = ( props ) => {
 	const deviceType = useDeviceType();
 
 	useEffect( () => {
@@ -30,6 +35,68 @@ const UAGBContainer = ( props ) => {
 		
 	}, [ props ] );
 
+	const {
+		innerBlocks, // eslint-disable-line no-unused-vars
+		blockType, // eslint-disable-line no-unused-vars
+		variations,
+		hasInnerBlocks,
+		defaultVariation,
+	} = useSelect(
+		( select ) => {
+			const { getBlocks } = select( 'core/block-editor' );
+			const {
+				getBlockType,
+				getBlockVariations,
+				getDefaultBlockVariation,
+			} = select( 'core/blocks' );
+
+			return {
+				innerBlocks: getBlocks( props.clientId ),
+				hasInnerBlocks:
+					select( 'core/block-editor' ).getBlocks( props.clientId ).length >
+					0,
+
+				blockType: getBlockType( props.name ),
+				defaultVariation:
+					typeof getDefaultBlockVariation === 'undefined'
+						? null
+						: getDefaultBlockVariation( props.name ),
+				variations:
+					typeof getBlockVariations === 'undefined'
+						? null
+						: getBlockVariations( props.name ),
+			};
+		},
+	);
+	const { replaceInnerBlocks } = useDispatch( 'core/block-editor' );
+	const createBlocksFromInnerBlocksTemplate = useCallback(
+		( innerBlocksTemplate ) => {
+			return innerBlocksTemplate.map(
+				( [ name, attributes, innerBlocks = [] ] ) => // eslint-disable-line no-shadow
+					createBlock(
+						name,
+						attributes,
+						createBlocksFromInnerBlocksTemplate( innerBlocks )
+					)
+			);
+		}
+	);
+	const blockVariationPickerOnSelect = useCallback(
+		( nextVariation = defaultVariation ) => {
+			if ( nextVariation.attributes ) {
+				props.setAttributes( nextVariation.attributes );
+			}
+
+			if ( nextVariation.innerBlocks ) {
+				replaceInnerBlocks(
+					props.clientId,
+					createBlocksFromInnerBlocksTemplate(
+						nextVariation.innerBlocks
+					)
+				);
+			}
+		}
+	);
 	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
 
 	useEffect( () => {
@@ -38,12 +105,52 @@ const UAGBContainer = ( props ) => {
 
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
+	
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/form.svg`;
+
+	if ( ! props.attributes.isPreview && ! hasInnerBlocks ) {
+		return (
+			props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
+				<div className='uagb-forms-variations'>
+					<__experimentalBlockVariationPicker
+						label={ __( 'Info Box 2.0', 'ultimate-addons-for-gutenberg' ) }
+						instructions={ __(
+							'Select a variation to start with.',
+							'ultimate-addons-for-gutenberg'
+						) }
+						variations={ variations }
+						allowSkip
+						onSelect={ ( nextVariation ) =>
+							blockVariationPickerOnSelect( nextVariation )
+						}
+					/>
+				</div>
+			)
+		);
+	}
+
 	return (
-		<>
-			<Settings parentProps={ props } />
-			<Render parentProps={ props } />
-		</>
+			<>
+				<Settings parentProps={ props } />
+				<Render parentProps={ props } />
+			</>
+		
 	);
 };
+const addAdvancedClasses = createHigherOrderComponent( ( BlockListBlock ) => {
+	return ( props ) => {
+		return (
+			<BlockListBlock
+				{ ...props }
+				className={ props.attributes.className }
+			/>
+		);
+	};
+}, 'addAdvancedClasses' );
 
-export default UAGBContainer;
+wp.hooks.addFilter( 'editor.BlockListBlock', 'uagb/new-block', addAdvancedClasses );
+
+export default compose(
+	withNotices,
+	addAdvancedClasses
+)( UAGBNewBlock );

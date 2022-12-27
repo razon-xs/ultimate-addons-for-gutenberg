@@ -10,7 +10,9 @@ const ALLOWED_BLOCKS = [
 	'uagb/buttons',
 	'uagb/icon-list',
 	'uagb/social-share',
-	'uagb/star-rating'
+	'uagb/star-rating',
+	'core/paragraph',
+	'uagb/container'
 ];
 
 import { InnerBlocks } from '@wordpress/block-editor';

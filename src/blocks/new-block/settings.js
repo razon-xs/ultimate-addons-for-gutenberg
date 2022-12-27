@@ -126,7 +126,7 @@ const Settings = ( props ) => {
 			<>
 				<UAGAdvancedPanelBody
 					title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
-					initialOpen={ false }
+					initialOpen={ true }
 				>
 					<MultiButtonsControl
 						setAttributes={ setAttributes }
