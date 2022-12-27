@@ -1,6 +1,16 @@
 UAGBCountdown = { // eslint-disable-line no-undef
 	elements: {},
 	countdownInterval: {},
+
+	editorInit( mainSelector, data = {}, countdownRef ) {
+
+        this.elements[mainSelector] = this.getDefaultElements( mainSelector );
+
+		this.countdownInterval[ mainSelector ] = setInterval( () => {
+			this.updateCountdown( mainSelector, data, true, countdownRef );
+		}, 1000 );
+	},
+
 	init( mainSelector, data = {} ) {
 
         this.elements[mainSelector] = this.getDefaultElements( mainSelector );
@@ -14,13 +24,13 @@ UAGBCountdown = { // eslint-disable-line no-undef
 
 	},
 
-	changeEndTime( mainSelector, data = {} ) {
+	changeEndTime( mainSelector, data = {}, ref ) {
 
 		clearInterval( this.countdownInterval[ mainSelector ] );
 
         if( typeof this.elements[ mainSelector ] !== 'undefined' ){
             this.countdownInterval[ mainSelector ] = setInterval( () => {
-                this.updateCountdown( mainSelector, data );
+                this.updateCountdown( mainSelector, data, true, ref );
             }, 1000 );
 		}
 	},
@@ -56,12 +66,25 @@ UAGBCountdown = { // eslint-disable-line no-undef
 		return domElement;
 	},
 
-    updateCountdown( mainSelector, data ) {
-        // Wrappers.
-		const daysWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-days' );
-		const hoursWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-hours' );
-		const minutesWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-minutes' );
-		const secondsWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-seconds' );
+    updateCountdown( mainSelector, data, isEditor = false, ref = null ) {
+
+		// Wrappers.
+		let daysWrap;
+		let hoursWrap;
+		let minutesWrap;
+		let secondsWrap;
+
+		if( isEditor ) {
+			daysWrap = ref.querySelector( '.wp-block-uagb-countdown__time-days' );
+			hoursWrap = ref.querySelector( '.wp-block-uagb-countdown__time-hours' );
+			minutesWrap = ref.querySelector( '.wp-block-uagb-countdown__time-minutes' );
+			secondsWrap = ref.querySelector( '.wp-block-uagb-countdown__time-seconds' );
+		} else {
+			daysWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-days' );
+			hoursWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-hours' );
+			minutesWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-minutes' );
+			secondsWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-seconds' );
+		}
 
         // Calculations.
         const currentTime = new Date();

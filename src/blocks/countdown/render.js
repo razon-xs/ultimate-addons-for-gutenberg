@@ -15,6 +15,8 @@ const Render = ( props ) => {
 		};
 	}, [] );
 
+    const countdownRef = props.countdownRef;
+
 	props = props.parentProps;
 
     const deviceType = useDeviceType();
@@ -37,6 +39,7 @@ const Render = ( props ) => {
                 `uagb-block-${ block_id }`,
                 'wp-block-uagb-countdown',
             ) }
+            ref = { countdownRef }
         >
             <CountdownBox unitType='days' showLabels={ showLabels } label={ labelDays } />
             <CountdownBox unitType='hours' showLabels={ showLabels } label={ labelHours } />
