@@ -17,6 +17,7 @@ $countdown_options = apply_filters(
 		'block_id'       => $attr['block_id'],
 		'endDateTime'    => $attr['endDateTime'],
 		'timerEndAction' => $attr['timerEndAction'],
+		'redirectURL'    => $attr['redirectURL'],
 		'isFrontend'     => true,
 	),
 	$id
