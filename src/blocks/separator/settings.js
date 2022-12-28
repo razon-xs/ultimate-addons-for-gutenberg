@@ -70,6 +70,25 @@ const Settings = ( props ) => {
 		elementSpacingTablet,
 		elementSpacingMobile,
 		elementSpacingUnit,
+		elementTextLoadGoogleFonts,
+		elementTextFontFamily,
+		elementTextFontWeight,
+		elementTextFontSize,
+		elementTextFontSizeType,
+		elementTextFontSizeTablet,
+		elementTextFontSizeMobile,
+		elementTextLineHeightType,
+		elementTextLineHeight,
+		elementTextLineHeightTablet,
+		elementTextLineHeightMobile,
+		elementTextFontStyle,
+		elementTextLetterSpacing,
+		elementTextLetterSpacingTablet,
+		elementTextLetterSpacingMobile,
+		elementTextLetterSpacingType,
+		elementTextDecoration,
+		elementTextTransform,
+		elementColor
 	} = attributes;
 
 	// Separator settings.
@@ -530,6 +549,95 @@ const Settings = ( props ) => {
 						},
 					] }
 					showIcons={ true }
+				/>
+				<TypographyControl
+					label={ __(
+						'Typography',
+						'ultimate-addons-for-gutenberg'
+					) }
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+					loadGoogleFonts={ {
+						value: elementTextLoadGoogleFonts,
+						label: 'elementTextLoadGoogleFonts',
+					} }
+					fontFamily={ {
+						value: elementTextFontFamily,
+						label: 'elementTextFontFamily',
+					} }
+					fontWeight={ {
+						value: elementTextFontWeight,
+						label: 'elementTextFontWeight',
+					} }
+					fontStyle={ {
+						value: elementTextFontStyle,
+						label: 'elementTextFontStyle',
+					} }
+					fontSizeType={ {
+						value: elementTextFontSizeType,
+						label: 'elementTextFontSizeType',
+					} }
+					fontSize={ {
+						value: elementTextFontSize,
+						label: 'elementTextFontSize',
+					} }
+					fontSizeMobile={ {
+						value: elementTextFontSizeMobile,
+						label: 'elementTextFontSizeMobile',
+					} }
+					fontSizeTablet={ {
+						value: elementTextFontSizeTablet,
+						label: 'elementTextFontSizeTablet',
+					} }
+					lineHeightType={ {
+						value: elementTextLineHeightType,
+						label: 'elementTextLineHeightType',
+					} }
+					lineHeight={ {
+						value: elementTextLineHeight,
+						label: 'elementTextLineHeight',
+					} }
+					lineHeightMobile={ {
+						value: elementTextLineHeightMobile,
+						label: 'elementTextLineHeightMobile',
+					} }
+					lineHeightTablet={ {
+						value: elementTextLineHeightTablet,
+						label: 'elementTextLineHeightTablet',
+					} }
+					letterSpacing={ {
+						value: elementTextLetterSpacing,
+						label: 'elementTextLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: elementTextLetterSpacingTablet,
+						label: 'elementTextLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: elementTextLetterSpacingMobile,
+						label: 'elementTextLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: elementTextLetterSpacingType,
+						label: 'elementTextLetterSpacingType',
+					} }
+					transform={ {
+						value: elementTextTransform,
+						label: 'elementTextTransform',
+					} }
+					decoration={ {
+						value: elementTextDecoration,
+						label: 'elementTextDecoration',
+					} }
+				/>
+				<AdvancedPopColorControl
+					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
+					colorValue={ elementColor ? elementColor : '' }
+					data={ {
+						value: elementColor,
+						label: 'elementColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<ResponsiveSlider
 					label={ __(

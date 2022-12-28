@@ -239,6 +239,127 @@ const attributes = {
 		type: 'string',
 		default: 'px',
 	},
+
+	elementTextLoadGoogleFonts: {
+		type: 'boolean',
+		default: false,
+		UAGCopyPaste: {
+			styleType: 'main-title-load-google-fonts'
+		},
+	},
+	elementTextFontFamily: {
+		type: 'string',
+		default: 'Default',
+		UAGCopyPaste: {
+			styleType: 'main-title-font-family'
+		},
+	},
+	elementTextFontWeight: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'main-title-font-weight'
+		},
+	},
+	elementTextFontSize: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'main-title-font-size'
+		},
+	},
+	elementTextFontSizeType: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'main-title-font-size-type'
+		},
+		default: 'px'
+	},
+	elementTextFontSizeTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'main-title-font-size-tablet'
+		},
+	},
+	elementTextFontSizeMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'main-title-font-size-mobile'
+		},
+	},
+	elementTextLineHeightType: {
+		type: 'string',
+		default: 'em',
+		UAGCopyPaste: {
+			styleType: 'main-title-line-height-type'
+		},
+	},
+	elementTextLineHeight: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'main-title-line-height'
+		},
+	},
+	elementTextLineHeightTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'main-title-line-height-tablet'
+		},
+	},
+	elementTextLineHeightMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'main-title-line-height-mobile'
+		},
+	},
+	elementTextFontStyle: {
+		type: 'string',
+		default: 'normal',
+		UAGCopyPaste: {
+			styleType: 'main-title-font-style'
+		},
+	},
+	elementTextLetterSpacing: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'label-letter-spacing'
+		}
+	},
+	elementTextLetterSpacingTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'label-letter-spacing-tablet'
+		}
+	},
+	elementTextLetterSpacingMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'label-letter-spacing-mobile'
+		}
+	},
+	elementTextLetterSpacingType: {
+		type: 'string',
+		default: 'px',
+		UAGCopyPaste: {
+			styleType: 'label-letter-spacing-type'
+		}
+	},
+	elementTextDecoration: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'main-title-decoration'
+		},
+	},
+	elementTextTransform: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'main-title-transform'
+		},
+	},
+	elementColor: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'main-title-color'
+		}
+	},
 };
 
 export default attributes;
