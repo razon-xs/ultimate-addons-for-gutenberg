@@ -88,7 +88,11 @@ const Settings = ( props ) => {
 		elementTextLetterSpacingType,
 		elementTextDecoration,
 		elementTextTransform,
-		elementColor
+		elementColor,
+		elementIconWidth,
+		elementIconWidthTablet,
+		elementIconWidthMobile,
+		elementIconWidthType
 	} = attributes;
 
 	// Separator settings.
@@ -550,86 +554,139 @@ const Settings = ( props ) => {
 					] }
 					showIcons={ true }
 				/>
-				<TypographyControl
-					label={ __(
-						'Typography',
-						'ultimate-addons-for-gutenberg'
-					) }
-					attributes={ attributes }
-					setAttributes={ setAttributes }
-					loadGoogleFonts={ {
-						value: elementTextLoadGoogleFonts,
-						label: 'elementTextLoadGoogleFonts',
-					} }
-					fontFamily={ {
-						value: elementTextFontFamily,
-						label: 'elementTextFontFamily',
-					} }
-					fontWeight={ {
-						value: elementTextFontWeight,
-						label: 'elementTextFontWeight',
-					} }
-					fontStyle={ {
-						value: elementTextFontStyle,
-						label: 'elementTextFontStyle',
-					} }
-					fontSizeType={ {
-						value: elementTextFontSizeType,
-						label: 'elementTextFontSizeType',
-					} }
-					fontSize={ {
-						value: elementTextFontSize,
-						label: 'elementTextFontSize',
-					} }
-					fontSizeMobile={ {
-						value: elementTextFontSizeMobile,
-						label: 'elementTextFontSizeMobile',
-					} }
-					fontSizeTablet={ {
-						value: elementTextFontSizeTablet,
-						label: 'elementTextFontSizeTablet',
-					} }
-					lineHeightType={ {
-						value: elementTextLineHeightType,
-						label: 'elementTextLineHeightType',
-					} }
-					lineHeight={ {
-						value: elementTextLineHeight,
-						label: 'elementTextLineHeight',
-					} }
-					lineHeightMobile={ {
-						value: elementTextLineHeightMobile,
-						label: 'elementTextLineHeightMobile',
-					} }
-					lineHeightTablet={ {
-						value: elementTextLineHeightTablet,
-						label: 'elementTextLineHeightTablet',
-					} }
-					letterSpacing={ {
-						value: elementTextLetterSpacing,
-						label: 'elementTextLetterSpacing',
-					} }
-					letterSpacingTablet={ {
-						value: elementTextLetterSpacingTablet,
-						label: 'elementTextLetterSpacingTablet',
-					} }
-					letterSpacingMobile={ {
-						value: elementTextLetterSpacingMobile,
-						label: 'elementTextLetterSpacingMobile',
-					} }
-					letterSpacingType={ {
-						value: elementTextLetterSpacingType,
-						label: 'elementTextLetterSpacingType',
-					} }
-					transform={ {
-						value: elementTextTransform,
-						label: 'elementTextTransform',
-					} }
-					decoration={ {
-						value: elementTextDecoration,
-						label: 'elementTextDecoration',
-					} }
-				/>
+				{
+					elementType === 'text' && (
+						<TypographyControl
+							label={ __(
+								'Typography',
+								'ultimate-addons-for-gutenberg'
+							) }
+							attributes={ attributes }
+							setAttributes={ setAttributes }
+							loadGoogleFonts={ {
+								value: elementTextLoadGoogleFonts,
+								label: 'elementTextLoadGoogleFonts',
+							} }
+							fontFamily={ {
+								value: elementTextFontFamily,
+								label: 'elementTextFontFamily',
+							} }
+							fontWeight={ {
+								value: elementTextFontWeight,
+								label: 'elementTextFontWeight',
+							} }
+							fontStyle={ {
+								value: elementTextFontStyle,
+								label: 'elementTextFontStyle',
+							} }
+							fontSizeType={ {
+								value: elementTextFontSizeType,
+								label: 'elementTextFontSizeType',
+							} }
+							fontSize={ {
+								value: elementTextFontSize,
+								label: 'elementTextFontSize',
+							} }
+							fontSizeMobile={ {
+								value: elementTextFontSizeMobile,
+								label: 'elementTextFontSizeMobile',
+							} }
+							fontSizeTablet={ {
+								value: elementTextFontSizeTablet,
+								label: 'elementTextFontSizeTablet',
+							} }
+							lineHeightType={ {
+								value: elementTextLineHeightType,
+								label: 'elementTextLineHeightType',
+							} }
+							lineHeight={ {
+								value: elementTextLineHeight,
+								label: 'elementTextLineHeight',
+							} }
+							lineHeightMobile={ {
+								value: elementTextLineHeightMobile,
+								label: 'elementTextLineHeightMobile',
+							} }
+							lineHeightTablet={ {
+								value: elementTextLineHeightTablet,
+								label: 'elementTextLineHeightTablet',
+							} }
+							letterSpacing={ {
+								value: elementTextLetterSpacing,
+								label: 'elementTextLetterSpacing',
+							} }
+							letterSpacingTablet={ {
+								value: elementTextLetterSpacingTablet,
+								label: 'elementTextLetterSpacingTablet',
+							} }
+							letterSpacingMobile={ {
+								value: elementTextLetterSpacingMobile,
+								label: 'elementTextLetterSpacingMobile',
+							} }
+							letterSpacingType={ {
+								value: elementTextLetterSpacingType,
+								label: 'elementTextLetterSpacingType',
+							} }
+							transform={ {
+								value: elementTextTransform,
+								label: 'elementTextTransform',
+							} }
+							decoration={ {
+								value: elementTextDecoration,
+								label: 'elementTextDecoration',
+							} }
+						/>
+					)
+				}
+
+				{
+					elementType === 'icon' && (
+						<ResponsiveSlider
+							label={ __(
+								'Icon Size',
+								'ultimate-addons-for-gutenberg'
+							) }
+							data={ {
+								desktop: {
+									value: elementIconWidth,
+									label: 'elementIconWidth',
+								},
+								tablet: {
+									value: elementIconWidthTablet,
+									label: 'elementIconWidthTablet',
+								},
+								mobile: {
+									value: elementIconWidthMobile,
+									label: 'elementIconWidthMobile',
+								},
+							} }
+							min={ 0 }
+							max={ 100 }
+							unit={ {
+								value: elementIconWidthType,
+								label: 'elementIconWidthType',
+							} }
+							units={ [
+								{
+									name: __(
+										'Pixel',
+										'ultimate-addons-for-gutenberg'
+									),
+									unitValue: 'px',
+								},
+								{
+									name: __(
+										'EM',
+										'ultimate-addons-for-gutenberg'
+									),
+									unitValue: 'em',
+								},
+							] }
+							setAttributes={ setAttributes }
+						/>
+					)
+				}
+
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ elementColor ? elementColor : '' }

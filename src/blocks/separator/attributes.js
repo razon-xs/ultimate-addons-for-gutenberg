@@ -360,6 +360,22 @@ const attributes = {
 			styleType: 'main-title-color'
 		}
 	},
+	elementIconWidth:{
+		type: 'number',
+		default: '',
+	},
+	elementIconWidthTablet:{
+		type: 'number',
+		default: '',
+	},
+	elementIconWidthMobile:{
+		type: 'number',
+		default: '',
+	},
+	elementIconWidthType: {
+		type: 'string',
+		default: 'px',
+	},
 };
 
 export default attributes;
