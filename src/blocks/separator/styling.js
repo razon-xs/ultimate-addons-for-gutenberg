@@ -38,7 +38,6 @@ function styling( props ) {
 		separatorPaddingUnit,
 		separatorMobilePaddingUnit,
 		separatorTabletPaddingUnit,
-		separatorPaddingLink,
 		elementType,
 		elementPosition,
 		elementPositionTablet,
@@ -47,6 +46,28 @@ function styling( props ) {
 		elementSpacingTablet,
 		elementSpacingMobile,
 		elementSpacingUnit,
+		elementTextFontFamily,
+		elementTextFontWeight,
+		elementTextFontSize,
+		elementTextFontSizeType,
+		elementTextFontSizeTablet,
+		elementTextFontSizeMobile,
+		elementTextLineHeightType,
+		elementTextLineHeight,
+		elementTextLineHeightTablet,
+		elementTextLineHeightMobile,
+		elementTextFontStyle,
+		elementTextLetterSpacing,
+		elementTextLetterSpacingTablet,
+		elementTextLetterSpacingMobile,
+		elementTextLetterSpacingType,
+		elementTextDecoration,
+		elementTextTransform,
+		elementColor,
+		elementIconWidth,
+		elementIconWidthTablet,
+		elementIconWidthMobile,
+		elementIconWidthType
 	} = props.attributes;
 
 	// Responsive Slider
@@ -126,8 +147,6 @@ function styling( props ) {
 		}
 	}
 
-
-
 	const selectors = {
 		'.wp-block-uagb-separator': {
 			'padding-bottom': generateCSSUnit( separatorBottomPadding, separatorPaddingUnit ),
@@ -137,7 +156,29 @@ function styling( props ) {
 			'text-align': separatorAlign,
 		},
 		...borderStyle,
-		...iconSpacingStyle
+		...iconSpacingStyle,
+		'.wp-block-uagb-separator .wp-block-uagb-separator-element': {
+			'color': elementColor
+		},
+		'.wp-block-uagb-separator--text .wp-block-uagb-separator-element': {
+			'font-family': elementTextFontFamily,
+			'font-style' : elementTextFontStyle,
+			'text-decoration': elementTextDecoration,
+			'text-transform': elementTextTransform,
+			'font-weight': elementTextFontWeight,
+			'font-size': generateCSSUnit( elementTextFontSize, elementTextFontSizeType ),
+			'line-height': generateCSSUnit( elementTextLineHeight, elementTextLineHeightType ),
+			'letter-spacing': generateCSSUnit( elementTextLetterSpacing, elementTextLetterSpacingType ),
+		},
+		'.wp-block-uagb-separator--icon .wp-block-uagb-separator-element': {
+			'fill': elementColor
+		},
+		'.wp-block-uagb-separator--icon .wp-block-uagb-separator-element svg': {
+			'font-size': generateCSSUnit( elementIconWidth, elementIconWidthType ),
+			'width': generateCSSUnit( elementIconWidth, elementIconWidthType ),
+			'height': generateCSSUnit( elementIconWidth, elementIconWidthType ),
+			'line-height': generateCSSUnit( elementIconWidth, elementIconWidthType )
+		}
 	}
 
 	let borderStyleTablet = {}
@@ -197,7 +238,18 @@ function styling( props ) {
 			'width': generateCSSUnit( separatorWidthFallbackTablet, separatorWidthType ),
 		},
 		...borderStyleTablet,
-		...iconSpacingStyleTablet
+		...iconSpacingStyleTablet,
+		'.wp-block-uagb-separator--text .wp-block-uagb-separator-element': {
+			'font-size': generateCSSUnit( elementTextFontSizeTablet, elementTextFontSizeType ),
+			'line-height': generateCSSUnit( elementTextLineHeightTablet, elementTextLineHeightType ),
+			'letter-spacing': generateCSSUnit( elementTextLetterSpacingTablet, elementTextLetterSpacingType ),
+		},
+		'.wp-block-uagb-separator--icon .wp-block-uagb-separator-element svg': {
+			'font-size': generateCSSUnit( elementIconWidthTablet, elementIconWidthType ),
+			'width': generateCSSUnit( elementIconWidthTablet, elementIconWidthType ),
+			'height': generateCSSUnit( elementIconWidthTablet, elementIconWidthType ),
+			'line-height': generateCSSUnit( elementIconWidthTablet, elementIconWidthType )
+		}
 	};
 
 	let borderStyleMobile = {}
@@ -256,7 +308,18 @@ function styling( props ) {
 			'width': generateCSSUnit( separatorWidthFallbackMobile, separatorWidthType ),
 		},
 		...borderStyleMobile,
-		...iconSpacingStyleMobile
+		...iconSpacingStyleMobile,
+		'.wp-block-uagb-separator--text .wp-block-uagb-separator-element': {
+			'font-size': generateCSSUnit( elementTextFontSizeMobile, elementTextFontSizeType ),
+			'line-height': generateCSSUnit( elementTextLineHeightMobile, elementTextLineHeightType ),
+			'letter-spacing': generateCSSUnit( elementTextLetterSpacingMobile, elementTextLetterSpacingType ),
+		},
+		'.wp-block-uagb-separator--icon .wp-block-uagb-separator-element svg': {
+			'font-size': generateCSSUnit( elementIconWidthMobile, elementIconWidthType ),
+			'width': generateCSSUnit( elementIconWidthMobile, elementIconWidthType ),
+			'height': generateCSSUnit( elementIconWidthMobile, elementIconWidthType ),
+			'line-height': generateCSSUnit( elementIconWidthMobile, elementIconWidthType )
+		}
 	};
 
 
