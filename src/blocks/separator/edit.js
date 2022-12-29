@@ -47,7 +47,7 @@ const UAGBAdvancedHeading = ( props ) => {
 		scrollBlockToView();
 	}, [deviceType] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/advanced-heading.svg`;
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/separator.svg`;
 
 	return (
 		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (

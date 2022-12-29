@@ -5,6 +5,10 @@ const attributes = {
 	block_id: {
 		type: 'string',
 	},
+	isPreview: {
+		type: 'boolean',
+		default: false,
+	},
 	classMigrate: {
 		type: 'boolean',
 		default: false,
