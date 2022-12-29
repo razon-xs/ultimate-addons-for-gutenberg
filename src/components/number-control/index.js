@@ -11,6 +11,7 @@ import React, { useLayoutEffect } from 'react';
 import { limitMax, limitMin } from '@Controls/unitWiseMinMaxOption';
 import classnames from 'classnames';
 import UAGReset from '../reset';
+import { useSelect } from '@wordpress/data';
 
 const UAGNumberControl = ( props ) => {
 	// Add and remove the CSS on the drop and remove of the component.
@@ -20,6 +21,23 @@ const UAGNumberControl = ( props ) => {
 			styles.unuse();
 		};
 	}, [] );
+
+	const selectedBlock = useSelect( ( select ) => {
+		return select( 'core/block-editor' ).getSelectedBlock();
+	}, [] );
+
+	const registerTextExtender = props.enableDynamicContent && props.name ? wp.hooks.applyFilters( 'uagb.registerTextExtender', '', selectedBlock?.name, props.name, props.dynamicContentType ) : null;
+
+	const isEnableDynamicContent = () => {
+		if( !props.enableDynamicContent || ! props.name ){
+			return false;
+		}
+		const dynamicContent = selectedBlock?.attributes?.dynamicContent
+		if( dynamicContent && dynamicContent?.[props.name]?.enable === true ) {
+			return true
+		}
+		return false;
+	}
 
 	const { isShiftStepEnabled } = props;
 
