@@ -50,6 +50,7 @@ const initialState = {
         'image',
         'buttons',
         'info-box',
+        'new-block',
         'call-to-action',
     ]
 };
