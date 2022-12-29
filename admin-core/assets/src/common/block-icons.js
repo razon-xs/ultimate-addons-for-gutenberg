@@ -555,6 +555,17 @@ const UAGB_Block_Icons = {
 			strokeWidth: 1.4,
 		} ),
 	),
+	separator: el(
+		'svg',
+		{ width: 30, height: 26, viewBox: '0 0 30 26', fill: 'red', className: 'uagb-editor-icons' },
+		el( 'path', {
+			fill: iconColor,
+			stokeWidth: 2,
+			strokeLinecap: "round",
+			strokeLinejoin: "round",
+			d: 'M1.66699 13H28.3337M18.3337 21.3333L15.0003 24.6666L11.667 21.3333M18.3337 4.66665L15.0003 1.33331L11.667 4.66665',
+		} ),
+	),
 };
 
 
