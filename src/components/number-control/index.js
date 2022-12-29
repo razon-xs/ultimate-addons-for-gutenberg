@@ -12,6 +12,7 @@ import { limitMax, limitMin } from '@Controls/unitWiseMinMaxOption';
 import classnames from 'classnames';
 import UAGReset from '../reset';
 import { useSelect } from '@wordpress/data';
+import Separator from '@Components/separator';
 
 const UAGNumberControl = ( props ) => {
 	// Add and remove the CSS on the drop and remove of the component.
@@ -165,7 +166,7 @@ const UAGNumberControl = ( props ) => {
 	const variant = props.inlineControl ? 'inline' : 'full-width';
 
 	return (
-		<div className="components-base-control uag-number-control uagb-size-type-field-tabs">
+		<div className={`components-base-control uag-number-control uagb-size-type-field-tabs${isEnableDynamicContent() ? ' uagb-text-control--open-dynamic-content' : ''}`}>
 			{ props.showControlHeader &&
 				<ControlHeader />
 			}
@@ -188,11 +189,20 @@ const UAGNumberControl = ( props ) => {
 					value={ inputValue }
 					step={ props?.step || 1 }
 					required={ props?.required }
+					readOnly={isEnableDynamicContent()}
 				/>
+				{
+					registerTextExtender
+				}
 			</div>
 			{ props.help && (
 				<p className="uag-control-help-notice">{ props.help }</p>
 			) }
+			{
+				isEnableDynamicContent() && (
+					<Separator />
+				)
+			}
 		</div>
 	);
 };
@@ -211,6 +221,8 @@ UAGNumberControl.defaultProps = {
 	responsive: false,
 	showControlHeader: true,
 	inlineControl: true,
+	dynamicContentType: 'text',
+	enableDynamicContent: false,
 };
 
 export default UAGNumberControl;
