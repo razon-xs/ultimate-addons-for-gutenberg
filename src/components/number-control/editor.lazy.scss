@@ -92,7 +92,7 @@
 		.uag-number-control__inline {
 
 			display: block;
-		
+
 			.uagb-dynamic-content-wrap {
 				width: 100%;
 				margin-top: 20px;
@@ -101,8 +101,8 @@
 	}
 
 	// Enables/shows arrows in the input field in Chrome (even in inactive state, so as to maintain a consistent UI across browsers).
-	input[type=number]::-webkit-inner-spin-button, 
-	input[type=number]::-webkit-outer-spin-button {  
+	input[type="number"]::-webkit-inner-spin-button,
+	input[type="number"]::-webkit-outer-spin-button {
 		opacity: 1;
 	}
 
