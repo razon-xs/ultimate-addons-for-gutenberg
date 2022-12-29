@@ -179,18 +179,22 @@ const UAGNumberControl = ( props ) => {
 					label= { props.label }
 					responsive= { props.responsive }
 				/>
-				<NumberControl
-					labelPosition="edge"
-					disabled={ props.disabled }
-					isShiftStepEnabled={ isShiftStepEnabled }
-					max={ max }
-					min={ min }
-					onChange={ handleOnChange }
-					value={ inputValue }
-					step={ props?.step || 1 }
-					required={ props?.required }
-					readOnly={isEnableDynamicContent()}
-				/>
+				{ !isEnableDynamicContent() &&
+					<>
+						<NumberControl
+							labelPosition="edge"
+							disabled={ props.disabled }
+							isShiftStepEnabled={ isShiftStepEnabled }
+							max={ max }
+							min={ min }
+							onChange={ handleOnChange }
+							value={ inputValue }
+							step={ props?.step || 1 }
+							required={ props?.required }
+							readOnly={isEnableDynamicContent()}
+						/>
+					</>
+				}
 				{
 					registerTextExtender
 				}
