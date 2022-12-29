@@ -170,14 +170,13 @@ function styling( props ) {
 			'line-height': generateCSSUnit( elementTextLineHeight, elementTextLineHeightType ),
 			'letter-spacing': generateCSSUnit( elementTextLetterSpacing, elementTextLetterSpacingType ),
 		},
-		'.wp-block-uagb-separator--icon .wp-block-uagb-separator-element': {
-			'fill': elementColor
-		},
 		'.wp-block-uagb-separator--icon .wp-block-uagb-separator-element svg': {
 			'font-size': generateCSSUnit( elementIconWidth, elementIconWidthType ),
 			'width': generateCSSUnit( elementIconWidth, elementIconWidthType ),
 			'height': generateCSSUnit( elementIconWidth, elementIconWidthType ),
-			'line-height': generateCSSUnit( elementIconWidth, elementIconWidthType )
+			'line-height': generateCSSUnit( elementIconWidth, elementIconWidthType ),
+			'color': elementColor,
+			'fill': elementColor
 		}
 	}
 
