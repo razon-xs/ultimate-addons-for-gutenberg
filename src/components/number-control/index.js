@@ -23,10 +23,12 @@ const UAGNumberControl = ( props ) => {
 		};
 	}, [] );
 
+	// Get selected block's data.
 	const selectedBlock = useSelect( ( select ) => {
 		return select( 'core/block-editor' ).getSelectedBlock();
 	}, [] );
 
+	// If Dynamic Content prop is enabled and the name (attribute name) is set, we retrieve the controls for the dynamic content feature. 
 	const registerTextExtender = props.enableDynamicContent && props.name ? wp.hooks.applyFilters( 'uagb.registerTextExtender', '', selectedBlock?.name, props.name, props.dynamicContentType ) : null;
 
 	const isEnableDynamicContent = () => {
@@ -179,6 +181,7 @@ const UAGNumberControl = ( props ) => {
 					label= { props.label }
 					responsive= { props.responsive }
 				/>
+				{/* If Dynamic Content is enabled, we don't need to show the input field */}
 				{ !isEnableDynamicContent() &&
 					<>
 						<NumberControl
@@ -195,6 +198,7 @@ const UAGNumberControl = ( props ) => {
 						/>
 					</>
 				}
+				{/* Show the Dynamic Content Controls */}
 				{
 					registerTextExtender
 				}
@@ -202,6 +206,7 @@ const UAGNumberControl = ( props ) => {
 			{ props.help && (
 				<p className="uag-control-help-notice">{ props.help }</p>
 			) }
+			{/* Add a separator below for better UI since many dynamic content controls are shown */}
 			{
 				isEnableDynamicContent() && (
 					<Separator />
@@ -227,6 +232,7 @@ UAGNumberControl.defaultProps = {
 	inlineControl: true,
 	dynamicContentType: 'text',
 	enableDynamicContent: false,
+	// name: attribute name as a string,  // a prop used when dynamic content support needs to be added to an instance of this control.
 };
 
 export default UAGNumberControl;
