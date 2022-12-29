@@ -286,6 +286,23 @@ export default function Settings( props ) {
 		}
 	}, [layout] );
 
+	// The following useEffect prevents validation errors,
+	// especially when dynamic content numbers are used
+	// since they are of type 'string' rather than 'number'.
+	useEffect( () => {
+
+		// In case number value is of type string, the save function goes for the default values,
+		// which are stored in the markup, causing validation errors.
+		const startValue = parseFloat( startNumber );
+		const endValue = parseFloat( endNumber );
+		const totalValue = parseFloat( totalNumber );
+
+		setAttributes( { startNumber: startValue } )
+		setAttributes( { endNumber: endValue } )
+		setAttributes( { totalNumber: totalValue } )
+
+	}, [startNumber, endNumber, totalNumber] );
+
 	const [minTotal, setMinTotal] = useState( defaultAttributes.endNumber.default ); // Default for endNumber.
 
 	const startFallback = getFallbackNumber( startNumber, 'startNumber', 'counter' );
@@ -517,6 +534,9 @@ export default function Settings( props ) {
 				required={ ( layout !== 'number' ) ? true : false }
 				help={ ( layout !== 'number' ) ? __( 'Note: Please use positive values for Circle and Bar layouts.', 'ultimate-addons-for-gutenberg' ) : false }
 				showControlHeader={ false }
+				enableDynamicContent={true}
+				dynamicContentType='text'
+				name='startNumber'
 			/>
 			<UAGNumberControl
 				label={ __( 'Ending Number', 'ultimate-addons-for-gutenberg' ) }
@@ -531,6 +551,9 @@ export default function Settings( props ) {
 				required={ ( layout !== 'number' ) ? true : false }
 				help={ ( layout !== 'number' ) ? __( 'Note: Please use positive values for Circle and Bar layouts.', 'ultimate-addons-for-gutenberg' ) : false }
 				showControlHeader={ false }
+				enableDynamicContent={true}
+				dynamicContentType='text'
+				name='endNumber'
 			/>
 			{
 				layout !== 'number' && (
@@ -547,6 +570,9 @@ export default function Settings( props ) {
 						required={ true }
 						help={ __( 'Note: Total Number should be more than or equal to the Ending Number (or the Starting number in case you want to animate the Counter in reverse direction).', 'ultimate-addons-for-gutenberg' ) }
 						showControlHeader={ false }
+						enableDynamicContent={true}
+						dynamicContentType='text'
+						name='totalNumber'
 					/>
 				)
 			}
