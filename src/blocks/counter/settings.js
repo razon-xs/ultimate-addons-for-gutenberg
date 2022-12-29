@@ -602,9 +602,6 @@ export default function Settings( props ) {
 				} }
 				setAttributes={ setAttributes }
 				onChange={ ( value ) => setAttributes( {numberPrefix: value} )}
-				enableDynamicContent={true}
-				dynamicContentType="text"
-				name='numberPrefix'
 			/>
 			<UAGTextControl
 				variant='inline'
@@ -616,9 +613,6 @@ export default function Settings( props ) {
 				} }
 				setAttributes={ setAttributes }
 				onChange={ ( value ) => setAttributes( {numberSuffix: value} )}
-				enableDynamicContent={true}
-				dynamicContentType="text"
-				name='numberSuffix'
 			/>
 			<UAGNumberControl
 				label={ __( 'Animation Duration', 'ultimate-addons-for-gutenberg' ) }
