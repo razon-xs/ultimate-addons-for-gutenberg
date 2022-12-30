@@ -15,7 +15,7 @@ const UAGBIcon = ( props ) => {
 		clientId,
 		attributes,
 	} = props;
-	let block_id = attributes.block_id;
+	const block_id = attributes.block_id;
 
 	props = { ...props, deviceType };
 

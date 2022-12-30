@@ -1,7 +1,7 @@
 // Import classes
 import classnames from 'classnames';
 import renderSVG from '@Controls/renderIcon';
-import { useBlockProps } from "@wordpress/block-editor";
+import { useBlockProps } from '@wordpress/block-editor';
 
 export default function save( props ){
 	const { attributes } = props;

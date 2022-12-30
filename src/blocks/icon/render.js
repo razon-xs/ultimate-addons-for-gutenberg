@@ -2,7 +2,7 @@
 import classnames from 'classnames';
 import renderSVG from '@Controls/renderIcon';
 import React from 'react';
-import { useBlockProps } from "@wordpress/block-editor";
+import { useBlockProps } from '@wordpress/block-editor';
 
 const Render = ( props ) => {
 
