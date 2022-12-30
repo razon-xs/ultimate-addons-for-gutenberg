@@ -13,6 +13,7 @@ return array_merge(
 	array(
 		'block_id'                    => '',
 		'timerEndAction'              => 'zero',
+		'redirectURL'                 => '',
 		'endDateTime'                 => '2023-01-01T00:00:00Z',
 		'showSeparator'               => true,
 		'separatorType'               => 'colon',
