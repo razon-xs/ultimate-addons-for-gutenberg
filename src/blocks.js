@@ -57,6 +57,7 @@ import './blocks/buttons/block.js';
 import './blocks/buttons-child/block.js'; // Child Block.
 import './blocks/info-box/block.js';
 import './blocks/call-to-action/block.js';
+import './blocks/icon/block.js';
 // Alphabetically Ordered Blocks.
 import './blocks/blockquote/block.js';
 import './blocks/timeline/content-timeline/block.js';
