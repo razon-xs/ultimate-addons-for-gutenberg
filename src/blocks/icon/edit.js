@@ -2,7 +2,6 @@
  * BLOCK: Icon - Edit
  */
 
-// import styling from './styling';
 import React, { useEffect } from 'react';
 
 import { useDeviceType } from '@Controls/getPreviewType';
@@ -20,8 +19,8 @@ const UAGBIcon = ( props ) => {
 	props = { ...props, deviceType };
 
 	useEffect( () => {
+		// Assigns block_id only for the first time when block is initialized.
 		if( ! block_id ) {
-			// Assigning block_id in the attribute.
 			props.setAttributes( { block_id: clientId.substr( 0, 8 ) } );
 		}
 	}, [] );
