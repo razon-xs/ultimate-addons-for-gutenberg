@@ -117,19 +117,31 @@ class UAGB_Init_Blocks {
 	 */
 	public function countdown_render_block( $block_content, $block ) {
 
-		if ( isset( $block['attrs'] ) ) {
+		if ( 'uagb/countdown' === $block['blockName'] ) {
 
-			$block_attributes = $block['attrs'];
+			if ( isset( $block['attrs'] ) ) {
 
-			// if ( isset( $block_attributes['UAGDisplayConditions'] ) && array_key_exists( 'UAGDisplayConditions', $block_attributes ) ) {
+				$block_attributes = $block['attrs'];
 
-			// }
+				var_dump( $block['blockName'] );
+
+				// $js_time      = strtotime( $block_attributes['endDateTime'] );
+				// $current_time = time();
+
+				// if ( $current_time > $js_time ) {
+				// 	return null;
+				// }
+
+				// if ( isset( $block_attributes['UAGDisplayConditions'] ) && array_key_exists( 'UAGDisplayConditions', $block_attributes ) ) {
+
+				// }
+			}
+
+			// var_dump( $block_content );
+			// var_dump( $block );
 		}
 
-		// var_dump( $block_content );
-		// var_dump( $block );
-
-		// return $block_content;
+		return $block_content;
 	}
 
 	/**
