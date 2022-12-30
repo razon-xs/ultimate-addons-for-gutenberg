@@ -41,7 +41,8 @@ export default function Settings( props ) {
         timerType,
         endDateTime,
 		timerEndAction,
-		redirectURL,
+		// This attribute is required for a pro feature.
+		redirectURL,  // eslint-disable-line no-unused-vars
         showLabels,
         labelDays,
         labelHours,
