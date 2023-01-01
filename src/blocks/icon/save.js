@@ -1,5 +1,5 @@
 // Import classes
-// import classnames from 'classnames';
+import classnames from 'classnames';
 import renderSVG from '@Controls/renderIcon';
 // import { __ } from '@wordpress/i18n';
 // import { RichText } from '@wordpress/block-editor';
@@ -66,7 +66,7 @@ export default function save( props ){
 	// const linkUrl = disableLink ? link : '/';
 
 	const blockProps = useBlockProps.save( {
-		className: `uagb-block-${ block_id }`
+		className: classnames( `uagb-block-${ block_id }` )
 	} );
 
 	return (

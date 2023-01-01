@@ -20,15 +20,14 @@ const UAGBIcon = ( props ) => {
 	const {
 		clientId,
 		attributes,
-		isSelected
 	} = props;
-	let block_id = attributes.block_id;
+	const block_id = attributes.block_id;
 
 	props = { ...props, deviceType };
 
 	useEffect( () => {
+		// Assigns block_id only for the first time when block is initialized.
 		if( ! block_id ) {
-			// Assigning block_id in the attribute.
 			props.setAttributes( { block_id: clientId.substr( 0, 8 ) } );
 		}
 	}, [] );
