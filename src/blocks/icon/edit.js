@@ -10,7 +10,7 @@ import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import { select, dispatch } from '@wordpress/data';
 import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
-
+import styling from './styling';
 import Settings from './settings';
 import Render from './render';
 
@@ -20,6 +20,7 @@ const UAGBIcon = ( props ) => {
 	const {
 		clientId,
 		attributes,
+		isSelected,
 	} = props;
 	const block_id = attributes.block_id;
 
@@ -32,21 +33,21 @@ const UAGBIcon = ( props ) => {
 		}
 	}, [] );
 
-	// useEffect( () => {
-	// 	if( true === isSelected ) {
-	// 		// Replacement for componentDidUpdate.
-	// 		const blockStyling = styling( props );
-	// 		addBlockEditorDynamicStyles( 'uagb-style-icon-' + block_id, blockStyling );
-	// 	}
-	// }, [ props ] );
+	useEffect( () => {
+		if( true === isSelected ) {
+			// Replacement for componentDidUpdate.
+			const blockStyling = styling( props );
+			addBlockEditorDynamicStyles( 'uagb-icon-' + block_id, blockStyling );
+		}
+	}, [ props ] );
 
-	// useEffect( () => {
-	// 	// Replacement for componentDidUpdate.
-	// 	const blockStyling = styling( props );
-	// 	addBlockEditorDynamicStyles( 'uagb-style-icon-' + block_id, blockStyling );
-	// 	scrollBlockToView();
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+		const blockStyling = styling( props );
+		addBlockEditorDynamicStyles( 'uagb-style-icon-' + block_id, blockStyling );
+		scrollBlockToView();
 
-	// }, [ deviceType ] );
+	}, [ deviceType ] );
 
 	// const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = attributes;
 	// useEffect( () => {
@@ -75,7 +76,7 @@ const UAGBIcon = ( props ) => {
 	return (
 		attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
 			<>
-				{/* { isSelected && <Settings { ...props } /> } */}
+				{ isSelected && <Settings { ...props } /> }
 				<Render { ...props } />
 			</>
 		)

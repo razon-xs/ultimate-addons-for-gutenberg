@@ -71,7 +71,9 @@ export default function save( props ){
 
 	return (
 		<div { ...blockProps }>
-			{ renderSVG( icon ) }
+			<div className='uagb-icon-wrapper'>
+				{ renderSVG( icon ? icon : 'circle-check' ) }
+			</div>
 		</div>
 	);
 };

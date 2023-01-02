@@ -161,7 +161,9 @@ if ( ! class_exists( 'UAGB_Block_Module' ) ) {
 
 						$default_attr = include $attr_file;
 
-						$attr = array_merge( $default_attr, $attr );
+						$attr = self::get_fallback_values( $default_attr, $attr );
+
+						// $attr = array_merge( $default_attr, $attr );
 					}
 
 					// Get Assets.
@@ -240,6 +242,65 @@ if ( ! class_exists( 'UAGB_Block_Module' ) ) {
 			}
 
 			return apply_filters( 'uag_register_block_static_dependencies', self::$block_assets );
+		}
+
+		public static function get_fallback_values( $default_attr, $attr ) {
+			foreach( $default_attr as $key => $value ) {
+				if( ! isset( $attr[ $key ] ) ) {
+					$attr[ $key ] = $value;
+					continue;
+				}
+
+				switch ( gettype( $value ) ) {
+					case 'double':
+						if( ! is_numeric( $attr[ $key ] ) ) {
+							$attr[ $key ] = $value;
+						}
+						break;
+
+					case 'integer':
+						if( ! is_numeric( $attr[ $key ] ) ) {
+							$attr[ $key ] = $value;
+						}
+						break;
+
+					case 'string':
+						if( ! is_string( $attr[ $key ] ) ) {
+							$attr[ $key ] = $value;
+						}
+						break;
+
+					case 'boolean':
+						if( ! is_bool( $attr[ $key ] ) ) {
+							$attr[ $key ] = $value;
+						}
+						break;
+
+					default:
+						$attr[ $key ] = $value;
+						break;
+				}
+				// if( ! isset( $attr[ $key ] ) ) {
+				// 	$attr[ $key ] = $value;
+				// 	continue;
+				// }
+
+				// if( is_numeric( $value ) && ! is_numeric( $attr[ $key ] ) ) {
+				// 	$attr[ $key ] = $value;
+				// 	continue;
+				// }
+
+				// if( is_string( $value ) && ! is_string( $attr[ $key ] ) ) {
+				// 	$attr[ $key ] = $value;
+				// 	continue;
+				// }
+
+				// if( is_bool( $value ) && ! is_bool( $attr[ $key ] ) ) {
+				// 	$attr[ $key ] = $value;
+				// }
+			}
+
+			return $attr;
 		}
 	}
 }

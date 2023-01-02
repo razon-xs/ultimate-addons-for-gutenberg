@@ -1,31 +1,30 @@
 import UAGIconPicker from '@Components/icon-picker';
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import MultiButtonsControl from '@Components/multi-buttons-control';
-import UAGMediaPicker from '@Components/image';
-
-import { ToggleControl } from '@wordpress/components';
-import { __experimentalLinkControl as LinkControl } from '@wordpress/block-editor';
 
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import UAGTextControl from '@Components/text-control';
+import { Icon, ToggleControl } from '@wordpress/components';
+import ResponsiveSlider from '@Components/responsive-slider';
+import MultiButtonsControl from '@Components/multi-buttons-control';
+import renderSVG from '@Controls/renderIcon';
+import Range from '@Components/range/Range.js';
 
 const GeneralSettings = ( props ) => {
 
 	const { attributes, setAttributes, deviceType } = props;
-	console.log( props );
+
 	const {
-		image_icon,
 		icon,
-		image,
-		icon_color,
-		label_color,
-		icon_hover_color,
-		label_hover_color,
-		icon_bg_color,
-		icon_bg_hover_color,
-		icon_border_color,
-		icon_border_hover_color,
+		iconSize,
+		iconSizeTablet,
+		iconSizeMobile,
+		iconSizeUnit,
+		align,
+		alignTablet,
+		alignMobile,
+		rotation,
+		rotationUnit,
 		link,
 		target,
 		disableLink,
@@ -43,6 +42,118 @@ const GeneralSettings = ( props ) => {
 					setAttributes( { icon: value } )
 				}
 			/>
+			<ResponsiveSlider
+				label={ __(
+					'Size',
+					'ultimate-addons-for-gutenberg'
+				) }
+				data={ {
+					desktop: {
+						value: iconSize,
+						label: 'iconSize',
+					},
+					tablet: {
+						value: iconSizeTablet,
+						label: 'iconSizeTablet',
+					},
+					mobile: {
+						value: iconSizeMobile,
+						label: 'iconSizeMobile',
+					},
+				} }
+				min={ 0 }
+				max={ 50 }
+				unit={ {
+					value: iconSizeUnit,
+					label: 'iconSizeUnit',
+				} }
+				setAttributes={ setAttributes }
+			/>
+			<MultiButtonsControl
+				setAttributes={ setAttributes }
+				label={ __( 'Alignment', 'ultimate-addons-for-gutenberg' ) }
+				data={ {
+					desktop: {
+						value: align,
+						label: 'align',
+					},
+					tablet: {
+						value: alignTablet,
+						label: 'alignTablet',
+					},
+					mobile: {
+						value: alignMobile,
+						label: 'alignMobile',
+					},
+				} }
+				options={ [
+					{
+						value: 'left',
+						icon: (
+							<Icon
+								icon={ renderSVG( 'fa fa-align-left' ) }
+							/>
+						),
+						tooltip: __(
+							'Left',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+					{
+						value: 'center',
+						icon: (
+							<Icon
+								icon={ renderSVG( 'fa fa-align-center' ) }
+							/>
+						),
+						tooltip: __(
+							'Center',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+					{
+						value: 'right',
+						icon: (
+							<Icon
+								icon={ renderSVG( 'fa fa-align-right' ) }
+							/>
+						),
+						tooltip: __(
+							'Right',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+				] }
+				showIcons={ true }
+				responsive={true}
+			/>
+			<Range
+				label={ __(
+					'Rotation',
+					'ultimate-addons-for-gutenberg'
+				) }
+				setAttributes={ setAttributes }
+				value={ rotation }
+				data={ {
+					value: rotation,
+					label: 'rotation',
+				} }
+				min={ -180 }
+				max={ 180 }
+				unit={ {
+					value: rotationUnit,
+					label: 'rotationUnit',
+				} }
+				units={ [
+					{
+						name: __(
+							'Degree',
+							'ultimate-addons-for-gutenberg'
+						),
+						unitValue: 'deg',
+					},
+				] }
+			/>
 			{ icon && (
 				<ToggleControl
 					label={ __( 'Link', 'ultimate-addons-for-gutenberg' ) }
@@ -55,18 +166,6 @@ const GeneralSettings = ( props ) => {
 
 			{ icon && disableLink && (
 				<>
-					{/* <LinkControl
-						placeholder="Search here..."
-					renderSuggestions={ ( props ) => {
-						console.log('hhh',props)
-					} }
-					allowDirectEntry={false}
-					withURLSuggestion={false}
-					value={ attributes.url }
-					onChange={ ( newURL ) => {
-					} }
-					withCreateSuggestion={false}
-					/> */}
 					<UAGTextControl
 						label={__( 'URL', 'ultimate-addons-for-gutenberg' )}
 						value={ link }

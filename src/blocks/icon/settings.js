@@ -15,7 +15,6 @@ import GeneralSettings from './components/settings/GeneralSettings';
 const Settings = ( props ) => {
 
 	const { attributes, setAttributes, deviceType } = props;
-	console.log( props );
 	const {
 		image_icon,
 		icon,

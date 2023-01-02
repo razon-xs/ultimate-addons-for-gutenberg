@@ -4,21 +4,20 @@ import renderSVG from '@Controls/renderIcon';
 // import { __ } from '@wordpress/i18n';
 // import { RichText } from '@wordpress/block-editor';
 import React, { useLayoutEffect, useEffect } from 'react';
-import styles from './editor.lazy.scss';
+// import styles from './editor.lazy.scss';
 // import { useDeviceType } from '@Controls/getPreviewType';
-// import getImageHeightWidth from '@Controls/getImageHeightWidth';
 import { useBlockProps } from "@wordpress/block-editor";
 
 const Render = ( props ) => {
 	// Add and remove the CSS on the drop and remove of the component.
-	useLayoutEffect( () => {
-		styles.use();
-		return () => {
-			styles.unuse();
-		};
-	}, [] );
+	// useLayoutEffect( () => {
+	// 	styles.use();
+	// 	return () => {
+	// 		styles.unuse();
+	// 	};
+	// }, [] );
 
-	const { attributes, setAttributes , className, deviceType } = props;
+	const { attributes, setAttributes , deviceType } = props;
 	const {
 	// 	label,
 	// 	image_icon,
@@ -37,8 +36,6 @@ const Render = ( props ) => {
 	// const deviceType = useDeviceType();
 
 	// const defaultedAlt = ( image && image?.alt ) ? image?.alt : '';
-
-	let imageIconHtml = renderSVG( icon );
 
 	// useEffect( () => {
 	// 	if( image && image.url && image_icon !== 'none' ){
@@ -72,7 +69,9 @@ const Render = ( props ) => {
 
 	return (
 		<div { ...blockProps }>
-			{ renderSVG( icon ) }
+			<div className='uagb-icon-wrapper'>
+				{ renderSVG( icon ? icon : 'circle-check' ) }
+			</div>
 		</div>
 	);
 };
