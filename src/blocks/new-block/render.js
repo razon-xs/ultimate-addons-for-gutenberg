@@ -11,7 +11,6 @@ const ALLOWED_BLOCKS = [
 	'uagb/icon-list',
 	'uagb/social-share',
 	'uagb/star-rating',
-	'core/paragraph',
 	'uagb/container'
 ];
 

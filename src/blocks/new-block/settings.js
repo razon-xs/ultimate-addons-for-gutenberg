@@ -6,7 +6,6 @@ import InspectorTab, {
 } from '@Components/inspector-tabs/InspectorTab.js';
 import ResponsiveSlider from '@Components/responsive-slider';
 import { __ } from '@wordpress/i18n';
-
 import {
 	InspectorControls
 } from '@wordpress/block-editor';
@@ -18,7 +17,7 @@ import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import UAGTabsControl from '@Components/tabs';
 import MultiButtonsControl from '@Components/multi-buttons-control';
 import renderSVG from '@Controls/renderIcon';
-import { Icon } from '@wordpress/components';
+import { Icon, Button } from '@wordpress/components';
 
 const Settings = ( props ) => {
 
@@ -117,9 +116,8 @@ const Settings = ( props ) => {
 		align,
 		alignTablet,
 		alignMobile,
-
+		variationChange
 	} = attributes;
-
 	
 	const generalSettings = () => {
 		return (
@@ -128,6 +126,11 @@ const Settings = ( props ) => {
 					title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
 					initialOpen={ true }
 				>
+					<Button
+						className="is-primary uagb-info-box__variation-btn"
+						text="Change Variation"
+						onClick={ () => setAttributes( { variationChange: ! variationChange } ) }
+					/>
 					<MultiButtonsControl
 						setAttributes={ setAttributes }
 						label={ __( 'Overall Alignment', 'ultimate-addons-for-gutenberg' ) }
