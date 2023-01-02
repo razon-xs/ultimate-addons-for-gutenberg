@@ -10,6 +10,10 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
+	lockTemplate: {
+		type: 'boolean',
+		default: false,
+	},
 	align: {
 		type: 'string',
 		default: 'center',

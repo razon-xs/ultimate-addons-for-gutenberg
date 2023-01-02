@@ -19,7 +19,7 @@ const variations = [
 		isDefault: true,
 		innerBlocks: [
 			[ 'uagb/advanced-heading', { headingAlign: 'center',blockBottomPadding:0, headingDescToggle:true, headingDesc: 'Prefix',subHeadSpace:0 }],
-			[ 'core/paragraph', { content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'}],
+			[ 'uagb/advanced-heading', { headingAlign: 'center', headingTitleToggle: false, headingDescToggle:true,headingDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' } ],
 			[ 'uagb/buttons', { btn_count: 1 }],
 		],
 		scope: [ 'block' ],
@@ -32,7 +32,7 @@ const variations = [
 		isDefault: true,
 		innerBlocks: [
 			[ 'uagb/advanced-heading', { seperatorStyle: 'solid', separatorHeight: 5, separatorWidth: 25, headingAlign: 'center', separatorSpace: 0, blockBottomPadding:0 } ],
-			[ 'core/paragraph', { content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'}],
+			[ 'uagb/advanced-heading', { headingAlign: 'center', headingTitleToggle: false, headingDescToggle:true,headingDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' } ],
 			[ 'uagb/icon-list', { itemCount: 6 , Label: 'Lorem Ipsum dolor' , icon: 'check-square'}],
 			[ 'uagb/buttons' ],
 		],
@@ -60,7 +60,7 @@ const variations = [
 			[ 'uagb/image', { align:'center', width: 100, height: 100, url:`${ uagb_blocks_info.uagb_url }/admin/assets/images/uag-placeholder.svg`,maskShape: 'circle'}],
 			[ 'uagb/advanced-heading', { headingAlign: 'center', blockTopPadding:0, headingDescToggle:true,headingDesc: 'Designation', headingTitle: 'Author Name' } ],
 			[ 'uagb/social-share' ],
-			[ 'core/paragraph', { content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'}],
+			[ 'uagb/advanced-heading', { headingAlign: 'center', headingTitleToggle: false, headingDescToggle:true,headingDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' } ],
 		],
 		scope: [ 'block' ],
 	}
