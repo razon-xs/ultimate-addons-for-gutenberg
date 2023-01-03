@@ -441,7 +441,7 @@ const Settings = ( props ) => {
 					<GeneralSettings { ...props } />
 				</InspectorTab>
 				<InspectorTab { ...UAGTabs.style }>
-					'Hello'
+					'Styling'
 				</InspectorTab>
 				<InspectorTab
 					{ ...UAGTabs.advance }

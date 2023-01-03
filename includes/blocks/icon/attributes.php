@@ -10,8 +10,8 @@
 return array(
 	'icon' => '',
 	'iconSize' => 30,
-	'iconSizeTablet' => '',
-	'iconSizeMobile' => '',
+	'iconSizeTablet' => 30,
+	'iconSizeMobile' => 30,
 	'iconSizeUnit' => 'px',
 	'align' => 'center',
 	'alignTablet' => '',

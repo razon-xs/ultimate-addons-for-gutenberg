@@ -62,7 +62,7 @@ const GeneralSettings = ( props ) => {
 					},
 				} }
 				min={ 0 }
-				max={ 50 }
+				max={ 200 }
 				unit={ {
 					value: iconSizeUnit,
 					label: 'iconSizeUnit',
@@ -154,17 +154,14 @@ const GeneralSettings = ( props ) => {
 					},
 				] }
 			/>
-			{ icon && (
-				<ToggleControl
-					label={ __( 'Link', 'ultimate-addons-for-gutenberg' ) }
-					checked={ disableLink }
-					onChange={ () =>
-						setAttributes( { disableLink: ! disableLink } )
-					}
-				/>
-			)}
-
-			{ icon && disableLink && (
+			<ToggleControl
+				label={ __( 'Link', 'ultimate-addons-for-gutenberg' ) }
+				checked={ disableLink }
+				onChange={ () =>
+					setAttributes( { disableLink: ! disableLink } )
+				}
+			/>
+			{ disableLink && (
 				<>
 					<UAGTextControl
 						label={__( 'URL', 'ultimate-addons-for-gutenberg' )}

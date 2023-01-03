@@ -8,7 +8,6 @@ import React, { useEffect } from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
-import { select, dispatch } from '@wordpress/data';
 import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 import styling from './styling';
 import Settings from './settings';
@@ -44,32 +43,15 @@ const UAGBIcon = ( props ) => {
 	useEffect( () => {
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
-		addBlockEditorDynamicStyles( 'uagb-style-icon-' + block_id, blockStyling );
+		addBlockEditorDynamicStyles( 'uagb-icon-' + block_id, blockStyling );
 		scrollBlockToView();
 
 	}, [ deviceType ] );
 
-	// const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = attributes;
-	// useEffect( () => {
-	// 	responsiveConditionPreview( props );
-	// }, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
-
-	// useEffect( () => {
-	// 	select( 'core/block-editor' )
-    //         .getBlocksByClientId( props.clientId )[0]
-    //         ?.innerBlocks.forEach( function( block ) {
-
-    //             dispatch( 'core/block-editor' ).updateBlockAttributes(
-    //                 block.clientId, {
-    //                     fromParentIcon: props.attributes.parentIcon,
-	// 					hideLabel: props.attributes.hideLabel,
-	// 					imageSizeChild: props.attributes.size,
-    //                 }
-    //             );
-
-    //         } );
-
-	// }, [ props.attributes.parentIcon, props.attributes.hideLabel, props.attributes.size ] );
+	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = attributes;
+	useEffect( () => {
+		responsiveConditionPreview( props );
+	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/icon-list.svg`; // using this until preview image is provided by designers
 

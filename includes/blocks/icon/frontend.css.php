@@ -25,8 +25,27 @@ $selectors[' .uagb-icon-wrapper svg'] = array(
 
 );
 
-$t_selectors = [];
-$m_selectors = [];
+$t_icon_width = UAGB_Helper::get_css_value( $attr['iconSizeTablet'], $attr['iconSizeUnit'] );
+$t_selectors[' .uagb-icon-wrapper'] = array(
+	'text-align' => $attr['alignTablet'],
+
+);
+$t_selectors[' .uagb-icon-wrapper svg'] = array(
+	'width' => $t_icon_width,
+	'transform' => "rotate($transformation)",
+);
+
+$m_icon_width = UAGB_Helper::get_css_value( $attr['iconSizeMobile'], $attr['iconSizeUnit'] );
+$m_selectors[' .uagb-icon-wrapper'] = array(
+	'text-align' => $attr['alignMobile'],
+
+);
+$m_selectors[' .uagb-icon-wrapper svg'] = array(
+	'width' => $m_icon_width,
+	'transform' => "rotate($transformation)",
+
+);
+
 $combined_selectors = array(
 	'desktop' => $selectors,
 	'tablet'  => $t_selectors,

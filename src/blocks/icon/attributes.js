@@ -7,7 +7,7 @@ const attributes = {
 	   type: 'string',
 	   default: 'circle-check',
    },
-   // size
+   // Size
    iconSize: {
 	   type: 'number',
 	   default: 30,
@@ -34,10 +34,10 @@ const attributes = {
 		   styleType: 'icon-size-type'
 	   }
    },
-   // alignment
+   // Alignment
    align: {
 		type: 'string',
-		default: 'left',
+		default: 'center',
 		UAGCopyPaste: {
 			styleType: 'overall-alignment'
 		},
@@ -80,6 +80,19 @@ const attributes = {
 	},
 	block_id: {
 		type: 'string',
+	},
+	// Link related attributes.
+	link: {
+		type: 'string',
+		default: '',
+	},
+	target: {
+		type: 'boolean',
+		default: false,
+	},
+	disableLink: {
+		type: 'boolean',
+		default: false,
 	},
 	iconLeftMargin: {
 		type: 'number',
@@ -206,7 +219,7 @@ const attributes = {
 		   styleType: 'icon-margin-unit-tablet'
 	   }
    },
-   // padding
+   // Padding
    blockTopPadding : {
 	   type: 'number',
 	   isUAGStyle: true,
