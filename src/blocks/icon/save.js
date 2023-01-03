@@ -1,7 +1,7 @@
 // Import classes
 import classnames from 'classnames';
 import renderSVG from '@Controls/renderIcon';
-import { useBlockProps } from "@wordpress/block-editor";
+import { useBlockProps } from '@wordpress/block-editor';
 import { getProtocol, prependHTTP } from '@wordpress/url';
 
 export default function save( props ){

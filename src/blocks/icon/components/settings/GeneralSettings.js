@@ -31,7 +31,7 @@ const GeneralSettings = ( props ) => {
 	} = attributes;
 
 	return (
-		<UAGAdvancedPanelBody title={__('Icon', 'ultimate-addons-for-gutenberg')} initialOpen={ true }>
+		<UAGAdvancedPanelBody title={__( 'Icon', 'ultimate-addons-for-gutenberg' )} initialOpen={ true }>
 			<UAGIconPicker
 				label={ __(
 					'Icon',

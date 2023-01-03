@@ -2,7 +2,6 @@
  * BLOCK: Icon - Edit
  */
 
-// import styling from './styling';
 import React, { useEffect } from 'react';
 
 import { useDeviceType } from '@Controls/getPreviewType';

@@ -27,7 +27,7 @@ function styling( props ) {
 		rotationUnit,
 	} = attributes;
 
-	let tranformation = generateCSSUnit( rotation, rotationUnit )
+	const tranformation = generateCSSUnit( rotation, rotationUnit )
 
 	const selectors = {
 		'.wp-block-uagb-icon': {
