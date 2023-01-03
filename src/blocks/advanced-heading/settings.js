@@ -31,6 +31,8 @@ import GlobalBlockStyles from '@Components/global-block-link';
 
 const Settings = ( props ) => {
 	const styling = props.styling;
+	const setRefreshEditorGlobal = props.setRefreshEditorGlobal;
+	const refreshEditorGlobal = props.refreshEditorGlobal;
 	props = props.parentProps;
 	const { attributes, deviceType, setAttributes } = props;
 	const {
@@ -1266,6 +1268,8 @@ const Settings = ( props ) => {
 						<GlobalBlockStyles
 							parentProps={props}
 							styling={styling}
+							setRefreshEditorGlobal ={setRefreshEditorGlobal}
+							refreshEditorGlobal = {refreshEditorGlobal}
 						/>
 						{ generalPanel() }
 					</InspectorTab>

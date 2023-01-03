@@ -200,7 +200,7 @@ class UAGB_Post_Assets {
 	 * @param int $post_id Post ID.
 	 */
 	public function __construct( $post_id ) {
-
+		// delete_option('spectra_global_block_styles');
 		$this->post_id = intval( $post_id );
 
 		$this->preview = isset( $_GET['preview'] ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -572,9 +572,12 @@ class UAGB_Post_Assets {
 		if ( in_array( 'uagb/masonry-gallery', $this->current_block_list, true ) ) {
 			$conditional_block_css .= UAGB_Block_Helper::get_masonry_gallery_css();
 		}
-
+		$spectra_global_block_styles = get_option('spectra_global_block_styles', array());
+var_dump($spectra_global_block_styles);
 		echo '<style id="uagb-style-conditional-extension">' . $conditional_block_css . '</style>'; //phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
-
+		foreach( $spectra_global_block_styles as $style_id => $style ) {
+			echo '<style id="uagb-global-block-styles' . $style_id . '">' . $style . '</style>'; //phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+		}
 		self::$conditional_blocks_printed = true;
 
 	}
@@ -789,6 +792,7 @@ class UAGB_Post_Assets {
 			$_block_slug = str_replace( 'uagb/', '', $name );
 			$_block_css  = UAGB_Block_Module::get_frontend_css( $_block_slug, $blockattr, $block_id );
 			$_block_js   = UAGB_Block_Module::get_frontend_js( $_block_slug, $blockattr, $block_id, 'js' );
+
 			$css         = array_merge( $css, $_block_css );
 			if ( ! empty( $_block_js ) ) {
 				$js .= $_block_js;

@@ -70,12 +70,67 @@ class UAGB_Init_Blocks {
 
 		add_action( 'wp_ajax_uagb_spectra_font_awesome_polyfiller', array( $this, 'spectra_font_awesome_polyfiller' ) );
 
+		add_action( 'wp_ajax_uag_global_block_styles', array( $this, 'uag_global_block_styles' ) );
+
 		if ( ! is_admin() ) {
 			add_action( 'render_block', array( $this, 'render_block' ), 5, 2 );
 		}
 
 		add_action( 'spectra_analytics_complete_action', array( $this, 'regenerate_analytics_data' ) );
 
+	}
+
+	/**
+	 * Function to get Spectra Font Awesome Polyfiller data.
+	 *
+	 * @since x.x.x
+	 */
+	public function uag_global_block_styles() {
+		
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error();
+		}
+		
+		if ( ! check_ajax_referer( 'uagb_ajax_nonce', 'security', false ) ) {
+			wp_send_json_error();
+		}
+		
+		if ( empty( $_POST ) ) {
+			$response_data = array( 'messsage' => __( 'No post data found!', 'ultimate-addons-for-gutenberg' ) );
+			wp_send_json_error( $response_data );
+		}
+		
+		$blockattr = json_decode( stripslashes( $_POST['attributes'] ), true );
+
+		$_block_slug = str_replace( 'uagb/', '', $_POST['blockName'] );
+		$_block_css  = UAGB_Block_Module::get_frontend_css( $_block_slug, $blockattr, $blockattr['block_id'] );
+
+		$desktop = '';
+		$tablet  = '';
+		$mobile  = '';
+
+		$tab_styling_css = '';
+		$mob_styling_css = '';
+		$desktop .= $_block_css['desktop'];
+		$tablet  .= $_block_css['tablet'];
+		$mobile  .= $_block_css['mobile'];
+		if ( ! empty( $tablet ) ) {
+			$tab_styling_css .= '@media only screen and (max-width: ' . UAGB_TABLET_BREAKPOINT . 'px) {';
+			$tab_styling_css .= $tablet;
+			$tab_styling_css .= '}';
+		}
+
+		if ( ! empty( $mobile ) ) {
+			$mob_styling_css .= '@media only screen and (max-width: ' . UAGB_MOBILE_BREAKPOINT . 'px) {';
+			$mob_styling_css .= $mobile;
+			$mob_styling_css .= '}';
+		}
+		$_block_css = $desktop . $tab_styling_css . $mob_styling_css;
+		$spectra_global_block_styles = get_option('spectra_global_block_styles', array());
+		$spectra_global_block_styles[$blockattr['globalBlockStyleId']] = $_block_css;
+
+		update_option('spectra_global_block_styles', $spectra_global_block_styles);
+		wp_send_json_success();
 	}
 
 	/**
@@ -114,7 +169,7 @@ class UAGB_Init_Blocks {
 	 * @return mixed Returns the new block content.
 	 */
 	public function render_block( $block_content, $block ) {
-
+		
 		if ( isset( $block['attrs'] ) ) {
 
 			$block_attributes = $block['attrs'];

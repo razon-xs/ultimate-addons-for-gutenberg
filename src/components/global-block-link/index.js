@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useEffect } from 'react';
+import React, { useLayoutEffect, useEffect, useRef } from 'react';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
@@ -12,6 +12,7 @@ import getUAGEditorStateLocalStorage from '@Controls/getUAGEditorStateLocalStora
 import UAGSelectControl from '@Components/select-control';
 import generateCSS from '@Controls/generateCSS';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
+import apiFetch from '@wordpress/api-fetch';
 
 const GlobalBlockStyles = (props) => {
    // Add and remove the CSS on the drop and remove of the component.
@@ -22,37 +23,96 @@ const GlobalBlockStyles = (props) => {
 		};
 	}, [] );
 
-    const [ isOpen, setOpen ] = useState( false );
-    const [ uniqueID, setUniqueID ] = useState( '' );
-
-	const openModal = () => setOpen( true );
-	const closeModal = () => setOpen( false );
-
     const styling = props.styling;
+    const setRefreshEditorGlobal = props.setRefreshEditorGlobal;
+    const refreshEditorGlobal = props.refreshEditorGlobal;
+
 	props = props.parentProps;
 
     const {
         attributes,
-        setAttributes,
+        setAttributes
     } = props;
 
+    const [ isOpen, setOpen ] = useState( false );
+    const [ uniqueID, setUniqueID ] = useState( '' );
+    const [ saveToDatabase, setSaveToDatabase ] = useState( false );
+    const [ gbsPanel, setGbsPanel ] = useState( false );
+    const [currentAttributesState, setCurrentAttributesState] = useState( attributes );
+    const [ attributesChanged, setAttributesChanged ] = useState( false );
+
+
+
+	const openModal = () => setOpen( true );
+	const closeModal = () => setOpen( false );
+	
     const {
         globalBlockStyleName,
         globalBlockStyleId
     } = attributes;
 
     const selectedBlockData = getSelectedBlock();
-
     const {
         name,
         clientId,
         innerBlocks
     } = selectedBlockData;
 
+    const blockName = name.replace( 'uagb/', '' );
+
+	const allBlocksAttributes = wp.hooks.applyFilters( 'uagb.blocksAttributes', blocksAttributes )
+    const currentBlockDefaultAttributes = allBlocksAttributes[blockName]
+
     useEffect( () => {
 		// Assigning block_id in the attribute.
 		setAttributes( { spectraBlockName: name } );
 	}, [] );
+
+    useEffect( () => {
+        if ( currentAttributesState !== attributes ) {
+            setCurrentAttributesState(attributes);
+            setAttributesChanged(true);
+            console.log('iffff');
+        } else {
+            setAttributesChanged(false);
+            console.log('elseee');
+
+        }
+		
+	}, [attributes] );
+
+    useEffect( () => {
+		console.log(globalBlockStyleId);
+		console.log(saveToDatabase);
+        if ( saveToDatabase ) {
+            const formData = new window.FormData();
+
+            formData.append( 'action', 'uag_global_block_styles' );
+            formData.append( 'security', uagb_blocks_info.uagb_ajax_nonce );
+            formData.append( 'attributes', JSON.stringify(attributes) );
+            formData.append( 'blockName', name );
+
+
+            apiFetch( {
+                url: uagb_blocks_info.ajax_url,
+                method: 'POST',
+                body: formData,
+            } ).then( () => {
+                console.log('here');
+                Object.keys( currentBlockDefaultAttributes ).map( ( attribute ) => {
+
+					if ( currentBlockDefaultAttributes[attribute]?.UAGCopyPaste ) {
+                        setAttributes({
+                            [attribute] : currentBlockDefaultAttributes[attribute]?.default || undefined
+                        });
+                        console.log(attribute);
+					}
+					return attribute;
+				} );
+                setSaveToDatabase(false);
+            } );
+        }
+	}, [saveToDatabase] );
 
     let blockNameClass = name?.split( '/' )?.pop();
 
@@ -101,13 +161,18 @@ const GlobalBlockStyles = (props) => {
             'spectraGlobalStyles',
             JSON.stringify(spectraGlobalStylesStoreObject)
         )
-        
+        setRefreshEditorGlobal(!refreshEditorGlobal);
     };
+    const getRef = (ref) => {
+        console.log(ref);
+        setGbsPanel(ref)
+    }
 
     return (
         <UAGAdvancedPanelBody
             title={ __( 'Global Block Styles', 'ultimate-addons-for-gutenberg' ) }
             initialOpen={ false }
+            getRef={getRef}
         >
             {
                 ( ! globalBlockStyleName || '' === globalBlockStyleName ) && (
@@ -192,6 +257,7 @@ const GlobalBlockStyles = (props) => {
                                     JSON.stringify(spectraGlobalStyles)
                                 )
                                 closeModal();
+                                setSaveToDatabase(true);
                                 getBlockStyles();
 
                             } }
@@ -204,7 +270,6 @@ const GlobalBlockStyles = (props) => {
             {
                 (globalBlockStyleName && '' !== globalBlockStyleName ) && (
                     <>
-                        <p> {__( 'This is a Global Styles Linked Block', 'ultimate-addons-for-gutenberg' ) }</p>
                         <UAGSelectControl
 							label={ __(
 								'Linked Style',
@@ -234,6 +299,19 @@ const GlobalBlockStyles = (props) => {
 							options={ spectraGlobalStyles }
                             layout="stack"
 						/>
+                        {
+                            attributesChanged &&
+                            <Button
+                                className="spectra-save-block-styles-button components-base-control"
+                                onClick={ () => {
+                                    getBlockStyles();
+                                    setSaveToDatabase(true);
+                                } }
+                                variant="primary"
+                            >
+                                { __( 'Update Global Block Style', 'ultimate-addons-for-gutenberg' ) }
+                            </Button>
+                        }
                     </>
                 )
             }

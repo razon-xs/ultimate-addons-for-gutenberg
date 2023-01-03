@@ -7,10 +7,14 @@ import { select } from '@wordpress/data';
 const UAGAdvancedPanelBody = ( props ) => {
 
     const {
-        children
+        children,
+		getRef
     } = props;
 
     const panelRef = useRef( null );
+	if (getRef) {
+		getRef(panelRef);
+	}
 	const uagSettingState = getUAGEditorStateLocalStorage( 'uagSettingState' );
 
     const onPanelToggle = () => {
