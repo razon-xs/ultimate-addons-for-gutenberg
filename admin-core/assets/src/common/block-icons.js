@@ -521,14 +521,40 @@ const UAGB_Block_Icons = {
 			strokeWidth: 1.4,
 		} ),
 	),
-	'instagram-feed': el(
+	'modal': el(
 		'svg',
 		{ width: 40, height: 40, viewBox: '0 0 24 24', fill: 'none' },
-		el( 'path', {
-			d: 'M17 6.5H17.1M8.14286 21H15.8571C18.6975 21 21 18.6975 21 15.8571V8.14286C21 5.30254 18.6975 3 15.8571 3H8.14286C5.30254 3 3 5.30254 3 8.14286V15.8571C3 18.6975 5.30254 21 8.14286 21ZM16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z',
+		el( 'rect', {
+			x: 3,
+			y: 7.30975,
+			width: 15.033,
+			height: 11.7712,
+			rx: 2,
 			stroke: iconColor,
 			strokeWidth: 1.4,
 			strokeLinecap: 'round',
+			strokeLinejoin: 'round',
+		} ),
+		el( 'path', {
+			d: 'M6.86572 11.6992H14.1675',
+			stroke: iconColor,
+			strokeWidth: 1.4,
+			strokeLinecap: 'round',
+			strokeLinejoin: 'round',
+		} ),
+		el( 'path', {
+			d: 'M6.86572 14.6918H14.1675',
+			stroke: iconColor,
+			strokeWidth: 1.4,
+			strokeLinecap: 'round',
+			strokeLinejoin: 'round',
+		} ),
+		el( 'path', {
+			d: 'M19.0982 4.51694L20.1633 5.58197M20.1633 5.58197L21.2283 6.647M20.1633 5.58197L19.0982 6.647M20.1633 5.58197L21.2283 4.51694',
+			stroke: iconColor,
+			strokeWidth: 1.4,
+			strokeLinecap: 'round',
+			strokeLinejoin: 'round',
 		} ),
 	),
 
@@ -563,6 +589,16 @@ const UAGB_Block_Icons = {
 			d: 'M4 7V17C4 19.2091 7.58172 21 12 21C16.4183 21 20 19.2091 20 17V7M4 7C4 9.20914 7.58172 11 12 11C16.4183 11 20 9.20914 20 7M4 7C4 4.79086 7.58172 3 12 3C16.4183 3 20 4.79086 20 7M20 12C20 14.2091 16.4183 16 12 16C7.58172 16 4 14.2091 4 12',
 			stroke: iconColor,
 			strokeWidth: 1.4,
+		} ),
+	),
+	'instagram-feed': el(
+		'svg',
+		{ width: 40, height: 40, viewBox: '0 0 24 24', fill: 'none' },
+		el( 'path', {
+			d: 'M17 6.5H17.1M8.14286 21H15.8571C18.6975 21 21 18.6975 21 15.8571V8.14286C21 5.30254 18.6975 3 15.8571 3H8.14286C5.30254 3 3 5.30254 3 8.14286V15.8571C3 18.6975 5.30254 21 8.14286 21ZM16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z',
+			stroke: iconColor,
+			strokeWidth: 1.4,
+			strokeLinecap: 'round',
 		} ),
 	),
 };
