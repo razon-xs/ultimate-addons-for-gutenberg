@@ -198,54 +198,54 @@ $m_selectors = array(
 		'margin-bottom' => UAGB_Helper::get_css_value( $attr['rowGapMobile'], $attr['rowGapTypeMobile'] ),
 	),
 );
-if( 'left' === $attr['align'] ) {
-	$selectors[ '.uagb-info-box__wrap.wp-block-uagb-new-block  > *' ] = array(
-		'text-align'=> $attr['align'],
-		'justify-content'=> 'flex-start'
+if ( 'left' === $attr['align'] ) {
+	$selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
+		'text-align'      => $attr['align'],
+		'justify-content' => 'flex-start',
 	);
-} else if( 'right' === $attr['align'] ) {
-	$selectors[ '.uagb-info-box__wrap.wp-block-uagb-new-block  > *' ] = array(
-		'text-align'=> $attr['align'],
-		'justify-content'=> 'flex-end'
+} elseif ( 'right' === $attr['align'] ) {
+	$selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
+		'text-align'      => $attr['align'],
+		'justify-content' => 'flex-end',
 	);
 } else {
-	$selectors[ '.uagb-info-box__wrap.wp-block-uagb-new-block  > *' ] = array(
-		'text-align'=> $attr['align'],
-		'justify-content'=> $attr['align']
+	$selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
+		'text-align'      => $attr['align'],
+		'justify-content' => $attr['align'],
 	);
 }
 
-if( 'left' === $attr['alignTablet'] ) {
-	$t_selectors[ '.uagb-info-box__wrap.wp-block-uagb-new-block  > *' ] = array(
-		'text-align'=> $attr['alignTablet'],
-		'justify-content'=> 'flex-start'
+if ( 'left' === $attr['alignTablet'] ) {
+	$t_selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
+		'text-align'      => $attr['alignTablet'],
+		'justify-content' => 'flex-start',
 	);
-} else if( 'right' === $attr['alignTablet'] ) {
-	$t_selectors[ '.uagb-info-box__wrap.wp-block-uagb-new-block  > *' ] = array(
-		'text-align'=> $attr['alignTablet'],
-		'justify-content'=> 'flex-end'
+} elseif ( 'right' === $attr['alignTablet'] ) {
+	$t_selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
+		'text-align'      => $attr['alignTablet'],
+		'justify-content' => 'flex-end',
 	);
 } else {
-	$t_selectors[ '.uagb-info-box__wrap.wp-block-uagb-new-block  > *' ] = array(
-		'text-align'=> $attr['alignTablet'],
-		'justify-content'=> $attr['alignTablet']
+	$t_selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
+		'text-align'      => $attr['alignTablet'],
+		'justify-content' => $attr['alignTablet'],
 	);
 }
 
-if( 'left' === $attr['alignMobile'] ) {
-	$m_selectors[ '.uagb-info-box__wrap.wp-block-uagb-new-block  > *' ] = array(
-		'text-align'=> $attr['alignMobile'],
-		'justify-content'=> 'flex-start'
+if ( 'left' === $attr['alignMobile'] ) {
+	$m_selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
+		'text-align'      => $attr['alignMobile'],
+		'justify-content' => 'flex-start',
 	);
-} else if( 'right' === $attr['alignMobile'] ) {
-	$m_selectors[ '.uagb-info-box__wrap.wp-block-uagb-new-block  > *' ] = array(
-		'text-align'=> $attr['alignMobile'],
-		'justify-content'=> 'flex-end'
+} elseif ( 'right' === $attr['alignMobile'] ) {
+	$m_selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
+		'text-align'      => $attr['alignMobile'],
+		'justify-content' => 'flex-end',
 	);
 } else {
-	$m_selectors[ '.uagb-info-box__wrap.wp-block-uagb-new-block  > *' ] = array(
-		'text-align'=> $attr['alignMobile'],
-		'justify-content'=> $attr['alignMobile']
+	$m_selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
+		'text-align'      => $attr['alignMobile'],
+		'justify-content' => $attr['alignMobile'],
 	);
 }
 
