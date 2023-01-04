@@ -72,18 +72,18 @@ const GlobalBlockStyles = (props) => {
         if ( currentAttributesState !== attributes ) {
             setCurrentAttributesState(attributes);
             setAttributesChanged(true);
-            console.log('iffff');
+            // console.log('iffff');
         } else {
             setAttributesChanged(false);
-            console.log('elseee');
+            // console.log('elseee');
 
         }
 		
 	}, [attributes] );
 
     useEffect( () => {
-		console.log(globalBlockStyleId);
-		console.log(saveToDatabase);
+		// console.log(globalBlockStyleId);
+		// console.log(saveToDatabase);
         if ( saveToDatabase ) {
             const formData = new window.FormData();
 
@@ -98,14 +98,14 @@ const GlobalBlockStyles = (props) => {
                 method: 'POST',
                 body: formData,
             } ).then( () => {
-                console.log('here');
+                // console.log('here');
                 Object.keys( currentBlockDefaultAttributes ).map( ( attribute ) => {
 
 					if ( currentBlockDefaultAttributes[attribute]?.UAGCopyPaste ) {
                         setAttributes({
                             [attribute] : currentBlockDefaultAttributes[attribute]?.default || undefined
                         });
-                        console.log(attribute);
+                        // console.log(attribute);
 					}
 					return attribute;
 				} );
@@ -146,8 +146,11 @@ const GlobalBlockStyles = (props) => {
 
         
         spectraGlobalStylesStoreObject.map( ( style ) => {
-            
-            if ( style?.value == uniqueID ) {
+            console.log(style?.value);
+            console.log(uniqueID);
+            console.log(globalBlockStyleId);
+            if ( (style?.value == uniqueID) || (style?.value === globalBlockStyleId) ) {
+                console.log('inin');
                 const baseSelector = `.spectra-gbs-${blockNameClass}-${style?.label}`;
                 const blockStyling = styling( props, baseSelector );
                 style['styles'] = blockStyling;
@@ -162,12 +165,17 @@ const GlobalBlockStyles = (props) => {
             JSON.stringify(spectraGlobalStylesStoreObject)
         )
         setRefreshEditorGlobal(!refreshEditorGlobal);
+        setSaveToDatabase(true);
     };
     const getRef = (ref) => {
-        console.log(ref);
+        // console.log(ref);
         setGbsPanel(ref)
     }
-
+console.log(spectraGlobalStyles);
+console.log(globalBlockStyleId);
+    spectraGlobalStyles.map((style) => {
+        console.log(style);
+    });
     return (
         <UAGAdvancedPanelBody
             title={ __( 'Global Block Styles', 'ultimate-addons-for-gutenberg' ) }
@@ -257,7 +265,6 @@ const GlobalBlockStyles = (props) => {
                                     JSON.stringify(spectraGlobalStyles)
                                 )
                                 closeModal();
-                                setSaveToDatabase(true);
                                 getBlockStyles();
 
                             } }
@@ -305,13 +312,26 @@ const GlobalBlockStyles = (props) => {
                                 className="spectra-save-block-styles-button components-base-control"
                                 onClick={ () => {
                                     getBlockStyles();
-                                    setSaveToDatabase(true);
                                 } }
                                 variant="primary"
                             >
                                 { __( 'Update Global Block Style', 'ultimate-addons-for-gutenberg' ) }
                             </Button>
                         }
+                        <Button
+                                className="spectra-save-block-styles-button components-base-control"
+                                onClick={ () => {
+                                    setAttributes( 
+                                        { 
+                                            globalBlockStyleId: '',
+                                            globalBlockStyleName: '' 
+                                        } 
+                                    );
+                                } }
+                                variant="primary"
+                        >
+                            { __( 'Unlink Global Block Style', 'ultimate-addons-for-gutenberg' ) }
+                        </Button>
                     </>
                 )
             }

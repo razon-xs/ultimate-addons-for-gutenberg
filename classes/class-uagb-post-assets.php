@@ -573,7 +573,7 @@ class UAGB_Post_Assets {
 			$conditional_block_css .= UAGB_Block_Helper::get_masonry_gallery_css();
 		}
 		$spectra_global_block_styles = get_option('spectra_global_block_styles', array());
-var_dump($spectra_global_block_styles);
+
 		echo '<style id="uagb-style-conditional-extension">' . $conditional_block_css . '</style>'; //phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
 		foreach( $spectra_global_block_styles as $style_id => $style ) {
 			echo '<style id="uagb-global-block-styles' . $style_id . '">' . $style . '</style>'; //phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
