@@ -1726,8 +1726,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 		 */
 		public static function get_fallback_number( $current_value, $key, $block_name ) {
 			$default = self::get_block_default_attributes( $block_name );
-			$value   = is_numeric( $current_value ) ? $current_value : $default[ $key ];
-			return $value;
+			return is_numeric( $current_value ) ? $current_value : $default[ $key ];
 		}
 
 		/**

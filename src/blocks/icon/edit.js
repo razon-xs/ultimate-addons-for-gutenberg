@@ -44,7 +44,6 @@ const UAGBIcon = ( props ) => {
 		const blockStyling = styling( props );
 		addBlockEditorDynamicStyles( 'uagb-icon-' + block_id, blockStyling );
 		scrollBlockToView();
-
 	}, [ deviceType ] );
 
 	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = attributes;

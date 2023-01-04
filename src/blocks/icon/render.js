@@ -22,7 +22,7 @@ const Render = ( props ) => {
 
 	return (
 		<div { ...blockProps }>
-			<div className={`uagb-icon-wrapper uagb-editor-preview-mode-${ deviceType.toLowerCase() } `}>
+			<div className={`uagb-icon-wrapper uagb-editor-preview-mode-${ deviceType.toLowerCase() }` }>
 				{ iconHtml }
 			</div>
 		</div>

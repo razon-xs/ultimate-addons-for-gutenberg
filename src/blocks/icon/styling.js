@@ -34,10 +34,10 @@ function styling( props ) {
 	const tranformation = generateCSSUnit( getFallbackNumber( rotation, 'rotation', blockName ), rotationUnit )
 
 	const selectors = {
-		'.wp-block-uagb-icon': {
+		'.uagb-icon-wrapper': {
 			'text-align': align,
 		},
-		'.wp-block-uagb-icon svg': {
+		'.uagb-icon-wrapper svg': {
 			'width': generateCSSUnit(
 				iconWidth,
 				iconSizeUnit
@@ -47,10 +47,10 @@ function styling( props ) {
 	};
 
 	const tabletSelectors = {
-		'.wp-block-uagb-icon': {
+		'.uagb-icon-wrapper': {
 			'text-align': alignTablet,
 		},
-		'.wp-block-uagb-icon svg': {
+		'.uagb-icon-wrapper svg': {
 			'width': generateCSSUnit(
 				iconSizeTablet,
 				iconSizeUnit
@@ -59,10 +59,10 @@ function styling( props ) {
 	};
 
 	const mobileSelectors = {
-		'.wp-block-uagb-icon': {
+		'.uagb-icon-wrapper': {
 			'text-align': alignMobile,
 		},
-		'.wp-block-uagb-icon svg': {
+		'.uagb-icon-wrapper svg': {
 			'width': generateCSSUnit(
 				iconSizeMobile,
 				iconSizeUnit
@@ -71,7 +71,7 @@ function styling( props ) {
 	};
 
 	let stylingCss = '';
-	const id = `.uagb-block-${ block_id }`;
+	const id = `.uagb-block-${ block_id } `;
 	stylingCss = generateCSS( selectors, id );
 
 	stylingCss += generateCSS(
