@@ -12,7 +12,7 @@ import Range from '@Components/range/Range.js';
 
 const GeneralSettings = ( props ) => {
 
-	const { attributes, setAttributes, deviceType } = props;
+	const { attributes, setAttributes} = props;
 
 	const {
 		icon,

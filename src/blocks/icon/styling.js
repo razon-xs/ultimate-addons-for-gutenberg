@@ -4,9 +4,12 @@
 
 import generateCSS from '@Controls/generateCSS';
 import generateCSSUnit from '@Controls/generateCSSUnit';
-
+import { getFallbackNumber } from '@Controls/getAttributeFallback';
 
 function styling( props ) {
+
+	const blockName = props.name.replace( 'uagb/', '' );
+
 	const {
 		attributes,
 	} = props;
@@ -27,47 +30,16 @@ function styling( props ) {
 		rotationUnit,
 	} = attributes;
 
-	const tranformation = generateCSSUnit( rotation, rotationUnit )
+	const iconWidth = getFallbackNumber( iconSize, 'iconSize', blockName );
+	const tranformation = generateCSSUnit( getFallbackNumber( rotation, 'rotation', blockName ), rotationUnit )
 
 	const selectors = {
 		'.wp-block-uagb-icon': {
 			'text-align': align,
-			// 'margin-top': generateCSSUnit(
-			// 	childTopMargin,
-			// 	childMarginUnit
-			// ),
-			// 'margin-right': generateCSSUnit(
-			// 	childRightMargin,
-			// 	childMarginUnit
-			// ),
-			// 'margin-bottom': generateCSSUnit(
-			// 	childBottomMargin,
-			// 	childMarginUnit
-			// ),
-			// 'margin-left': generateCSSUnit(
-			// 	childLeftMargin,
-			// 	childMarginUnit
-			// ),
-			// 'padding-top': generateCSSUnit(
-			// 	childTopPadding,
-			// 	childPaddingUnit
-			// ),
-			// 'padding-right': generateCSSUnit(
-			// 	childRightPadding,
-			// 	childPaddingUnit
-			// ),
-			// 'padding-bottom': generateCSSUnit(
-			// 	childBottomPadding,
-			// 	childPaddingUnit
-			// ),
-			// 'padding-left': generateCSSUnit(
-			// 	childLeftPadding,
-			// 	childPaddingUnit
-			// ),
 		},
 		'.wp-block-uagb-icon svg': {
 			'width': generateCSSUnit(
-				iconSize,
+				iconWidth,
 				iconSizeUnit
 			),
 			'transform': `rotate(${ tranformation })`,
@@ -83,7 +55,6 @@ function styling( props ) {
 				iconSizeTablet,
 				iconSizeUnit
 			),
-			'transform': `rotate(${ tranformation })`,
 		},
 	};
 
@@ -95,8 +66,7 @@ function styling( props ) {
 			'width': generateCSSUnit(
 				iconSizeMobile,
 				iconSizeUnit
-			),
-			'transform': `rotate(${ tranformation })`,
+			)
 		},
 	};
 
