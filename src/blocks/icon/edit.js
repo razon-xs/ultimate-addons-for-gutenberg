@@ -49,7 +49,6 @@ const UAGBIcon = ( props ) => {
 
 	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = attributes;
 	useEffect( () => {
-		console.log( props );
 		responsiveConditionPreview( props );
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
