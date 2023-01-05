@@ -101,6 +101,8 @@ import './blocks/tabs-child/block.js'; // Child Block.
 import './blocks/taxonomy-list/block.js';
 import './blocks/team/block.js';
 import './blocks/testimonial/block.js';
+import './blocks/testimonial-2/block.js';
+import './blocks/testimonial-child/block.js';
 // Extensions.
 import './blocks/extensions/attributes.js';
 import './blocks/extensions/block.js';
