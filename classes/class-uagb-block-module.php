@@ -161,7 +161,16 @@ if ( ! class_exists( 'UAGB_Block_Module' ) ) {
 
 						$default_attr = include $attr_file;
 
-						$attr = array_merge( $default_attr, $attr );
+						// if( ! empty( $default_attr[ 'expected_data' ] && is_array( $default_attr[ 'expected_data' ] ) ) ) {
+						// 	$data_type_array = $default_attr[ 'expected_data' ];
+						// 	unset( $default_attr[ 'expected_data' ] );
+							$attr = self::get_fallback_values( $default_attr, $attr, $data_type_array );
+					// 	} else {
+					// 		if( isset( $default_attr[ 'expected_data' ] ) ) {
+					// 			unset( $default_attr[ 'expected_data' ] );
+					// 		}
+					// 		$attr = array_merge( $default_attr, $attr );
+					// 	}
 					}
 
 					// Get Assets.
@@ -240,6 +249,43 @@ if ( ! class_exists( 'UAGB_Block_Module' ) ) {
 			}
 
 			return apply_filters( 'uag_register_block_static_dependencies', self::$block_assets );
+		}
+
+		public static function get_fallback_values( $default_attr, $attr, $data_type_array ) {
+			foreach( $default_attr as $key => $value ) {
+				// sets default value if key is not available in database.
+				if( ! isset( $attr[ $key ] ) ) {
+					$attr[ $key ] = $value;
+				}
+
+				// $attr_type = '';
+				// foreach( $data_type_array as $type => $attribute ) {
+				// 	if( in_array( $key, $attribute, true ) ) {
+				// 		$attr_type = $type;
+				// 		break;
+				// 	}
+				// }
+
+				// switch ( $attr_type ) {
+				// 	case 'number':
+				// 		if( ! is_numeric( $attr[ $key ] ) ) {
+				// 			$attr[ $key ] = $value;
+				// 		}
+				// 		break;
+
+				// 	case 'string':
+				// 		if( ! is_string( $attr[ $key ] ) ) {
+				// 			$attr[ $key ] = $value;
+				// 		}
+				// 		break;
+				// 	default:
+				// 		# code...
+				// 		break;
+				// }
+
+			}
+
+			return $attr;
 		}
 	}
 }

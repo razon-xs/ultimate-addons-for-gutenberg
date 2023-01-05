@@ -18,4 +18,17 @@ return array(
 	'alignMobile'    => '',
 	'rotation'       => 0,
 	'rotationUnit'   => 'deg',
+	// 'expected_data' => array(
+	// 	'number' => array(
+	// 		'iconSize',
+	// 		'iconSizeTablet',
+	// 		'iconSizeMobile',
+	// 		'rotation'
+	// 	),
+	// 	'string' => array(
+	// 		'align',
+	// 		'alignTablet',
+	// 		'alignMobile',
+	// 	)
+	// )
 );
