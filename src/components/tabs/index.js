@@ -15,7 +15,7 @@ const UAGTabsControl = ( props ) => {
 		};
 	}, [] );
 
-	
+
 	const tabRef = useRef( null );
 
 	const tabsCountClass =
@@ -46,6 +46,22 @@ const UAGTabsControl = ( props ) => {
 								}
 							} );
 						}
+
+						// selectedTab.addEventListener(
+						// 	'click',
+						// 	function (e) {
+						// 		console.log(e);
+						// 		console.log(tabName)
+
+						// 	}
+						// )
+// console.log(document.getElementsByClassName( 'uag-control-tabs' ))
+// 						document.getElementsByClassName( 'uag-control-tabs' ).forEach( ( ele ) => {
+// 							console.log(ele)
+// 						})
+						const divs = document.getElementsByClassName( 'uag-control-tabs' )
+						const arr = Array.prototype.slice.call(divs)
+						console.log(arr)
 
 						const { getSelectedBlock } = select( 'core/block-editor' );
 						const blockName = getSelectedBlock()?.name;
