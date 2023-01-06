@@ -53,7 +53,6 @@ export default function Settings( props ) {
 		digitFontStyle,
 		digitFontSize,
 		digitColor,
-		digitTransform,
 		digitDecoration,
 		digitFontSizeType,
 		digitFontSizeMobile,
