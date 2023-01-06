@@ -22,7 +22,7 @@ const Render = ( props ) => {
 
 	const { attributes, setAttributes } = props;
 
-	const { className, image_icon, icon, image, parentSize, imgTagHeight  } = attributes;
+	const { className, image_icon, icon, image, parentSize, imgTagHeight, iconLabel  } = attributes;
 
 	const defaultedAlt = ( image && image?.alt ) ? image?.alt : '';
 
@@ -59,6 +59,7 @@ const Render = ( props ) => {
 		>
 			<a className="uagb-ss__link" href="/" rel="noopener noreferrer">
 				<span className="uagb-ss__source-wrap">{ imageIconHtml }</span>
+				<span classNema="uagb-ss__icon-label">{ iconLabel }</span>
 			</a>
 		</div>
 	);

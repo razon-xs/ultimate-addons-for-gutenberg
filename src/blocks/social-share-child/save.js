@@ -10,7 +10,7 @@ import links from './links';
 export default function save( props ) {
 	const { className } = props;
 
-	const { type, image_icon, icon, image, block_id, parentSize, imgTagHeight } = props.attributes;
+	const { type, image_icon, icon, image, block_id, parentSize, imgTagHeight, iconLabel } = props.attributes;
 
 	const url = links[ type ];
 
@@ -47,6 +47,7 @@ export default function save( props ) {
 				rel="noopener noreferrer"
 			>
 				<span className="uagb-ss__source-wrap">{ imageIconHtml }</span>
+				<span classNema="uagb-ss__icon-label">{ iconLabel }</span>
 			</a>
 		</div>
 	);

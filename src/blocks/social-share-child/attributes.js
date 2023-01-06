@@ -7,6 +7,10 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
+	iconLabel: {
+		type: 'string',
+		default: '',	
+	},
 	block_id: {
 		type: 'string',
 	},
@@ -77,6 +81,10 @@ const attributes = {
 		type: 'number',
 		default: 0,
 	},
+	iconLink: {
+		type: 'object',
+		default: '',
+	}
 };
 
 export default attributes;

@@ -6,7 +6,7 @@
 import UAGIconPicker from '@Components/icon-picker';
 import { __ } from '@wordpress/i18n';
 import React from 'react';
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls, __experimentalLinkControl as LinkControl } from '@wordpress/block-editor';
 import UAGSelectControl from '@Components/select-control';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
@@ -16,6 +16,7 @@ import InspectorTab, {
 import MultiButtonsControl from '@Components/multi-buttons-control';
 import UAGTabsControl from '@Components/tabs';
 import UAGMediaPicker from '@Components/image';
+import UAGTextControl from '@Components/text-control';
 
 
 
@@ -35,6 +36,8 @@ const Settings = ( props ) => {
 		icon_hover_color,
 		icon_bg_color,
 		icon_bg_hover_color,
+		iconLabel,
+		iconLink
 	} = attributes;
 
 	/*
@@ -242,6 +245,23 @@ const Settings = ( props ) => {
 						},
 					] }
 				/>
+				<UAGTextControl
+					label={ __(
+						'Icon label',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={{
+						value: iconLabel,
+						label: 'iconLabel',
+					}}
+					setAttributes={ setAttributes }
+					value={ iconLabel }
+					onChange={ ( value ) =>
+						setAttributes( {
+							iconLabel: value,
+						} )
+					}
+				/>
 				<MultiButtonsControl
 					setAttributes={ setAttributes }
 					label={ __(
@@ -292,6 +312,30 @@ const Settings = ( props ) => {
 						onRemoveImage={ onRemoveImage }
 					/>
 				) }
+				<label htmlFor="uag-ss-link-url" className='uag-control-label'>{ __( 'Link URL', 'ultimate-addons-for-gutenberg' ) }</label>
+				<LinkControl
+					id='uag-ss-link-url'
+					searchInputPlaceholder={ __( 'Search URL', 'ultimate-addons-for-gutenberg' ) }
+					hasTextControl
+					value={ iconLink }
+					settings={[
+						{
+							id: 'opensInNewTab',
+							title: __( 'Open Link in New tab?', 'ultimate-addons-for-gutenberg' ),
+						}
+					]}
+					onChange={ ( newLink ) => setAttributes( { iconLink: newLink } )  }
+					withCreateSuggestion={true}
+					createSuggestion={ ( inputValue ) => setAttributes( { iconLink: {
+						...iconLink,
+						title: inputValue,
+						type: 'custom-url',
+						id: Date.now(),
+						url: inputValue
+					} } ) }
+					createSuggestionButtonText={ ( newValue ) => `${__( 'New:', 'ultimate-addons-for-gutenberg' )} ${newValue}` }
+				>
+				</LinkControl>
 			</UAGAdvancedPanelBody>
 		);
 	};
