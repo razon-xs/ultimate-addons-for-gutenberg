@@ -716,10 +716,7 @@ export default function Settings( props ) {
 					value: digitFontStyle,
 					label: 'digitFontStyle',
 				} }
-				transform={ {
-					value: digitTransform,
-					label: 'digitTransform',
-				} }
+				disableTransform = { true }
 				decoration={ {
 					value: digitDecoration,
 					label: 'digitDecoration',

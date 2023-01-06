@@ -102,7 +102,6 @@ $selectors = array(
 		'font-family'     => $attr['digitFontFamily'],
 		'font-style'      => $attr['digitFontStyle'],
 		'text-decoration' => $attr['digitDecoration'],
-		'text-transform'  => $attr['digitTransform'],
 		'font-weight'     => $attr['digitFontWeight'],
 		'font-size'       => UAGB_Helper::get_css_value( $attr['digitFontSize'], $attr['digitFontSizeType'] ),
 		'line-height'     => UAGB_Helper::get_css_value( $attr['digitLineHeight'], $attr['digitLineHeightType'] ),
