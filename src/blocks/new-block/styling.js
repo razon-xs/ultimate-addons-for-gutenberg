@@ -139,17 +139,17 @@ function styling( props ) {
 		}
 	};
 	if( 'left' === align ) {
-		selectors[ '.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+		selectors[ '.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
 			'text-align': align,
 			'justify-content': 'flex-start'
 		}
 	} else if( 'right' === align ) {
-		selectors[ '.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+		selectors[ '.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
 			'text-align': align,
 			'justify-content': 'flex-end'
 		}
 	} else {
-		selectors[ '.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+		selectors[ '.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
 			'text-align': align,
 			'justify-content': align
 		}
@@ -262,17 +262,17 @@ function styling( props ) {
 		}
 	};
 	if( 'left' === alignTablet ) {
-		tablet_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+		tablet_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
 			'text-align': alignTablet,
 			'justify-content': 'flex-start'
 		}
 	} else if( 'right' === alignTablet ) {
-		tablet_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+		tablet_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
 			'text-align': alignTablet,
 			'justify-content': 'flex-end'
 		}
 	} else {
-		tablet_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+		tablet_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
 			'text-align': alignTablet,
 			'justify-content': alignTablet
 		}
@@ -319,17 +319,17 @@ function styling( props ) {
 
 	};
 	if( 'left' === alignMobile ) {
-		mobile_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+		mobile_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
 			'text-align': alignMobile,
 			'justify-content': 'flex-start'
 		}
 	} else if( 'right' === alignMobile ) {
-		mobile_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+		mobile_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
 			'text-align': alignMobile,
 			'justify-content': 'flex-end'
 		}
 	} else {
-		mobile_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > *' ] = {
+		mobile_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
 			'text-align': alignMobile,
 			'justify-content': alignMobile
 		}

@@ -14,7 +14,7 @@ const variations = [
 	{
 		name: 'info-box',
 		icon: UAGB_Block_Icons.info_box,
-		title: __( 'Info Box', 'ultimate-addons-for-gutenberg' ),
+		title: __( 'Style 1', 'ultimate-addons-for-gutenberg' ),
 		attributes: {},
 		isDefault: true,
 		innerBlocks: [
@@ -27,7 +27,7 @@ const variations = [
 	{
 		name: 'price-list',
 		icon: UAGB_Block_Icons.icon_list,
-		title: __( 'Price List', 'ultimate-addons-for-gutenberg' ),
+		title: __( 'Style 2', 'ultimate-addons-for-gutenberg' ),
 		attributes: {},
 		isDefault: true,
 		innerBlocks: [
@@ -41,7 +41,7 @@ const variations = [
 	{
 		name: 'testimonial',
 		icon: UAGB_Block_Icons.testimonial,
-		title: __( 'Testimonial', 'ultimate-addons-for-gutenberg' ),
+		title: __( 'Style 3', 'ultimate-addons-for-gutenberg' ),
 		attributes: {},
 		isDefault: true,
 		innerBlocks: [
@@ -53,7 +53,7 @@ const variations = [
 	{
 		name: 'team',
 		icon: UAGB_Block_Icons.team,
-		title: __( 'Team', 'ultimate-addons-for-gutenberg' ),
+		title: __( 'Style 4', 'ultimate-addons-for-gutenberg' ),
 		attributes: {},
 		isDefault: true,
 		innerBlocks: [
