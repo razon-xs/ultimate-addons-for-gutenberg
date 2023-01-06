@@ -684,6 +684,7 @@ const attributes = {
 	},
 	separatorRightSpacingTablet: {
 		type: 'number',
+		default: 14,
 		isUAGStyle: true,
 		UAGCopyPaste: {
 			styleType: 'separator-right-spacing-tablet'
@@ -1110,6 +1111,7 @@ const attributes = {
 	},
 	boxSpacingTablet: {
 		type: 'number',
+		default: 20,
 		UAGCopyPaste: {
 			styleType: 'countdown-box-gap-tablet'
 		},
