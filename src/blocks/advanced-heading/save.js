@@ -18,6 +18,8 @@ export default function save( props ) {
 		headingTag,
 		seperatorStyle,
 		headingId,
+		seperatorPosition,
+		headingDescPosition,
 		globalBlockStyleName,
 		spectraBlockName
 	} = props.attributes;
@@ -29,23 +31,31 @@ export default function save( props ) {
 	let headingText = '';
 	if ( headingTitle ) {
 		headingText = (
-			<RichText.Content
-				tagName={ headingTag }
-				value={ headingTitle }
-				className="uagb-heading-text"
-				id={ headingId }
-			/>
+			<>
+				{ seperatorPosition === 'above-heading' ? seprator : '' }
+				<RichText.Content
+					tagName={ headingTag }
+					value={ headingTitle }
+					className="uagb-heading-text"
+					id={ headingId }
+				/>
+				{ seperatorPosition === 'below-heading' ? seprator : '' }
+			</>
 		);
 	}
 	let descText = '';
 
 	if ( headingDesc ) {
 		descText = (
-			<RichText.Content
-				tagName="p"
-				value={ headingDesc }
-				className="uagb-desc-text"
-			/>
+			<>
+				{ seperatorPosition === 'above-sub-heading' ? seprator : '' }
+				<RichText.Content
+					tagName="p"
+					value={ headingDesc }
+					className="uagb-desc-text"
+				/>
+				{ seperatorPosition === 'below-sub-heading' ? seprator : '' }
+			</>
 		);
 	}
 
@@ -62,9 +72,9 @@ export default function save( props ) {
 		<div
 			{...htmlAttributes}
 		>
+			{ headingDescToggle && 'above-heading' === headingDescPosition ? descText : '' }
 			{ headingTitleToggle && headingText }
-			{ seprator }
-			{ headingDescToggle && descText }
+			{ headingDescToggle && 'below-heading' === headingDescPosition ? descText : '' }
 		</div>
 	);
 }

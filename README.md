@@ -5,7 +5,7 @@
 **Requires at least:** 4.7  
 **Requires PHP:** 5.6  
 **Tested up to:** 6.1  
-**Stable tag:** 2.0.16  
+**Stable tag:** 2.2.0  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -170,9 +170,68 @@ The awesome React FontIconPicker is developed by [Alessandro Benoit](http://code
 
 ## Changelog ##
 
-### 2.1.0 - TUESDAY, 29th NOVEMBER 2022 ###
-* Improvement: Post Grid - Added Setting to show buttons on equal height.
-* Improvement: Post Grid - Added Setting for image aspect ratio.
+### 2.2.1 ###
+* Fix: Image Gallery - When adding any of the HTML code or adding the link, the visibility of that caption gets changed to always visible
+* Fix: Image Gallery - Broken link were shown in gallery on frontend when added to caption.
+* Fix: Icon List - Disable link for the list item, it turns on the toggle again.
+* Fix: Testimonial - Carousel dots overlapping on below blocks in the mobile device.
+* Fix: Post Grid - Undefined array key issue.
+* Fix: How-To : Image is not visible when image selected from Image control.
+* Fix: Image - Does not wrap with paragraph.
+* Fix: Tabs - Container get hidden inside tabs body whenever use.
+* Fix: Global - Buttons - Removed the WP default allowedFormats from the toolbar.
+* Deprecated: Global - Removed deprecated toolbar and multiline for rich text.
+
+### 2.2.0 - TUESDAY, 27th DECEMBER 2022 ###
+* New: Introducing the Modal block that will help you to show your own customized popups on the page and turn your visitors into subscribers and leads!
+* Improvement: Global - Added hover color accessibility to Spectra block with a button.
+* Improvement: Counter - Bar Layout - Added toggle to flip/swap the positions of bar and title.
+* Fix: Container - Resolved the issue where the list items overflow inside a Container on responsive devices.
+* Fix: Image - Resolved the issue where the alignments are ineffective inside a Container on the front end.
+* Fix: Buttons - Page scroll to the top when the hash link is added and refresh on click when the hash is removed.
+* Fix: Post Grid - Equal Height is not functional in Post Grid block.
+* Fix: Tabs - Removed the WP default Link option from the toolbar for the tabs title field.
+* Fix: Testimonial - Block break when we reduce the number of testimonials to 2.
+* Fix: Block Transform - Theme pallet color for default theme does not carry forward when block transform.
+* Fix: Typography - Resolved Google font console errors.
+
+### 2.1.1 - WEDNESDAY, 14th DECEMBER 2022 ###
+* Improvement: Call To Action - Added a width option for the CTA buttons.
+* Improvement: Forms - Added a gradient background option for the submit button.
+* Improvement: Table Of Contents - Added unique IDs for headings that have the same text.
+* Improvement: Typography Control - Allowed negative values for letter spacing.
+* Fix: Container - Resolved an issue where the boxed container width would break when inside other blocks.
+* Fix: Container - Resolved an issue in which the background image position control goes missing when the viewport is changed.
+* Fix: Forms - Resolved an issue wherein settings a checkbox with a required condition would enforce the user to check all the checkboxes before submitting the form.
+* Fix: Marketing Button - Implemented support to make the background and hover colors persist for older users (V1.25.6).
+* Fix: Post Carousel/Masonry - Resolved an issue wherein the featured images for posts were not visible.
+* Fix: Post Carousel - Resolved an issue in which the static CSS was not loaded on the front end.
+* Fix: Separator Control - Removed the unwanted space that was added when the separator is used.
+
+### 2.1.0 - WEDNESDAY, 07th DECEMBER 2022 ###
+* New: Introducing the Counter block with layouts that will help you flaunt your stats in a cool way!
+* New: Introducing the Image Gallery block with extensive customizability, as well as the all-new perfectly-tiled layout!
+* New: Introducing the ability to add custom CSS directly at the page level!
+* Improvement: Heading - Added sub-heading and separator position settings.
+* Improvement: FAQ - Added background size, background color and border stylings for the toggle icon.
+* Improvement: Post Grid - Added a setting to show buttons on equal height.
+* Improvement: Post Grid - Added a setting to toggle image aspect ratio.
+* Improvement: Post Grid - Added an equal height option for featured images.
+* Improvement: Matrix Alignment Control - Added the new Matrix Alignment Control to match the Spectra UI.
+* Improvement: Number Control - Added the new Number Control to match the Spectra UI.
+* Improvement: Global - Updated Block Previews for All Spectra Blocks in the Editor.
+* Improvement: Code - Added Automatic Block Prioritization and Organization.
+* Fix: Forms - Added email address labels.
+* Fix: Icon List - Resolved an issue in which the links were getting disabled for icon list children.
+* Fix: Marketing Button - Resolved an issue where setting the background type as transparent or gradient results in the block encountering an issue.
+* Fix: Post Carousel - Resolved an issue where the block breaks on the front end when a background image is set.
+* Fix: Post Grid - Resolved an issue where enabling the show taxonomy toggle did not show taxonomy on the posts in the editor.
+* Fix: Responsive Border Control - Resolved an issue where buttons from multiple blocks were not inheriting the theme's style.
+* Fix: Responsive Border Control - Repositioned the misaligned reset control button in all border settings.
+* Fix: Responsive Border Control - Resolved an issue where the border stylings do not work as expected for responsive devices.
+* Fix: Select Control - Adjusted this control to properly align with other setting controls.
+* Fix: Text Control - Changed the default label.
+* Fix: Global - Resolved an issue where the hover stylings of buttons in multiple blocks were not working in the editor.
 
 ### 2.0.16 - TUESDAY, 22th NOVEMBER 2022 ###
 * Improvement: Admin Dashboard - Updated Spectra Core Blocks to prevent them from being disabled.

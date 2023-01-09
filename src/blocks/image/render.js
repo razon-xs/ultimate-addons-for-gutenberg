@@ -5,7 +5,6 @@ import { ToolbarButton } from '@wordpress/components';
 import { useSelect, useDispatch  } from '@wordpress/data';
 import { upload } from '@wordpress/icons';
 import {
-	BlockAlignmentControl,
 	BlockControls,
 	store as blockEditorStore,
 	BlockIcon,
@@ -56,7 +55,6 @@ const Render = ( props ) => {
 
 	const {
 		block_id,
-		isPreview,
 		layout,
 		url,
 		alt,
@@ -270,16 +268,6 @@ const Render = ( props ) => {
 		}
 	}
 
-	function updateAlignment( nextAlign ) {
-		const extraUpdatedAttributes = [ 'wide', 'full' ].includes( nextAlign )
-			? { width: undefined, height: undefined }
-			: {};
-		setAttributes( {
-			...extraUpdatedAttributes,
-			align: nextAlign,
-		} );
-	}
-
 	let isTemp = isTemporaryImage( id, url );
 
 	// Upload a temporary image on mount.
@@ -390,19 +378,13 @@ const Render = ( props ) => {
 		setAttributes( props );
 	}
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/image.svg`;
-
 	const blockProps = useBlockProps( {
-		ref,
+		ref
 	} );
 
 	return (
 		<React.Fragment>
 			<BlockControls group="block">
-				<BlockAlignmentControl
-					value={ align }
-					onChange={ updateAlignment }
-				/>
 				<ImageURLInputUI
 					url={ href || '' }
 					onChangeUrl={ onSetHref }
@@ -455,7 +437,7 @@ const Render = ( props ) => {
 					/>
 				</figure>
 				) }
-				{ isPreview ? ( <img width='100%' src={ previewImageData } alt=''/> ) : ( <MediaPlaceholder
+				<MediaPlaceholder
 					icon={ <BlockIcon icon={ UAGB_Block_Icons.image } /> }
 					labels={
 						{
@@ -472,7 +454,7 @@ const Render = ( props ) => {
 					value={ { id, src } }
 					mediaPreview={ mediaPreview }
 					disableMediaButtons={ temporaryURL || url }
-				/> )}
+				/>
 			</div>
 		</React.Fragment>
 	);

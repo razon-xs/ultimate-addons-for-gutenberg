@@ -28,7 +28,6 @@ const Render = ( props ) => {
 	} = props;
 
 	const {
-		isPreview,
 		block_id,
 		align,
 		textAlign,
@@ -55,6 +54,7 @@ const Render = ( props ) => {
 					'ultimate-addons-for-gutenberg'
 				) }
 				value={ heading.replace( /(<([^>]+)>)/ig, '' ) }
+				allowedFormats={ [] } // Removed the WP default link/bold/italic from the toolbar for button.
 				tagName={ titleTag }
 				onChange={ ( value ) =>
 					setAttributes( { heading: value } )
@@ -81,9 +81,8 @@ const Render = ( props ) => {
 			/>
 		</>
 	);
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/marketing-button.png`;
+
 	return (
-		isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 		<div
 			className={ classnames(
 				className,

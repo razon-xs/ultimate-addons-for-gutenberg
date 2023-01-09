@@ -61,33 +61,33 @@ const UAGBAdvancedHeading = ( props ) => {
 	}, [deviceType] );
 
 	useEffect( () => {
-console.log(refreshEditorGlobal);
+		console.log(refreshEditorGlobal);
 		const uagLocalStorage = getUAGEditorStateLocalStorage();
 
-        let spectraGlobalStylesStoreObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
+		let spectraGlobalStylesStoreObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
 
-        spectraGlobalStylesStoreObject.map( ( style ) => {
+		spectraGlobalStylesStoreObject.map( ( style ) => {
 
-            if ( style?.value == globalBlockStyleId && style?.label === globalBlockStyleName ) {
-                addBlockEditorDynamicStyles( 'uagb-global-block-style-' + globalBlockStyleId, style?.styles );
-                
-            }
+			if ( style?.value == globalBlockStyleId && style?.label === globalBlockStyleName ) {
+				addBlockEditorDynamicStyles( 'uagb-global-block-style-' + globalBlockStyleId, style?.styles );
+				
+			}
 
-            return style;
+			return style;
 
-        } );
+		} );
 
 	}, [globalBlockStyleId, globalBlockStyleName, refreshEditorGlobal] );
+	
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/advanced-heading.svg`;
 
 	return (
-		<>
-
-						<>
-			<Settings parentProps={ props } styling={styling} setRefreshEditorGlobal={setRefreshEditorGlobal} refreshEditorGlobal={refreshEditorGlobal} />
-			<Render parentProps={ props } />
+		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
+			<>
+				<Settings parentProps={ props } />
+				<Render parentProps={ props } />
 			</>
-
-		</>
+		)
 	);
 };
 export default UAGBAdvancedHeading;
