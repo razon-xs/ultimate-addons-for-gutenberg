@@ -10,8 +10,9 @@ const Render = ( props ) => {
 	const {
 		icon,
 		block_id,
+		iconView,
+		iconShape,
 	} = attributes;
-
 	const iconHtml = (
 			( renderSVG( icon ? icon : 'circle-check' ) )
 		)
@@ -20,10 +21,12 @@ const Render = ( props ) => {
 		className: classnames( `uagb-block-${ block_id }` )
 	} );
 
+	const iconShapeClass = iconView === 'none' ? '' : ( iconShape === 'square' ? 'uagb-icon-square' : 'uagb-icon-circle' );
+
 	return (
 		<div { ...blockProps }>
-			<div className={`uagb-icon-wrapper uagb-editor-preview-mode-${ deviceType.toLowerCase() }` }>
-				{ iconHtml }
+			<div className={`uagb-icon-wrapper ${ iconShapeClass } uagb-editor-preview-mode-${ deviceType.toLowerCase() }` }>
+				<span className='uagb-svg-wrapper' >{ iconHtml }</span>
 			</div>
 		</div>
 	);

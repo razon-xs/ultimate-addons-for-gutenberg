@@ -1005,7 +1005,7 @@ class UAGB_Post_Assets {
 		}
 
 		if ( ! empty( $tablet ) ) {
-			$tab_styling_css .= '@media only screen and (max-width: ' . UAGB_TABLET_BREAKPOINT . 'px) {';
+			$tab_styling_css .= '@media only screen and (max-width: ' . UAGB_TABLET_BREAKPOINT . 'px) and (min-width: ' . UAGB_MOBILE_BREAKPOINT . 'px) {';
 			$tab_styling_css .= $tablet;
 			$tab_styling_css .= '}';
 		}

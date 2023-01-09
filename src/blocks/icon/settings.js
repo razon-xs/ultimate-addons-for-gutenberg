@@ -5,6 +5,7 @@ import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
 import GeneralSettings from './components/settings/GeneralSettings';
+import StyleSettings from './components/settings/StyleSettings';
 
 const Settings = ( props ) => {
 
@@ -15,7 +16,7 @@ const Settings = ( props ) => {
 					<GeneralSettings { ...props } />
 				</InspectorTab>
 				<InspectorTab { ...UAGTabs.style }>
-					{ 'Styling' }
+					<StyleSettings { ...props } />
 				</InspectorTab>
 				<InspectorTab
 					{ ...UAGTabs.advance }
