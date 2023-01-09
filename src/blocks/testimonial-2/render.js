@@ -7,61 +7,33 @@ import {
 	InnerBlocks,
 } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
-const ALLOWED_BLOCKS = [ 'uagb/testimonial-child' ];
 import Grid from './components/layouts/Grid';
 import Slider from './components/layouts/Slider';
 import classnames from 'classnames';
 const Render = ( props ) => {
-	const blockName = props.name.replace( 'uagb/', '' );
-	const {
-		className,
-		setAttributes,
-		attributes,
-		deviceType,
-		clientId,
-	} = props;
-	const { block_id, testimonialItems } = attributes;
-	// Get children
-	const { isListViewOpen, hasChildren } = useSelect( ( select ) => {
-		const { isListViewOpened } = select( 'core/edit-post' );
-
-		return {
-			isListViewOpen: isListViewOpened(),
-			hasChildren:
-				0 !==
-				select( 'core/block-editor' ).getBlocks( clientId ).length,
-		};
-	}, [] );
+	const { attributes, deviceType, testimonialChild } = props;
+	const { block_id } = attributes;
 
 	// Add inner blocks
 	const blockProps = useBlockProps( {
-		className: `uagb-block-${ block_id } ${
-			hasChildren ? 'hasChildrenClass' : 'no_children'
-		} uagb-testimonial-2-container uagb-testimonial-2-wrap uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
+		className: `uagb-block-${ block_id }  uagb-testimonial-2-container uagb-testimonial-2-wrap uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 	} );
 
 	// Create block template.
 	const getTestimonialTemplates = [
-		[ 'uagb/testimonial-child', {} ],
-		[ 'uagb/testimonial-child', {} ],
-		[ 'uagb/testimonial-child', {} ],
+		[ testimonialChild, {} ],
+		[ testimonialChild, {} ],
 	];
 
 	return (
-		<InnerBlocks
-			template={ getTestimonialTemplates }
-			templateLock={ false }
-			allowedBlocks={ ALLOWED_BLOCKS }
-			renderAppender={ false }
-		/>
+		<div className={ blockProps }>
+			<InnerBlocks
+				template={ getTestimonialTemplates }
+				templateLock={ false }
+				allowedBlocks={ [ testimonialChild ] }
+				renderAppender={ false }
+			/>
+		</div>
 	);
-	// return (
-	// 	<div { ...blockProps } key={ block_id }>
-	// 		<div className="testimonial">
-	// 			<div { ...innerBlocksProps } />
-	// 		</div>
-	// 	</div>
-	// );
-	// return <Grid { ...props } />;
 };
 export default React.memo( Render );

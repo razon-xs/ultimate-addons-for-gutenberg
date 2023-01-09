@@ -17,32 +17,65 @@ import UAGSelectControl from '@Components/select-control';
 import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
-import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, Icon } from '@wordpress/components';
+import { InspectorControls, BlockControls } from '@wordpress/block-editor';
+import {
+	Icon,
+	ToggleControl,
+	ToolbarGroup,
+	ToolbarButton,
+} from '@wordpress/components';
 
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	const blockName = props.name.replace( 'uagb/', '' );
 	const { setAttributes, attributes, deviceType } = props;
+	const getBlockControls = () => {
+		return (
+			<BlockControls>
+				<ToolbarGroup>
+					<ToolbarButton
+						icon="insert"
+						label={ __( 'Add Slide' ) }
+						onClick={ () => {
+							insertBlock(
+								createBlock( 'uagb/slider-child' ),
+								block.innerBlocks.length,
+								block.clientId
+							);
+
+							setAttributes( {
+								slideItem: attributes.slideItem + 1,
+							} );
+							swiperInstance.activeIndex =
+								attributes.slideItem + 1;
+						} }
+					/>
+				</ToolbarGroup>
+			</BlockControls>
+		);
+	};
 	return (
-		<InspectorControls>
-			<InspectorTabs>
-				<InspectorTab { ...UAGTabs.general }>
-					General
-					{ /* <UAGAdvancedPanelBody
+		<>
+			{ getBlockControls() }
+			<InspectorControls>
+				<InspectorTabs>
+					<InspectorTab { ...UAGTabs.general }>
+						General
+						{ /* <UAGAdvancedPanelBody
 				title={ __( 'General' ) }
 				initialOpen={ true }
 			>
 				General
 			</UAGAdvancedPanelBody> */ }
-				</InspectorTab>
-				<InspectorTab { ...UAGTabs.style }>style</InspectorTab>
-				<InspectorTab { ...UAGTabs.advance } parentProps={ props }>
-					advance
-				</InspectorTab>
-			</InspectorTabs>
-		</InspectorControls>
+					</InspectorTab>
+					<InspectorTab { ...UAGTabs.style }>style</InspectorTab>
+					<InspectorTab { ...UAGTabs.advance } parentProps={ props }>
+						advance
+					</InspectorTab>
+				</InspectorTabs>
+			</InspectorControls>
+		</>
 	);
 };
 export default React.memo( Settings );
