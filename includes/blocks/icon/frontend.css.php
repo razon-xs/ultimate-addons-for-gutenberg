@@ -17,23 +17,23 @@ $transformation    = UAGB_Helper::get_css_value( $rotation_fallback, $attr['rota
 $t_selectors = array();
 $m_selectors = array();
 
-$selectors[' .uagb-icon-wrapper'] = array(
+$selectors[' .uagb-icon-wrapper']                     = array(
 	'text-align' => $attr['align'],
 );
 $selectors[' .uagb-icon-wrapper .uagb-svg-wrapper a'] = array(
 	'display' => 'contents',
 );
-$selectors[' .uagb-icon-wrapper svg']               = array(
+$selectors[' .uagb-icon-wrapper svg']                 = array(
 	'width'      => $icon_width,
 	'height'     => $icon_width,
 	'transform'  => "rotate($transformation)",
 	'box-sizing' => 'content-box',
 	'fill'       => $attr['iconColor'],
 );
-$selectors[' .uagb-icon-wrapper svg:hover']         = array(
+$selectors[' .uagb-icon-wrapper svg:hover']           = array(
 	'fill' => $attr['iconHoverColor'],
 );
-$selectors[' .uagb-icon-wrapper .uagb-svg-wrapper'] = array(
+$selectors[' .uagb-icon-wrapper .uagb-svg-wrapper']   = array(
 	'display'        => 'inline-flex',
 	'padding-top'    => UAGB_Helper::get_css_value( $attr['iconTopPadding'], $attr['iconPaddingUnit'] ),
 	'padding-right'  => UAGB_Helper::get_css_value( $attr['iconRightPadding'], $attr['iconPaddingUnit'] ),
@@ -45,55 +45,55 @@ $selectors[' .uagb-icon-wrapper .uagb-svg-wrapper'] = array(
 	'margin-left'    => UAGB_Helper::get_css_value( $attr['iconLeftMargin'], $attr['iconMarginUnit'] ),
 );
 
-if( $attr['iconView'] !== 'none' ) {
-	$background = 'classic' === $attr['iconBackgroundColorType'] ? $attr['iconBackgroundColor'] : $attr['iconBackgroundGradientColor'];
+if ( 'none' !== $attr['iconView'] ) {
+	$background       = 'classic' === $attr['iconBackgroundColorType'] ? $attr['iconBackgroundColor'] : $attr['iconBackgroundGradientColor'];
 	$hover_background = 'classic' === $attr['iconHoverBackgroundColorType'] ? $attr['iconHoverBackgroundColor'] : $attr['iconHoverBackgroundGradientColor'];
-	if( $attr['iconView'] === 'framed' ) {
+	if ( 'framed' === $attr['iconView'] ) {
 		$selectors[' .uagb-icon-wrapper.uagb-icon-square .uagb-svg-wrapper'] = array(
-			'border-color'=> $attr['iconBorderColor'],
-			'border-style'=> 'solid',
-			'border-width'=> UAGB_Helper::get_css_value(
+			'border-color' => $attr['iconBorderColor'],
+			'border-style' => 'solid',
+			'border-width' => UAGB_Helper::get_css_value(
 				$attr['iconBorderWidth'],
 				'px'
 			),
 		);
 		$selectors[' .uagb-icon-wrapper.uagb-icon-circle .uagb-svg-wrapper'] = array(
-			'border-color'=> $attr['iconBorderColor'],
-			'border-style'=> 'solid',
-			'border-width'=> UAGB_Helper::get_css_value(
+			'border-color'  => $attr['iconBorderColor'],
+			'border-style'  => 'solid',
+			'border-width'  => UAGB_Helper::get_css_value(
 				$attr['iconBorderWidth'],
 				'px'
 			),
-			'border-radius'=> '50%',
+			'border-radius' => '50%',
 		);
-		$selectors[' .uagb-icon-wrapper .uagb-svg-wrapper:hover'] = array(
-			'border-color'=> $attr['iconHoverBorderColor'],
+		$selectors[' .uagb-icon-wrapper .uagb-svg-wrapper:hover']            = array(
+			'border-color' => $attr['iconHoverBorderColor'],
 		);
-	} else if( 'stacked' === $attr['iconView'] ) {
-		$selectors[' .uagb-icon-wrapper .uagb-svg-wrapper'] = array_merge(
+	} elseif ( 'stacked' === $attr['iconView'] ) {
+		$selectors[' .uagb-icon-wrapper .uagb-svg-wrapper']                  = array_merge(
 			$selectors[' .uagb-icon-wrapper .uagb-svg-wrapper'],
 			array(
-				'background'=> $background,
+				'background' => $background,
 			)
 		);
 		$selectors[' .uagb-icon-wrapper.uagb-icon-circle .uagb-svg-wrapper'] = array(
 			'border-radius' => '50%',
 		);
-		$selectors[ ' .uagb-icon-wrapper .uagb-svg-wrapper:hover'] = array(
-			'background'=> $hover_background,
+		$selectors[' .uagb-icon-wrapper .uagb-svg-wrapper:hover']            = array(
+			'background' => $hover_background,
 		);
 	}
 }
 
 // Generates css for tablet devices.
-$attr['iconSizeTablet'] = empty( $attr['iconSizeTablet'] ) ? $size_fallback : $attr['iconSizeTablet'];
+$attr['iconSizeTablet']                 = empty( $attr['iconSizeTablet'] ) ? $size_fallback : $attr['iconSizeTablet'];
 $t_icon_width                           = UAGB_Helper::get_css_value( $attr['iconSizeTablet'], $attr['iconSizeUnit'] );
-$t_align = empty( $attr['alignTablet'] ) ? $attr['align'] : $attr['alignTablet'];
+$t_align                                = empty( $attr['alignTablet'] ) ? $attr['align'] : $attr['alignTablet'];
 $t_selectors[' .uagb-icon-wrapper']     = array(
 	'text-align' => $t_align,
 );
 $t_selectors[' .uagb-icon-wrapper svg'] = array(
-	'width' => $t_icon_width,
+	'width'  => $t_icon_width,
 	'height' => $t_icon_width,
 );
 $t_selectors[' .uagb-icon-wrapper .uagb-svg-wrapper'] = array(
@@ -109,14 +109,14 @@ $t_selectors[' .uagb-icon-wrapper .uagb-svg-wrapper'] = array(
 );
 
 // Generates css for mobile devices.
-$attr['iconSizeMobile'] = empty( $attr['iconSizeMobile'] ) ? $size_fallback : $attr['iconSizeMobile'];
+$attr['iconSizeMobile']                 = empty( $attr['iconSizeMobile'] ) ? $size_fallback : $attr['iconSizeMobile'];
 $m_icon_width                           = UAGB_Helper::get_css_value( $attr['iconSizeMobile'], $attr['iconSizeUnit'] );
-$m_align = empty( $attr['alignMobile'] ) ? $attr['align'] : $attr['alignMobile'];
+$m_align                                = empty( $attr['alignMobile'] ) ? $attr['align'] : $attr['alignMobile'];
 $m_selectors[' .uagb-icon-wrapper']     = array(
 	'text-align' => $m_align,
 );
 $m_selectors[' .uagb-icon-wrapper svg'] = array(
-	'width' => $m_icon_width,
+	'width'  => $m_icon_width,
 	'height' => $m_icon_width,
 );
 $m_selectors[' .uagb-icon-wrapper .uagb-svg-wrapper'] = array(

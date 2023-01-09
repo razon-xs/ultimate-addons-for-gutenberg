@@ -34,7 +34,7 @@ return array(
 	'iconHoverBorderColor'             => '',
 	'iconHoverBackgroundColorType'     => 'classic',
 	'iconHoverBackgroundColor'         => '',
-	'iconHoverBackgroundGradientColor' => '',
+	'iconHoverBackgroundGradientColor' => 'linear-gradient(90deg, rgb(155, 81, 224) 0%, rgb(6, 147, 227) 100%)',
 	// Padding
 	'iconTopPadding'                   => '',
 	'iconRightPadding'                 => '',
