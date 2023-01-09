@@ -89,7 +89,7 @@ const GlobalBlockStyles = (props) => {
 
             formData.append( 'action', 'uag_global_block_styles' );
             formData.append( 'security', uagb_blocks_info.uagb_ajax_nonce );
-            formData.append( 'attributes', JSON.stringify(attributes) );
+            formData.append( 'attributes', JSON.stringify(attributes) );     
             formData.append( 'blockName', name );
 
 
@@ -144,6 +144,8 @@ const GlobalBlockStyles = (props) => {
 
         let spectraGlobalStylesStoreObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
 
+        updateGoogleFontData(attributes);
+
         
         spectraGlobalStylesStoreObject.map( ( style ) => {
             console.log(style?.value);
@@ -167,15 +169,30 @@ const GlobalBlockStyles = (props) => {
         setRefreshEditorGlobal(!refreshEditorGlobal);
         setSaveToDatabase(true);
     };
+    const updateGoogleFontData = (attributes) => {
+        let spectraGlobalStylesFontFamilies = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStylesFontFamilies' )) || [];
+
+        Object.keys(attributes).map((attribute) => {
+            console.log(attribute);
+            if ( attribute.includes('Family') && '' !== attributes[attribute] ) {
+                spectraGlobalStylesFontFamilies.push(attributes[attribute]);
+            }
+        });
+        let output = [];
+        for( let item of spectraGlobalStylesFontFamilies){
+    
+            if( !output.includes(item) )
+              output.push(item)
+        }
+        uagLocalStorage.setItem(
+            'spectraGlobalStylesFontFamilies',
+            JSON.stringify(output)
+        )
+    };
     const getRef = (ref) => {
         // console.log(ref);
         setGbsPanel(ref)
     }
-console.log(spectraGlobalStyles);
-console.log(globalBlockStyleId);
-    spectraGlobalStyles.map((style) => {
-        console.log(style);
-    });
     return (
         <UAGAdvancedPanelBody
             title={ __( 'Global Block Styles', 'ultimate-addons-for-gutenberg' ) }

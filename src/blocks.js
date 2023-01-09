@@ -12,6 +12,11 @@
 import domReady from '@wordpress/dom-ready';
 import getUAGEditorStateLocalStorage from '@Controls/getUAGEditorStateLocalStorage';
 import apiFetch from '@wordpress/api-fetch';
+import { registerPlugin } from '@wordpress/plugins';
+import SpectraLoadGlobaGoogleFonts from './components/global-block-link/google-fonts';
+
+registerPlugin( 'spectra-global-blocks-fonts', { render: SpectraLoadGlobaGoogleFonts } );
+
 // Delete the local storage on every refresh.
 const uagLocalStorage = getUAGEditorStateLocalStorage();
 if ( uagLocalStorage ) {

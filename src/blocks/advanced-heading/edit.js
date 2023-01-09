@@ -78,13 +78,18 @@ const UAGBAdvancedHeading = ( props ) => {
 		} );
 
 	}, [globalBlockStyleId, globalBlockStyleName, refreshEditorGlobal] );
-	
+
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/advanced-heading.svg`;
 
 	return (
 		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
 			<>
-				<Settings parentProps={ props } />
+				<Settings 
+					parentProps={ props }
+					styling={styling}
+					setRefreshEditorGlobal={setRefreshEditorGlobal} 
+					refreshEditorGlobal={refreshEditorGlobal} 
+				/>
 				<Render parentProps={ props } />
 			</>
 		)
