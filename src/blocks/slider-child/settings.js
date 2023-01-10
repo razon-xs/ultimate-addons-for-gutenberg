@@ -12,6 +12,9 @@ import {
 import SpacingControl from '@Components/spacing-control';
 import Background from '@Components/background';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
+import {
+	TextControl,
+} from '@wordpress/components';
 
 const Settings = ( props ) => {
 
@@ -89,6 +92,7 @@ const Settings = ( props ) => {
 		yPositionType,
 		yPositionTypeTablet,
 		yPositionTypeMobile,
+		navigationLink
 	} = attributes;
 
 	// This useEffect ensures that background size is set to cover, so as to ensure color takes up entire width and height,
@@ -434,13 +438,34 @@ const Settings = ( props ) => {
 		);
 	}
 
+	function onChangeNavigationLink( newValue ) {
+		setAttributes( { navigationLink: newValue } );
+	}
+
+	const generalSettings = () => {
+		return (
+			<UAGAdvancedPanelBody
+				title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
+				initialOpen={ false }
+			>
+			<TextControl
+					label="Navigation Slug"
+					value={ navigationLink }
+					onChange={ onChangeNavigationLink }
+				/>
+
+			</UAGAdvancedPanelBody>
+
+		);
+	}
+
 	return (
 
 			<InspectorControls>
-				<InspectorTabs
-				defaultTab='style'
-				tabs={[ 'style', 'advance' ]}
-				>
+				<InspectorTabs>
+					<InspectorTab { ...UAGTabs.general }>
+						{ generalSettings() }
+					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
 						{ backgroundSettings() }
 						{ spacingSettings() }

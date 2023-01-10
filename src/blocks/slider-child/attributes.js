@@ -784,6 +784,9 @@ const attributes = {
 		type: 'string',
 		default: 'px',
 	},
+	navigationLink: {
+		type: 'string',
+	}
 };
 
 export default attributes;

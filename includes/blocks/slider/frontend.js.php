@@ -42,6 +42,7 @@ $slider_options = apply_filters(
 			'nextEl' => '.uagb-block-' . $id . ' .swiper-button-next',
 			'prevEl' => '.uagb-block-' . $id . ' .swiper-button-prev',
 		) : false,
+		'hashNavigation' => true
 	),
 	$attr
 );

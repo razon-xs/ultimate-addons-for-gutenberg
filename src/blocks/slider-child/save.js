@@ -8,6 +8,7 @@ import { InnerBlocks } from '@wordpress/block-editor';
 export default function save( props ) {
 	const {
 		block_id,
+		navigationLink
 	} = props.attributes;
 
 	return (
@@ -18,6 +19,7 @@ export default function save( props ) {
 					'swiper-slide',
 					`uagb-block-${ block_id }`
 				) }
+				data-hash={navigationLink}
 				key = { block_id }
 			>
 				<div className='swiper-content' >
