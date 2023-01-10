@@ -1,19 +1,17 @@
 /**
  * BLOCK: Testimonial - Save Block
  */
-import { RichText } from '@wordpress/block-editor';
-import { InnerBlocks } from '@wordpress/block-editor';
+import { InnerBlocks,useBlockProps } from '@wordpress/block-editor';
 export default function save( { attributes } ) {
-	// return (
-	// 	<RichText.Content
-	// 		tagName="span"
-	// 		value={ attributes.myText }
-	// 		className="sample-text"
-	// 	/>
-	// );
+	const {
+		block_id,
+	} = attributes;
+	const blockProps = useBlockProps.save({
+		className:'testimonial-block-child-wrap'
+	});
 	return (
-		<div className="saving-testimonial">
-			<InnerBlocks.Content />
+		<div {...blockProps}>
+				<InnerBlocks.Content />
 		</div>
 	);
 }

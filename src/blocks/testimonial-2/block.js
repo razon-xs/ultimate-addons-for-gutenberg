@@ -23,6 +23,7 @@ registerBlockType( 'uagb/testimonial-2', {
 		__( 'uag', 'ultimate-addons-for-gutenberg' ),
 	],
 	supports: {
+		align: true,
 		anchor: true,
 	},
 	category: uagb_blocks_info.category,

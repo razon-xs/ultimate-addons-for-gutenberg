@@ -35,7 +35,7 @@ const Render = ( props ) => {
 	const parentBlocks = wp.blocks.getBlockTypes().filter( function ( item ) {
 		return ! item.parent;
 	} );
-
+	const placeHolderImage = `${ uagb_blocks_info.uagb_url }/admin/assets/images/placeholder.png`;
 	const TEMPLATE = [
 		[
 			'uagb/container',
@@ -45,7 +45,7 @@ const Render = ( props ) => {
 					'uagb/container',
 					{},
 					[
-						[ 'uagb/image', {} ],
+						[ 'uagb/image', {url:placeHolderImage} ],
 						[ 'core/paragraph', {} ],
 					],
 				],
@@ -61,7 +61,6 @@ const Render = ( props ) => {
 		],
 	];
 
-	// Hide slider block.
 	const ALLOWED_BLOCKS = [
 		'uagb/container',
 		'uagb/image',
@@ -69,16 +68,6 @@ const Render = ( props ) => {
 		'uagb/advanced-heading',
 		'uagb/star-rating',
 	];
-	// const ALLOWED_BLOCKS = parentBlocks
-	// 	.map( ( block ) => block.name )
-	// 	.filter(
-	// 		( blockName ) =>
-	// 			[
-	// 				'uagb/slider',
-	// 				'uagb/post-carousel',
-	// 				'uagb/testimonial',
-	// 			].indexOf( blockName ) === -1
-	// 	);
 
 	const innerBlockOptions = {
 		allowedBlocks: ALLOWED_BLOCKS,
@@ -87,7 +76,7 @@ const Render = ( props ) => {
 
 	const innerBlocksProps = useInnerBlocksProps(
 		{
-			className: `testimonial-block-cl1`,
+			className: `testimonial-block-child-wrap`,
 			slot: 'container-start',
 		},
 		innerBlockOptions

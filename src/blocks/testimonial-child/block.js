@@ -23,9 +23,6 @@ registerBlockType( 'uagb/testimonial-child', {
 		__( 'uag', 'ultimate-addons-for-gutenberg' ),
 	],
 	parent: [ 'uagb/testimonial-2' ],
-	supports: {
-		anchor: true,
-	},
 	category: uagb_blocks_info.category,
 	attributes,
 	edit,

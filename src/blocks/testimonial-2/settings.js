@@ -38,17 +38,17 @@ const Settings = ( props ) => {
 						icon="insert"
 						label={ __( 'Add Slide' ) }
 						onClick={ () => {
-							insertBlock(
-								createBlock( 'uagb/slider-child' ),
-								block.innerBlocks.length,
-								block.clientId
-							);
+							// insertBlock(
+							// 	createBlock( 'uagb/slider-child' ),
+							// 	block.innerBlocks.length,
+							// 	block.clientId
+							// );
 
-							setAttributes( {
-								slideItem: attributes.slideItem + 1,
-							} );
-							swiperInstance.activeIndex =
-								attributes.slideItem + 1;
+							// setAttributes( {
+							// 	slideItem: attributes.slideItem + 1,
+							// } );
+							// swiperInstance.activeIndex =
+							// 	attributes.slideItem + 1;
 						} }
 					/>
 				</ToolbarGroup>
