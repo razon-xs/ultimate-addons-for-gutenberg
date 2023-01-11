@@ -18,9 +18,15 @@ const attributes = {
 		type: 'string',
 		default: 'date',  // date, evergreen, recurring.
 	},
+	// This is intentionally set to an expired date by default, and shall be overridden by a dynamic default.
 	endDateTime: {
 		type: 'string',
 		default: '2023-01-01T00:00:00Z',
+	},
+	// This is a flag attribute which will dynamically help us set default for endDateTime.
+	timeModified: {
+		type: 'boolean',
+		default: false,
 	},
 	// Labels.
 	showLabels: {

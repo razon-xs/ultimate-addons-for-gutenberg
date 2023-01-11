@@ -4,6 +4,16 @@ UAGBCountdown = { // eslint-disable-line no-undef
 
 	editorInit( mainSelector, data = {}, countdownRef ) {
 
+		// When a new Countdown timer block is added, the timeModified value received is 'false',
+		// even though it's attribute has been set to 'true'.
+		// Hence, we need to ensure here that the dynamic defaults are followed. 
+		if( ! data.timeModified ) {
+			const d = new Date();
+			const year = d.getUTCFullYear();
+
+			data.endDateTime = ( year + 1 ) + '-01-01T00:00:00Z';
+		}
+
         this.elements[mainSelector] = this.getDefaultElements( mainSelector );
 
 		this.countdownInterval[ mainSelector ] = setInterval( () => {

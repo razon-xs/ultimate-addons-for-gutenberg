@@ -10,11 +10,24 @@ import './style.scss';
 
 const UAGBCountdownEdit = ( props ) => {
 
+	const { setAttributes } = props;
+
     const [ timeChanged, setTimeChanged ] = useState( 0 );
 
 	useEffect( () => {
 
-		const { setAttributes } = props;
+		// Dynamically set default value to Jan 1 of next year (UTC),
+		// on drag and drop of a new instance of the block. 
+		if( ! props.attributes.timeModified ) {  // check if time has been modified dynamically using the flag attribute.
+
+			const d = new Date();
+			const year = d.getUTCFullYear();
+	
+			setAttributes( {
+				endDateTime: ( year + 1 ) + '-01-01T00:00:00Z',
+				timeModified: true,
+			} );
+		}
 
 		// Assigning block_id in the attribute.
 		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
@@ -38,7 +51,7 @@ const UAGBCountdownEdit = ( props ) => {
 	}, [ props ] );
 
 	useEffect( () => {
-        if( props.attributes.block_id && timeChanged === 1 ) {
+		if( props.attributes.block_id && timeChanged === 1 ) {
 		    UAGBCountdown.changeEndTime( '.uagb-block-' + props.attributes.block_id, props.attributes, countdownRef.current ) // eslint-disable-line no-undef
         }
 		setTimeChanged( 1 );
