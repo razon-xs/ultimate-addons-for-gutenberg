@@ -59,27 +59,6 @@ const attributes = {
 			styleType: 'overall-alignment-mobile'
 		}
 	},
-	iconView: {
-		type: 'string',
-		default: 'none',
-		UAGCopyPaste: {
-			styleType: 'icon-view'
-		}
-	},
-	iconShape: {
-		type: 'string',
-		default: 'circle',
-		UAGCopyPaste: {
-			styleType: 'icon-shape'
-		}
-	},
-	iconBorderWidth: {
-		type: 'number',
-		default: 3,
-		UAGCopyPaste: {
-			styleType: 'icon-border-width'
-		}
-	},
 	// Color
 	iconColor: {
 	   type: 'string',
@@ -121,12 +100,6 @@ const attributes = {
 		default: '',
 		UAGCopyPaste: {
 			styleType: 'icon-hover-color'
-		}
-	},
-	iconHoverBorderColor: {
-		type: 'string',
-		UAGCopyPaste: {
-			styleType: 'icon-hover-border-color'
 		}
 	},
 	iconHoverBackgroundColorType: {

@@ -1,3 +1,6 @@
+/**
+ * Block Icon : Style Settings.
+ */
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 
