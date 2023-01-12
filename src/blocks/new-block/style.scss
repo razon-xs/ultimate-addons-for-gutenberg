@@ -13,3 +13,36 @@
 .is-primary.uagb-info-box__variation-btn {
 	margin-bottom: 25px;
 }
+
+.uagb-new-block__variation-wrap{
+	.components-placeholder.components-placeholder {
+		padding: 0;
+		background-color: transparent;
+		box-shadow: none;
+		outline: none;
+		justify-content: flex-start;
+	}
+	.components-placeholder__label {
+		display: none;
+	}
+	.block-editor-block-variation-picker__variations{
+		margin: 0;
+		column-gap: 25px;
+		width: 100%;
+		li{
+			margin: 0;
+			width:43%;
+			.components-button.has-icon{
+				width:100%;
+				.dashicon{
+					font-size: 80px;
+					width: 80px;
+					height: 80px;
+					fill: grey;
+   					color: #585555b5;
+				}
+			}
+		}
+	}
+
+}

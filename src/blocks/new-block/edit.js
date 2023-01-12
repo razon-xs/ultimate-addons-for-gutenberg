@@ -11,8 +11,7 @@ import { useSelect, useDispatch } from '@wordpress/data';
 import Settings from './settings';
 import Render from './render';
 import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
-import { withNotices } from '@wordpress/components';
-import { compose, createHigherOrderComponent } from '@wordpress/compose';
+
 import { __ } from '@wordpress/i18n';
 
 const UAGBNewBlock = ( props ) => {
@@ -35,6 +34,17 @@ const UAGBNewBlock = ( props ) => {
 		
 	}, [ props ] );
 
+	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
+
+	useEffect( () => {
+
+		responsiveConditionPreview( props );
+
+	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
+
+	
+	const { replaceInnerBlocks } = useDispatch( 'core/block-editor' );
+	
 	const {
 		innerBlocks, // eslint-disable-line no-unused-vars
 		blockType, // eslint-disable-line no-unused-vars
@@ -68,7 +78,7 @@ const UAGBNewBlock = ( props ) => {
 			};
 		},
 	);
-	const { replaceInnerBlocks } = useDispatch( 'core/block-editor' );
+
 	const createBlocksFromInnerBlocksTemplate = useCallback(
 		( innerBlocksTemplate ) => {
 			return innerBlocksTemplate.map(
@@ -99,14 +109,6 @@ const UAGBNewBlock = ( props ) => {
 		}
 		
 	);
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
-
-	useEffect( () => {
-
-		responsiveConditionPreview( props );
-
-	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
-
 	
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/form.svg`;
 
@@ -132,27 +134,11 @@ const UAGBNewBlock = ( props ) => {
 	}
 
 	return (
-			<>
-				<Settings parentProps={ props } />
-				<Render parentProps={ props } />
-			</>
-		
+		<>
+			<Settings parentProps={ props } />
+			<Render parentProps={ props } />
+		</>
 	);
 };
-const addAdvancedClasses = createHigherOrderComponent( ( BlockListBlock ) => {
-	return ( props ) => {
-		return (
-			<BlockListBlock
-				{ ...props }
-				className={ props.attributes.className }
-			/>
-		);
-	};
-}, 'addAdvancedClasses' );
 
-wp.hooks.addFilter( 'editor.BlockListBlock', 'uagb/new-block', addAdvancedClasses );
-
-export default compose(
-	withNotices,
-	addAdvancedClasses
-)( UAGBNewBlock );
+export default UAGBNewBlock;

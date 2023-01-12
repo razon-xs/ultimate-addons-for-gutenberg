@@ -6,6 +6,9 @@ const attributes = {
 	block_id: {
 		type: 'string',
 	},
+	template: {
+		type: 'string',
+	},
 	changeVariation:{
 		type: 'boolean',
 		default: false,

@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 
-import { __ } from '@wordpress/i18n';
 import UAGB_Block_Icons from '@Controls/block-icons';
 /**
  * Template option choices for predefined form layouts.
@@ -14,7 +13,6 @@ const variations = [
 	{
 		name: 'info-box',
 		icon: UAGB_Block_Icons.info_box,
-		title: __( 'Style 1', 'ultimate-addons-for-gutenberg' ),
 		attributes: {},
 		isDefault: true,
 		innerBlocks: [
@@ -27,7 +25,6 @@ const variations = [
 	{
 		name: 'price-list',
 		icon: UAGB_Block_Icons.icon_list,
-		title: __( 'Style 2', 'ultimate-addons-for-gutenberg' ),
 		attributes: {},
 		isDefault: true,
 		innerBlocks: [
@@ -41,7 +38,6 @@ const variations = [
 	{
 		name: 'testimonial',
 		icon: UAGB_Block_Icons.testimonial,
-		title: __( 'Style 3', 'ultimate-addons-for-gutenberg' ),
 		attributes: {},
 		isDefault: true,
 		innerBlocks: [
@@ -53,7 +49,6 @@ const variations = [
 	{
 		name: 'team',
 		icon: UAGB_Block_Icons.team,
-		title: __( 'Style 4', 'ultimate-addons-for-gutenberg' ),
 		attributes: {},
 		isDefault: true,
 		innerBlocks: [

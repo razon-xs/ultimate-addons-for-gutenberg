@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useCallback } from 'react';
 
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, {
@@ -8,7 +9,8 @@ import ResponsiveSlider from '@Components/responsive-slider';
 import { __ } from '@wordpress/i18n';
 import {
 	InspectorControls,
-	BlockControls
+	BlockControls,
+	__experimentalBlockVariationPicker as BlockVariationPicker,
 } from '@wordpress/block-editor';
 import BoxShadowControl from '@Components/box-shadow';
 import SpacingControl from '@Components/spacing-control';
@@ -19,12 +21,15 @@ import UAGTabsControl from '@Components/tabs';
 import MultiButtonsControl from '@Components/multi-buttons-control';
 import renderSVG from '@Controls/renderIcon';
 import { Icon, ToolbarGroup } from '@wordpress/components';
+import { createBlock } from '@wordpress/blocks';
+import { useSelect, useDispatch } from '@wordpress/data';
 
 const Settings = ( props ) => {
 
 	props = props.parentProps;
 	const { attributes, setAttributes, deviceType } = props;
 	const {
+		template,
 		block_id,
 		backgroundType,
 		backgroundImageDesktop,
@@ -118,9 +123,73 @@ const Settings = ( props ) => {
 		alignTablet,
 		alignMobile,
 		variationChange,
-		lockTemplate
+		lockTemplate,
+		
 	} = attributes;
 	
+	
+	
+	const { replaceInnerBlocks } = useDispatch( 'core/block-editor' );
+	const {
+		innerBlocks, // eslint-disable-line no-unused-vars
+		blockType, // eslint-disable-line no-unused-vars
+		variations,
+		defaultVariation,
+	} = useSelect(
+		( select ) => {
+			const { getBlocks } = select( 'core/block-editor' );
+			const {
+				getBlockType,
+				getBlockVariations,
+				getDefaultBlockVariation,
+			} = select( 'core/blocks' );
+
+			return {
+				innerBlocks: getBlocks( props.clientId ),
+				
+
+				blockType: getBlockType( props.name ),
+				defaultVariation:
+					typeof getDefaultBlockVariation === 'undefined'
+						? null
+						: getDefaultBlockVariation( props.name ),
+				variations:
+					typeof getBlockVariations === 'undefined'
+						? null
+						: getBlockVariations( props.name ),
+			};
+		},
+	);
+	const createBlocksFromInnerBlocksTemplate = useCallback(
+		( innerBlocksTemplate ) => {
+			return innerBlocksTemplate.map(
+				( [ name, attributes, innerBlocks = [] ] ) => // eslint-disable-line no-shadow
+					createBlock(
+						name,
+						attributes,
+						createBlocksFromInnerBlocksTemplate( innerBlocks )
+					)
+			);
+		}
+	);
+	const blockVariationPickerOnSelect = useCallback(
+		( nextVariation = defaultVariation ) => {
+			if ( nextVariation.attributes ) {
+				props.setAttributes( nextVariation.attributes );
+			}
+
+			if ( nextVariation.innerBlocks ) {
+				replaceInnerBlocks(
+					props.clientId,
+					createBlocksFromInnerBlocksTemplate(
+						nextVariation.innerBlocks
+					)
+				);
+			}
+			props.setAttributes( { variationChange: false } );
+		}
+		
+	);
 	const generalSettings = () => {
 		return (
 			<>
@@ -128,6 +197,16 @@ const Settings = ( props ) => {
 					title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
 					initialOpen={ true }
 				>
+					<div className='uagb-new-block__variation-wrap'>
+						<h3>Presets</h3>
+						<BlockVariationPicker
+							instructions={__( 'Select a variation to start with.' )}
+							onSelect={ ( nextVariation ) =>
+								blockVariationPickerOnSelect( nextVariation )
+							}
+							variations={ variations }
+						/>
+					</div>
 					<MultiButtonsControl
 						setAttributes={ setAttributes }
 						label={ __( 'Overall Alignment', 'ultimate-addons-for-gutenberg' ) }
