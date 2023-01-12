@@ -2,6 +2,9 @@
  * BLOCK: Icon - Attributes
  */
 
+import { getBorderAttributes } from '@Controls/generateAttributes';
+const borderAttributes = getBorderAttributes( 'icon' );
+
 const attributes = {
    icon: {
 	   type: 'string',
@@ -87,7 +90,7 @@ const attributes = {
 	},
 	iconBorderColor: {
 		type: 'string',
-		default: '#6EC1E3',
+		default: '',
 		UAGCopyPaste: {
 			styleType: 'icon-border-color'
 		}
@@ -101,7 +104,7 @@ const attributes = {
 	},
 	iconBackgroundColor: {
 		type: 'string',
-		default: '#6EC1E3',
+		default: '',
 		UAGCopyPaste: {
 			styleType: 'icon-background-color'
 		}
@@ -405,19 +408,27 @@ const attributes = {
 		default: false,
 		isUAGStyle: true,
 	},
-   isPreview: {
-	   type: 'boolean',
-	   default: false,
-   },
-   //
-   iconView: {
-	   type: 'string',
-	   default: 'none',
-   },
-   iconShape: {
-	   type: 'string',
-	   default: 'Circle',
-   },
+	isPreview: {
+		type: 'boolean',
+		default: false,
+	},
+	...borderAttributes,
+	iconShadowColor: {
+		type: 'string',
+		default: '#eee',
+	},
+	iconShadowHOffset: {
+		type: 'number',
+		default: 2,
+	},
+	iconShadowVOffset: {
+		type: 'number',
+		default: 2,
+	},
+	iconShadowBlur:{
+		type: 'number',
+		default: 2,
+	},
 };
 
 export default attributes;

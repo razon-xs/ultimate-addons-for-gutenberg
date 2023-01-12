@@ -5,6 +5,7 @@
 import generateCSS from '@Controls/generateCSS';
 import generateCSSUnit from '@Controls/generateCSSUnit';
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
+import generateBorderCSS from '@Controls/generateBorderCSS';
 
 function styling( props ) {
 
@@ -28,17 +29,12 @@ function styling( props ) {
 		// Rotation
 		rotation,
 		rotationUnit,
-		//StyleSettings
-		iconView,
-		iconBorderWidth,
 		// Color
 		iconColor,
-		iconBorderColor,
 		iconBackgroundColorType,
 		iconBackgroundColor,
 		iconBackgroundGradientColor,
 		iconHoverColor,
-		iconHoverBorderColor,
 		iconHoverBackgroundColorType,
 		iconHoverBackgroundColor,
 		iconHoverBackgroundGradientColor,
@@ -74,104 +70,88 @@ function styling( props ) {
 		iconMarginUnit,
 		iconMobileMarginUnit,
 		iconTabletMarginUnit,
+		// Border
+		iconBorderStyle,
+		iconBorderColor,
+		iconBorderHColor,
+		// Shadow
+		iconShadowColor,
+		iconShadowHOffset,
+		iconShadowVOffset,
+		iconShadowBlur,
 	} = attributes;
-	console.log( attributes );
 
 	const iconWidth = getFallbackNumber( iconSize, 'iconSize', blockName );
-	const tranformation = generateCSSUnit( getFallbackNumber( rotation, 'rotation', blockName ), rotationUnit )
+	const transformation = generateCSSUnit( getFallbackNumber( rotation, 'rotation', blockName ), rotationUnit );
+	const background = 'classic' === iconBackgroundColorType ? iconBackgroundColor : iconBackgroundGradientColor;
+	const hoverBackground = 'classic' === iconHoverBackgroundColorType ? iconHoverBackgroundColor : iconHoverBackgroundGradientColor;
+	let dropShadow = '';
+	const shadowH = generateCSSUnit( iconShadowHOffset, 'px' );
+	const shadowV = generateCSSUnit( iconShadowVOffset, 'px' );
+	const shadowBlur = generateCSSUnit( iconShadowBlur, 'px' );
+
+	if( iconShadowColor && shadowH && shadowV && shadowBlur ) {
+		dropShadow =  shadowH+ ' ' + shadowV + ' ' + shadowBlur + ' ' + iconShadowColor;
+	}
 
 	const selectors = {
 		'.uagb-icon-wrapper': {
 			'text-align': align,
 		},
 		'.uagb-icon-wrapper svg': {
-			'width': generateCSSUnit(
-				iconWidth,
-				iconSizeUnit
-			),
-			'height': generateCSSUnit(
-				iconWidth,
-				iconSizeUnit
-			),
+			'width': generateCSSUnit( iconWidth, iconSizeUnit ),
+			'height': generateCSSUnit( iconWidth, iconSizeUnit ),
 			'box-sizing' : 'content-box',
-			'transform': `rotate(${ tranformation })`,
+			'transform': `rotate(${ transformation })`,
 			'fill' : iconColor,
-			'transition': 'all 0.2s ease-out',
+			'filter' : dropShadow ? `drop-shadow( ${ dropShadow } )` : '',
 
 		},
 		'.uagb-icon-wrapper .uagb-svg-wrapper': {
 			'display' : 'inline-flex',
+			'background': background,
+			//padding
 			'padding-top':generateCSSUnit( iconTopPadding, iconPaddingUnit ),
 			'padding-right':generateCSSUnit( iconRightPadding, iconPaddingUnit ),
 			'padding-bottom':generateCSSUnit( iconBottomPadding, iconPaddingUnit ),
 			'padding-left':generateCSSUnit( iconLeftPadding, iconPaddingUnit ),
+			// margin
 			'margin-top':generateCSSUnit( iconTopMargin, iconMarginUnit ),
 			'margin-right':generateCSSUnit( iconRightMargin, iconMarginUnit ),
 			'margin-bottom':generateCSSUnit( iconBottomMargin, iconMarginUnit ),
 			'margin-left':generateCSSUnit( iconLeftMargin, iconMarginUnit ),
+			// border
+			'border-style': iconBorderStyle,
+			'border-color': iconBorderColor,
+			...generateBorderCSS( attributes, 'icon' ),
+
+		},
+		'.uagb-icon-wrapper .uagb-svg-wrapper:hover': {
+			'border-color': iconBorderHColor,
+			'background': hoverBackground,
 		},
 		'.uagb-icon-wrapper svg:hover': {
 			'fill' : iconHoverColor,
 		},
 	};
 
-	if( iconView !== 'none' ) {
-		const background = 'classic' === iconBackgroundColorType ? iconBackgroundColor : iconBackgroundGradientColor;
-		const hoverBackground = 'classic' === iconHoverBackgroundColorType ? iconHoverBackgroundColor : iconHoverBackgroundGradientColor;
-		if( iconView === 'framed' ) {
-			selectors['.uagb-icon-wrapper.uagb-icon-square .uagb-svg-wrapper'] = {
-				'border-color': iconBorderColor,
-				'border-style': 'solid',
-				'border-width': generateCSSUnit(
-					iconBorderWidth,
-					'px'
-				),
-			}
-			selectors['.uagb-icon-wrapper.uagb-icon-circle .uagb-svg-wrapper'] = {
-				'border-color': iconBorderColor,
-				'border-style': 'solid',
-				'border-width': generateCSSUnit(
-					iconBorderWidth,
-					'px'
-				),
-				'border-radius': '50%',
-			}
-			selectors['.uagb-icon-wrapper.uagb-icon-square .uagb-svg-wrapper:hover'] = {
-				'border-color': iconHoverBorderColor,
-			}
-			selectors['.uagb-icon-wrapper.uagb-icon-circle .uagb-svg-wrapper:hover'] = {
-				'border-color': iconHoverBorderColor,
-			}
-		} else if( 'stacked' === iconView ) {
-			selectors['.uagb-icon-wrapper.uagb-icon-square .uagb-svg-wrapper'] = {
-				'background': background,
-			}
-			selectors['.uagb-icon-wrapper.uagb-icon-circle .uagb-svg-wrapper'] = {
-				'background': background,
-				'border-radius': '50%',
-			}
-			selectors['.uagb-icon-wrapper.uagb-icon-square .uagb-svg-wrapper:hover'] = {
-				'background': hoverBackground,
-			}
-			selectors['.uagb-icon-wrapper.uagb-icon-circle .uagb-svg-wrapper:hover'] = {
-				'background': hoverBackground,
-			}
-		}
-	}
-
 	const tabletSelectors = {
 		'.uagb-icon-wrapper': {
 			'text-align': alignTablet,
 		},
 		'.uagb-icon-wrapper .uagb-svg-wrapper': {
+			// padding
 			'padding-top':generateCSSUnit( iconTopTabletPadding, iconTabletPaddingUnit ),
 			'padding-right':generateCSSUnit( iconRightTabletPadding, iconTabletPaddingUnit ),
 			'padding-bottom':generateCSSUnit( iconBottomTabletPadding, iconTabletPaddingUnit ),
 			'padding-left':generateCSSUnit( iconLeftTabletPadding, iconTabletPaddingUnit ),
+			// margin
 			'margin-top':generateCSSUnit( iconTopTabletMargin, iconTabletMarginUnit ),
 			'margin-right':generateCSSUnit( iconRightTabletMargin, iconTabletMarginUnit ),
 			'margin-bottom':generateCSSUnit( iconBottomTabletMargin, iconTabletMarginUnit ),
 			'margin-left':generateCSSUnit( iconLeftTabletMargin, iconTabletMarginUnit ),
+			...generateBorderCSS( attributes, 'icon', 'tablet' ),
+
 		},
 		'.uagb-icon-wrapper .uagb-svg-wrapper svg': {
 			'width': generateCSSUnit( iconSizeTablet, iconSizeUnit ),
@@ -192,6 +172,7 @@ function styling( props ) {
 			'margin-right':generateCSSUnit( iconRightMobileMargin, iconMobileMarginUnit ),
 			'margin-bottom':generateCSSUnit( iconBottomMobileMargin, iconMobileMarginUnit ),
 			'margin-left':generateCSSUnit( iconLeftMobileMargin, iconMobileMarginUnit ),
+			...generateBorderCSS( attributes, 'icon', 'mobile' ),
 		},
 		'.uagb-icon-wrapper .uagb-svg-wrapper svg': {
 			'width': generateCSSUnit( iconSizeMobile, iconSizeUnit ),

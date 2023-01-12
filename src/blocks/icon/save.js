@@ -13,8 +13,6 @@ export default function save( props ){
 		link,
 		target,
 		disableLink,
-		iconView,
-		iconShape,
 	} = attributes;
 
 	let iconHtml = '';
@@ -43,11 +41,9 @@ export default function save( props ){
 		className: classnames( `uagb-block-${ block_id }` )
 	} );
 
-	const iconShapeClass = iconView === 'none' ? '' : ( iconShape === 'square' ? 'uagb-icon-square' : 'uagb-icon-circle' );
-
 	return (
 		<div { ...blockProps }>
-			<div className={ `uagb-icon-wrapper ${iconShapeClass} `}>
+			<div className='uagb-icon-wrapper'>
 				<span className='uagb-svg-wrapper' >{ iconHtml }</span>
 			</div>
 		</div>

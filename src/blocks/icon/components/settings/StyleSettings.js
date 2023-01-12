@@ -3,29 +3,24 @@ import { __ } from '@wordpress/i18n';
 
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import UAGTabsControl from '@Components/tabs';
-import UAGSelectControl from '@Components/select-control';
 import ColorSwitchControl from '@Components/color-switch-control';
-import ResponsiveBorder from '@Components/responsive-border'
-import Range from '@Components/range/Range.js';
+import ResponsiveBorder from '@Components/responsive-border';
+import TextShadowControl from '@Components/text-shadow';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import SpacingControl from '@Components/spacing-control';
 
 const StyleSettings = ( props ) => {
 
-	const { attributes, setAttributes} = props;
+	const { attributes, setAttributes, deviceType } = props;
 
 	const {
-		iconView,
-		iconShape,
-		iconBorderWidth,
+		block_id,
 		// Color
 		iconColor,
-		iconBorderColor,
 		iconBackgroundColorType,
 		iconBackgroundColor,
 		iconBackgroundGradientColor,
 		iconHoverColor,
-		iconHoverBorderColor,
 		iconHoverBackgroundColorType,
 		iconHoverBackgroundColor,
 		iconHoverBackgroundGradientColor,
@@ -62,104 +57,17 @@ const StyleSettings = ( props ) => {
 		iconMarginUnit,
 		iconMobileMarginUnit,
 		iconTabletMarginUnit,
-		iconMarginLink
+		iconMarginLink,
+		// Shadow
+		iconShadowColor,
+		iconShadowHOffset,
+		iconShadowVOffset,
+		iconShadowBlur,
 	} = attributes;
 
 	return (
 		<>
 		<UAGAdvancedPanelBody title={__( 'Icon', 'ultimate-addons-for-gutenberg' )} initialOpen={ true }>
-			<UAGSelectControl
-				label={ __(
-					'View',
-					'ultimate-addons-for-gutenberg'
-				) }
-				data={ {
-					value: iconView,
-					label: 'iconView',
-				} }
-				setAttributes={ setAttributes }
-				options={ [
-					{
-						value: 'none',
-						label: __(
-							'Default',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-					{
-						value: 'stacked',
-						label: __(
-							'Stacked',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-					{
-						value: 'framed',
-						label: __(
-							'Framed',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-				] }
-			/>
-			{ iconView !== 'none' &&
-			<>
-				<UAGSelectControl
-					label={ __(
-						'Shape',
-						'ultimate-addons-for-gutenberg'
-					) }
-					data={ {
-						value: iconShape,
-						label: 'iconShape',
-					} }
-					setAttributes={ setAttributes }
-					options={ [
-						{
-							value: 'circle',
-							label: __(
-								'Circle',
-								'ultimate-addons-for-gutenberg'
-							),
-						},
-						{
-							value: 'square',
-							label: __(
-								'Square',
-								'ultimate-addons-for-gutenberg'
-							),
-						},
-					] }
-				/>
-			</> }
-
-			{ iconView === 'framed' &&
-				<>
-					<Range
-						label={ __(
-							'Set Border Width',
-							'ultimate-addons-for-gutenberg'
-						) }
-						setAttributes={ setAttributes }
-						value={ iconBorderWidth }
-						data={ {
-							value: iconBorderWidth,
-							label: 'iconBorderWidth',
-						} }
-						min={ 0 }
-						max={ 15 }
-						units={ [
-							{
-								name: __(
-									'Pixel',
-									'ultimate-addons-for-gutenberg'
-								),
-								unitValue: 'px',
-							},
-						] }
-					/>
-				</>
-			}
 			<UAGTabsControl
 				tabs={ [
 					{
@@ -193,46 +101,23 @@ const StyleSettings = ( props ) => {
 							} }
 							setAttributes={ setAttributes }
 						/>
-						{ iconView === 'stacked' &&
-							<>
-								<ColorSwitchControl
-									label={__( 'Background Color', 'ultimate-addons-for-gutenberg' )}
-									type={{
-										value: iconBackgroundColorType,
-										label: 'iconBackgroundColorType'
-									}}
-									classic={{
-										value: iconBackgroundColor,
-										label: 'iconBackgroundColor'
-									}}
-									gradient={{
-										value: iconBackgroundGradientColor,
-										label: 'iconBackgroundGradientColor'
-									}}
-									setAttributes={ setAttributes }
-								/>
-							</>
-						}
-						{ iconView === 'framed' &&
-							<>
-								<AdvancedPopColorControl
-									label={ __(
-										'Border Color',
-										'ultimate-addons-for-gutenberg'
-									) }
-									colorValue={
-										iconBorderColor ? iconBorderColor : ''
-									}
-									data={ {
-										value: iconBorderColor,
-										label: 'iconBorderColor',
-									} }
-									setAttributes={ setAttributes }
-								/>
-							</>
-						}
+						<ColorSwitchControl
+							label={__( 'Background Color', 'ultimate-addons-for-gutenberg' )}
+							type={{
+								value: iconBackgroundColorType,
+								label: 'iconBackgroundColorType'
+							}}
+							classic={{
+								value: iconBackgroundColor,
+								label: 'iconBackgroundColor'
+							}}
+							gradient={{
+								value: iconBackgroundGradientColor,
+								label: 'iconBackgroundGradientColor'
+							}}
+							setAttributes={ setAttributes }
+						/>
 					</>
-
 				}
 				hover={
 					<>
@@ -250,47 +135,67 @@ const StyleSettings = ( props ) => {
 							} }
 							setAttributes={ setAttributes }
 						/>
-						{ iconView === 'stacked' &&
-							<>
-								<ColorSwitchControl
-									label={__( 'Background Color', 'ultimate-addons-for-gutenberg' )}
-									type={{
-										value: iconHoverBackgroundColorType,
-										label: 'iconHoverBackgroundColorType'
-									}}
-									classic={{
-										value: iconHoverBackgroundColor,
-										label: 'iconHoverBackgroundColor'
-									}}
-									gradient={{
-										value: iconHoverBackgroundGradientColor,
-										label: 'iconHoverBackgroundGradientColor'
-									}}
-									setAttributes={ setAttributes }
-								/>
-							</>
-						}
-						{ iconView === 'framed' &&
-							<>
-								<AdvancedPopColorControl
-									label={ __(
-										'Border Color',
-										'ultimate-addons-for-gutenberg'
-									) }
-									colorValue={
-										iconHoverBorderColor ? iconHoverBorderColor : ''
-									}
-									data={ {
-										value: iconHoverBorderColor,
-										label: 'iconHoverBorderColor',
-									} }
-									setAttributes={ setAttributes }
-								/>
-							</>
-						}
+						<ColorSwitchControl
+							label={__( 'Background Color', 'ultimate-addons-for-gutenberg' )}
+							type={{
+								value: iconHoverBackgroundColorType,
+								label: 'iconHoverBackgroundColorType'
+							}}
+							classic={{
+								value: iconHoverBackgroundColor,
+								label: 'iconHoverBackgroundColor'
+							}}
+							gradient={{
+								value: iconHoverBackgroundGradientColor,
+								label: 'iconHoverBackgroundGradientColor'
+							}}
+							setAttributes={ setAttributes }
+						/>
 					</>
 					}
-				disableBottomSeparator={ true }
+				disableBottomSeparator={ false }
+			/>
+			<ResponsiveBorder
+				setAttributes={ setAttributes }
+				prefix={'icon'}
+				attributes={ attributes }
+				deviceType={deviceType}
+				disableBottomSeparator={ false }
+			/>
+			<TextShadowControl
+				blockId={ block_id }
+				setAttributes={ setAttributes }
+				label={ __(
+					'Drop Shadow',
+					'ultimate-addons-for-gutenberg'
+				) }
+				textShadowColor={ {
+					value: iconShadowColor,
+					label: 'iconShadowColor',
+					title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
+				} }
+				textShadowHOffset={ {
+					value: iconShadowHOffset,
+					label: 'iconShadowHOffset',
+					title: __(
+						'Horizontal',
+						'ultimate-addons-for-gutenberg'
+					),
+				} }
+				textShadowVOffset={ {
+					value: iconShadowVOffset,
+					label: 'iconShadowVOffset',
+					title: __(
+						'Vertical',
+						'ultimate-addons-for-gutenberg'
+					),
+				} }
+				textShadowBlur={ {
+					value: iconShadowBlur,
+					label: 'iconShadowBlur',
+					title: __( 'Blur', 'ultimate-addons-for-gutenberg' ),
+				} }
+				popup={ true }
 			/>
 		</UAGAdvancedPanelBody>
 		<UAGAdvancedPanelBody title={__( 'Spacing', 'ultimate-addons-for-gutenberg' )} initialOpen={ false }>
