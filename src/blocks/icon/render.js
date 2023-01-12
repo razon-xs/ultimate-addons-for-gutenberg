@@ -6,13 +6,15 @@ import { useBlockProps } from '@wordpress/block-editor';
 
 const Render = ( props ) => {
 
-	const { attributes, deviceType } = props;
+	const { attributes, setAttributes, deviceType } = props;
 	const {
 		icon,
 		block_id,
 	} = attributes;
+
+	const iconSvg = icon ? icon : 'circle-check';
 	const iconHtml = (
-			( renderSVG( icon ? icon : 'circle-check' ) )
+			( renderSVG( iconSvg, setAttributes ) )
 		)
 
 	const blockProps = useBlockProps( {

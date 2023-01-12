@@ -34,14 +34,14 @@ const UAGBIcon = ( props ) => {
 		if( true === isSelected ) {
 			// Replacement for componentDidUpdate.
 			const blockStyling = styling( props );
-			addBlockEditorDynamicStyles( 'uagb-icon-' + blockId, blockStyling );
+			addBlockEditorDynamicStyles( 'uagb-icon-style-' + blockId, blockStyling );
 		}
 	}, [ props ] );
 
 	useEffect( () => {
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
-		addBlockEditorDynamicStyles( 'uagb-icon-' + blockId, blockStyling );
+		addBlockEditorDynamicStyles( 'uagb-icon-style-' + blockId, blockStyling );
 		scrollBlockToView();
 	}, [ deviceType ] );
 
