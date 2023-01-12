@@ -32,6 +32,9 @@ import { boxShadowPresets, boxShadowHoverPresets } from './presets';
 import UAGPresets from '@Components/presets';
 import { createBlock } from '@wordpress/blocks';
 
+import presets from './presets';
+import UAGPresets from '@Components/presets';
+
 const Settings = ( props ) => {
 
 	props = props.parentProps;
@@ -151,6 +154,7 @@ const Settings = ( props ) => {
 		minHeightTablet,
 		minHeightMobile
 	} = attributes;
+<<<<<<< Updated upstream:src/blocks/slider/settings.js
 
 	// This useEffect ensures that background size is set to cover, so as to ensure color takes up entire width and height,
 	// in case bg type was set to Image before and given a custom width and height.
@@ -165,6 +169,23 @@ const Settings = ( props ) => {
 	}, [backgroundType] );
 
 	const getBlockControls = () => {
+=======
+	
+	const presetSettings = () => {
+		return <UAGAdvancedPanelBody
+					title={ __( 'Presets', 'ultimate-addons-for-gutenberg' ) }
+					initialOpen={ true }
+				>
+					<UAGPresets
+						setAttributes = { setAttributes }
+						presets = { presets }
+						presetInputType = 'radioImage'
+					/>
+				</UAGAdvancedPanelBody>
+	};
+
+	const generalSettings = () => {
+>>>>>>> Stashed changes:src/blocks/new-block/settings.js
 		return (
 			<BlockControls>
 				<ToolbarGroup>
@@ -1074,6 +1095,7 @@ const Settings = ( props ) => {
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
+						{ presetSettings() }
 						{ generalSettings() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>

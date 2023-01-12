@@ -71,7 +71,7 @@ const UAGPresets = ( props ) => {
 							return presetItem;
 						} );
 
-						if ( preset.childAttributes ) {
+						if ( preset.childAttributes || preset.innerBlocks ) {
 							updateChildBlockAttributes( preset );
 						}
 					}
@@ -92,19 +92,30 @@ const UAGPresets = ( props ) => {
         }
 
         const childBlocksClientIds = [];
+        const childBlocksClientNames = [];
 
         childBlocks.map( ( childBlock ) => {
             if ( childBlock.clientId ) {
                 childBlocksClientIds.push( childBlock.clientId );
+            }
+            if( childBlock.name ) {
+                childBlocksClientNames.push( childBlock.name );
             }
             return childBlock;
         } );
 
         const childBlocksAttributes = {};
 
-        preset.childAttributes.map( ( attr ) => {
+        preset.childAttributes?.map( ( attr ) => {
             childBlocksAttributes[attr.label] = attr.value;
             return attr;
+        } );
+
+        preset.innerBlocks?.map( ( block, index ) => {
+            if( block.name === childBlocksClientNames[index] && childBlocksClientIds[index] ) {
+                dispatch( 'core/block-editor' ).updateBlockAttributes( childBlocksClientIds[index], block.attributes );
+            }
+            return block;
         } );
 
         childBlocksClientIds.map( ( clientId ) => {
