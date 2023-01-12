@@ -29,7 +29,6 @@ const Settings = ( props ) => {
 	props = props.parentProps;
 	const { attributes, setAttributes, deviceType } = props;
 	const {
-		template,
 		block_id,
 		backgroundType,
 		backgroundImageDesktop,
