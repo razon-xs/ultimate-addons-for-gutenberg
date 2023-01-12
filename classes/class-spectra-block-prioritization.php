@@ -52,6 +52,7 @@ class Spectra_Block_Prioritization {
 		'price-list',
 		'register',
 		'review',
+		'slider',
 		'social-share',
 		'star-rating',
 		'table-of-contents',
