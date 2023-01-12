@@ -69,11 +69,9 @@ $selectors[' .uagb-icon-wrapper .uagb-svg-wrapper:hover'] = array(
 );
 
 // Generates css for tablet devices.
-$attr['iconSizeTablet']                 = empty( $attr['iconSizeTablet'] ) ? $size_fallback : $attr['iconSizeTablet'];
 $t_icon_width                           = UAGB_Helper::get_css_value( $attr['iconSizeTablet'], $attr['iconSizeUnit'] );
-$t_align                                = empty( $attr['alignTablet'] ) ? $attr['align'] : $attr['alignTablet'];
 $t_selectors[' .uagb-icon-wrapper']     = array(
-	'text-align' => $t_align,
+	'text-align' => $attr['alignTablet'],
 );
 $t_selectors[' .uagb-icon-wrapper svg'] = array(
 	'width'  => $t_icon_width,
@@ -95,11 +93,9 @@ $t_selectors[' .uagb-icon-wrapper .uagb-svg-wrapper'] = array_merge(
 );
 
 // Generates css for mobile devices.
-$attr['iconSizeMobile']                 = empty( $attr['iconSizeMobile'] ) ? $size_fallback : $attr['iconSizeMobile'];
 $m_icon_width                           = UAGB_Helper::get_css_value( $attr['iconSizeMobile'], $attr['iconSizeUnit'] );
-$m_align                                = empty( $attr['alignMobile'] ) ? $attr['align'] : $attr['alignMobile'];
 $m_selectors[' .uagb-icon-wrapper']     = array(
-	'text-align' => $m_align,
+	'text-align' => $attr['alignMobile'],
 );
 $m_selectors[' .uagb-icon-wrapper svg'] = array(
 	'width'  => $m_icon_width,
