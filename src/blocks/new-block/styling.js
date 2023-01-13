@@ -101,7 +101,27 @@ function styling( props ) {
 		rowGapMobile,
 		rowGapTypeTablet,
 		rowGapType,
-		rowGapTypeMobile
+		rowGapTypeMobile,
+
+		//Typography
+		textFontFamily,
+		textFontWeight,
+		textFontSize,
+		textFontSizeType,
+		textFontSizeTablet,
+		textFontSizeMobile,
+		textLineHeightType,
+		textLineHeight,
+		textLineHeightTablet,
+		textLineHeightMobile,
+		textTransform,
+		textDecoration,
+		textFontStyle,
+		textLetterSpacing,
+		textLetterSpacingTablet,
+		textLetterSpacingMobile,
+		textLetterSpacingType,
+		color
 
 	} = attributes;
 
@@ -136,7 +156,49 @@ function styling( props ) {
 	const selectors = {
 		'.uagb-info-box__wrap > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapDesktop, rowGapType ),
-		}
+		},
+		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block': {
+			'font-size': generateCSSUnit( textFontSize, textFontSizeType ),
+			'line-height': generateCSSUnit(
+				textLineHeight,
+				textLineHeightType
+			),
+			'font-family': textFontFamily,
+			'font-weight': textFontWeight,
+			'font-style': textFontStyle,
+			'text-transform': textTransform,
+			'text-decoration': textDecoration,
+			'color': color,
+			'letter-spacing': generateCSSUnit( textLetterSpacing, textLetterSpacingType ),
+		},
+		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block :is(h1, h2, h3, h4, h5, h6, span)': {
+			'font-size': generateCSSUnit( textFontSize, textFontSizeType ),
+			'line-height': generateCSSUnit(
+				textLineHeight,
+				textLineHeightType
+			),
+			'font-family': textFontFamily,
+			'font-weight': textFontWeight,
+			'font-style': textFontStyle,
+			'text-transform': textTransform,
+			'text-decoration': textDecoration,
+			'color': color,
+			'letter-spacing': generateCSSUnit( textLetterSpacing, textLetterSpacingType ),
+		},
+		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block .wp-block-button__link': {
+			'font-size': generateCSSUnit( textFontSize, textFontSizeType ),
+			'line-height': generateCSSUnit(
+				textLineHeight,
+				textLineHeightType
+			),
+			'font-family': textFontFamily,
+			'font-weight': textFontWeight,
+			'font-style': textFontStyle,
+			'text-transform': textTransform,
+			'text-decoration': textDecoration,
+			'color': color,
+			'letter-spacing': generateCSSUnit( textLetterSpacing, textLetterSpacingType ),
+		},
 	};
 	if( 'left' === align ) {
 		selectors[ '.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
@@ -259,7 +321,40 @@ function styling( props ) {
 		},
 		'.uagb-info-box__wrap > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapTablet, rowGapTypeTablet ),
-		}
+		},
+		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block': {
+			'font-size': generateCSSUnit(
+				textFontSizeTablet,
+				textFontSizeType
+			),
+			'line-height': generateCSSUnit(
+				textLineHeightTablet,
+				textLineHeightType
+			),
+			'letter-spacing': generateCSSUnit( textLetterSpacingTablet, textLetterSpacingType ),
+		},
+		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block :is(h1, h2, h3, h4, h5, h6, span)': {
+			'font-size': generateCSSUnit(
+				textFontSizeTablet,
+				textFontSizeType
+			),
+			'line-height': generateCSSUnit(
+				textLineHeightTablet,
+				textLineHeightType
+			),
+			'letter-spacing': generateCSSUnit( textLetterSpacingTablet, textLetterSpacingType ),
+		},
+		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block .wp-block-button__link': {
+			'font-size': generateCSSUnit(
+				textFontSizeTablet,
+				textFontSizeType
+			),
+			'line-height': generateCSSUnit(
+				textLineHeightTablet,
+				textLineHeightType
+			),
+			'letter-spacing': generateCSSUnit( textLetterSpacingTablet, textLetterSpacingType ),
+		},
 	};
 	if( 'left' === alignTablet ) {
 		tablet_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
@@ -315,7 +410,40 @@ function styling( props ) {
 		},
 		'.uagb-info-box__wrap .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapMobile, rowGapTypeMobile ),
-		}
+		},
+		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block': {
+			'font-size': generateCSSUnit(
+				textFontSizeMobile,
+				textFontSizeType
+			),
+			'line-height': generateCSSUnit(
+				textLineHeightMobile,
+				textLineHeightType
+			),
+			'letter-spacing': generateCSSUnit( textLetterSpacingMobile, textLetterSpacingType ),
+		},
+		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block :is(h1, h2, h3, h4, h5, h6, span)': {
+			'font-size': generateCSSUnit(
+				textFontSizeMobile,
+				textFontSizeType
+			),
+			'line-height': generateCSSUnit(
+				textLineHeightMobile,
+				textLineHeightType
+			),
+			'letter-spacing': generateCSSUnit( textLetterSpacingMobile, textLetterSpacingType ),
+		},
+		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block .wp-block-button__link': {
+			'font-size': generateCSSUnit(
+				textFontSizeMobile,
+				textFontSizeType
+			),
+			'line-height': generateCSSUnit(
+				textLineHeightMobile,
+				textLineHeightType
+			),
+			'letter-spacing': generateCSSUnit( textLetterSpacingMobile, textLetterSpacingType ),
+		},
 
 	};
 	if( 'left' === alignMobile ) {

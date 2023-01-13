@@ -1,4 +1,6 @@
 import React from 'react';
+import TypographyControl from '@Components/typography';
+import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, {
@@ -118,7 +120,26 @@ const Settings = ( props ) => {
 		alignTablet,
 		alignMobile,
 		variationChange,
-		lockTemplate
+		lockTemplate,
+		color,
+		textLoadGoogleFonts,
+		textFontFamily,
+		textFontWeight,
+		textFontStyle,
+		textFontSizeType,
+		textFontSize,
+		textFontSizeMobile,
+		textFontSizeTablet,
+		textLineHeightType,
+		textLineHeight,
+		textLineHeightMobile,
+		textLineHeightTablet,
+		textTransform,
+		textDecoration,
+		textLetterSpacing,
+		textLetterSpacingTablet,
+		textLetterSpacingMobile,
+		textLetterSpacingType
 	} = attributes;
 	
 	const generalSettings = () => {
@@ -758,6 +779,108 @@ const Settings = ( props ) => {
 		);
 	};
 
+	const textControls = () => {
+		return (
+			<UAGAdvancedPanelBody
+				title={ __( 'Text', 'ultimate-addons-for-gutenberg' ) }
+				initialOpen={ true }
+			>
+				<TypographyControl
+					label={ __(
+						'Typography',
+						'ultimate-addons-for-gutenberg'
+					) }
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+					loadGoogleFonts={ {
+						value: textLoadGoogleFonts,
+						label: 'textLoadGoogleFonts',
+					} }
+					fontFamily={ {
+						value: textFontFamily,
+						label: 'textFontFamily',
+					} }
+					fontWeight={ {
+						value: textFontWeight,
+						label: 'textFontWeight',
+					} }
+					fontStyle={ {
+						value: textFontStyle,
+						label: 'textFontStyle',
+					} }
+					fontSizeType={ {
+						value: textFontSizeType,
+						label: 'textFontSizeType',
+					} }
+					fontSize={ {
+						value: textFontSize,
+						label: 'textFontSize',
+					} }
+					fontSizeMobile={ {
+						value: textFontSizeMobile,
+						label: 'textFontSizeMobile',
+					} }
+					fontSizeTablet={ {
+						value: textFontSizeTablet,
+						label: 'textFontSizeTablet',
+					} }
+					lineHeightType={ {
+						value: textLineHeightType,
+						label: 'textLineHeightType',
+					} }
+					lineHeight={ {
+						value: textLineHeight,
+						label: 'textLineHeight',
+					} }
+					lineHeightMobile={ {
+						value: textLineHeightMobile,
+						label: 'textLineHeightMobile',
+					} }
+					lineHeightTablet={ {
+						value: textLineHeightTablet,
+						label: 'textLineHeightTablet',
+					} }
+					transform={ {
+						value: textTransform,
+						label: 'textTransform',
+					} }
+					decoration={ {
+						value: textDecoration,
+						label: 'textDecoration',
+					} }
+					letterSpacing={ {
+						value: textLetterSpacing,
+						label: 'textLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: textLetterSpacingTablet,
+						label: 'textLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: textLetterSpacingMobile,
+						label: 'textLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: textLetterSpacingType,
+						label: 'textLetterSpacingType',
+					} }
+				/>
+				<AdvancedPopColorControl
+					label={ __(
+						'Color',
+						'ultimate-addons-for-gutenberg'
+					) }
+					colorValue={ color ? color : '' }
+					data={ {
+						value: color,
+						label: 'color',
+					} }
+					setAttributes={ setAttributes }
+				/>
+			</UAGAdvancedPanelBody>
+		);
+	};
+
 	return (
 		<>
 			{ getBlockControls()}
@@ -767,6 +890,7 @@ const Settings = ( props ) => {
 						{ generalSettings() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
+						{ textControls() }
 						{ backgroundSettings() }
 						{ borderSettings() }
 						{ boxShadowSettings() }

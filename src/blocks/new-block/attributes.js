@@ -562,6 +562,121 @@ const attributes = {
 		type: 'string',
 		default: 'px',
 	},
+	// text Font Family
+	textLoadGoogleFonts: {
+		type: 'boolean',
+		default: false,
+		UAGCopyPaste: {
+			styleType: 'text-load-google-font'
+		}
+	},
+	textFontFamily: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'text-font-family'
+		},
+		default: 'Default',
+	},
+	textFontWeight: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'text-font-weight'
+		}
+	},
+	textFontStyle: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'text-font-style'
+		}
+	},
+	// text Font Size
+	textFontSize: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'text-font-size'
+		},
+		default: 14,
+	},
+	textFontSizeType: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'text-font-size-unit'
+		},
+		default: 'px',
+	},
+	textFontSizeTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'text-font-size-tablet'
+		},
+		default: 14,
+	},
+	textFontSizeMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'text-font-size-mobile'
+		},
+		default: 14,
+	},
+	// text Line Height
+	textLineHeightType: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'text-line-height-type'
+		},
+		default: 'em',
+	},
+	textLineHeight: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'text-line-height'
+		},
+		default: 2,
+	},
+	textLineHeightTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'text-line-height-tablet'
+		}
+	},
+	textLineHeightMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'text-line-height-mobile'
+		}
+	},
+	// letter spacing
+	textLetterSpacing: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'text-letter-spacing'
+		}
+	},
+	textLetterSpacingTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'text-letter-spacing-tablet'
+		}
+	},
+	textLetterSpacingMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'text-letter-spacing-mobile'
+		}
+	},
+	textLetterSpacingType: {
+		type: 'string',
+		default: 'px',
+		UAGCopyPaste: {
+			styleType: 'text-letter-spacing-type'
+		}
+	},
+	color: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'text-color'
+		}
+	},
 	...borderAttributes
 };
 

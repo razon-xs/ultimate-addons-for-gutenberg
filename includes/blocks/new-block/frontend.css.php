@@ -92,9 +92,16 @@ $info_box_css = array_merge(
 );
 $info_box_css = array_merge( $info_box_css, $bg_css_desktop );
 $selectors    = array(
-	'.uagb-info-box__wrap'       => $info_box_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-	'.uagb-info-box__wrap > div' => array(
+	'.uagb-info-box__wrap'                        => $info_box_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+	'.uagb-info-box__wrap > div'                  => array(
 		'margin-bottom' => UAGB_Helper::get_css_value( $row_gap_desktop_fallback, $attr['rowGapType'] ),
+		'color'         => $attr['color'],
+	),
+	'.uagb-info-box__wrap :is(h1, h2, h3, h4, h5, h6, span)' => array(
+		'color' => $attr['color'],
+	),
+	'.uagb-info-box__wrap .wp-block-button__link' => array(
+		'color' => $attr['color'],
 	),
 );
 $selectors['.uagb-info-box__wrap:hover']['border-color'] = $attr['blockBorderHColor'];
@@ -198,22 +205,26 @@ $m_selectors = array(
 		'margin-bottom' => UAGB_Helper::get_css_value( $attr['rowGapMobile'], $attr['rowGapTypeMobile'] ),
 	),
 );
+
 if ( 'left' === $attr['align'] ) {
-	$selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
-		'text-align'      => $attr['align'],
-		'justify-content' => 'flex-start',
-	);
+	$align = 'flex-start';
 } elseif ( 'right' === $attr['align'] ) {
-	$selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
-		'text-align'      => $attr['align'],
-		'justify-content' => 'flex-end',
-	);
+	$align = 'flex-end';
 } else {
-	$selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
-		'text-align'      => $attr['align'],
-		'justify-content' => $attr['align'],
-	);
+	$align = 'center';
 }
+
+$selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *']                  = array(
+	'text-align'      => $attr['align'],
+	'justify-content' => $align,
+);
+$selectors['.uagb-info-box__wrap.wp-block-uagb-new-block .uagb-icon-list__wrap'] = array(
+	'align-items' => $align,
+);
+$selectors['.uagb-info-box__wrap.wp-block-uagb-new-block .uagb-buttons__wrap ']  = array(
+	'text-align'      => $attr['align'],
+	'justify-content' => $align,
+);
 
 if ( 'left' === $attr['alignTablet'] ) {
 	$t_selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
@@ -255,4 +266,7 @@ $combined_selectors = array(
 	'mobile'  => $m_selectors,
 );
 
+$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'text', '.uagb-info-box__wrap', $combined_selectors );
+
+$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'text', '.uagb-info-box__wrap :is(h1, h2, h3, h4, h5, h6, span)', $combined_selectors );
 return UAGB_Helper::generate_all_css( $combined_selectors, '.uagb-block-' . $id );
