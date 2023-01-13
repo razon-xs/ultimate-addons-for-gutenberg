@@ -71,10 +71,6 @@ return array_merge(
 		'iconMarginUnit'                   => 'px',
 		'iconMobileMarginUnit'             => 'px',
 		'iconTabletMarginUnit'             => 'px',
-		// Border.
-		'iconBorderStyle'                  => '',
-		'iconBorderColor'                  => '#6EC1E3',
-		'iconBorderHColor'                 => '',
 		// Shadow.
 		'iconShadowColor'                  => '#eee',
 		'iconShadowHOffset'                => 2,
