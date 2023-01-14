@@ -1,3 +1,4 @@
+import UAGIconPicker2 from '@Components/icon-picker-2';
 import UAGIconPicker from '@Components/icon-picker';
 import React from 'react';
 import { __ } from '@wordpress/i18n';
@@ -315,6 +316,17 @@ const Settings = ( props ) => {
 
 				{ 'icon' === image_icon && (
 					<>
+						<UAGIconPicker2
+							label={ __(
+								'Icon',
+								'ultimate-addons-for-gutenberg'
+							) }
+							value={ icon }
+							onChange={ ( value ) =>{
+								console.log('value',value);
+							}
+							}
+						/>
 						<UAGIconPicker
 							label={ __(
 								'Icon',

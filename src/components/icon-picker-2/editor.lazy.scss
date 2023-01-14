@@ -1,0 +1,29 @@
+// Custom icon picker
+.uag-custom-icon-picker {
+	border: 3px solid black;
+}
+.components-modal__frame.uagb-icon-picker-modal-wrapper {
+	width: 766px;
+	height: 566px;
+	.components-modal__content {
+		padding: 0;
+	}
+	// Header.
+	.components-modal__header {
+		.components-modal__header-heading {
+			font-size: 16px;
+		}
+	}
+	// Search bar.
+	.uagb-icon-picker-search-bar {
+		border: 1px solid black;
+		input {
+			width: 100%;
+		}
+	}
+	.uagb-icon-picker-modal-container {
+		background-color: #f6f7f7;
+		height: 100%;
+		padding: 30px 18px;
+	}
+}
