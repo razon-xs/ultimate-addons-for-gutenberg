@@ -10,12 +10,8 @@
 
 
 $block_name                                  = 'container';
-$inner_content_custom_width_desktop_fallback = $attr['innerContentCustomWidthDesktop'];
-$inner_content_custom_width_tablet_fallback  = is_numeric($attr['innerContentCustomWidthTablet']) ? $attr['innerContentCustomWidthTablet'] : $inner_content_custom_width_desktop_fallback;
+$inner_content_custom_width_tablet_fallback  = is_numeric($attr['innerContentCustomWidthTablet']) ? $attr['innerContentCustomWidthTablet'] : $attr['innerContentCustomWidthDesktop'];
 $inner_content_custom_width_mobile_fallback  = is_numeric($attr['innerContentCustomWidthMobile']) ? $attr['innerContentCustomWidthMobile'] : $inner_content_custom_width_tablet_fallback;
-$width_desktop_fallback = $attr['widthDesktop'];
-$row_gap_desktop_fallback = $attr['rowGapDesktop'];
-$column_gap_desktop_fallback = $attr['columnGapDesktop'];
 
 $box_shadow_position_css = $attr['boxShadowPosition'];
 
@@ -69,7 +65,7 @@ $right_margin_tablet  = '' !== $attr['rightMarginTablet'] ? $attr['rightMarginTa
 $top_margin_tablet    = '' !== $attr['topMarginTablet'] ? $attr['topMarginTablet'] : $attr['topMarginDesktop'];
 $bottom_margin_tablet = '' !== $attr['bottomMarginTablet'] ? $attr['bottomMarginTablet'] : $attr['bottomMarginDesktop'];
 
-$column_gap_tablet = !empty($attr['columnGapTablet']) ? $attr['columnGapTablet'] : $column_gap_desktop_fallback;
+$column_gap_tablet = !empty($attr['columnGapTablet']) ? $attr['columnGapTablet'] : $attr['columnGapDesktop'];
 
 // Mobile.
 $left_padding_mobile   = '' !== $attr['leftPaddingMobile'] ? $attr['leftPaddingMobile'] : $left_padding_tablet;
@@ -107,8 +103,8 @@ $container_css       = array_merge(
 		'margin-bottom'  => UAGB_Helper::get_css_value($attr['bottomMarginDesktop'], $attr['marginType']) . ' !important',
 		'margin-left'    => UAGB_Helper::get_css_value($attr['leftMarginDesktop'], $attr['marginType']),
 		'margin-right'   => UAGB_Helper::get_css_value($attr['rightMarginDesktop'], $attr['marginType']),
-		'row-gap'        => UAGB_Helper::get_css_value($row_gap_desktop_fallback, $attr['rowGapType']),
-		'column-gap'     => UAGB_Helper::get_css_value($column_gap_desktop_fallback, $attr['columnGapType']),
+		'row-gap'        => UAGB_Helper::get_css_value($attr['rowGapDesktop'], $attr['rowGapType']),
+		'column-gap'     => UAGB_Helper::get_css_value($attr['columnGapDesktop'], $attr['columnGapType']),
 		'overflow'       => $attr['overflow'],
 	),
 	$border
@@ -120,8 +116,8 @@ $inner_container_css = array(
 	'justify-content' => $attr['justifyContentDesktop'],
 	'flex-wrap'       => $attr['wrapDesktop'],
 	'align-content'   => $attr['alignContentDesktop'],
-	'row-gap'         => UAGB_Helper::get_css_value($row_gap_desktop_fallback, $attr['rowGapType']),
-	'column-gap'      => UAGB_Helper::get_css_value($column_gap_desktop_fallback, $attr['columnGapType']),
+	'row-gap'         => UAGB_Helper::get_css_value($attr['rowGapDesktop'], $attr['rowGapType']),
+	'column-gap'      => UAGB_Helper::get_css_value($attr['columnGapDesktop'], $attr['columnGapType']),
 );
 
 if (($attr['isBlockRootParent'] && !('alignwide' === $attr['innerContentWidth'] && 'alignfull' === $attr['contentWidth'])) || !$attr['isBlockRootParent'] || 'alignwide' !== $attr['innerContentWidth']) {
@@ -142,7 +138,7 @@ $selectors = array(
 		'color' => $attr['linkHoverColor'],
 	),
 	'.uagb-is-root-container .uagb-block-' . $id      => array( // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-		'max-width' => UAGB_Helper::get_css_value($width_desktop_fallback, $attr['widthType']),
+		'max-width' => UAGB_Helper::get_css_value($attr['widthDesktop'], $attr['widthType']),
 		'width'     => '100%',
 	),
 	'.uagb-block-' . $id . ' .uagb-container__shape-top svg' => array(
@@ -301,7 +297,7 @@ $m_selectors = array(
 if ('alignwide' === $attr['innerContentWidth'] && 'alignfull' === $attr['contentWidth']) {
 	$selectors['.uagb-is-root-container.alignfull.uagb-block-' . $id . ' > .uagb-container-inner-blocks-wrap'] = array_merge(
 		array( // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-			'--inner-content-custom-width' => 'min( 100%, ' . $inner_content_custom_width_desktop_fallback . $attr['innerContentCustomWidthType'] . ')',
+			'--inner-content-custom-width' => 'min( 100%, ' . $attr['innerContentCustomWidthDesktop'] . $attr['innerContentCustomWidthType'] . ')',
 			'max-width'                    => 'var(--inner-content-custom-width)',
 			'width'                        => '100%',
 		),
@@ -353,8 +349,8 @@ if ('video' === $attr['backgroundType']) {
 		'margin-bottom'  => UAGB_Helper::get_css_value($attr['bottomMarginDesktop'], $attr['marginType']) . ' !important',
 		'margin-left'    => UAGB_Helper::get_css_value($attr['leftMarginDesktop'], $attr['marginType']),
 		'margin-right'   => UAGB_Helper::get_css_value($attr['rightMarginDesktop'], $attr['marginType']),
-		'row-gap'        => UAGB_Helper::get_css_value($row_gap_desktop_fallback, $attr['rowGapType']),
-		'column-gap'     => UAGB_Helper::get_css_value($column_gap_desktop_fallback, $attr['columnGapType']),
+		'row-gap'        => UAGB_Helper::get_css_value($attr['rowGapDesktop'], $attr['rowGapType']),
+		'column-gap'     => UAGB_Helper::get_css_value($attr['columnGapDesktop'], $attr['columnGapType']),
 		'overflow'       => $attr['overflow'],
 	);
 	$t_selectors['.uagb-block-' . $id]                                  = array(
@@ -426,7 +422,7 @@ if ('video' === $attr['backgroundType']) {
 }
 
 if ('default' === $attr['contentWidth']) {
-	$selectors['.uagb-block-' . $id]['max-width']    = UAGB_Helper::get_css_value($width_desktop_fallback, $attr['widthType']) . ' !important';
+	$selectors['.uagb-block-' . $id]['max-width']    = UAGB_Helper::get_css_value($attr['widthDesktop'], $attr['widthType']) . ' !important';
 	$selectors['.uagb-block-' . $id]['margin-left']  = ('' !== $attr['leftMarginDesktop'] ? UAGB_Helper::get_css_value($attr['leftMarginDesktop'], $attr['marginType']) . ' !important' : '');
 	$selectors['.uagb-block-' . $id]['margin-right'] = ('' !== $attr['rightMarginDesktop'] ? UAGB_Helper::get_css_value($attr['rightMarginDesktop'], $attr['marginType']) . ' !important' : '');
 
