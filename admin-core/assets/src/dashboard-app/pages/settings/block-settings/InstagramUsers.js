@@ -137,7 +137,6 @@ const InstagramUsers = () => {
 				userID,
 				userType: authData.type.replace( 'instagram', '' ).toLowerCase(),
 				token: authData.token,
-				postRefreshRate: 'H-1',
 				expiryDate:  setExpiryDate( expiryDate ),
 				isCurrentlyActive: true,
 			} );
@@ -228,7 +227,6 @@ const InstagramUsers = () => {
 				userID,
 				userType: 'personal',
 				token: tempToken,
-				postRefreshRate: 'H-1',
 				expiryDate: setExpiryDate( expiryDate ),
 				isCurrentlyActive: true,
 			} );

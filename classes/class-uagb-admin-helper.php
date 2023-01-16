@@ -437,50 +437,6 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 					if ( ! is_wp_error( $mediaFetched ) ) {
 						$curUserMedia = self::getParsedInstaMedia( $mediaFetched, $cur_user[ 'token' ] );
 						$transientExpiry = HOUR_IN_SECONDS;
-						switch ( $cur_user[ 'postRefreshRate' ] ){
-							case 'm-1':
-								$transientExpiry = MINUTE_IN_SECONDS;
-								break;
-							case 'm-5':
-								$transientExpiry = MINUTE_IN_SECONDS * 5;
-								break;
-							case 'm-10':
-								$transientExpiry = MINUTE_IN_SECONDS * 10;
-								break;
-							case 'm-15':
-								$transientExpiry = HOUR_IN_SECONDS / 4;
-								break;
-							case 'm-30':
-								$transientExpiry = HOUR_IN_SECONDS / 2;
-								break;
-							case 'H-1':
-								$transientExpiry = HOUR_IN_SECONDS;
-								break;
-							case 'H-2':
-								$transientExpiry = HOUR_IN_SECONDS * 2;
-								break;
-							case 'H-4':
-								$transientExpiry = HOUR_IN_SECONDS * 4;
-								break;
-							case 'H-8':
-								$transientExpiry = HOUR_IN_SECONDS * 8;
-								break;
-							case 'H-12':
-								$transientExpiry = DAY_IN_SECONDS / 2;
-								break;
-							case 'D-1':
-								$transientExpiry = DAY_IN_SECONDS;
-								break;
-							case 'W-1':
-								$transientExpiry = WEEK_IN_SECONDS;
-								break;
-							case 'W-2':
-								$transientExpiry = WEEK_IN_SECONDS * 2;
-								break;
-							case 'M-1':
-								$transientExpiry = MONTH_IN_SECONDS;
-								break;
-						}
 						set_transient( $transientName, $curUserMedia, $transientExpiry );
 					}
 					else return is_wp_error( $mediaFetched );
@@ -505,50 +461,6 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 						if ( ! is_wp_error( $mediaFetched ) ) {
 							$curUserMedia = self::getParsedInstaMedia( $mediaFetched, $user[ 'token' ] );
 							$transientExpiry = HOUR_IN_SECONDS;
-							switch ( $user[ 'postRefreshRate' ] ){
-								case 'm-1':
-									$transientExpiry = MINUTE_IN_SECONDS;
-									break;
-								case 'm-5':
-									$transientExpiry = MINUTE_IN_SECONDS * 5;
-									break;
-								case 'm-10':
-									$transientExpiry = MINUTE_IN_SECONDS * 10;
-									break;
-								case 'm-15':
-									$transientExpiry = HOUR_IN_SECONDS / 4;
-									break;
-								case 'm-30':
-									$transientExpiry = HOUR_IN_SECONDS / 2;
-									break;
-								case 'H-1':
-									$transientExpiry = HOUR_IN_SECONDS;
-									break;
-								case 'H-2':
-									$transientExpiry = HOUR_IN_SECONDS * 2;
-									break;
-								case 'H-4':
-									$transientExpiry = HOUR_IN_SECONDS * 4;
-									break;
-								case 'H-8':
-									$transientExpiry = HOUR_IN_SECONDS * 8;
-									break;
-								case 'H-12':
-									$transientExpiry = DAY_IN_SECONDS / 2;
-									break;
-								case 'D-1':
-									$transientExpiry = DAY_IN_SECONDS;
-									break;
-								case 'W-1':
-									$transientExpiry = WEEK_IN_SECONDS;
-									break;
-								case 'W-2':
-									$transientExpiry = WEEK_IN_SECONDS * 2;
-									break;
-								case 'M-1':
-									$transientExpiry = MONTH_IN_SECONDS;
-									break;
-							}
 							set_transient( $transientName, $curUserMedia, $transientExpiry );
 						}
 						else return is_wp_error( $mediaFetched );
