@@ -50,6 +50,17 @@ const UAGMediaPicker = ( props ) => {
 			);
 			placeholderIcon = UAGB_Block_Icons.lottie;
 			break;
+		case 'svg':
+			selectMediaLabel = __(
+				'Upload SVG',
+				'ultimate-addons-for-gutenberg'
+			);
+			replaceMediaLabel = __(
+				'Change SVG',
+				'ultimate-addons-for-gutenberg'
+			);
+			placeholderIcon = UAGB_Block_Icons.lottie;
+			break;
 		default:
 			selectMediaLabel = __(
 				'Select Image',
@@ -130,6 +141,10 @@ const UAGMediaPicker = ( props ) => {
 			case 'wmv':
 			case '3gp':
 			case '3g2':
+				mediaURL = '';
+				break;
+			// For SVG Files.
+			case 'svg':
 				mediaURL = '';
 				break;
 		}

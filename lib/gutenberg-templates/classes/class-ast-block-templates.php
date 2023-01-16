@@ -68,6 +68,8 @@ if ( ! class_exists( 'Ast_Block_Templates' ) ) :
 
 			// Allow JSON files.
 			$mimes['json'] = 'application/json';
+			// Allows svg files.
+			$mimes['svg'] = 'image/svg+xml';
 
 			return $mimes;
 		}

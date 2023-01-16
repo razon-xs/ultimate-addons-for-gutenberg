@@ -360,6 +360,7 @@ const Settings = ( props ) => {
 					onSelectImage={ onSelectImage }
 					backgroundImage={ image }
 					onRemoveImage={ onRemoveImage }
+					slug= 'svg'
 				/>
 				{ image && (
 					<MultiButtonsControl
