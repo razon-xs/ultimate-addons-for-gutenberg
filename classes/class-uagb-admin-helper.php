@@ -409,8 +409,9 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 
 			return $content_width;
 		}
+
 		/**
-		 * Set Transient
+		 * Set Instagram Transient.
 		 *
 		 * @since x.x.x
 		 * @return array
@@ -421,7 +422,7 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 				$linked_users =  self::get_admin_settings_option( 'uag_insta_linked_accounts', array() );
 				$cur_user = NULL;
 				foreach ( $linked_users as $user ) {
-					if ( $user[ 'userName' ] === $specificUser ){
+					if ( $user['userName'] === $specificUser ){
 						$cur_user = $user;
 						break;
 					}
@@ -431,11 +432,11 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 				}
 				self::refreshUserToken( $cur_user );
 				$curUserMedia = array();
-				$transientName = 'ig_posts_of_' . $cur_user[ 'userName' ];
+				$transientName = 'ig_posts_of_' . $cur_user['userName'];
 				if ( false === ( $mediaFetched = get_transient( $transientName ) ) ){
-					$mediaFetched = wp_remote_get( 'https://graph.instagram.com/' . $cur_user[ 'userID' ] . '/media?fields=caption,id,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=' . $cur_user[ 'token' ] );
+					$mediaFetched = wp_remote_get( 'https://graph.instagram.com/' . $cur_user['userID'] . '/media?fields=caption,id,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=' . $cur_user['token'] );
 					if ( ! is_wp_error( $mediaFetched ) ) {
-						$curUserMedia = self::getParsedInstaMedia( $mediaFetched, $cur_user[ 'token' ] );
+						$curUserMedia = self::getParsedInstaMedia( $mediaFetched, $cur_user['token'] );
 						$transientExpiry = HOUR_IN_SECONDS;
 						set_transient( $transientName, $curUserMedia, $transientExpiry );
 					}
@@ -446,69 +447,140 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 			else{
 				$insta_user_transients = array();		
 				// Get all users.
+				// 
+				//  NEED TO UPDATE THE uag_insta_linked_accounts option with the Expiry Update or Is Currently Active in the Refresh User Token Function.
+				// 
 				$linked_users =  self::get_admin_settings_option( 'uag_insta_linked_accounts', array() );
 				// Set all transients for new users ( if any ) and refresh expired transients.
 				foreach ( $linked_users as $user ) {
-					if ( ! $user[ 'isCurrentlyActive' ] ){
+					if ( ! $user['isCurrentlyActive'] ){
 						continue;
 					}
 					self::refreshUserToken( $user );
 					$curUserMedia = array();
-					$transientName = 'ig_posts_of_' . $user[ 'userName' ];
+					$transientName = 'ig_posts_of_' . $user['userName'];
 					// delete_transient( $transientName );
 					if ( false === ( $mediaFetched = get_transient( $transientName ) ) ){
-						$mediaFetched = wp_remote_get( 'https://graph.instagram.com/' . $user[ 'userID' ] . '/media?fields=caption,id,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=' . $user[ 'token' ] );
+						$mediaFetched = wp_remote_get( 'https://graph.instagram.com/' . $user['userID'] . '/media?fields=caption,id,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=' . $user['token'] );
 						if ( ! is_wp_error( $mediaFetched ) ) {
-							$curUserMedia = self::getParsedInstaMedia( $mediaFetched, $user[ 'token' ] );
+							$curUserMedia = self::getParsedInstaMedia( $mediaFetched, $user['token'] );
 							$transientExpiry = HOUR_IN_SECONDS;
 							set_transient( $transientName, $curUserMedia, $transientExpiry );
 						}
 						else return is_wp_error( $mediaFetched );
 					}
-					$insta_user_transients[ $user[ 'userName' ] ] = get_transient( $transientName );
+					$insta_user_transients[ $user['userName'] ] = get_transient( $transientName );
 				}
 				self::update_admin_settings_option( 'uag_insta_all_users_media', $insta_user_transients );
 				return self::get_admin_settings_option( 'uag_insta_all_users_media', array() );
 			}
 		}
 
-		private static function getParsedInstaMedia( $fetchedMedia, $theUserToken ){
+		/**
+		 * Get the Parsed Instagram Media.
+		 *
+		 * @since x.x.x
+		 * @param array $fetchedMedia   the Fetched Media.
+		 * @param string $theUserToken  the User Token.
+		 * @return array
+		 * @access private
+		 */
+		private static function getParsedInstaMedia( $fetchedMedia, $theUserToken ) {
 			$builtMediaObjects = array();
-			do{
-				$thereIsMore = false;
-				$fetchedMedia = json_decode( $fetchedMedia[ 'body' ], true );
-				foreach ( $fetchedMedia[ 'data' ] as $mediaObject ) {
-					if ( $mediaObject[ 'media_type' ] === 'CAROUSEL_ALBUM' ){
-						$fetchedChildren = wp_remote_get( 'https://graph.instagram.com/' . $mediaObject[ 'id' ] . '/children?fields=id,media_type,media_url,permalink,thumbnail_url&access_token=' . $theUserToken );
-						! is_wp_error( $fetchedChildren )
-						? $mediaObject[ 'collection' ] = self::getParsedInstaMedia( $fetchedChildren, $theUserToken )
-						: $mediaObject[ 'collection' ] = $fetchedChildren;
+			do {
+				$thereIsMore  = false;
+				$fetchedMedia = json_decode( $fetchedMedia['body'], true );
+				if ( isset( $fetchedMedia['data'] ) ) {
+					foreach ( $fetchedMedia['data'] as $mediaObject ) {
+						if ( 'CAROUSEL_ALBUM' === $mediaObject['media_type'] ) {
+							$fetchedChildren = wp_remote_get( 'https://graph.instagram.com/' . $mediaObject['id'] . '/children?fields=id,media_type,media_url,permalink,thumbnail_url&access_token=' . $theUserToken );
+							if ( ! is_wp_error( $fetchedChildren ) ) {
+								$mediaObject['collection'] = self::getParsedInstaMedia( $fetchedChildren, $theUserToken );
+							} else {
+								$mediaObject['collection'] = $fetchedChildren;
+							}
+						}
+						array_push( $builtMediaObjects, json_encode( $mediaObject ) );
 					}
-					array_push( $builtMediaObjects, json_encode( $mediaObject ) );
 				}
-				if ( isset( $fetchedMedia[ 'paging' ][ 'next' ] ) ){
+				if ( isset( $fetchedMedia['paging']['next'] ) ) {
 					$thereIsMore = true;
-					$fetchedMedia = wp_remote_get( $fetchedMedia[ 'paging' ][ 'next' ]  );
+					$fetchedMedia = wp_remote_get( $fetchedMedia['paging']['next']  );
 				}
 			} while( $thereIsMore );
 			return $builtMediaObjects;
 		}
 
-		private static function refreshUserToken( $theUser ){
-			// Expiry Date Format: yyyy-mm-dd
-			if( ! $theUser ){
+		/**
+		 * Refresh the User Token.
+		 *
+		 * @since x.x.x
+		 * @return bool
+		 * @access public
+		 */
+		public static function refresh_all_instagram_users() {
+			$all_users = self::get_admin_settings_option( 'uag_insta_linked_accounts', array() );
+			foreach ( $all_users as $user ) {
+				self::refreshUserToken( $user );
+			}
+			return true;
+		}
+
+		/**
+		 * Refresh the User Token.
+		 *
+		 * @since x.x.x
+		 * @param array $the_user   the User Object.
+		 * @access private
+		 */
+		private static function refreshUserToken( $the_user ) {
+			if( ! $the_user ) {
 				return;
 			}
-			$expiry = strtotime( $theUser[ 'expiryDate' ] );
-			$today = time();
-			$theGap = ceil( ( $expiry - $today ) / 86400 );
-			if ( $theGap < 60 ){
-				$refreshLink = wp_remote_get( 'https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' . $theUser[ 'token' ] );
-				if ( is_wp_error( $refreshLink ) ){
-					$theUser[ 'isCurrentlyActive' ] = false;
+			$all_users = self::get_admin_settings_option( 'uag_insta_linked_accounts', array() );
+			$user_details_updated = false;
+			for ( $i = 0; $i < count( $all_users ); $i++ ) {
+				if ( $all_users[ $i ]['userName'] !== $the_user['userName'] ) {
+					continue;
 				}
+				// $expiry = strtotime( $the_user['expiryDate'] );
+				// $today  = time();
+				// $the_gap = ceil( ( $expiry - $today ) / 86400 );
+				// if ( true ) {
+					$refresh_link = wp_remote_get( 'https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' . $the_user[ 'token' ] );
+					if ( ! isset( $refresh_link['body'] ) ) {
+						return;
+					}
+					$data = json_decode( $refresh_link['body'], true );
+					if ( isset( $data['error'] ) ) {
+						$all_users[ $i ]['isCurrentlyActive'] = false;
+						$user_details_updated = true;
+						break;
+					} else if ( isset( $data['expires_in'] ) ) {
+						$cur_date = date_create( date( 'Y-m-d' ) );
+						date_add( $cur_date, date_interval_create_from_date_string( $data['expires_in'] . ' seconds' ) );
+						$all_users[ $i ]['expiryDate'] = date_format( $cur_date, 'Y-m-d' );
+						$user_details_updated = true;
+						break; 
+					}
+				// }
+			}
+			if ( $user_details_updated ) {
+				self::update_admin_settings_option( 'uag_insta_linked_accounts', $all_users );
 			}
 		}
+
+		// array(3) {
+		// 	[0] => array(7) {
+		// 		["userName"]          => string(12) "utopiancorps"
+		// 		["userID"]            => string(16) "5271535442958562"
+		// 		["userType"]          => string(8) "personal"
+		// 		["token"]             => string(143) "IGQVJYM25DLXpBaXBxNklWc2ZAFR0NJY3FmRkZACUlhFb2J6MVFVblZAOSkRmelZAqY0llbFJ5RTk3SW1fMnd0WFBNSGRzLUl0RnNzYUFwWV9kV3pJdUs4OWtrVlJPMTNqZAjAtMGsxU3hB"
+		// 		["postRefreshRate"]   => string(3) "H-1"
+		// 		["expiryDate"]        => string(9) "2023-1-23"
+		// 		["isCurrentlyActive"] => string(1) "1"
+		// 	}
+		// 	[1] => array(7) { ["userName"]=> string(19) "spectraintegrations" ["userID"]=> string(16) "6581725775187333" ["userType"]=> string(8) "personal" ["token"]=> string(145) "IGQVJYVUJaeFFIbkZA4SXBDS2ZAncWNaVFRJLXd1NER5VDBkempJZA0pvUFdkN1htSjJ1dmpiMjZACbnY3UnlTS1BpUGp0SFUtc21vZA0FIZAlU0aGd4SlN0dmwtSEtmOXBZAQWpYUEhhYlNR" ["postRefreshRate"]=> string(3) "H-1" ["expiryDate"]=> string(9) "2023-3-13" ["isCurrentlyActive"]=> string(1) "1" } [2]=> array(6) { ["userName"]=> string(12) "the_doofster" ["userID"]=> string(16) "8374478769230720" ["userType"]=> string(8) "personal" ["token"]=> string(145) "IGQVJYdE1HZA2NudDJ4Y1NnNjE1V0hSb3JjYVh5SzYzVkxYSFEzdk9ZAbVRPb3ZApbDF3T05uMmpSLXY3ZA2wyWHZAFN1hacW1JbmtZAeHdpckV6MDNLRWExOTlHamh2NXZAYRGR1TW5LOThR" ["expiryDate"]=> string(9) "2023-3-17" ["isCurrentlyActive"]=> string(1) "1" } }
 		
 	}
 

@@ -158,8 +158,8 @@ const Settings = () => {
 								{
 									uag_react.spectra_pro_status && (
 										<>
-											<Login />
 											<InstagramUsers/>
+											<Login />
 										</>
 									)
 								}

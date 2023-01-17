@@ -11,6 +11,9 @@ const classNames = ( ...classes ) => classes.filter( Boolean ).join( ' ' );
 
 const InstagramUsers = () => {
 
+	// Refresh all Linked Accounts.
+	uag_react.insta_refresh_users;
+
 	// Constants Required for the API Fetch.
 	const SPECTRA_AUTH_ROOT = 'https://wpspectra.com';
 	const SPECTRA_IG_TOKEN_GENERATOR = `${ SPECTRA_AUTH_ROOT }/auth/instagram/`;
@@ -348,7 +351,10 @@ const InstagramUsers = () => {
 
 		const userMatrix = instaLinkedAccounts.map( ( user ) => (
 			<div
-				className="relative h-16 p-2 pr-4 m-2.5 rounded-md flex border border-slate-200 hover:border-slate-400 transition-colors"
+				className={ classNames(
+					'relative h-16 p-2 pr-4 m-2.5 rounded-md flex border transition-colors',
+					user.isCurrentlyActive ? 'border-slate-200 hover:border-slate-400' : 'border-red-500'
+				) }
 				key={ user.userID }
 				id={ `Spectra-IG-User-${ user.userID }` }
 			>
