@@ -19,7 +19,6 @@ if ( ! class_exists( 'UAGB_Block_Module' ) ) {
 	 */
 	class UAGB_Block_Module {
 
-
 		/**
 		 * Member Variable
 		 *
