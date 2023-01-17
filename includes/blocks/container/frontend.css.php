@@ -7,9 +7,9 @@
  * @package uagb
  */
 
-$block_name                                 = 'container';
-$inner_content_custom_width_tablet_fallback = is_numeric( $attr['innerContentCustomWidthTablet'] ) ? $attr['innerContentCustomWidthTablet'] : $attr['innerContentCustomWidthDesktop'];
-$inner_content_custom_width_mobile_fallback = is_numeric( $attr['innerContentCustomWidthMobile'] ) ? $attr['innerContentCustomWidthMobile'] : $inner_content_custom_width_tablet_fallback;
+$block_name                                  = 'container';
+$inner_content_custom_width_tablet_fallback  = is_numeric( $attr['innerContentCustomWidthTablet'] ) ? $attr['innerContentCustomWidthTablet'] : $attr['innerContentCustomWidthDesktop'];
+$inner_content_custom_width_mobile_fallback  = is_numeric( $attr['innerContentCustomWidthMobile'] ) ? $attr['innerContentCustomWidthMobile'] : $inner_content_custom_width_tablet_fallback;
 
 $box_shadow_position_css = $attr['boxShadowPosition'];
 
@@ -82,17 +82,17 @@ $container_css       = array_merge(
 	array(
 		'min-height'     => UAGB_Helper::get_css_value( $attr['minHeightDesktop'], $attr['minHeightType'] ),
 		'box-shadow'     =>
-		UAGB_Helper::get_css_value( $attr['boxShadowHOffset'], 'px' ) .
-			' ' .
-			UAGB_Helper::get_css_value( $attr['boxShadowVOffset'], 'px' ) .
-			' ' .
-			UAGB_Helper::get_css_value( $attr['boxShadowBlur'], 'px' ) .
-			' ' .
-			UAGB_Helper::get_css_value( $attr['boxShadowSpread'], 'px' ) .
-			' ' .
-			$attr['boxShadowColor'] .
-			' ' .
-			$box_shadow_position_css,
+				UAGB_Helper::get_css_value( $attr['boxShadowHOffset'], 'px' ) .
+				' ' .
+				UAGB_Helper::get_css_value( $attr['boxShadowVOffset'], 'px' ) .
+				' ' .
+				UAGB_Helper::get_css_value( $attr['boxShadowBlur'], 'px' ) .
+				' ' .
+				UAGB_Helper::get_css_value( $attr['boxShadowSpread'], 'px' ) .
+				' ' .
+				$attr['boxShadowColor'] .
+				' ' .
+				$box_shadow_position_css,
 		'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingDesktop'], $attr['paddingType'] ),
 		'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingDesktop'], $attr['paddingType'] ),
 		'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPaddingDesktop'], $attr['paddingType'] ),
@@ -295,27 +295,27 @@ $m_selectors = array(
 if ( 'alignwide' === $attr['innerContentWidth'] && 'alignfull' === $attr['contentWidth'] ) {
 	$selectors[ '.uagb-is-root-container.alignfull.uagb-block-' . $id . ' > .uagb-container-inner-blocks-wrap' ] = array_merge(
 		array( // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-			'--inner-content-custom-width' => 'min( 100%, ' . $attr['innerContentCustomWidthDesktop'] . $attr['innerContentCustomWidthType'] . ')',
-			'max-width'                    => 'var(--inner-content-custom-width)',
-			'width'                        => '100%',
+		'--inner-content-custom-width' => 'min( 100%, ' . $attr['innerContentCustomWidthDesktop'] . $attr['innerContentCustomWidthType'] . ')',
+		'max-width'                    => 'var(--inner-content-custom-width)',
+		'width'                        => '100%',
 		),
 		$inner_container_css
 	);
 
 	$t_selectors[ '.uagb-is-root-container.alignfull.uagb-block-' . $id . ' > .uagb-container-inner-blocks-wrap' ] = array_merge(
 		array( // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-			'--inner-content-custom-width' => 'min( 100%, ' . $inner_content_custom_width_tablet_fallback . $attr['innerContentCustomWidthTypeTablet'] . ')',
-			'max-width'                    => 'var(--inner-content-custom-width)',
-			'width'                        => '100%',
+		'--inner-content-custom-width' => 'min( 100%, ' . $inner_content_custom_width_tablet_fallback . $attr['innerContentCustomWidthTypeTablet'] . ')',
+		'max-width'                    => 'var(--inner-content-custom-width)',
+		'width'                        => '100%',
 		),
 		$inner_container_tablet_css
 	);
 
 	$m_selectors[ '.uagb-is-root-container.alignfull.uagb-block-' . $id . ' > .uagb-container-inner-blocks-wrap' ] = array_merge(
 		array( // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-			'--inner-content-custom-width' => 'min( 100%, ' . $inner_content_custom_width_mobile_fallback . $attr['innerContentCustomWidthTypeMobile'] . ')',
-			'max-width'                    => 'var(--inner-content-custom-width)',
-			'width'                        => '100%',
+		'--inner-content-custom-width' => 'min( 100%, ' . $inner_content_custom_width_mobile_fallback . $attr['innerContentCustomWidthTypeMobile'] . ')',
+		'max-width'                    => 'var(--inner-content-custom-width)',
+		'width'                        => '100%',
 		),
 		$inner_container_mobile_css
 	);
@@ -328,17 +328,17 @@ if ( 'video' === $attr['backgroundType'] ) {
 	$selectors[ '.uagb-block-' . $id ]                                    = array(
 		'min-height'     => UAGB_Helper::get_css_value( $attr['minHeightDesktop'], $attr['minHeightType'] ),
 		'box-shadow'     =>
-		UAGB_Helper::get_css_value( $attr['boxShadowHOffset'], 'px' ) .
-			' ' .
-			UAGB_Helper::get_css_value( $attr['boxShadowVOffset'], 'px' ) .
-			' ' .
-			UAGB_Helper::get_css_value( $attr['boxShadowBlur'], 'px' ) .
-			' ' .
-			UAGB_Helper::get_css_value( $attr['boxShadowSpread'], 'px' ) .
-			' ' .
-			$attr['boxShadowColor'] .
-			' ' .
-			$box_shadow_position_css,
+				UAGB_Helper::get_css_value( $attr['boxShadowHOffset'], 'px' ) .
+				' ' .
+				UAGB_Helper::get_css_value( $attr['boxShadowVOffset'], 'px' ) .
+				' ' .
+				UAGB_Helper::get_css_value( $attr['boxShadowBlur'], 'px' ) .
+				' ' .
+				UAGB_Helper::get_css_value( $attr['boxShadowSpread'], 'px' ) .
+				' ' .
+				$attr['boxShadowColor'] .
+				' ' .
+				$box_shadow_position_css,
 		'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingDesktop'], $attr['paddingType'] ),
 		'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingDesktop'], $attr['paddingType'] ),
 		'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPaddingDesktop'], $attr['paddingType'] ),
@@ -384,16 +384,17 @@ if ( 'video' === $attr['backgroundType'] ) {
 	if ( ( ( '' !== $attr['boxShadowBlurHover'] ) && ( null !== $attr['boxShadowBlurHover'] ) ) || '' !== $attr['boxShadowColorHover'] ) {
 
 		$selectors[ '.uagb-block-' . $id . ':hover .uagb-container__video-wrap' ]['box-shadow'] = UAGB_Helper::get_css_value( $attr['boxShadowHOffsetHover'], 'px' ) .
-			' ' .
-			UAGB_Helper::get_css_value( $attr['boxShadowVOffsetHover'], 'px' ) .
-			' ' .
-			UAGB_Helper::get_css_value( $attr['boxShadowBlurHover'], 'px' ) .
-			' ' .
-			UAGB_Helper::get_css_value( $attr['boxShadowSpreadHover'], 'px' ) .
-			' ' .
-			$attr['boxShadowColorHover'] .
-			' ' .
-			$box_shadow_position_css_hover;
+																	' ' .
+																	UAGB_Helper::get_css_value( $attr['boxShadowVOffsetHover'], 'px' ) .
+																	' ' .
+																	UAGB_Helper::get_css_value( $attr['boxShadowBlurHover'], 'px' ) .
+																	' ' .
+																	UAGB_Helper::get_css_value( $attr['boxShadowSpreadHover'], 'px' ) .
+																	' ' .
+																	$attr['boxShadowColorHover'] .
+																	' ' .
+																	$box_shadow_position_css_hover;
+
 	}
 } else {
 	$selectors[ '.uagb-block-' . $id ]                                    = $container_css; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
@@ -406,16 +407,17 @@ if ( 'video' === $attr['backgroundType'] ) {
 	if ( ( ( '' !== $attr['boxShadowBlurHover'] ) && ( null !== $attr['boxShadowBlurHover'] ) ) || '' !== $attr['boxShadowColorHover'] ) {
 
 		$selectors[ '.uagb-block-' . $id . ':hover' ]['box-shadow'] = UAGB_Helper::get_css_value( $attr['boxShadowHOffsetHover'], 'px' ) .
-			' ' .
-			UAGB_Helper::get_css_value( $attr['boxShadowVOffsetHover'], 'px' ) .
-			' ' .
-			UAGB_Helper::get_css_value( $attr['boxShadowBlurHover'], 'px' ) .
-			' ' .
-			UAGB_Helper::get_css_value( $attr['boxShadowSpreadHover'], 'px' ) .
-			' ' .
-			$attr['boxShadowColorHover'] .
-			' ' .
-			$box_shadow_position_css_hover;
+																	' ' .
+																	UAGB_Helper::get_css_value( $attr['boxShadowVOffsetHover'], 'px' ) .
+																	' ' .
+																	UAGB_Helper::get_css_value( $attr['boxShadowBlurHover'], 'px' ) .
+																	' ' .
+																	UAGB_Helper::get_css_value( $attr['boxShadowSpreadHover'], 'px' ) .
+																	' ' .
+																	$attr['boxShadowColorHover'] .
+																	' ' .
+																	$box_shadow_position_css_hover;
+
 	}
 }
 
