@@ -15,7 +15,7 @@ import './style.scss';
 
 const UAGBAdvancedHeading = (props) => {
 	const deviceType = useDeviceType();
-	console.log('props without again one line', props);
+	// console.log('props without again one line', props);
 	const {
 		attributes: { block_id, UAGHideDesktop, UAGHideTab, UAGHideMob },
 	} = props;
@@ -35,6 +35,12 @@ const UAGBAdvancedHeading = (props) => {
 	useEffect(() => {
 		initBlockId(props, { classMigrate: true });
 	}, []);
+
+	// otter method
+	// useEffect(() => {
+	// 	const unsubscribe = blockInit(clientId, defaultAttributes);
+	// 	return () => unsubscribe(attributes.id);
+	// }, [block_id]);
 
 	useEffect(() => {
 		// Replacement for componentDidUpdate.

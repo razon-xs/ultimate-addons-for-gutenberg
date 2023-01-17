@@ -14,10 +14,9 @@ import getUAGEditorStateLocalStorage from '@Controls/getUAGEditorStateLocalStora
 import apiFetch from '@wordpress/api-fetch';
 // Delete the local storage on every refresh.
 const uagLocalStorage = getUAGEditorStateLocalStorage();
-if ( uagLocalStorage ) {
-	uagLocalStorage.removeItem( 'uagSettingState' );
-	uagLocalStorage.removeItem( 'isSpectraFontAwesomeAPILoading' );
-
+if (uagLocalStorage) {
+	uagLocalStorage.removeItem('uagSettingState');
+	uagLocalStorage.removeItem('isSpectraFontAwesomeAPILoading');
 }
 
 import blocksEditorSpacing from './blocks/extensions/blocks-editor-spacing';
@@ -26,24 +25,25 @@ blocksEditorSpacing();
 __webpack_public_path__ = uagb_blocks_info.uagb_url + 'dist/';
 
 // Add Font Awesome Polyfiller to localized variable.
-const isSpectraFontAwesomeAPILoading = uagLocalStorage?.getItem( 'isSpectraFontAwesomeAPILoading' ) || false;
+const isSpectraFontAwesomeAPILoading =
+	uagLocalStorage?.getItem('isSpectraFontAwesomeAPILoading') || false;
 
-if( 0 === uagb_blocks_info.font_awesome_5_polyfill.length && ! isSpectraFontAwesomeAPILoading ) {
-	uagLocalStorage?.setItem( 'isSpectraFontAwesomeAPILoading', true );
+if (
+	0 === uagb_blocks_info.font_awesome_5_polyfill.length &&
+	!isSpectraFontAwesomeAPILoading
+) {
+	uagLocalStorage?.setItem('isSpectraFontAwesomeAPILoading', true);
 	const formData = new window.FormData();
-	formData.append( 'action', 'uagb_spectra_font_awesome_polyfiller' );
-	formData.append(
-		'nonce',
-		uagb_blocks_info.uagb_ajax_nonce
-	);
-	apiFetch( {
+	formData.append('action', 'uagb_spectra_font_awesome_polyfiller');
+	formData.append('nonce', uagb_blocks_info.uagb_ajax_nonce);
+	apiFetch({
 		url: uagb_blocks_info.ajax_url,
 		method: 'POST',
 		body: formData,
-	} ).then( ( data ) => {
-		uagLocalStorage?.setItem( 'isSpectraFontAwesomeAPILoading', false );
+	}).then((data) => {
+		uagLocalStorage?.setItem('isSpectraFontAwesomeAPILoading', false);
 		uagb_blocks_info.font_awesome_5_polyfill = data;
-	} );
+	});
 }
 
 // The Block Slugs need to be added exactly as below into the array at: /classes/class-spectra-block-prioritization.php.
@@ -118,25 +118,25 @@ import './blocks/wp-search/block.js';
 // Responsive Device Icons on Editor
 import './components/responsive-icons/index.js';
 
-wp.UAGBSvgIcons = Object.keys( uagb_blocks_info.uagb_svg_icons );
+wp.UAGBSvgIcons = Object.keys(uagb_blocks_info.uagb_svg_icons);
 
 import UAGB_Block_Icons from '@Controls/block-icons';
 import autoBlockRecovery from '@Controls/autoBlockRecovery';
 
 import { updateCategory } from '@wordpress/blocks';
 
-updateCategory( 'uagb', {
+updateCategory('uagb', {
 	icon: UAGB_Block_Icons.logo,
-} );
+});
 
 export const initAutoBlockRecovery = () => {
-	if ( window._wpLoadBlockEditor ) {
-		window._wpLoadBlockEditor.then( () => {
+	if (window._wpLoadBlockEditor) {
+		window._wpLoadBlockEditor.then(() => {
 			autoBlockRecovery();
-		} );
+		});
 	}
 };
 
-if ( 'disabled' !== uagb_blocks_info.auto_block_recovery ) {
-	domReady( initAutoBlockRecovery );
+if ('disabled' !== uagb_blocks_info.auto_block_recovery) {
+	domReady(initAutoBlockRecovery);
 }
