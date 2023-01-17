@@ -7,9 +7,8 @@
  * @package uagb
  */
 
-$block_name                                  = 'container';
-$inner_content_custom_width_tablet_fallback  = is_numeric( $attr['innerContentCustomWidthTablet'] ) ? $attr['innerContentCustomWidthTablet'] : $attr['innerContentCustomWidthDesktop'];
-$inner_content_custom_width_mobile_fallback  = is_numeric( $attr['innerContentCustomWidthMobile'] ) ? $attr['innerContentCustomWidthMobile'] : $inner_content_custom_width_tablet_fallback;
+$inner_content_custom_width_tablet_fallback = is_numeric( $attr['innerContentCustomWidthTablet'] ) ? $attr['innerContentCustomWidthTablet'] : $attr['innerContentCustomWidthDesktop'];
+$inner_content_custom_width_mobile_fallback = is_numeric( $attr['innerContentCustomWidthMobile'] ) ? $attr['innerContentCustomWidthMobile'] : $inner_content_custom_width_tablet_fallback;
 
 $box_shadow_position_css = $attr['boxShadowPosition'];
 
