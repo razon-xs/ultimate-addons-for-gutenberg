@@ -10,8 +10,6 @@
 // Add fonts.
 UAGB_Block_JS::blocks_advanced_heading_gfont( $attr );
 
-$block_name = 'advanced-heading';
-
 $m_selectors = array();
 $t_selectors = array();
 
@@ -24,7 +22,7 @@ $selectors = array(
 	'.wp-block-uagb-advanced-heading .uagb-heading-text' => array(
 		'color'         => $attr['headingColor'],
 		'margin-bottom' => UAGB_Helper::get_css_value(
-			UAGB_Block_Helper::get_fallback_number( $attr['headSpace'], 'headSpace', $block_name ),
+			$attr['headSpace'],
 			'px'
 		),
 	),
@@ -73,7 +71,7 @@ $selectors = array(
 	'.wp-block-uagb-advanced-heading .uagb-desc-text'    => array(
 		'color'         => $attr['subHeadingColor'],
 		'margin-bottom' => UAGB_Helper::get_css_value(
-			UAGB_Block_Helper::get_fallback_number( $attr['subHeadSpace'], 'subHeadSpace', $block_name ),
+			$attr['subHeadSpace'],
 			'px'
 		),
 	),
@@ -165,36 +163,36 @@ if ( 'none' !== $seperatorStyle ) {
 	$selectors['.wp-block-uagb-advanced-heading .uagb-separator']   = array(
 		'border-top-style' => $attr['seperatorStyle'],
 		'border-top-width' => UAGB_Helper::get_css_value(
-			UAGB_Block_Helper::get_fallback_number( $attr['separatorHeight'], 'separatorHeight', $block_name ),
+			$attr['separatorHeight'],
 			$attr['separatorHeightType']
 		),
 		'width'            => UAGB_Helper::get_css_value(
-			UAGB_Block_Helper::get_fallback_number( $attr['separatorWidth'], 'separatorWidth', $block_name ),
+			$attr['separatorWidth'],
 			$attr['separatorWidthType']
 		),
 		'border-color'     => $attr['separatorColor'],
 		'margin-bottom'    => UAGB_Helper::get_css_value(
-			UAGB_Block_Helper::get_fallback_number( $attr['separatorSpace'], 'separatorSpace', $block_name ),
+			$attr['separatorSpace'],
 			$attr['separatorSpaceType']
 		),
 	);
 	$t_selectors['.wp-block-uagb-advanced-heading .uagb-separator'] = array(
 		'width'         => UAGB_Helper::get_css_value(
-			UAGB_Block_Helper::get_fallback_number( $attr['separatorWidthTablet'], 'separatorWidthTablet', $block_name ),
+			$attr['separatorWidthTablet'],
 			$attr['separatorWidthType']
 		),
 		'margin-bottom' => UAGB_Helper::get_css_value(
-			UAGB_Block_Helper::get_fallback_number( $attr['separatorSpaceTablet'], 'separatorSpaceTablet', $block_name ),
+			$attr['separatorSpaceTablet'],
 			$attr['separatorSpaceType']
 		),
 	);
 	$m_selectors['.wp-block-uagb-advanced-heading .uagb-separator'] = array(
 		'width'         => UAGB_Helper::get_css_value(
-			UAGB_Block_Helper::get_fallback_number( $attr['separatorWidthMobile'], 'separatorWidthMobile', $block_name ),
+			$attr['separatorWidthMobile'],
 			$attr['separatorWidthType']
 		),
 		'margin-bottom' => UAGB_Helper::get_css_value(
-			UAGB_Block_Helper::get_fallback_number( $attr['separatorSpaceMobile'], 'separatorSpaceMobile', $block_name ),
+			$attr['separatorSpaceMobile'],
 			$attr['separatorSpaceType']
 		),
 	);
@@ -244,25 +242,25 @@ $m_selectors['.wp-block-uagb-advanced-heading .uagb-highlight'] = array_merge(
 
 $t_selectors['.wp-block-uagb-advanced-heading .uagb-heading-text'] = array(
 	'margin-bottom' => UAGB_Helper::get_css_value(
-		UAGB_Block_Helper::get_fallback_number( $attr['headSpaceTablet'], 'headSpaceTablet', $block_name ),
+		$attr['headSpaceTablet'],
 		$attr['headSpaceType']
 	),
 );
 $m_selectors['.wp-block-uagb-advanced-heading .uagb-heading-text'] = array(
 	'margin-bottom' => UAGB_Helper::get_css_value(
-		UAGB_Block_Helper::get_fallback_number( $attr['headSpaceMobile'], 'headSpaceMobile', $block_name ),
+		$attr['headSpaceMobile'],
 		$attr['headSpaceType']
 	),
 );
 $t_selectors['.wp-block-uagb-advanced-heading .uagb-desc-text']    = array(
 	'margin-bottom' => UAGB_Helper::get_css_value(
-		UAGB_Block_Helper::get_fallback_number( $attr['subHeadSpaceTablet'], 'subHeadSpaceTablet', $block_name ),
+		$attr['subHeadSpaceTablet'],
 		$attr['subHeadSpaceType']
 	),
 );
 $m_selectors['.wp-block-uagb-advanced-heading .uagb-desc-text']    = array(
 	'margin-bottom' => UAGB_Helper::get_css_value(
-		UAGB_Block_Helper::get_fallback_number( $attr['subHeadSpaceMobile'], 'subHeadSpaceMobile', $block_name ),
+		$attr['subHeadSpaceMobile'],
 		$attr['subHeadSpaceType']
 	),
 );
