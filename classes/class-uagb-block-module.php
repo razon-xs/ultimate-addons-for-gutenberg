@@ -170,6 +170,7 @@ if ( ! class_exists( 'UAGB_Block_Module' ) ) {
 			}
 
 			return $assets;
+
 		}
 
 		/**
@@ -180,6 +181,7 @@ if ( ! class_exists( 'UAGB_Block_Module' ) ) {
 		 * @return array The Widget List.
 		 */
 		public static function get_blocks_info() {
+
 			return uagb_block()->get_blocks();
 		}
 
@@ -191,6 +193,7 @@ if ( ! class_exists( 'UAGB_Block_Module' ) ) {
 		 * @return array The Asset List.
 		 */
 		public static function get_block_dependencies() {
+
 			$blocks = UAGB_Admin_Helper::get_block_options();
 
 			if ( null === self::$block_assets ) {
