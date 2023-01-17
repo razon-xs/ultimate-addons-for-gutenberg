@@ -632,8 +632,9 @@ class UAGB_Init_Blocks {
 				'spectra_pro_status'                 => is_plugin_active( 'spectra-pro/spectra-pro.php' ),
 				'spectra_custom_css_example'         => __(
 					'Use custom class added in block\'s advanced settings to target your desired block. Examples:
-				.my-class {text-align: center;} // my-class is a custom selector'
+				.my-class {text-align: center;} // my-class is a custom selector',
 				),
+				'unique_blocks' => []
 			)
 		);
 		// To match the editor with frontend.

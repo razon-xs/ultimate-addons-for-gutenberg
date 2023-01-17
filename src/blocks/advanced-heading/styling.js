@@ -7,9 +7,8 @@ import generateCSS from '@Controls/generateCSS';
 import generateCSSUnit from '@Controls/generateCSSUnit';
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
 
-function styling( props ) {
-
-	const blockName = props.name.replace( 'uagb/', '' );
+function styling(props) {
+	const blockName = props.name.replace('uagb/', '');
 
 	const {
 		headingAlign,
@@ -151,51 +150,50 @@ function styling( props ) {
 		subHeadSpace,
 		subHeadSpaceTablet,
 		subHeadSpaceMobile,
+		block_id,
 	} = props.attributes;
 
 	const tablet_selectors = {};
 	const mobile_selectors = {};
 
-	let gradientLinkColor = {}
-	let gradientLinkHoverColor = {}
-	if( 'gradient' === headingColorType ){
-		gradientLinkColor =  {
-			'-webkit-text-fill-color': linkColor
-		}
-		gradientLinkHoverColor =  {
-			'-webkit-text-fill-color': linkHColor
-		}
+	let gradientLinkColor = {};
+	let gradientLinkHoverColor = {};
+	if ('gradient' === headingColorType) {
+		gradientLinkColor = {
+			'-webkit-text-fill-color': linkColor,
+		};
+		gradientLinkHoverColor = {
+			'-webkit-text-fill-color': linkHColor,
+		};
 	}
 
-	const highLightBorderCSS = generateBorderCSS( props.attributes, 'highLight' )
-	const highLightBorderCSSTablet = generateBorderCSS( props.attributes, 'highLight', 'tablet' )
-	const highLightBorderCSSMobile = generateBorderCSS( props.attributes, 'highLight', 'mobile' )
-
+	const highLightBorderCSS = generateBorderCSS(props.attributes, 'highLight');
+	const highLightBorderCSSTablet = generateBorderCSS(
+		props.attributes,
+		'highLight',
+		'tablet'
+	);
+	const highLightBorderCSSMobile = generateBorderCSS(
+		props.attributes,
+		'highLight',
+		'mobile'
+	);
 
 	const selectors = {
-		'.wp-block-uagb-advanced-heading ':{
-			'background': 	'classic' === blockBackgroundType ? blockBackground : blockGradientBackground,
+		'.wp-block-uagb-advanced-heading ': {
+			background:
+				'classic' === blockBackgroundType
+					? blockBackground
+					: blockGradientBackground,
 			'text-align': headingAlign,
-			'margin-top': generateCSSUnit(
-				blockTopMargin,
-				blockMarginUnit
-			),
-			'margin-right': generateCSSUnit(
-				blockRightMargin,
-				blockMarginUnit
-			),
+			'margin-top': generateCSSUnit(blockTopMargin, blockMarginUnit),
+			'margin-right': generateCSSUnit(blockRightMargin, blockMarginUnit),
 			'margin-bottom': generateCSSUnit(
 				blockBottomMargin,
 				blockMarginUnit
 			),
-			'margin-left': generateCSSUnit(
-				blockLeftMargin,
-				blockMarginUnit
-			),
-			'padding-top': generateCSSUnit(
-				blockTopPadding,
-				blockPaddingUnit
-			),
+			'margin-left': generateCSSUnit(blockLeftMargin, blockMarginUnit),
+			'padding-top': generateCSSUnit(blockTopPadding, blockPaddingUnit),
 			'padding-right': generateCSSUnit(
 				blockRightPadding,
 				blockPaddingUnit
@@ -204,53 +202,59 @@ function styling( props ) {
 				blockBottomPadding,
 				blockPaddingUnit
 			),
-			'padding-left': generateCSSUnit(
-				blockLeftPadding,
-				blockPaddingUnit
-			),
+			'padding-left': generateCSSUnit(blockLeftPadding, blockPaddingUnit),
 		},
 		' p.uagb-desc-text': {
-			'margin': 0,
+			margin: 0,
 			'font-family': subHeadFontFamily,
-			'font-style' : subHeadFontStyle,
+			'font-style': subHeadFontStyle,
 			'text-decoration': subHeadDecoration,
 			'text-transform': subHeadTransform,
 			'font-weight': subHeadFontWeight,
-			'font-size': generateCSSUnit(
-				subHeadFontSize,
-				subHeadFontSizeType
-			),
+			'font-size': generateCSSUnit(subHeadFontSize, subHeadFontSizeType),
 			'line-height': generateCSSUnit(
 				subHeadLineHeight,
 				subHeadLineHeightType
 			),
-			'letter-spacing': generateCSSUnit( subHeadLetterSpacing, subHeadLetterSpacingType ),
-			'color': subHeadingColor,
+			'letter-spacing': generateCSSUnit(
+				subHeadLetterSpacing,
+				subHeadLetterSpacingType
+			),
+			color: subHeadingColor,
 			'margin-bottom': generateCSSUnit(
-				getFallbackNumber( subHeadSpace, 'subHeadSpace', blockName ),
+				getFallbackNumber(subHeadSpace, 'subHeadSpace', blockName),
 				'px'
 			),
 		},
 		'.wp-block-uagb-advanced-heading a': {
-			'color': linkColor,
-			...gradientLinkColor
+			color: linkColor,
+			...gradientLinkColor,
 		},
 		'.wp-block-uagb-advanced-heading a:hover': {
-			'color': linkHColor,
-			...gradientLinkHoverColor
+			color: linkHColor,
+			...gradientLinkHoverColor,
 		},
 		'.wp-block-uagb-advanced-heading .uagb-highlight': {
-			'background': highLightBackground,
-			'color': highLightColor,
+			background: highLightBackground,
+			color: highLightColor,
 			'-webkit-text-fill-color': highLightColor,
 			'font-family': highLightFontFamily,
-			'font-style' : highLightFontStyle,
+			'font-style': highLightFontStyle,
 			'text-decoration': highLightDecoration,
 			'text-transform': highLightTransform,
 			'font-weight': highLightFontWeight,
-			'font-size': generateCSSUnit( highLightFontSize, highLightFontSizeType ),
-			'line-height': generateCSSUnit( highLightLineHeight, highLightLineHeightType ),
-			'letter-spacing': generateCSSUnit( highLightLetterSpacing, highLightLetterSpacingType ),
+			'font-size': generateCSSUnit(
+				highLightFontSize,
+				highLightFontSizeType
+			),
+			'line-height': generateCSSUnit(
+				highLightLineHeight,
+				highLightLineHeightType
+			),
+			'letter-spacing': generateCSSUnit(
+				highLightLetterSpacing,
+				highLightLetterSpacingType
+			),
 			'padding-top': generateCSSUnit(
 				highLightTopPadding,
 				highLightPaddingUnit
@@ -271,75 +275,95 @@ function styling( props ) {
 		},
 		'.wp-block-uagb-advanced-heading .uagb-highlight:hover': {
 			'border-color': highLightBorderHColor,
-		}
+		},
 	};
 
 	// gradient text color
-	let headingGradientStyle  = {}
-	if( 'gradient' === headingColorType ){
-		headingGradientStyle =  {
-			'background': headingGradientColor,
+	let headingGradientStyle = {};
+	if ('gradient' === headingColorType) {
+		headingGradientStyle = {
+			background: headingGradientColor,
 			'-webkit-background-clip': 'text',
-			'-webkit-text-fill-color': 'transparent'
-		}
+			'-webkit-text-fill-color': 'transparent',
+		};
 	}
 
 	// Text Selection & highlight
 	const highlightSelectionText = {
-		'color': highLightColor,
-		'background': highLightBackground,
-		'-webkit-text-fill-color': highLightColor
-	}
-	selectors[ '.wp-block-uagb-advanced-heading .uagb-highlight::-moz-selection' ] = highlightSelectionText
-	selectors[ '.wp-block-uagb-advanced-heading .uagb-highlight::selection' ] = highlightSelectionText
+		color: highLightColor,
+		background: highLightBackground,
+		'-webkit-text-fill-color': highLightColor,
+	};
+	selectors[
+		'.wp-block-uagb-advanced-heading .uagb-highlight::-moz-selection'
+	] = highlightSelectionText;
+	selectors['.wp-block-uagb-advanced-heading .uagb-highlight::selection'] =
+		highlightSelectionText;
 
 	// heading
-	selectors[ ' ' + headingTag + '.uagb-heading-text' ] = {
+	selectors[' ' + headingTag + '.uagb-heading-text'] = {
 		'font-family': headFontFamily,
-		'font-style' : headFontStyle,
+		'font-style': headFontStyle,
 		'text-decoration': headDecoration,
 		'text-transform': headTransform,
 		'font-weight': headFontWeight,
-		'font-size': generateCSSUnit( headFontSize, headFontSizeType ),
-		'line-height': generateCSSUnit( headLineHeight, headLineHeightType ),
-		'color': headingColor,
+		'font-size': generateCSSUnit(headFontSize, headFontSizeType),
+		'line-height': generateCSSUnit(headLineHeight, headLineHeightType),
+		color: headingColor,
 		'margin-bottom': generateCSSUnit(
-			getFallbackNumber( headSpace, 'headSpace', blockName ),
+			getFallbackNumber(headSpace, 'headSpace', blockName),
 			'px'
 		),
-		'letter-spacing': generateCSSUnit( headLetterSpacing, headLetterSpacingType ),
-		...headingGradientStyle
+		'letter-spacing': generateCSSUnit(
+			headLetterSpacing,
+			headLetterSpacingType
+		),
+		...headingGradientStyle,
 	};
 
-	const headingTextShadow = headShadowColor && generateCSSUnit( headShadowHOffset, 'px' ) + ' ' + generateCSSUnit( headShadowVOffset, 'px' ) + ' ' + generateCSSUnit( headShadowBlur, 'px' ) + ' ' +  headShadowColor;
+	const headingTextShadow =
+		headShadowColor &&
+		generateCSSUnit(headShadowHOffset, 'px') +
+			' ' +
+			generateCSSUnit(headShadowVOffset, 'px') +
+			' ' +
+			generateCSSUnit(headShadowBlur, 'px') +
+			' ' +
+			headShadowColor;
 
 	// Text Shadow conditional CSS as per Color Type of Heading.
-	if ( 'gradient' === headingColorType ) {
-		selectors[ ' ' + headingTag + '.uagb-heading-text' ].filter = `drop-shadow(${headingTextShadow})`;
+	if ('gradient' === headingColorType) {
+		selectors[
+			' ' + headingTag + '.uagb-heading-text'
+		].filter = `drop-shadow(${headingTextShadow})`;
 	} else {
-		selectors[ ' ' + headingTag + '.uagb-heading-text' ]['text-shadow'] = headingTextShadow
+		selectors[' ' + headingTag + '.uagb-heading-text']['text-shadow'] =
+			headingTextShadow;
 	}
 
 	// separator
-	if ( seperatorStyle !== 'none' ) {
-		selectors[ ' .uagb-separator' ] = {
+	if (seperatorStyle !== 'none') {
+		selectors[' .uagb-separator'] = {
 			'border-top-style': seperatorStyle,
 			'border-top-width': generateCSSUnit(
-				getFallbackNumber( separatorHeight, 'separatorHeight', blockName ),
+				getFallbackNumber(
+					separatorHeight,
+					'separatorHeight',
+					blockName
+				),
 				separatorHeightType
 			),
-			'width': generateCSSUnit(
-				getFallbackNumber( separatorWidth, 'separatorWidth', blockName ),
+			width: generateCSSUnit(
+				getFallbackNumber(separatorWidth, 'separatorWidth', blockName),
 				separatorWidthType
 			),
 			'border-color': separatorColor,
 			'margin-bottom': generateCSSUnit(
-				getFallbackNumber( separatorSpace, 'separatorSpace', blockName ),
+				getFallbackNumber(separatorSpace, 'separatorSpace', blockName),
 				separatorSpaceType
 			),
 		};
 	}
-
 
 	// tablet
 	tablet_selectors['.wp-block-uagb-advanced-heading '] = {
@@ -376,21 +400,24 @@ function styling( props ) {
 			blockLeftPaddingTablet,
 			blockPaddingUnitTablet
 		),
-	}
+	};
 
-	tablet_selectors[ ' ' + headingTag + '.uagb-heading-text' ] = {
-		'font-size': generateCSSUnit( headFontSizeTablet, headFontSizeType ),
+	tablet_selectors[' ' + headingTag + '.uagb-heading-text'] = {
+		'font-size': generateCSSUnit(headFontSizeTablet, headFontSizeType),
 		'line-height': generateCSSUnit(
 			headLineHeightTablet,
 			headLineHeightType
 		),
-		'letter-spacing': generateCSSUnit( headLetterSpacingTablet, headLetterSpacingType ),
+		'letter-spacing': generateCSSUnit(
+			headLetterSpacingTablet,
+			headLetterSpacingType
+		),
 		'margin-bottom': generateCSSUnit(
-			getFallbackNumber( headSpaceTablet, 'headSpaceTablet', blockName ),
+			getFallbackNumber(headSpaceTablet, 'headSpaceTablet', blockName),
 			'px'
 		),
 	};
-	tablet_selectors[ ' p.uagb-desc-text' ] = {
+	tablet_selectors[' p.uagb-desc-text'] = {
 		'font-size': generateCSSUnit(
 			subHeadFontSizeTablet,
 			subHeadFontSizeType
@@ -399,13 +426,20 @@ function styling( props ) {
 			subHeadLineHeightTablet,
 			subHeadLineHeightType
 		),
-		'letter-spacing': generateCSSUnit( subHeadLetterSpacingTablet, subHeadLetterSpacingType ),
+		'letter-spacing': generateCSSUnit(
+			subHeadLetterSpacingTablet,
+			subHeadLetterSpacingType
+		),
 		'margin-bottom': generateCSSUnit(
-			getFallbackNumber( subHeadSpaceTablet, 'subHeadSpaceTablet', blockName ),
+			getFallbackNumber(
+				subHeadSpaceTablet,
+				'subHeadSpaceTablet',
+				blockName
+			),
 			'px'
 		),
 	};
-	tablet_selectors[ '.wp-block-uagb-advanced-heading .uagb-highlight' ] = {
+	tablet_selectors['.wp-block-uagb-advanced-heading .uagb-highlight'] = {
 		'font-size': generateCSSUnit(
 			highLightFontSizeTablet,
 			highLightFontSizeType
@@ -414,7 +448,10 @@ function styling( props ) {
 			highLightLineHeightTablet,
 			highLightLineHeightType
 		),
-		'letter-spacing': generateCSSUnit( highLightLetterSpacingTablet, highLightLetterSpacingType ),
+		'letter-spacing': generateCSSUnit(
+			highLightLetterSpacingTablet,
+			highLightLetterSpacingType
+		),
 		'padding-top': generateCSSUnit(
 			highLightTopPaddingTablet,
 			highLightPaddingUnitTablet
@@ -431,7 +468,7 @@ function styling( props ) {
 			highLightLeftPaddingTablet,
 			highLightPaddingUnitTablet
 		),
-		...highLightBorderCSSTablet
+		...highLightBorderCSSTablet,
 	};
 	// mobile
 	mobile_selectors['.wp-block-uagb-advanced-heading '] = {
@@ -468,31 +505,42 @@ function styling( props ) {
 			blockLeftPaddingMobile,
 			blockPaddingUnitMobile
 		),
-	}
-	tablet_selectors[ ' .uagb-separator' ] = {
-		'width': generateCSSUnit(
-			getFallbackNumber( separatorWidthTablet, 'separatorWidthTablet', blockName ),
+	};
+	tablet_selectors[' .uagb-separator'] = {
+		width: generateCSSUnit(
+			getFallbackNumber(
+				separatorWidthTablet,
+				'separatorWidthTablet',
+				blockName
+			),
 			separatorWidthType
 		),
 		'margin-bottom': generateCSSUnit(
-			getFallbackNumber( separatorSpaceTablet, 'separatorSpaceTablet', blockName ),
+			getFallbackNumber(
+				separatorSpaceTablet,
+				'separatorSpaceTablet',
+				blockName
+			),
 			separatorSpaceType
 		),
 	};
 
-	mobile_selectors[ ' ' + headingTag + '.uagb-heading-text' ] = {
-		'font-size': generateCSSUnit( headFontSizeMobile, headFontSizeType ),
+	mobile_selectors[' ' + headingTag + '.uagb-heading-text'] = {
+		'font-size': generateCSSUnit(headFontSizeMobile, headFontSizeType),
 		'line-height': generateCSSUnit(
 			headLineHeightMobile,
 			headLineHeightType
 		),
-		'letter-spacing': generateCSSUnit( headLetterSpacingMobile, headLetterSpacingType ),
+		'letter-spacing': generateCSSUnit(
+			headLetterSpacingMobile,
+			headLetterSpacingType
+		),
 		'margin-bottom': generateCSSUnit(
-			getFallbackNumber( headSpaceMobile, 'headSpaceMobile', blockName ),
+			getFallbackNumber(headSpaceMobile, 'headSpaceMobile', blockName),
 			'px'
 		),
 	};
-	mobile_selectors[ ' p.uagb-desc-text' ] = {
+	mobile_selectors[' p.uagb-desc-text'] = {
 		'font-size': generateCSSUnit(
 			subHeadFontSizeMobile,
 			subHeadFontSizeType
@@ -501,13 +549,20 @@ function styling( props ) {
 			subHeadLineHeightMobile,
 			subHeadLineHeightType
 		),
-		'letter-spacing': generateCSSUnit( subHeadLetterSpacingMobile, subHeadLetterSpacingType ),
+		'letter-spacing': generateCSSUnit(
+			subHeadLetterSpacingMobile,
+			subHeadLetterSpacingType
+		),
 		'margin-bottom': generateCSSUnit(
-			getFallbackNumber( subHeadSpaceMobile, 'subHeadSpaceMobile', blockName ),
+			getFallbackNumber(
+				subHeadSpaceMobile,
+				'subHeadSpaceMobile',
+				blockName
+			),
 			'px'
 		),
 	};
-	mobile_selectors[ '.wp-block-uagb-advanced-heading .uagb-highlight' ] = {
+	mobile_selectors['.wp-block-uagb-advanced-heading .uagb-highlight'] = {
 		'font-size': generateCSSUnit(
 			highLightFontSizeMobile,
 			highLightFontSizeType
@@ -516,7 +571,10 @@ function styling( props ) {
 			highLightLineHeightMobile,
 			highLightLineHeightType
 		),
-		'letter-spacing': generateCSSUnit( highLightLetterSpacingMobile, highLightLetterSpacingType ),
+		'letter-spacing': generateCSSUnit(
+			highLightLetterSpacingMobile,
+			highLightLetterSpacingType
+		),
 		'padding-top': generateCSSUnit(
 			highLightTopPaddingMobile,
 			highLightPaddingUnitMobile
@@ -533,36 +591,41 @@ function styling( props ) {
 			highLightLeftPaddingMobile,
 			highLightPaddingUnitMobile
 		),
-		...highLightBorderCSSMobile
+		...highLightBorderCSSMobile,
 	};
-	mobile_selectors[ ' .uagb-separator' ] = {
-		'width': generateCSSUnit(
-			getFallbackNumber( separatorWidthMobile, 'separatorWidthMobile', blockName ),
+	mobile_selectors[' .uagb-separator'] = {
+		width: generateCSSUnit(
+			getFallbackNumber(
+				separatorWidthMobile,
+				'separatorWidthMobile',
+				blockName
+			),
 			separatorWidthType
 		),
 		'margin-bottom': generateCSSUnit(
-			getFallbackNumber( separatorSpaceMobile, 'separatorSpaceMobile', blockName ),
+			getFallbackNumber(
+				separatorSpaceMobile,
+				'separatorSpaceMobile',
+				blockName
+			),
 			separatorSpaceType
 		),
 	};
 
-	const base_selector = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr(
-		0,
-		8
-	) }`;
+	const base_selector = `.editor-styles-wrapper .uagb-block-${block_id}`;
 
-	let styling_css = generateCSS( selectors, base_selector );
+	let styling_css = generateCSS(selectors, base_selector);
 
 	styling_css += generateCSS(
 		tablet_selectors,
-		`${ base_selector }.uagb-editor-preview-mode-tablet`,
+		`${base_selector}.uagb-editor-preview-mode-tablet`,
 		true,
 		'tablet'
 	);
 
 	styling_css += generateCSS(
 		mobile_selectors,
-		`${ base_selector }.uagb-editor-preview-mode-mobile`,
+		`${base_selector}.uagb-editor-preview-mode-mobile`,
 		true,
 		'mobile'
 	);
