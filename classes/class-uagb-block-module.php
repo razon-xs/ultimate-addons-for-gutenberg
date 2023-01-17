@@ -55,7 +55,7 @@ if ( ! class_exists( 'UAGB_Block_Module' ) ) {
 		 * Constructor
 		 */
 		public function __construct() {
-			 add_filter( 'uag_register_block_static_dependencies', array( __CLASS__, 'uag_register_block_static_dependencies' ) );
+			add_filter( 'uag_register_block_static_dependencies', array( __CLASS__, 'uag_register_block_static_dependencies' ) );
 		}
 
 		/**
