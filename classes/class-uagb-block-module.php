@@ -1,5 +1,4 @@
 <?php
-
 /**
  * UAGB Block Module.
  *
@@ -9,17 +8,17 @@
  */
 
 // Exit if accessed directly.
-if (!defined('ABSPATH')) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if (!class_exists('UAGB_Block_Module')) {
+if ( ! class_exists( 'UAGB_Block_Module' ) ) {
 
 	/**
 	 * Class doc
 	 */
-	class UAGB_Block_Module
-	{
+	class UAGB_Block_Module {
+
 
 		/**
 		 * Member Variable
@@ -45,9 +44,8 @@ if (!class_exists('UAGB_Block_Module')) {
 		/**
 		 *  Initiator
 		 */
-		public static function get_instance()
-		{
-			if (!isset(self::$instance)) {
+		public static function get_instance() {
+			if ( ! isset( self::$instance ) ) {
 				self::$instance = new self();
 			}
 			return self::$instance;
@@ -56,9 +54,8 @@ if (!class_exists('UAGB_Block_Module')) {
 		/**
 		 * Constructor
 		 */
-		public function __construct()
-		{
-			add_filter('uag_register_block_static_dependencies', array(__CLASS__, 'uag_register_block_static_dependencies'));
+		public function __construct() {
+			 add_filter( 'uag_register_block_static_dependencies', array( __CLASS__, 'uag_register_block_static_dependencies' ) );
 		}
 
 		/**
@@ -69,17 +66,16 @@ if (!class_exists('UAGB_Block_Module')) {
 		 * @param string $block_assets Block Assets.
 		 * @return array
 		 */
-		public static function uag_register_block_static_dependencies($block_assets)
-		{
+		public static function uag_register_block_static_dependencies( $block_assets ) {
 
 			$blocks = self::get_blocks_info();
 
-			foreach ($blocks as $block) {
-				if (isset($block['static_dependencies'])) {
+			foreach ( $blocks as $block ) {
+				if ( isset( $block['static_dependencies'] ) ) {
 
-					foreach ($block['static_dependencies'] as $key => $static_dependencies) {
-						if (isset($static_dependencies) && is_array($static_dependencies) && isset($static_dependencies['src'])) {
-							$block_assets[$key] = $static_dependencies;
+					foreach ( $block['static_dependencies'] as $key => $static_dependencies ) {
+						if ( isset( $static_dependencies ) && is_array( $static_dependencies ) && isset( $static_dependencies['src'] ) ) {
+							$block_assets[ $key ] = $static_dependencies;
 						}
 					}
 				}
@@ -98,9 +94,8 @@ if (!class_exists('UAGB_Block_Module')) {
 		 * @param string $id   Block id.
 		 * @return array
 		 */
-		public static function get_frontend_css($slug, $attr, $id)
-		{
-			return self::get_frontend_assets($slug, $attr, $id, 'css');
+		public static function get_frontend_css( $slug, $attr, $id ) {
+			return self::get_frontend_assets( $slug, $attr, $id, 'css' );
 		}
 
 		/**
@@ -113,9 +108,8 @@ if (!class_exists('UAGB_Block_Module')) {
 		 * @param string $id   Block id.
 		 * @return array
 		 */
-		public static function get_frontend_js($slug, $attr, $id)
-		{
-			return self::get_frontend_assets($slug, $attr, $id, 'js');
+		public static function get_frontend_js( $slug, $attr, $id ) {
+			return self::get_frontend_assets( $slug, $attr, $id, 'js' );
 		}
 
 		/**
@@ -129,47 +123,46 @@ if (!class_exists('UAGB_Block_Module')) {
 		 * @param string $type Asset Type.
 		 * @return array
 		 */
-		public static function get_frontend_assets($slug, $attr, $id, $type = 'css')
-		{
+		public static function get_frontend_assets( $slug, $attr, $id, $type = 'css' ) {
 
 			$assets = array();
 
-			if ('js' === $type) {
+			if ( 'js' === $type ) {
 				$assets = '';
 			}
 
 			$blocks_info = self::get_blocks_info();
 
-			if (!isset($blocks_info['uagb/' . $slug]) || !isset($blocks_info['uagb/' . $slug]['dynamic_assets'])) {
+			if ( ! isset( $blocks_info[ 'uagb/' . $slug ] ) || ! isset( $blocks_info[ 'uagb/' . $slug ]['dynamic_assets'] ) ) {
 				return $assets;
 			}
 
 			$blocks = array(
-				$slug => $blocks_info['uagb/' . $slug]['dynamic_assets'],
+				$slug => $blocks_info[ 'uagb/' . $slug ]['dynamic_assets'],
 			);
 
-			if (isset($blocks[$slug])) {
+			if ( isset( $blocks[ $slug ] ) ) {
 
 				$main_dir = UAGB_DIR;
 
-				if (isset($blocks[$slug]['plugin-dir'])) {
-					$main_dir = $blocks[$slug]['plugin-dir'];
+				if ( isset( $blocks[ $slug ]['plugin-dir'] ) ) {
+					$main_dir = $blocks[ $slug ]['plugin-dir'];
 				}
 
-				$block_dir = $main_dir . 'includes/blocks/' . $blocks[$slug]['dir'];
+				$block_dir = $main_dir . 'includes/blocks/' . $blocks[ $slug ]['dir'];
 
 				$assets_file = $block_dir . '/frontend.' . $type . '.php';
 
-				if (file_exists($assets_file)) {
+				if ( file_exists( $assets_file ) ) {
 
 					// Set default attributes.
 					$attr_file = $block_dir . '/attributes.php';
 
-					if (file_exists($attr_file)) {
+					if ( file_exists( $attr_file ) ) {
 
 						$default_attr = include $attr_file;
 
-						$attr = self::get_fallback_values($default_attr, $attr);
+						$attr = self::get_fallback_values( $default_attr, $attr );
 					}
 
 					// Get Assets.
@@ -187,9 +180,7 @@ if (!class_exists('UAGB_Block_Module')) {
 		 *
 		 * @return array The Widget List.
 		 */
-		public static function get_blocks_info()
-		{
-
+		public static function get_blocks_info() {
 			return uagb_block()->get_blocks();
 		}
 
@@ -200,22 +191,20 @@ if (!class_exists('UAGB_Block_Module')) {
 		 *
 		 * @return array The Asset List.
 		 */
-		public static function get_block_dependencies()
-		{
-
+		public static function get_block_dependencies() {
 			$blocks = UAGB_Admin_Helper::get_block_options();
 
-			if (null === self::$block_assets) {
+			if ( null === self::$block_assets ) {
 				self::$block_assets = array(
 					// Lib.
 					'uagb-imagesloaded' => array(
 						'src'  => UAGB_URL . 'assets/js/imagesloaded.min.js',
-						'dep'  => array('jquery'),
+						'dep'  => array( 'jquery' ),
 						'type' => 'js',
 					),
 					'uagb-slick-js'     => array(
 						'src'  => UAGB_URL . 'assets/js/slick.min.js',
-						'dep'  => array('jquery'),
+						'dep'  => array( 'jquery' ),
 						'type' => 'js',
 					),
 					'uagb-slick-css'    => array(
@@ -225,12 +214,12 @@ if (!class_exists('UAGB_Block_Module')) {
 					),
 					'uagb-masonry'      => array(
 						'src'  => UAGB_URL . 'assets/js/isotope.min.js',
-						'dep'  => array('jquery'),
+						'dep'  => array( 'jquery' ),
 						'type' => 'js',
 					),
 					'uagb-cookie-lib'   => array(
 						'src'        => UAGB_URL . 'assets/js/js_cookie.min.js',
-						'dep'        => array('jquery'),
+						'dep'        => array( 'jquery' ),
 						'skipEditor' => true,
 						'type'       => 'js',
 					),
@@ -259,7 +248,7 @@ if (!class_exists('UAGB_Block_Module')) {
 				);
 			}
 
-			return apply_filters('uag_register_block_static_dependencies', self::$block_assets);
+			return apply_filters( 'uag_register_block_static_dependencies', self::$block_assets );
 		}
 
 		/**
@@ -270,12 +259,11 @@ if (!class_exists('UAGB_Block_Module')) {
 		 * @return array
 		 * @since X.X.X
 		 */
-		public static function get_fallback_values($default_attr, $attr)
-		{
-			foreach ($default_attr as $key => $value) {
+		public static function get_fallback_values( $default_attr, $attr ) {
+			foreach ( $default_attr as $key => $value ) {
 				// sets default value if key is not available in database.
-				if (!isset($attr[$key])) {
-					$attr[$key] = $value;
+				if ( ! isset( $attr[ $key ] ) ) {
+					$attr[ $key ] = $value;
 				}
 			}
 
