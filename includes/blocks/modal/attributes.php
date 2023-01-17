@@ -27,6 +27,11 @@ $content_border_attributes = UAGB_Block_Helper::uag_generate_border_attribute(
 	)
 );
 
+$additional_attributes = apply_filters(
+	'spectra/uagb/modal/attributes',
+	array()
+);
+
 return array_merge(
 	array(
 		'modalTrigger'                => 'button',
@@ -186,6 +191,7 @@ return array_merge(
 		'yPositionType'               => 'px',
 		'yPositionTypeTablet'         => 'px',
 		'yPositionTypeMobile'         => 'px',
+		'setCookiesOn'                => 'close-action',
 	),
 	$btn_border_attributes,
 	array(
@@ -200,5 +206,6 @@ return array_merge(
 		'contentBorderTopRightRadius'    => 3,
 		'contentBorderBottomLeftRadius'  => 3,
 		'contentBorderBottomRightRadius' => 3,
-	)
+	),
+	$additional_attributes
 );
