@@ -28,6 +28,7 @@ const Render = ( props ) => {
 	// Setup the attributes.
 	const {
 		icon,
+		iconSvg,
 		iconimgPosition,
 		source_type,
 		seperatorPosition,
@@ -44,6 +45,8 @@ const Render = ( props ) => {
 	// Get icon/Image components.
 	let isImage = '';
 	if ( source_type === 'icon' && icon !== '' ) {
+		isImage = <Icon attributes={ attributes } setAttributes={ setAttributes }/>;
+	} else if ( source_type === 'svg' && iconSvg !== '' ) {
 		isImage = <Icon attributes={ attributes } setAttributes={ setAttributes }/>;
 	} else {
 		isImage = <InfoBoxIconImage attributes={ attributes } />;

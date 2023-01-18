@@ -59,7 +59,6 @@ const UAGMediaPicker = ( props ) => {
 				'Change SVG',
 				'ultimate-addons-for-gutenberg'
 			);
-			placeholderIcon = UAGB_Block_Icons.lottie;
 			break;
 		default:
 			selectMediaLabel = __(
@@ -143,10 +142,6 @@ const UAGMediaPicker = ( props ) => {
 			case '3g2':
 				mediaURL = '';
 				break;
-			// For SVG Files.
-			case 'svg':
-				mediaURL = '';
-				break;
 		}
 		return mediaURL;
 	}
@@ -164,14 +159,19 @@ const UAGMediaPicker = ( props ) => {
 						<div
 							className="spectra-media-control__wrapper"
 							style={ {
-								backgroundImage: ( ! placeholderIcon && backgroundImage?.url ) && (
+								backgroundImage: ( ! placeholderIcon && backgroundImage?.url && ! backgroundImage?.svg ) && (
 									`url("${ generateBackground( backgroundImage?.url ) }")`
 								),
+								backgroundSize: 'contain',
 							} }
 						>
 							{ ( placeholderIcon && backgroundImage?.url ) && (
 								<div className="spectra-media-control__icon spectra-media-control__icon--stroke">
 									{ placeholderIcon }
+								</div>
+							) }
+							{ ( backgroundImage?.svg ) && (
+								<div className="spectra-media-control__icon spectra-media-control__icon--stroke" dangerouslySetInnerHTML={ { __html:backgroundImage.svg } }>
 								</div>
 							) }
 							<MediaUpload

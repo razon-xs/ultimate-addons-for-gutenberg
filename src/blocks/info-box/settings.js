@@ -97,6 +97,7 @@ const Settings = ( props ) => {
 		subHeadLoadGoogleFonts,
 		separatorWidthType,
 		icon,
+		iconSvg,
 		iconColor,
 		iconSize,
 		iconSizeType,
@@ -322,7 +323,12 @@ const Settings = ( props ) => {
 			const new_img = getImageSize( media.sizes );
 			imageSizeOptions = new_img;
 		}
-		setAttributes( { iconImage: media } );
+		if( 'svg' === source_type ) {
+			setAttributes( { iconSvg: media } );
+		} else {
+			setAttributes( { iconImage: media } );
+		}
+
 	};
 
 	/*
@@ -567,6 +573,13 @@ const Settings = ( props ) => {
 							),
 						},
 						{
+							value: 'svg',
+							label: __(
+								'Custom SVG',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
 							value: 'image',
 							label: __(
 								'Image',
@@ -588,6 +601,18 @@ const Settings = ( props ) => {
 							onChange={ ( value ) =>
 								setAttributes( { icon: value } )
 							}
+						/>
+					</>
+				) }
+				{ false !== showIcon && source_type === 'svg' && (
+					<>
+						<UAGMediaPicker
+							onSelectImage={ onSelectImage }
+							backgroundImage={ iconSvg }
+							onRemoveImage={ onRemoveImage }
+							label = { __( 'Custom SVG', 'ultimate-addons-for-gutenberg' ) }
+							allow = { 'image/svg+xml' }
+							slug= 'svg'
 						/>
 					</>
 				) }
