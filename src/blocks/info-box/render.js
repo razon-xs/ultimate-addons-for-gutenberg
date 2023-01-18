@@ -47,7 +47,7 @@ const Render = ( props ) => {
 	if ( source_type === 'icon' && icon !== '' ) {
 		isImage = <Icon attributes={ attributes } setAttributes={ setAttributes }/>;
 	} else if ( source_type === 'svg' && iconSvg !== '' ) {
-		isImage = <Icon attributes={ attributes } setAttributes={ setAttributes }/>;
+		isImage = <div className='uagb-ifb-icon-wrap' dangerouslySetInnerHTML={ { __html:iconSvg.svg}}></div>;
 	} else {
 		isImage = <InfoBoxIconImage attributes={ attributes } />;
 	}

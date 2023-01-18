@@ -162,7 +162,6 @@ const UAGMediaPicker = ( props ) => {
 								backgroundImage: ( ! placeholderIcon && backgroundImage?.url && ! backgroundImage?.svg ) && (
 									`url("${ generateBackground( backgroundImage?.url ) }")`
 								),
-								backgroundSize: 'contain',
 							} }
 						>
 							{ ( placeholderIcon && backgroundImage?.url ) && (

@@ -1078,10 +1078,10 @@ const Settings = ( props ) => {
 	const styleSettings = () => {
 		return (
 			<>
-				{ ( ( false !== showIcon && source_type !== 'icon' && iconImage && iconImage.url !== 'null' && iconImage.url !== '' ) || ( false !== showIcon && source_type === 'icon' && '' !== icon ) ) && (
+				{ ( ( false !== showIcon && source_type !== 'icon' && iconImage && iconImage.url !== 'null' && iconImage.url !== '' ) || ( false !== showIcon && ( source_type === 'icon' || source_type === 'svg' ) && '' !== icon ) ) && (
 					<UAGAdvancedPanelBody title="Icon/Image" initialOpen={ true }>
 						<>
-							{ source_type === 'icon' && (
+							{ ( source_type === 'icon' || source_type === 'svg' ) && (
 								<>
 									<UAGSelectControl
 										label={ __(
