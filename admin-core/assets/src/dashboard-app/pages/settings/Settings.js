@@ -26,6 +26,7 @@ import AutoBlockRecovery from '@DashboardApp/pages/settings/AutoBlockRecovery';
 import ContainerGlobalPadding from '@DashboardApp/pages/settings/ContainerGlobalPadding';
 import ContainerGlobalElementsGap from '@DashboardApp/pages/settings/ContainerGlobalElementsGap';
 import MyAccount from '@DashboardApp/pages/settings/MyAccount';
+import InstagramUsers from '@DashboardApp/pages/settings/block-settings/InstagramUsers';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import{ useEffect } from 'react';
 
@@ -35,7 +36,6 @@ function classNames( ...classes ) {
 }
 
 const Settings = () => {
-
 
 	const query = new URLSearchParams( useLocation()?.search );
 	const dispatch = useDispatch();
@@ -157,7 +157,10 @@ const Settings = () => {
 							<>
 								{
 									uag_react.spectra_pro_status && (
-										<Login />
+										<>
+											<InstagramUsers/>
+											<Login />
+										</>
 									)
 								}
 								<BlockSettings/>

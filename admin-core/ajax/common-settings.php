@@ -82,6 +82,8 @@ class Common_Settings extends Ajax_Base {
 			'auto_block_recovery',
 			'enable_legacy_blocks',
 			'pro_activate',
+			'insta_linked_accounts',
+			'insta_all_users_media',
 		);
 
 		$this->init_ajax_events( $ajax_events );
@@ -1284,5 +1286,63 @@ class Common_Settings extends Ajax_Base {
 		);
 		wp_send_json_success( $response_data );
 
+	}
+	
+	/**
+	 * Save settings.
+	 *
+	 * @return void
+	 */
+	public function insta_linked_accounts() {
+		$response_data = array( 'messsage' => $this->get_error_msg( 'permission' ) );
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( $response_data );
+		}
+		/**
+		 * Nonce verification
+		 */
+		if ( ! check_ajax_referer( 'uag_insta_linked_accounts', 'security', false ) ) {
+			$response_data = array( 'messsage' => $this->get_error_msg( 'nonce' ) );
+			wp_send_json_error( $response_data );
+		}
+		if ( empty( $_POST ) ) {
+			$response_data = array( 'messsage' => __( 'No post data found!', 'ultimate-addons-for-gutenberg' ) );
+			wp_send_json_error( $response_data );
+		}
+		$value = isset( $_POST['value'] ) ? json_decode( stripslashes( $_POST['value'] ), true ) : array(); // phpcs:ignore
+		\UAGB_Admin_Helper::update_admin_settings_option( 'uag_insta_linked_accounts', $this->sanitize_form_inputs( $value ) );
+		$response_data = array(
+			'messsage' => __( 'Successfully saved data!', 'ultimate-addons-for-gutenberg' ),
+		);
+		wp_send_json_success( $response_data );
+	}
+	
+	/**
+	 * Save settings.
+	 *
+	 * @return void
+	 */
+	public function insta_all_users_media() {
+		$response_data = array( 'messsage' => $this->get_error_msg( 'permission' ) );
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( $response_data );
+		}
+		/**
+		 * Nonce verification
+		 */
+		if ( ! check_ajax_referer( 'uag_insta_all_users_media', 'security', false ) ) {
+			$response_data = array( 'messsage' => $this->get_error_msg( 'nonce' ) );
+			wp_send_json_error( $response_data );
+		}
+		if ( empty( $_POST ) ) {
+			$response_data = array( 'messsage' => __( 'No post data found!', 'ultimate-addons-for-gutenberg' ) );
+			wp_send_json_error( $response_data );
+		}
+		$value = isset( $_POST['value'] ) ? json_decode( stripslashes( $_POST['value'] ), true ) : array(); // phpcs:ignore
+		\UAGB_Admin_Helper::update_admin_settings_option( 'uag_insta_all_users_media', $this->sanitize_form_inputs( $value ) );
+		$response_data = array(
+			'messsage' => __( 'Successfully saved data!', 'ultimate-addons-for-gutenberg' ),
+		);
+		wp_send_json_success( $response_data );
 	}
 }
