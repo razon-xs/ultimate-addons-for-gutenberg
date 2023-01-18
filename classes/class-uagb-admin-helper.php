@@ -447,9 +447,6 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 			else{
 				$insta_user_transients = array();		
 				// Get all users.
-				// 
-				//  NEED TO UPDATE THE uag_insta_linked_accounts option with the Expiry Update or Is Currently Active in the Refresh User Token Function.
-				// 
 				$linked_users =  self::get_admin_settings_option( 'uag_insta_linked_accounts', array() );
 				// Set all transients for new users ( if any ) and refresh expired transients.
 				foreach ( $linked_users as $user ) {
@@ -460,7 +457,7 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 
 					$curUserMedia = array();
 					$transientName = 'ig_posts_of_' . $user['userName'];
-					// delete_transient( $transientName );
+					// delete_transient( $transientName ) If Needed.
 					if ( false === ( $mediaFetched = get_transient( $transientName ) ) ){
 						$mediaFetched = wp_remote_get( 'https://graph.instagram.com/' . $user['userID'] . '/media?fields=caption,id,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=' . $user['token'] );
 						if ( ! is_wp_error( $mediaFetched ) ) {
