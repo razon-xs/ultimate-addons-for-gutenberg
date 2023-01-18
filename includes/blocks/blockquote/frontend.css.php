@@ -15,14 +15,10 @@ $tweetBtnPaddingBottom = isset( $attr['paddingBtnBottom'] ) ? $attr['paddingBtnB
 $tweetBtnPaddingLeft   = isset( $attr['paddingBtnLeft'] ) ? $attr['paddingBtnLeft'] : $attr['tweetBtnHrPadding'];
 $tweetBtnPaddingRight  = isset( $attr['paddingBtnRight'] ) ? $attr['paddingBtnRight'] : $attr['tweetBtnHrPadding'];
 
-$author_space        = $attr['authorSpace'];
-$author_space_tablet = $attr['authorSpaceTablet'];
-$author_space_mobile = $attr['authorSpaceMobile'];
-
 if ( 'center' !== $attr['align'] || 'border' === $attr['skinStyle'] ) {
-	$author_space        = 0;
-	$author_space_tablet = 0;
-	$author_space_mobile = 0;
+	$attr['authorSpace']       = 0;
+	$attr['authorSpaceTablet'] = 0;
+	$attr['authorSpaceMobile'] = 0;
 }
 
 // Set align to left for border style.
@@ -94,7 +90,7 @@ $selectors = array(
 
 	' .uagb-blockquote__author-wrap'                   => array(
 		'margin-bottom' => UAGB_Helper::get_css_value(
-			$author_space,
+			$attr['authorSpace'],
 			'px'
 		),
 	),
@@ -318,7 +314,7 @@ $t_selectors = array(
 	),
 	' .uagb-blockquote__author-wrap'       => array(
 		'margin-bottom' => UAGB_Helper::get_css_value(
-			$author_space_tablet,
+			$attr['authorSpaceTablet'],
 			'px'
 		),
 	),
@@ -382,7 +378,7 @@ $m_selectors = array(
 	),
 	' .uagb-blockquote__author-wrap'       => array(
 		'margin-bottom' => UAGB_Helper::get_css_value(
-			$author_space_mobile,
+			$attr['authorSpaceMobile'],
 			'px'
 		),
 	),
