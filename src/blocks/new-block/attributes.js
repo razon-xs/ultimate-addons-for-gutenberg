@@ -595,7 +595,6 @@ const attributes = {
 		UAGCopyPaste: {
 			styleType: 'text-font-size'
 		},
-		default: 14,
 	},
 	textFontSizeType: {
 		type: 'string',
@@ -609,14 +608,12 @@ const attributes = {
 		UAGCopyPaste: {
 			styleType: 'text-font-size-tablet'
 		},
-		default: 14,
 	},
 	textFontSizeMobile: {
 		type: 'number',
 		UAGCopyPaste: {
 			styleType: 'text-font-size-mobile'
 		},
-		default: 14,
 	},
 	// text Line Height
 	textLineHeightType: {
@@ -631,7 +628,6 @@ const attributes = {
 		UAGCopyPaste: {
 			styleType: 'text-line-height'
 		},
-		default: 2,
 	},
 	textLineHeightTablet: {
 		type: 'number',

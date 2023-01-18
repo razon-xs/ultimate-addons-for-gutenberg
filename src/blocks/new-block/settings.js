@@ -1,6 +1,7 @@
 import React from 'react';
 import TypographyControl from '@Components/typography';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
+import WebfontLoader from '@Components/typography/fontloader';
 
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, {
@@ -142,6 +143,23 @@ const Settings = ( props ) => {
 		textLetterSpacingType
 	} = attributes;
 	
+	let loadTextGoogleFonts;
+
+	if ( textLoadGoogleFonts === true ) {
+		const hconfig = {
+			google: {
+				families: [
+					textFontFamily +
+						( textFontWeight ? ':' + textFontWeight : '' ),
+				],
+			},
+		};
+
+		loadTextGoogleFonts = (
+			<WebfontLoader config={ hconfig }></WebfontLoader>
+		);
+	}
+
 	const generalSettings = () => {
 		return (
 			<>
@@ -228,7 +246,7 @@ const Settings = ( props ) => {
 		return (
 			<UAGAdvancedPanelBody
 				title={ __( 'Background', 'ultimate-addons-for-gutenberg' ) }
-				initialOpen={ true }
+				initialOpen={ false }
 			>
 				<Background
 					setAttributes={ setAttributes }
@@ -902,6 +920,7 @@ const Settings = ( props ) => {
 					></InspectorTab>
 				</InspectorTabs>
 			</InspectorControls>
+			{ loadTextGoogleFonts }
 		</>
 	);
 };
