@@ -510,7 +510,7 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 		}
 
 		/**
-		 * Refresh the User Token.
+		 * Refresh All Users.
 		 *
 		 * @since x.x.x
 		 * @return bool
@@ -541,45 +541,27 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 				if ( $all_users[ $i ]['userName'] !== $the_user['userName'] ) {
 					continue;
 				}
-				// $expiry = strtotime( $the_user['expiryDate'] );
-				// $today  = time();
-				// $the_gap = ceil( ( $expiry - $today ) / 86400 );
-				// if ( true ) {
-					$refresh_link = wp_remote_get( 'https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' . $the_user[ 'token' ] );
-					if ( is_wp_error( $refresh_link ) ) {
-						return;
-					}
-					$data = json_decode( $refresh_link['body'], true );
-					if ( isset( $data['error'] ) ) {
-						$all_users[ $i ]['isCurrentlyActive'] = false;
-						$user_details_updated = true;
-						break;
-					} else if ( isset( $data['expires_in'] ) ) {
-						$cur_date = date_create( date( 'Y-m-d' ) );
-						date_add( $cur_date, date_interval_create_from_date_string( $data['expires_in'] . ' seconds' ) );
-						$all_users[ $i ]['expiryDate'] = date_format( $cur_date, 'Y-m-d' );
-						$user_details_updated = true;
-						break; 
-					}
-				// }
+				$refresh_link = wp_remote_get( 'https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' . $the_user[ 'token' ] );
+				if ( is_wp_error( $refresh_link ) ) {
+					return;
+				}
+				$data = json_decode( $refresh_link['body'], true );
+				if ( isset( $data['error'] ) ) {
+					$all_users[ $i ]['isCurrentlyActive'] = false;
+					$user_details_updated = true;
+					break;
+				} else if ( isset( $data['expires_in'] ) ) {
+					$cur_date = date_create( date( 'Y-m-d' ) );
+					date_add( $cur_date, date_interval_create_from_date_string( $data['expires_in'] . ' seconds' ) );
+					$all_users[ $i ]['expiryDate'] = date_format( $cur_date, 'Y-m-d' );
+					$user_details_updated = true;
+					break; 
+				}
 			}
 			if ( $user_details_updated ) {
 				self::update_admin_settings_option( 'uag_insta_linked_accounts', $all_users );
 			}
 		}
-
-		// array(3) {
-		// 	[0] => array(7) {
-		// 		["userName"]          => string(12) "utopiancorps"
-		// 		["userID"]            => string(16) "5271535442958562"
-		// 		["userType"]          => string(8) "personal"
-		// 		["token"]             => string(143) "IGQVJYM25DLXpBaXBxNklWc2ZAFR0NJY3FmRkZACUlhFb2J6MVFVblZAOSkRmelZAqY0llbFJ5RTk3SW1fMnd0WFBNSGRzLUl0RnNzYUFwWV9kV3pJdUs4OWtrVlJPMTNqZAjAtMGsxU3hB"
-		// 		["postRefreshRate"]   => string(3) "H-1"
-		// 		["expiryDate"]        => string(9) "2023-1-23"
-		// 		["isCurrentlyActive"] => string(1) "1"
-		// 	}
-		// 	[1] => array(7) { ["userName"]=> string(19) "spectraintegrations" ["userID"]=> string(16) "6581725775187333" ["userType"]=> string(8) "personal" ["token"]=> string(145) "IGQVJYVUJaeFFIbkZA4SXBDS2ZAncWNaVFRJLXd1NER5VDBkempJZA0pvUFdkN1htSjJ1dmpiMjZACbnY3UnlTS1BpUGp0SFUtc21vZA0FIZAlU0aGd4SlN0dmwtSEtmOXBZAQWpYUEhhYlNR" ["postRefreshRate"]=> string(3) "H-1" ["expiryDate"]=> string(9) "2023-3-13" ["isCurrentlyActive"]=> string(1) "1" } [2]=> array(6) { ["userName"]=> string(12) "the_doofster" ["userID"]=> string(16) "8374478769230720" ["userType"]=> string(8) "personal" ["token"]=> string(145) "IGQVJYdE1HZA2NudDJ4Y1NnNjE1V0hSb3JjYVh5SzYzVkxYSFEzdk9ZAbVRPb3ZApbDF3T05uMmpSLXY3ZA2wyWHZAFN1hacW1JbmtZAeHdpckV6MDNLRWExOTlHamh2NXZAYRGR1TW5LOThR" ["expiryDate"]=> string(9) "2023-3-17" ["isCurrentlyActive"]=> string(1) "1" } }
-		
 	}
 
 	/**
