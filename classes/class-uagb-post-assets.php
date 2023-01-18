@@ -212,7 +212,12 @@ class UAGB_Post_Assets {
 		$this->post_id = intval( $post_id );
 
 		$this->preview = isset( $_GET['preview'] ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$spectra_gbs_google_fonts = get_option('spectra_gbs_google_fonts', array());
+		var_dump($spectra_gbs_google_fonts);
+		foreach( $spectra_gbs_google_fonts as $family ) {
 
+			UAGB_Helper::blocks_google_font( true , $family, false );
+		}
 		$this->load_uag_fonts = apply_filters( 'uagb_enqueue_google_fonts', $this->load_uag_fonts );
 
 		if ( $this->preview ) {
@@ -576,7 +581,7 @@ class UAGB_Post_Assets {
 		}
 
 		$conditional_block_css = UAGB_Block_Helper::get_condition_block_css();
-
+		
 		if ( in_array( 'uagb/masonry-gallery', $this->current_block_list, true ) ) {
 			$conditional_block_css .= UAGB_Block_Helper::get_masonry_gallery_css();
 		}

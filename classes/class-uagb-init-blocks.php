@@ -130,6 +130,16 @@ class UAGB_Init_Blocks {
 		$spectra_global_block_styles[$blockattr['globalBlockStyleId']] = $_block_css;
 
 		update_option('spectra_global_block_styles', $spectra_global_block_styles);
+		$spectra_gbs_google_fonts = get_option('spectra_gbs_google_fonts', array());
+		
+		foreach($blockattr as $name => $attribute) {
+			if ( false !== strpos( $name, 'Family' ) && '' !== $attribute )  {
+				
+				$spectra_gbs_google_fonts[] = $attribute;
+			}
+		}
+		$spectra_gbs_google_fonts = array_unique($spectra_gbs_google_fonts);
+		update_option('spectra_gbs_google_fonts', $spectra_gbs_google_fonts);
 		wp_send_json_success();
 	}
 
