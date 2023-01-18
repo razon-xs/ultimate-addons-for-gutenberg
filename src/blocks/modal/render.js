@@ -72,7 +72,8 @@ const Render = ( props ) => {
 		imgTagWidth,
 		imgTagHeight,
 		showBtnIcon,
-		defaultTemplate
+		defaultTemplate,
+		openModalAs
 	} = attributes;
 
 	const deviceType = useDeviceType();
@@ -228,7 +229,8 @@ const Render = ( props ) => {
 					className={ classnames(
 						`${ appearEffect }`,
 						'uagb-modal-popup',
-						`uagb-block-${ block_id }`
+						`uagb-block-${ block_id }`,
+						`uagb-modal-type-${openModalAs}`
 					) }
 				>
 					<div className="uagb-modal-popup-wrap">
