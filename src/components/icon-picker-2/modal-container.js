@@ -39,11 +39,6 @@ const ModalContainer = ( props ) => {
 		setSearchIconInputValue( inputValue );
 	};
 
-	/**
-	 * Pagination triggers.
-	 *
-	 * @param e
-	 */
 	// If change pagination by input number.
 	const paginationInputOnchange = ( e ) => {
 		let inputValue = e.target.value;
@@ -135,9 +130,10 @@ const ModalContainer = ( props ) => {
 		return (
 			<div className="uagb-ip-icons">
 				<div>
-					{ iconList.map( ( currentIcon ) => {
+					{ iconList.map( ( currentIcon,key ) => {
 						return (
 							<div
+                            key={key}
 								className={ `uagb-icon-item ${
 									value === currentIcon ? 'selected' : ''
 								}` }
