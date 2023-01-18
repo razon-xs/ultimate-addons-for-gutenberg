@@ -12,7 +12,7 @@ const classNames = ( ...classes ) => classes.filter( Boolean ).join( ' ' );
 const InstagramUsers = () => {
 
 	// Refresh all Linked Accounts.
-	uag_react.insta_refresh_users;
+	const refreshAllTokens = () => uag_react.insta_refresh_users;
 
 	// Constants Required for the API Fetch.
 	const SPECTRA_AUTH_ROOT = 'https://wpspectra.com';
@@ -376,7 +376,7 @@ const InstagramUsers = () => {
 						'text-xs',
 						user.isCurrentlyActive ? 'text-slate-400' : 'text-red-600',
 					) }>
-						{ user.isCurrentlyActive ? getAccountType( user.userType ) : __( 'Deactivated', 'ultimate-addons-for-gutenberg' ) }
+						{ user.isCurrentlyActive ? getAccountType( user.userType ) : __( 'Disabled', 'ultimate-addons-for-gutenberg' ) }
 					</div>
 				</div>
 			</div>
@@ -396,10 +396,10 @@ const InstagramUsers = () => {
 		return renderedUsers;
 	};
 
-	// Render the Deactivated Account Helper
+	// Render the Disabled Account Helper
 	const renderDeactivatedAccountMessage = () => {
 		let atLeastOneDeactivated = false;
-		for ( let user in instaLinkedAccounts ) {
+		for ( const user in instaLinkedAccounts ) {
 			if ( instaLinkedAccounts[ user ].isCurrentlyActive ) {
 				continue;
 			}
@@ -409,7 +409,7 @@ const InstagramUsers = () => {
 		return atLeastOneDeactivated ? (
 			<>
 				<p className="text-sm text-red-600">
-					{ __( 'It looks like one or more accounts have been deactivated due to security reasons. Here are some of them:', 'ultimate-addons-for-gutenberg' ) }
+					{ __( 'It looks like one or more accounts have been disabled due to security reasons. Here are some of them:', 'ultimate-addons-for-gutenberg' ) }
 				</p>
 				<p className="text-sm text-red-600 pl-2">{ __( '1. The Instagram Account password was changed.', 'ultimate-addons-for-gutenberg' ) }</p>
 				<p className="text-sm text-red-600 pl-2">{ __( '2. The Instagram Account was made private.', 'ultimate-addons-for-gutenberg' ) }</p>
@@ -458,6 +458,7 @@ const InstagramUsers = () => {
 
 	return (
 		<>
+			{ refreshAllTokens }
 			<section className="block border-b border-solid border-slate-200 px-12 py-8 justify-between">  
 				<div className="mr-16 w-full flex items-center">
 					<h3 className="p-0 flex-1 justify-right inline-flex text-lg leading-8 font-medium text-gray-900">
