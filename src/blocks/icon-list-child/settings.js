@@ -323,7 +323,7 @@ const Settings = ( props ) => {
 							) }
 							value={ icon }
 							onChange={ ( value ) =>{
-								console.log('value',value);
+								setAttributes( { icon: value } )
 							}
 							}
 						/>

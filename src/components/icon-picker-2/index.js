@@ -1,15 +1,10 @@
-import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
-import { Button, Modal } from '@wordpress/components';
 import { useLayoutEffect, useState } from '@wordpress/element';
 import styles from './editor.lazy.scss';
 import renderSVG from '@Controls/renderIcon';
 import { __ } from '@wordpress/i18n';
+import ModalContainer from './modal-container';
 
 const UAGIconPicker = ( props ) => {
-	// console.log( 'props', props );
-	// console.log( 'icons ', wp.UAGBSvgIcons );
-	// console.log( 'icons 2 ', uagb_blocks_info );
-
 	// Add and remove the CSS on the drop and remove of the component.
 	useLayoutEffect( () => {
 		styles.use();
@@ -18,48 +13,54 @@ const UAGIconPicker = ( props ) => {
 		};
 	}, [] );
 
+	const { label, value, onChange } = props;
+	// For modal.
 	const [ isOpen, setOpen ] = useState( false );
+
 	const openModal = () => setOpen( true );
 	const closeModal = () => setOpen( false );
 
-	return (
-		<div className="uag-custom-icon-picker">
-			<div className="uag-icon-picker-placeholder-wrap">
-				<div>
-					<div className="uag-icon-picker-remove-icon">X</div>
-					<div className="uag-icon-picker-selected-icon">
-						<div>@</div>
-					</div>
-					<div className="uag-icon-picker-actions">
-						<p>Change Icon</p>
-					</div>
-				</div>
-			</div>
-			<Button variant="secondary" onClick={ openModal }>
-				Open Modal
-			</Button>
-			{ isOpen && (
-				<Modal
-					title="Select Icon"
-					className="uagb-icon-picker-modal-wrapper"
-					onRequestClose={ closeModal }
+	const isIconAvailable = value && '' !== value;
+
+	// Modal placeholder.
+	const modalPlaceHolder = (
+		<div className={ `uag-ip-placeholder-wrap` }>
+			{ /* If icon available then show remove button. */ }
+			{ isIconAvailable && (
+				<div
+					className="uag-ip-remove-icon"
+					onClick={ () => {
+						onChange( '' );
+					} }
 				>
-					<div className="uagb-icon-picker-modal-container">
-						<div className="uagb-icon-picker-search-bar">
-							<input
-								type="text"
-								placeholder={ __(
-									'Search Icon',
-									'ultimate-addons-for-gutenberg'
-								) }
-							/>
-						</div>
-						<div className="uagb-icon-picker-icons">
-							<div>icon container</div>
-						</div>
-					</div>
-				</Modal>
+					{ renderSVG( 'xmark' ) }
+				</div>
 			) }
+
+			<div className="uag-ip-selected-icon" onClick={ openModal }>
+				<div className="uag-ip-selected-icon-overlay">
+					{ ! isIconAvailable && renderSVG( 'plus' ) }
+				</div>
+				{ isIconAvailable && (
+					<div className="uag-ip-selected-icon-value">
+						{ renderSVG( value ) }
+					</div>
+				) }
+			</div>
+			<div className="uag-ip-actions">
+				<span onClick={ openModal }>
+					{ __( 'Change Icon', 'ultimate-addons-for-gutenberg' ) }
+				</span>
+			</div>
+		</div>
+	);
+	return (
+		<div className="uag-custom-ip">
+			<span className="uag-control-label">
+				{ label || __( 'Icon', 'ultimate-addons-for-gutenberg' ) }
+			</span>
+			{ modalPlaceHolder }
+			{ isOpen && <ModalContainer { ...{ ...props, closeModal } } /> }
 		</div>
 	);
 };
