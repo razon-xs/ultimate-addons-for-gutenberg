@@ -36,12 +36,6 @@ const UAGBAdvancedHeading = (props) => {
 		initBlockId(props, { classMigrate: true });
 	}, []);
 
-	// otter method
-	// useEffect(() => {
-	// 	const unsubscribe = blockInit(clientId, defaultAttributes);
-	// 	return () => unsubscribe(attributes.id);
-	// }, [block_id]);
-
 	useEffect(() => {
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling(props);

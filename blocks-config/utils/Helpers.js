@@ -37,8 +37,10 @@ export function initBlockId(props, initialAttr = false) {
 		clientId,
 		isSelected,
 	} = props;
+
 	console.log('props', props);
 	// console.log('uniq 12 - ', uagb_blocks_info.unique_blocks);
+
 	let updateAttribute = false;
 	if (block_id) {
 		if (isSelected && uagb_blocks_info.unique_blocks.includes(block_id)) {
