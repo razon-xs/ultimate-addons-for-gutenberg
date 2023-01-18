@@ -239,8 +239,8 @@ const Settings = ( props ) => {
 		headMobileSpace,
 		headMarginLeftMobile,
 		headSpaceUnit,
-		headMobilePaddingUnit,
-		headTabletPaddingUnit,
+		headMobileMarginUnit,
+		headTabletMarginUnit,
 		spacingHeadLink,
 
 		separatorTopMargin,
@@ -1858,12 +1858,12 @@ const Settings = ( props ) => {
 								label: 'headSpaceUnit',
 							} }
 							mUnit={ {
-								value: headMobilePaddingUnit,
-								label: 'headMobilePaddingUnit',
+								value: headMobileMarginUnit,
+								label: 'headMobileMarginUnit',
 							} }
 							tUnit={ {
-								value: headTabletPaddingUnit,
-								label: 'headTabletPaddingUnit',
+								value: headTabletMarginUnit,
+								label: 'headTabletMarginUnit',
 							} }
 							deviceType={ deviceType }
 							attributes={ attributes }
