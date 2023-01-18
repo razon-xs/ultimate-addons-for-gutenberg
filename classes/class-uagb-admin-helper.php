@@ -457,6 +457,7 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 						continue;
 					}
 					self::refreshUserToken( $user );
+
 					$curUserMedia = array();
 					$transientName = 'ig_posts_of_' . $user['userName'];
 					// delete_transient( $transientName );
@@ -530,7 +531,7 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 		 * Refresh the User Token.
 		 *
 		 * @since x.x.x
-		 * @param array $the_user   the User Object.
+		 * @param array $the_user  the User Object.
 		 * @access private
 		 */
 		private static function refreshUserToken( $the_user ) {
@@ -548,7 +549,7 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 				// $the_gap = ceil( ( $expiry - $today ) / 86400 );
 				// if ( true ) {
 					$refresh_link = wp_remote_get( 'https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' . $the_user[ 'token' ] );
-					if ( ! isset( $refresh_link['body'] ) ) {
+					if ( is_wp_error( $refresh_link ) ) {
 						return;
 					}
 					$data = json_decode( $refresh_link['body'], true );
