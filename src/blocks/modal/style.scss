@@ -309,6 +309,7 @@ div.uagb-spectra-button-wrapper {
 }
 
 .uagb-modal-position-top-left {
+
 	&.active {
 		align-items: flex-start;
 		justify-content: flex-start;
@@ -326,6 +327,7 @@ div.uagb-spectra-button-wrapper {
 }
 
 .uagb-modal-position-top-right {
+
 	&.active {
 		align-items: flex-start;
 		justify-content: flex-end;
@@ -343,6 +345,7 @@ div.uagb-spectra-button-wrapper {
 }
 
 .uagb-modal-position-bottom-left {
+
 	&.active {
 		align-items: flex-end;
 		justify-content: flex-start;
@@ -354,12 +357,13 @@ div.uagb-spectra-button-wrapper {
 }
 
 .uagb-modal-position-bottom-right {
+
 	&.active {
 		align-items: flex-end;
 		justify-content: flex-end;
 
 		.uagb-modal-popup-close {
-			right: 600px!important;
+			right: 600px !important;
 		}
 	}
 }
