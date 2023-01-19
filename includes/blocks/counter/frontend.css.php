@@ -10,8 +10,6 @@
 // Add fonts.
 UAGB_Block_JS::blocks_counter_gfont( $attr );
 
-$block_name = 'counter';
-
 $attr['prefixRightDistanceTablet'] = is_numeric( $attr['prefixRightDistanceTablet'] ) ? $attr['prefixRightDistanceTablet'] : $attr['prefixRightDistance'];
 $attr['prefixRightDistanceMobile'] = is_numeric( $attr['prefixRightDistanceMobile'] ) ? $attr['prefixRightDistanceMobile'] : $attr['prefixRightDistanceTablet'];
 
