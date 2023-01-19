@@ -140,7 +140,7 @@ const InstagramUsers = () => {
 				userType: authData.type.replace( 'instagram', '' ).toLowerCase(),
 				token: authData.token,
 				expiryDate:  setExpiryDate( expiryDate ),
-				isCurrentlyActive: true,
+				isCurrentlyActive: 'new',
 			} );
 			dispatch( { type: 'UPDATE_INSTA_LINKED_ACCOUNTS', payload: tempUserMatrix } );
 			const action = 'uag_insta_linked_accounts';
@@ -230,7 +230,7 @@ const InstagramUsers = () => {
 				userType: 'personal',
 				token: tempToken,
 				expiryDate: setExpiryDate( expiryDate ),
-				isCurrentlyActive: true,
+				isCurrentlyActive: 'new',
 			} );
 			dispatch( { type: 'UPDATE_INSTA_LINKED_ACCOUNTS', payload: tempUserMatrix } );
 			const action = 'uag_insta_linked_accounts';

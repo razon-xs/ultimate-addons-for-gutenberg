@@ -430,9 +430,13 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 				if( ! $cur_user ){
 					return;
 				}
+				// If the user is newly linked, delete their previous transient if any.
+				if ( 'new' === $cur_user['isCurrentlyActive'] ) {
+					delete_transient( 'spectra_ig_posts_of_' . $cur_user['userName'] );
+				}
 				self::refreshUserToken( $cur_user );
 				$curUserMedia = array();
-				$transientName = 'ig_posts_of_' . $cur_user['userName'];
+				$transientName = 'spectra_ig_posts_of_' . $cur_user['userName'];
 				if ( false === ( $mediaFetched = get_transient( $transientName ) ) ){
 					$mediaFetched = wp_remote_get( 'https://graph.instagram.com/' . $cur_user['userID'] . '/media?fields=caption,id,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=' . $cur_user['token'] );
 					if ( ! is_wp_error( $mediaFetched ) ) {
@@ -453,11 +457,14 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 					if ( ! $user['isCurrentlyActive'] ){
 						continue;
 					}
+					// If the user is newly linked, delete their previous transient if any.
+					if ( 'new' === $user['isCurrentlyActive'] ) {
+						delete_transient( 'spectra_ig_posts_of_' . $user['userName'] );
+					}
 					self::refreshUserToken( $user );
 
 					$curUserMedia = array();
-					$transientName = 'ig_posts_of_' . $user['userName'];
-					// delete_transient( $transientName ) If Needed.
+					$transientName = 'spectra_ig_posts_of_' . $user['userName'];
 					if ( false === ( $mediaFetched = get_transient( $transientName ) ) ){
 						$mediaFetched = wp_remote_get( 'https://graph.instagram.com/' . $user['userID'] . '/media?fields=caption,id,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=' . $user['token'] );
 						if ( ! is_wp_error( $mediaFetched ) ) {
@@ -540,6 +547,10 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 			for ( $i = 0; $i < count( $all_users ); $i++ ) {
 				if ( $all_users[ $i ]['userName'] !== $the_user['userName'] ) {
 					continue;
+				}
+				if ( 'new' === $the_user['isCurrentlyActive'] ) {
+					$all_users[ $i ]['isCurrentlyActive'] = true;
+					$user_details_updated = true;
 				}
 				$refresh_link = wp_remote_get( 'https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' . $the_user[ 'token' ] );
 				if ( is_wp_error( $refresh_link ) ) {
