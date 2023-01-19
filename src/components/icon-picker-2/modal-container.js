@@ -23,6 +23,7 @@ const ModalContainer = ( props ) => {
 		setCurrentIconPage( 1 );
 		setIconList( icons.slice( 0, numberOfIconsPerPage ) );
 	};
+
 	// Search from input icon.
 	const searchIcon = ( e ) => {
 		const inputValue = e.target.value.trim().toLowerCase();
@@ -90,7 +91,6 @@ const ModalContainer = ( props ) => {
 			return;
 		}
 		setCurrentIconPage( ( prevState ) => {
-			// debugger;
 			const nextPage = prevState + 1;
 			const findNextPage = numberOfIconsPerPage * ( nextPage - 1 ) + 1;
 			setStateForNextPrev( findNextPage );

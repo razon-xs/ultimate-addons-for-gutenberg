@@ -14,6 +14,7 @@ const UAGIconPicker = ( props ) => {
 	}, [] );
 
 	const { label, value, onChange } = props;
+	
 	// For modal.
 	const [ isOpen, setOpen ] = useState( false );
 
