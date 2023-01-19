@@ -1,0 +1,23 @@
+.uagb-countdown__datetime-picker {
+
+	// Hide timezone since this is UTC timer.
+	.components-datetime__timezone {
+		display: none;
+	}
+
+	h3.components-heading {
+		margin-bottom: unset;
+	}
+
+	// Help note.
+	.components-datetime__calendar-help {
+
+		.components-heading {
+			margin-bottom: 1.5em;
+		}
+
+		ul:not(:last-child) {
+			margin-bottom: 1.5em;
+		}
+	}
+}

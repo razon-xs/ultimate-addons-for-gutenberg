@@ -50,6 +50,7 @@ import imageAttribute from '@Blocks/image/attributes';
 import modalAttribute from '@Blocks/modal/attributes';
 import counterAttribute from '@Blocks/counter/attributes';
 import imageGalleryAttribute from '@Blocks/image-gallery/attributes';
+import countdownAttribute from '@Blocks/countdown/attributes';
 
 export const blocksAttributes = {
 	'advanced-heading' : advancedHeadingAttribute,
@@ -104,4 +105,5 @@ export const blocksAttributes = {
 	'modal': modalAttribute,
 	'counter': counterAttribute,
 	'image-gallery': imageGalleryAttribute,
+	'countdown': countdownAttribute,
 };

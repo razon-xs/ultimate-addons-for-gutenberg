@@ -1,0 +1,74 @@
+.wp-block-uagb-countdown {
+
+	display: flex;
+	justify-content: center;
+	text-align: center;
+
+	&__box {
+		position: relative;  // Helps to position separators.
+		width: fit-content;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__time {
+		font-size: 52px;
+
+		@media (max-width: 976px) {
+			font-size: 32px;
+		}
+	}
+
+	&__label {
+		font-size: 18px;
+
+		@media (max-width: 976px) {
+			font-size: 12px;
+		}
+	}
+
+}
+
+html:not([dir="rtl"]) {
+
+	.wp-block-uagb-countdown {
+
+		&__box {
+
+			&:not(:last-child) {
+				margin-right: 38px;
+
+				.wp-block-uagb-countdown__time::after {
+					position: absolute;
+					right: 0;
+				}
+			}
+		}
+	}
+}
+
+html[dir="rtl"] {
+
+	.wp-block-uagb-countdown {
+
+		&__box {
+
+			&:not(:first-child) {
+				margin-right: 38px;
+
+				.wp-block-uagb-countdown__time::before {
+					position: absolute;
+					right: 0;
+				}
+			}
+		}
+	}
+}
+
+// These fixes are specific to the Astra theme.
+body[class*="astra"] {
+
+	.wp-block-uagb-countdown {
+		line-height: normal;
+	}
+}

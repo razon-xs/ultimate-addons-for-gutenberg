@@ -170,7 +170,8 @@ The awesome React FontIconPicker is developed by [Alessandro Benoit](http://code
 
 ## Changelog ##
 
-### 2.3.1 ###
+### 2.4.0 ###
+* New: Introducing the Countdown block that will help you generate hype and create a sense of urgency among your audience, during product sales or releases!
 * Improvement: Modal - Added presets for a button trigger.
 * Fix: Info-Box - Margin unit set to `px` after refresh in editor.
 * Fix: Gradient Picker - block encounter an error when using gradient picker for Spectra block when Gutenberg is activated.
