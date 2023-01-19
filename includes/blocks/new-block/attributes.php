@@ -129,6 +129,8 @@ return array_merge(
 		'textLetterSpacingTablet'     => '',
 		'textLetterSpacingMobile'     => '',
 		'textLetterSpacingType'       => 'px',
+		'textTransform' => '',
+		'textDecoration' => ''
 	),
 	$border_attribute
 );

@@ -667,6 +667,20 @@ const attributes = {
 			styleType: 'text-letter-spacing-type'
 		}
 	},
+	textDecoration: {
+		type: 'string',
+		default: '',
+		UAGCopyPaste: {
+			styleType: 'text-decoration'
+		}
+	},
+	textTransform: {
+		type: 'string',
+		default: '',
+		UAGCopyPaste: {
+			styleType: 'text-transform'
+		}
+	},
 	color: {
 		type: 'string',
 		UAGCopyPaste: {
