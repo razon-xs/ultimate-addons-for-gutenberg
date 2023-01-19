@@ -6,6 +6,7 @@
  *
  * @package uagb
  */
+
 UAGB_Block_JS::blocks_new_block_gfont( $attr );
 $block_name               = 'new-block';
 $border_css               = UAGB_Block_Helper::uag_generate_border_css( $attr, 'block' );
