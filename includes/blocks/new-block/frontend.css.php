@@ -6,7 +6,7 @@
  *
  * @package uagb
  */
-
+UAGB_Block_JS::blocks_new_block_gfont( $attr );
 $block_name               = 'new-block';
 $border_css               = UAGB_Block_Helper::uag_generate_border_css( $attr, 'block' );
 $border_css_tablet        = UAGB_Block_Helper::uag_generate_border_css( $attr, 'block', 'tablet' );
@@ -268,5 +268,5 @@ $combined_selectors = array(
 
 $combined_selectors = UAGB_Helper::get_typography_css( $attr, 'text', '.uagb-info-box__wrap', $combined_selectors );
 
-$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'text', '.uagb-info-box__wrap :is(h1, h2, h3, h4, h5, h6, span)', $combined_selectors );
+$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'text', '.uagb-info-box__wrap .uagb-heading-text', $combined_selectors );
 return UAGB_Helper::generate_all_css( $combined_selectors, '.uagb-block-' . $id );
