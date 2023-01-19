@@ -1,4 +1,6 @@
 // Custom icon picker
+@import "../../styles/variables";
+
 .uag-custom-ip {
 
 	.uag-control-label {
@@ -11,9 +13,9 @@
 		max-width: 100%;
 		min-height: 96px;
 		display: flex;
-		background-color: #fefefe;
-		border: 1px solid #e6e7e9;
-		border-radius: 3px;
+		background-color: $spectra-color-plain-background;
+		border: 1px solid $spectra-color-border;
+		border-radius: $spectra-control-border-radius;
 		position: relative;
 		overflow: hidden;
 		// On wrapper hover functionality.
@@ -26,10 +28,10 @@
 
 		.uag-ip-remove-icon > svg,
 		.uag-ip-selected-icon-overlay > svg {
-			fill: #fff;
+			fill: $spectra-color-plain-background;
 			width: 18px;
 			height: 18px;
-			background-color: #ccc;
+			background-color: $spectra-color-icon-disabled;
 			padding: 2.4px;
 			border-radius: 50%;
 		}
@@ -76,7 +78,7 @@
 			> svg {
 				height: 30px;
 				width: 30px;
-				fill: #50575e;
+				fill: $spectra-color-body;
 			}
 		}
 
@@ -90,13 +92,13 @@
 			transition: 0.2s all ease-in-out;
 
 			> span {
-				background-color: #f0f0f1;
+				background-color: $spectra-color-light-background;
 				flex: 1;
 				font-size: 13px;
 				font-weight: 400;
 				text-align: center;
 				line-height: 24px;
-				color: #50575e;
+				color: $spectra-color-body;
 				cursor: pointer;
 			}
 		}
@@ -106,6 +108,7 @@
 .components-modal__frame.uagb-ip-modal-wrapper {
 	width: 766px;
 	height: 566px;
+	max-height: 80%;
 
 	.components-modal__content {
 		padding: 0;
@@ -127,11 +130,10 @@
 
 	.uagb-ip-modal-container {
 		height: 100%;
-		padding: 30px 18px;
+		padding: $spectra-popup-vertical-gap 18px 0 18px;
 	}
 	// Search bar.
 	.uagb-ip-search-container {
-		margin-bottom: 30px;
 		display: flex;
 		grid-gap: 16px;
 
@@ -139,10 +141,10 @@
 			width: 72%;
 
 			input {
-				height: 30px;
+				height: $spectra-control-input-height;
 				width: 100%;
-				padding: 7px 12px;
-				border: 1px solid #e6e7e9;
+				padding: $spectra-control-input-padding;
+				border: 1px solid $spectra-color-border;
 				margin: 0;
 			}
 		}
@@ -161,9 +163,9 @@
 			input {
 				width: 60px;
 				line-height: 1;
-				height: 30px;
-				padding: 7px 12px;
-				border: 1px solid #e6e7e9;
+				height: $spectra-control-input-height;
+				padding: $spectra-control-input-padding;
+				border: 1px solid $spectra-color-border;
 				margin: 0;
 			}
 
@@ -200,14 +202,15 @@
 			display: flex;
 			flex-wrap: wrap;
 			grid-gap: 10px;
+			padding: $spectra-popup-vertical-gap 0;
 		}
 
 		.uagb-icon-item {
 			width: 56px;
 			height: 56px;
-			background-color: #fff;
-			border: 1px solid #e6e7e9;
-			border-radius: 3px;
+			background-color: $spectra-color-plain-background;
+			border: 1px solid $spectra-color-border;
+			border-radius: $spectra-control-border-radius;
 			display: flex;
 			align-items: center;
 			justify-content: center;
