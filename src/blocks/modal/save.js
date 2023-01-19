@@ -22,7 +22,8 @@ export default function Save( props ) {
 		imgTagWidth,
 		imgTagHeight,
 		showBtnIcon,
-		openModalAs
+		openModalAs,
+		modalPosition
 	} = props.attributes;
 
 	const textHTML = (
@@ -133,7 +134,8 @@ export default function Save( props ) {
 					`${ appearEffect }`,
 					'uagb-modal-popup',
 					`uagb-block-${ block_id }`,
-					`uagb-modal-type-${openModalAs}`
+					`uagb-modal-type-${openModalAs}`,
+					`uagb-modal-position-${modalPosition}`
 				) }
 			>
 				<div className="uagb-modal-popup-wrap">

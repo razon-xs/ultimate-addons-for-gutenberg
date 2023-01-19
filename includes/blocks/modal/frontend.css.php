@@ -381,9 +381,9 @@ if ( 'full' !== $attr['modalAlignTablet'] ) {
 }
 
 $combined_selectors = array(
-	'desktop' => $selectors,
-	'tablet'  => $t_selectors,
-	'mobile'  => $m_selectors,
+	'desktop' => apply_filters( 'spectra.' . $block_name . '.styling', $selectors, $attr ),
+	'tablet'  => apply_filters( 'spectra.' . $block_name . '.tablet_styling', $t_selectors, $attr ),
+	'mobile'  => apply_filters( 'spectra.' . $block_name . '.mobile_styling', $m_selectors, $attr ),
 );
 
 $base_selector = '.uagb-block-';

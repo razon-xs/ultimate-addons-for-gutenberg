@@ -307,3 +307,59 @@ div.uagb-spectra-button-wrapper {
 		}
 	}
 }
+
+.uagb-modal-position-top-left {
+	&.active {
+		align-items: flex-start;
+		justify-content: flex-start;
+
+		.uagb-modal-popup-close {
+			top: 0 !important;
+			left: 600px;
+			background: #575656;
+			width: 40px;
+			height: 40px;
+			justify-content: center;
+			text-align: center;
+		}
+	}
+}
+
+.uagb-modal-position-top-right {
+	&.active {
+		align-items: flex-start;
+		justify-content: flex-end;
+
+		.uagb-modal-popup-close {
+			top: 0 !important;
+			right: 600px !important;
+			background: #575656;
+			width: 40px;
+			height: 40px;
+			justify-content: center;
+			text-align: center;
+		}
+	}
+}
+
+.uagb-modal-position-bottom-left {
+	&.active {
+		align-items: flex-end;
+		justify-content: flex-start;
+
+		.uagb-modal-popup-close {
+			left: 600px;
+		}
+	}
+}
+
+.uagb-modal-position-bottom-right {
+	&.active {
+		align-items: flex-end;
+		justify-content: flex-end;
+
+		.uagb-modal-popup-close {
+			right: 600px!important;
+		}
+	}
+}
