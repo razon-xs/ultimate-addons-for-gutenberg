@@ -3,7 +3,7 @@
  */
 
 import styling from './styling';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import { useDeviceType } from '@Controls/getPreviewType';
 import Settings from './settings';
@@ -34,13 +34,25 @@ const UAGBImageGallery = ( props ) => {
 
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
+	const lightBoxRef = useRef();
+	const [ lightBoxPreview, setLightBoxPreview ] = useState( false );
+
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/image-gallery.svg`;
 
 	return (
 		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
 			<>
-				<Settings parentProps={ props } />
-				<Render parentProps={ props } />
+				<Settings
+					parentProps={ props }
+					lightBoxRef={ lightBoxRef }
+					lightBoxPreview={ lightBoxPreview }
+					setLightBoxPreview={ setLightBoxPreview }
+				/>
+				<Render
+					parentProps={ props }
+					lightBoxRef={ lightBoxRef }
+					lightBoxPreview={ lightBoxPreview }
+				/>
 			</>
 		)
 	);

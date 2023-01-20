@@ -61,6 +61,10 @@ const attributes = {
 			styleType: 'gallery-show-caption'
 		},
 	},
+	imageClickEvent: {
+		type: 'string',
+		default: 'none',
+	},
 
 	// Caption Settings
 	

@@ -20,10 +20,6 @@
 	.spectra-image-gallery__media-wrapper {
 		position: relative;
 		min-width: 0;
-
-		&:hover .spectra-image-gallery__control-focus {
-			opacity: 0.25;
-		}
 	}
 
 	.spectra-image-gallery__media-wrapper--wide {
@@ -316,6 +312,14 @@
 			aspect-ratio: 1;
 		}
 
+		&-wrapper {
+
+			&:hover .spectra-image-gallery__control-focus,
+			&:hover .spectra-image-gallery__control-lightbox {
+				opacity: 0.25;
+			}
+		}
+
 		&-thumbnail {
 			-webkit-transition: filter 0.5s, transform 0.5s;
 			-moz-transition: filter 0.5s, transform 0.5s;
@@ -580,6 +584,32 @@
 			box-sizing: content-box !important;
 			top: 0;
 			right: 0;
+			width: 1.5em;
+			height: 1.5em;
+			padding: 0.5em;
+			background-color: transparent;
+			border: none;
+			opacity: 0;
+			transition-property: opacity;
+
+			@include transitionSpeeds();
+
+			&:hover {
+				opacity: 1 !important;
+			}
+
+			svg {
+				fill: #fff;
+				filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+			}
+		}
+
+		&-lightbox {
+			cursor: pointer;
+			position: absolute;
+			box-sizing: content-box !important;
+			top: 0;
+			left: 0;
 			width: 1.5em;
 			height: 1.5em;
 			padding: 0.5em;

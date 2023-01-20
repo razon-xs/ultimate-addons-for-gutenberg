@@ -21,6 +21,7 @@ const ImageGallery = ( { attributes, setAttributes, name } ) => {
 		mediaGallery,
 		feedLayout,
 		imageDisplayCaption,
+		imageClickEvent,
 
 		feedMarginTop,
 		feedMarginRight,
@@ -527,7 +528,7 @@ const ImageGallery = ( { attributes, setAttributes, name } ) => {
 	const renderFocusControl = ( mediaObject ) => (
 		focusList[ mediaObject.id ] ? svgUnfocus( mediaObject.id ) : svgFocus( mediaObject.id )
 	);
-	
+
 	const renderMasonryHoverHandler = ( mediaObject ) => (
 		<div
 			className="spectra-image-gallery__media-wrapper--isotope"

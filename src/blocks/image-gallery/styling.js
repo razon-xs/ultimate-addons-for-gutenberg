@@ -332,31 +332,6 @@ function styling( props ) {
 			'background-color': paginateColorHover,
 			'border-color': btnBorderHColor,
 		},
-		' .spectra-image-gallery__control-lightbox': {
-			'top': `calc( ${
-				document.getElementById( 'wpadminbar' ).classList.contains( 'mobile' )
-					? document.getElementById( 'wpadminbar' ).offsetHeight
-					: 0
-			}px + ${
-				document.querySelector( '.interface-interface-skeleton__header' ).offsetHeight
-			}px )`,
-			'width': `calc( 100vw - ${
-				document.querySelector( '.interface-interface-skeleton__sidebar' )
-					? document.querySelector( '.interface-interface-skeleton__sidebar' ).offsetWidth
-					: 0
-			}px )`,
-			'height': `calc( 100vh - ${
-				document.getElementById( 'wpadminbar' ).classList.contains( 'mobile' )
-					? document.getElementById( 'wpadminbar' ).offsetHeight
-					: 0
-			}px - ${
-				document.querySelector( '.interface-interface-skeleton__header' ).offsetHeight
-			}px - ${
-				document.querySelector( '.interface-interface-skeleton__footer' )
-					? document.querySelector( '.interface-interface-skeleton__footer' ).offsetHeight
-					: 0
-			}px )`,
-		},
 
 		// Layout and Media Wrapper Selectors
 

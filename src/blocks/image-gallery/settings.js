@@ -37,6 +37,11 @@ const MAX_IMAGE_COLUMNS = 8;
 
 const Settings = ( props ) => {
 	const deviceType = useDeviceType();
+	const {
+		lightBoxRef,
+		lightBoxPreview,
+		setLightBoxPreview,
+	} = props;
 	props = props.parentProps;
 	const { attributes, setAttributes } = props;
 	const {
@@ -47,6 +52,7 @@ const Settings = ( props ) => {
 		mediaIDs,
 		feedLayout,
 		imageDisplayCaption,
+		imageClickEvent,
 		
 		columnsDesk,
 		columnsTab,
@@ -806,6 +812,41 @@ const Settings = ( props ) => {
 				displayUnit={ false }
 				setAttributes={ setAttributes }
 			/>
+			<UAGSelectControl
+				label={ __( 'Click Event', 'ultimate-addons-for-gutenberg' ) }
+				data={ {
+					value: imageClickEvent,
+					label: 'imageClickEvent',
+				} }
+				setAttributes={ setAttributes }
+				options = { [
+					{
+						label: __( 'None', 'ultimate-addons-for-gutenberg' ),
+						value: 'none',
+					},
+					{
+						label: __( 'Lightbox', 'ultimate-addons-for-gutenberg' ),
+						value: 'lightbox',
+					},
+					{
+						label: __( 'Open Image', 'ultimate-addons-for-gutenberg' ),
+						value: 'image',
+					},
+				] }
+			/>
+			{/* 
+	const displayLightBox = () => {
+		console.log( lightBox.current );
+	}
+	 */}
+			{ ( 'lightbox' === imageClickEvent ) && (
+				<ToggleControl
+					label={ __( 'Preview Lightbox', 'ultimate-addons-for-gutenberg' ) }
+					checked={ lightBoxPreview }
+					onChange={ () => setLightBoxPreview( ! lightBoxPreview ) }
+					help={ __( 'Note: The Lightbox will be fullscreen on the front end.', 'ultimate-addons-for-gutenberg' ) }
+				/>
+			) }
 		</UAGAdvancedPanelBody>
 	);
 
