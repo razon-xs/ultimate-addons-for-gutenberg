@@ -4670,6 +4670,15 @@ div.uagb-spectra-button-wrapper a.uagb-modal-button-link.uagb-modal-trigger svg 
 .uagb-modal-position-bottom-right.active .uagb-modal-popup-close {
   right: 600px !important;
 }
+
+.uagb-modal-popup-close.window-top-right {
+  top: 25px;
+  right: 25px;
+}
+.uagb-modal-popup-close.window-top-left {
+  top: 25px;
+  left: 25px;
+}
 @charset "UTF-8";
 /**
  * Post grid styles

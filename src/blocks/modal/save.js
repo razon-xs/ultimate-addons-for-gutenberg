@@ -138,6 +138,11 @@ export default function Save( props ) {
 					`uagb-modal-position-${modalPosition}`
 				) }
 			>
+				{ ( 'window-top-left' === closeIconPosition || 'window-top-right' === closeIconPosition ) && (
+					<div className={classnames( "uagb-modal-popup-close", closeIconPosition )}>
+						{ '' !== closeIcon && ( renderSVG( closeIcon ) ) }
+					</div>
+				) }
 				<div className="uagb-modal-popup-wrap">
 					<div className="uagb-modal-popup-content">
 						<InnerBlocks.Content />

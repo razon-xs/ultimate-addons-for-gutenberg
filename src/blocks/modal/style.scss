@@ -367,3 +367,17 @@ div.uagb-spectra-button-wrapper {
 		}
 	}
 }
+
+.uagb-modal-popup-close {
+
+	&.window-top-right {
+		top: 25px;
+		right: 25px;
+	}
+
+	&.window-top-left {
+		top: 25px;
+		left: 25px;
+	}
+
+}
