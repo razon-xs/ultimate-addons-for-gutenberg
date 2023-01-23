@@ -7,10 +7,6 @@
  * @package uagb
  */
 
-$block_name = 'image-gallery';
-
-$paginate_arrow_size_fallback = UAGB_Block_Helper::get_fallback_number( $attr['paginateArrowSize'], 'paginateArrowSize', $block_name );
-
 $is_rtl = is_rtl();
 
 $slick_options = apply_filters(
