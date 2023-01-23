@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { getBorderAttributes } from '@Controls/generateAttributes';
+import { bool } from 'prop-types';
 
 const arrowBorderAttributes = getBorderAttributes( 'arrow' );
 const btnBorderAttributes = getBorderAttributes( 'btn' );
@@ -64,6 +65,25 @@ const attributes = {
 	imageClickEvent: {
 		type: 'string',
 		default: 'none',
+	},
+
+	// LightBox Settings
+
+	lightboxDisplayCaptions: {
+		type: 'boolean',
+		default: false,
+	},
+	lightboxThumbnails: {
+		type: 'boolean',
+		default: false,
+	},
+	lightboxDisplayCount: {
+		type: 'boolean',
+		default: false,
+	},
+	lightboxCloseIcon: {
+		type: 'string',
+		default: 'xmark',
 	},
 
 	// Caption Settings

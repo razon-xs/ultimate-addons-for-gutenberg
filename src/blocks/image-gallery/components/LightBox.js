@@ -1,78 +1,64 @@
-import React, { useEffect } from 'react';
-import Swiper, { Navigation, Pagination, Autoplay, EffectFade, EffectFlip, Manipulation } from 'swiper';
+import React, { useState, useEffect, useRef } from 'react';
+import Swiper, { Navigation, Pagination, Autoplay, EffectFade, EffectFlip, Manipulation, FreeMode } from 'swiper';
 
-const LightBox = ( { ref, images } ) => {
+const Lightbox = ( { ref, attributes } ) => {
 
+	const {
+		mediaGallery,
+		lightboxDisplayCaptions,
+		lightboxThumbnails,
+		lightboxDisplayCount,
+		lightboxCloseIcon,
+	} = attributes;
+
+	const lightboxRef = useRef();
+	const [ lightboxSwiper, setLightboxSwiper ] = useState( null );
+	const [ thumbnailSwiper, setThumbnailSwiper ] = useState( null );
+	
 	// Set the Initial Slider.
 	useEffect( () => {
 		setTimeout( () => {
-			if( ref.current ) {
-				// initSlider();
+			if( lightboxRef.current ) {
+				initLightboxSwiper();
 			}
 		}, 500 );
-	} );
+	}, [ lightboxRef ] );
 
-	// Reset the Slider when a setting is changed.
-	// useEffect( () => {
-	// 	if( swiperInstance ) {
-	// 		swiperInstance.destroy();
-	// 		initSlider();
-	// 	}
-	// }, [
-	// 	transitionEffect,
-	// 	displayArrows,
-	// 	displayDots,
-	// 	transitionSpeed
-	// ] );
-	
-	const initSlider = () => {
+	// Update the Slider when needed.
+	useEffect( () => {
+		if( lightboxSwiper ) {
+			lightboxSwiper.update();
+		}		
+	}, [ mediaGallery ] );
 
+	const initLightboxSwiper = () => {
 		const settings = {
 			slidesPerView: 1,
 			autoplay: false,
-			speed: transitionSpeed,
-			loop: false,
-			effect: transitionEffect,
-			flipEffect: {
-				slideShadows: false,
-			},
-			fadeEffect: {
-				crossFade: true
-			},
-			pagination: displayDots ? {
-				el: sliderPaginationRef.current,
-				clickable: true,
-			} : false, 
-			allowTouchMove:false,
-			navigation: displayArrows ? {
-				nextEl: sliderNavNextRef.current,
-				prevEl: sliderNavPrevRef.current,
-			} : false,
 			on: {
-				beforeInit ( swiperInst ) {
-					swiperRef.current = swiperInst;
-					setSwiperInstance( swiperInst );
+				beforeInit ( swiperInstance ) {
+					setLightboxSwiper( swiperInstance );
 				},
 			},
 		}
-
-		new Swiper( ref.current, {
+		new Swiper( lightboxRef.current, {
 			...settings,
 			modules: [
-				Navigation, Pagination,Autoplay,EffectFade, Manipulation, EffectFlip
+				FreeMode,
+				Navigation,
+				Thumbs,
 			],
 		} );
 	}
 
-	console.info( images );
 	return (
 		<div
-			className='swiper'
-			ref={ ref }
+			className='spectra-image-gallery__control-lightbox swiper'
+			ref={ lightboxRef }
 		>
 			<p>LightBox!</p>
 		</div>
 	)
 };
 
-export default LightBox;
+export default Lightbox;

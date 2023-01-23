@@ -18,6 +18,7 @@ import ResponsiveBorder from '@Components/responsive-border';
 import MultiMediaSelector from '@Components/multimedia-select';
 import MultiButtonsControl from '@Components/multi-buttons-control';
 import SpectraMatrixControl from '@Components/matrix-alignment-control';
+import UAGIconPicker from '@Components/icon-picker';
 import UAGTabsControl from '@Components/tabs';
 import UAGTextControl from '@Components/text-control';
 import UAGSelectControl from '@Components/select-control';
@@ -38,9 +39,8 @@ const MAX_IMAGE_COLUMNS = 8;
 const Settings = ( props ) => {
 	const deviceType = useDeviceType();
 	const {
-		lightBoxRef,
-		lightBoxPreview,
-		setLightBoxPreview,
+		lightboxPreview,
+		setLightboxPreview,
 	} = props;
 	props = props.parentProps;
 	const { attributes, setAttributes } = props;
@@ -53,6 +53,11 @@ const Settings = ( props ) => {
 		feedLayout,
 		imageDisplayCaption,
 		imageClickEvent,
+
+		lightboxDisplayCaptions,
+		lightboxThumbnails,
+		lightboxDisplayCount,
+		lightboxCloseIcon,
 		
 		columnsDesk,
 		columnsTab,
@@ -834,19 +839,37 @@ const Settings = ( props ) => {
 					},
 				] }
 			/>
-			{/* 
-	const displayLightBox = () => {
-		console.log( lightBox.current );
-	}
-	 */}
-			{ ( 'lightbox' === imageClickEvent ) && (
-				<ToggleControl
-					label={ __( 'Preview Lightbox', 'ultimate-addons-for-gutenberg' ) }
-					checked={ lightBoxPreview }
-					onChange={ () => setLightBoxPreview( ! lightBoxPreview ) }
-					help={ __( 'Note: The Lightbox will be fullscreen on the front end.', 'ultimate-addons-for-gutenberg' ) }
-				/>
-			) }
+		</UAGAdvancedPanelBody>
+	);
+
+	const lightboxSettings = () => (
+		<UAGAdvancedPanelBody title={ __( 'Lightbox', 'ultimate-addons-for-gutenberg' ) } initialOpen={ false }>
+			<ToggleControl
+				label={ __( 'Preview Lightbox', 'ultimate-addons-for-gutenberg' ) }
+				checked={ lightboxPreview }
+				onChange={ () => setLightboxPreview( ! lightboxPreview ) }
+				help={ __( 'Note: The Lightbox will be fullscreen on the front end.', 'ultimate-addons-for-gutenberg' ) }
+			/>
+			<UAGIconPicker
+				label={ __( 'Close Icon', 'ultimate-addons-for-gutenberg' ) }
+				value={ lightboxCloseIcon }
+				onChange={ ( value ) => setAttributes( { lightboxCloseIcon: value } ) }
+			/>
+			<ToggleControl
+				label={ __( 'Display Captions', 'ultimate-addons-for-gutenberg' ) }
+				checked={ lightboxDisplayCaptions }
+				onChange={ () => setAttributes( { lightboxDisplayCaptions: ! lightboxDisplayCaptions } ) }
+			/>
+			<ToggleControl
+				label={ __( 'Display Thumbnails', 'ultimate-addons-for-gutenberg' ) }
+				checked={ lightboxThumbnails }
+				onChange={ () => setAttributes( { lightboxThumbnails: ! lightboxThumbnails } ) }
+			/>
+			<ToggleControl
+				label={ __( 'Display Image Number', 'ultimate-addons-for-gutenberg' ) }
+				checked={ lightboxDisplayCount }
+				onChange={ () => setAttributes( { lightboxDisplayCount: ! lightboxDisplayCount } ) }
+			/>
 		</UAGAdvancedPanelBody>
 	);
 
@@ -2014,6 +2037,7 @@ const Settings = ( props ) => {
 						{ ! readyToRender && initialSettings() }
 						{ readyToRender && layoutSettings() }
 						{ ( readyToRender && 'tiled' !== feedLayout ) && layoutSpecificSettings() }
+						{ ( readyToRender && 'lightbox' === imageClickEvent ) && lightboxSettings() }
 						{ readyToRender && captionSettings() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>

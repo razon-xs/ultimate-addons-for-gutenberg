@@ -34,8 +34,7 @@ const UAGBImageGallery = ( props ) => {
 
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
-	const lightBoxRef = useRef();
-	const [ lightBoxPreview, setLightBoxPreview ] = useState( false );
+	const [ lightboxPreview, setLightboxPreview ] = useState( false );
 
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/image-gallery.svg`;
 
@@ -44,14 +43,12 @@ const UAGBImageGallery = ( props ) => {
 			<>
 				<Settings
 					parentProps={ props }
-					lightBoxRef={ lightBoxRef }
-					lightBoxPreview={ lightBoxPreview }
-					setLightBoxPreview={ setLightBoxPreview }
+					lightboxPreview={ lightboxPreview }
+					setLightboxPreview={ setLightboxPreview }
 				/>
 				<Render
 					parentProps={ props }
-					lightBoxRef={ lightBoxRef }
-					lightBoxPreview={ lightBoxPreview }
+					lightboxPreview={ lightboxPreview }
 				/>
 			</>
 		)

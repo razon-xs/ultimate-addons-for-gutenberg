@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import React, { useLayoutEffect } from 'react';
 import InitialSelector from './components/InitialSelector';
 import ImageGallery from './components/ImageGallery';
-import LightBox from './components/LightBox';
+import Lightbox from './components/Lightbox';
 import { useDeviceType } from '@Controls/getPreviewType';
 import styles from './editor.lazy.scss';
 
@@ -16,8 +16,7 @@ const Render = ( props ) => {
 	}, [] );
 
 	const {
-		lightBoxRef,
-		lightBoxPreview,
+		lightboxPreview,
 	} = props;
 
 	props = props.parentProps;
@@ -47,10 +46,9 @@ const Render = ( props ) => {
 							setAttributes={ setAttributes }
 							name={ name }
 						/>
-						{ lightBoxPreview && (
-							<LightBox
-								ref={ lightBoxRef }
-								images={ attributes.mediaGallery }
+						{ lightboxPreview && (
+							<Lightbox
+								attributes={ attributes }
 							/>
 						) }
 					</>
