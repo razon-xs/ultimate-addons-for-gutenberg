@@ -10,8 +10,6 @@
 // Adds Fonts.
 UAGB_Block_JS::blocks_how_to_gfont( $attr );
 
-$block_name = 'how-to';
-
 $step_gap_fallback = $attr['step_gap'];
 
 $t_selectors = array();
