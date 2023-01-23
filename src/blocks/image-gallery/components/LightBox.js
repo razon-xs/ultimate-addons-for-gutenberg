@@ -39,6 +39,10 @@ const Lightbox = ( { attributes } ) => {
 		const settings = {
 			slidesPerView: 1,
 			autoplay: false,
+			navigation: {
+				nextEl: ".swiper-button-next",
+				prevEl: ".swiper-button-prev",
+			},
 			on: {
 				beforeInit ( swiperInstance ) {
 					setLightboxSwiper( swiperInstance );
@@ -70,6 +74,8 @@ const Lightbox = ( { attributes } ) => {
 					</div>
 				) ) }
 			</div>
+			<div class="swiper-button-next"></div>
+			<div class="swiper-button-prev"></div>
 		</div>
 	)
 };
