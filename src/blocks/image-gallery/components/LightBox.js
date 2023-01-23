@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Swiper, { Navigation, Pagination, Autoplay, EffectFade, EffectFlip, Manipulation, FreeMode } from 'swiper';
+import Swiper, {
+	FreeMode,
+	Navigation,
+	Thumbs,
+} from 'swiper';
 
-const Lightbox = ( { ref, attributes } ) => {
+const Lightbox = ( { attributes } ) => {
 
 	const {
 		mediaGallery,
@@ -51,12 +55,21 @@ const Lightbox = ( { ref, attributes } ) => {
 		} );
 	}
 
+	console.log( mediaGallery );
 	return (
 		<div
 			className='spectra-image-gallery__control-lightbox swiper'
 			ref={ lightboxRef }
 		>
-			<p>LightBox!</p>
+			<div className='swiper-wrapper'>
+				{ mediaGallery.map( ( media ) => (
+					<div className='swiper-slide' >
+						<img
+							src={ media.url }
+						/>
+					</div>
+				) ) }
+			</div>
 		</div>
 	)
 };
