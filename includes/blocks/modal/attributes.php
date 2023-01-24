@@ -192,6 +192,8 @@ return array_merge(
 		'yPositionTypeTablet'         => 'px',
 		'yPositionTypeMobile'         => 'px',
 		'setCookiesOn'                => 'close-action',
+		'modalTriggerBgType'          => 'color',
+		'modalTriggerBgHoverType'     => 'color',
 	),
 	$btn_border_attributes,
 	array(
