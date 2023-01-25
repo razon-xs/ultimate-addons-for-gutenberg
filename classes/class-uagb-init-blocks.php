@@ -76,6 +76,8 @@ class UAGB_Init_Blocks {
 
 		add_action( 'spectra_analytics_complete_action', array( $this, 'regenerate_analytics_data' ) );
 
+		// Extra filter for Countdown block's functionalities.
+		add_action( 'render_block', array( $this, 'countdown_render_block' ), 5, 2 );
 	}
 
 	/**
@@ -103,6 +105,43 @@ class UAGB_Init_Blocks {
 		delete_option( 'spectra_saved_blocks_settings' );
 		delete_transient( 'spectra_background_process_action' );
 
+	}
+
+	/**
+	 * Render block function for Countdown.
+	 *
+	 * @param mixed $block_content The block content.
+	 * @param array $block The block data.
+	 * @since 1.21.0
+	 * @return mixed Returns the new block content.
+	 */
+	public function countdown_render_block( $block_content, $block ) {
+
+		if ( 'uagb/countdown' === $block['blockName'] ) {
+
+			if ( isset( $block['attrs'] ) ) {
+
+				$block_attributes = $block['attrs'];
+
+				// var_dump( $block['blockName'] );
+
+				// $js_time      = strtotime( $block_attributes['endDateTime'] );
+				// $current_time = time();
+
+				// if ( $current_time > $js_time ) {
+				// 	return null;
+				// }
+
+				// if ( isset( $block_attributes['UAGDisplayConditions'] ) && array_key_exists( 'UAGDisplayConditions', $block_attributes ) ) {
+
+				// }
+			}
+
+			// var_dump( $block_content );
+			// var_dump( $block );
+		}
+
+		return $block_content;
 	}
 
 	/**
