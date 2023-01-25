@@ -316,7 +316,7 @@ const InstagramUsers = () => {
 	// Generate a Display Picture based on the Account Type.
 	const generateDP = ( user ) => {
 		if ( ! user.userName ) {
-			return <div className="h-12 w-12 aspect-square rounded-full bg-violet-100 text-spectra flex justify-center items-center text-xl">NO</div>
+			return <div className="h-12 w-12 aspect-square rounded-full bg-red-100 text-red-600 flex justify-center items-center text-xl">NO</div>
 		}
 		switch ( user.userType.toLowerCase() ) {
 			case 'personal':
