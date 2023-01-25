@@ -319,9 +319,6 @@ const InstagramUsers = () => {
 
 	// Generate a Display Picture based on the Account Type.
 	const generateDP = ( user ) => {
-		if ( ! user.userName ) {
-			return <div className="h-12 w-12 aspect-square rounded-full bg-red-100 text-red-600 flex justify-center items-center text-xl">NO</div>
-		}
 		switch ( user.userType.toLowerCase() ) {
 			case 'personal':
 				return (
@@ -339,9 +336,6 @@ const InstagramUsers = () => {
 
 	// Get the Account Type Internationalized Label.
 	const getAccountType = ( userType ) => {
-		if ( ! userType ) {
-			return __( 'Testing Error', 'ultimate-addons-for-gutenberg' );
-		}
 		switch ( userType ) {
 			case 'personal':
 				return __( 'Personal Account', 'ultimate-addons-for-gutenberg' );
