@@ -11,6 +11,9 @@ const classNames = ( ...classes ) => classes.filter( Boolean ).join( ' ' );
 
 const InstagramUsers = () => {
 
+	// Refresh all Linked Accounts.
+	const refreshAllTokens = () => uag_react.insta_refresh_users;
+
 	// Constants Required for the API Fetch.
 	const SPECTRA_AUTH_ROOT = 'https://wpspectra.com';
 	const SPECTRA_IG_TOKEN_GENERATOR = `${ SPECTRA_AUTH_ROOT }/auth/instagram/`;
@@ -42,7 +45,6 @@ const InstagramUsers = () => {
 	const [ openPopup, setOpenPopup ] = useState( false );
 	const [ poppedUser, setPoppedUser ] = useState( '' );
 	const instaLinkedAccounts = useSelector( ( state ) => state.instaLinkedAccounts );
-
 
 	// SVG For Right Hand Side Spinner.
 	const svgSpinner = (
@@ -137,9 +139,8 @@ const InstagramUsers = () => {
 				userID,
 				userType: authData.type.replace( 'instagram', '' ).toLowerCase(),
 				token: authData.token,
-				postRefreshRate: 'H-1',
 				expiryDate:  setExpiryDate( expiryDate ),
-				isCurrentlyActive: true,
+				isCurrentlyActive: 'new',
 			} );
 			dispatch( { type: 'UPDATE_INSTA_LINKED_ACCOUNTS', payload: tempUserMatrix } );
 			const action = 'uag_insta_linked_accounts';
@@ -230,9 +231,8 @@ const InstagramUsers = () => {
 				userID,
 				userType: 'personal',
 				token: tempToken,
-				postRefreshRate: 'H-1',
 				expiryDate: setExpiryDate( expiryDate ),
-				isCurrentlyActive: true,
+				isCurrentlyActive: 'new',
 			} );
 			dispatch( { type: 'UPDATE_INSTA_LINKED_ACCOUNTS', payload: tempUserMatrix } );
 			const action = 'uag_insta_linked_accounts';
@@ -365,12 +365,18 @@ const InstagramUsers = () => {
 
 		const userMatrix = instaLinkedAccounts.map( ( user ) => (
 			<div
-				className="relative h-16 p-2 pr-4 m-2.5 rounded-md flex border border-slate-200 hover:border-slate-400 transition-colors"
+				className={ classNames(
+					'relative h-16 p-2 pr-4 m-2.5 rounded-md flex border transition-colors',
+					user.isCurrentlyActive ? 'border-slate-200 hover:border-slate-400' : 'border-red-600',
+				) }
 				key={ user.userID }
 				id={ `Spectra-IG-User-${ user.userID }` }
 			>
 				<button
-					className="absolute top-0 right-0 w-4 h-4 -mt-2 -mr-2 box-content flex items-center justify-center rounded-full border border-white bg-slate-500 hover:bg-red-600 transition-colors"
+					className={ classNames(
+						'absolute top-0 right-0 w-4 h-4 -mt-2 -mr-2 box-content flex items-center justify-center rounded-full border border-white  transition-colors',
+						user.isCurrentlyActive ? 'bg-slate-500 hover:bg-red-600' : 'bg-red-600',
+					) }
 					aria-label={ __( 'Unlink', 'ultimate-addons-for-gutenberg' ) }
 					onClick={ () => unlinkUser( user.userName ) }
 				>
@@ -381,7 +387,12 @@ const InstagramUsers = () => {
 				{ generateDP( user ) }
 				<div className="ml-4 flex-1 flex flex-col justify-center">
 					<div className="text-base text-slate-800">{ `@${ user.userName }` }</div>
-					<div className="text-xs text-slate-400">{ getAccountType( user.userType ) }</div>
+					<div className={ classNames(
+						'text-xs',
+						user.isCurrentlyActive ? 'text-slate-400' : 'text-red-600',
+					) }>
+						{ user.isCurrentlyActive ? getAccountType( user.userType ) : __( 'Disabled', 'ultimate-addons-for-gutenberg' ) }
+					</div>
 				</div>
 			</div>
 		) );
@@ -399,6 +410,31 @@ const InstagramUsers = () => {
 
 		return renderedUsers;
 	};
+
+	// Render the Disabled Account Helper
+	const renderDeactivatedAccountMessage = () => {
+		let atLeastOneDeactivated = false;
+		for ( const user in instaLinkedAccounts ) {
+			if ( instaLinkedAccounts[ user ].isCurrentlyActive ) {
+				continue;
+			}
+			atLeastOneDeactivated = true;
+			break;
+		}
+		return atLeastOneDeactivated ? (
+			<>
+				<p className="text-sm text-red-600">
+					{ __( 'It looks like one or more accounts have been disabled due to security reasons. Here are some of them:', 'ultimate-addons-for-gutenberg' ) }
+				</p>
+				<p className="text-sm text-red-600 pl-2">{ __( '1. The Instagram Account password was changed.', 'ultimate-addons-for-gutenberg' ) }</p>
+				<p className="text-sm text-red-600 pl-2">{ __( '2. The Instagram Account was made private.', 'ultimate-addons-for-gutenberg' ) }</p>
+				<p className="text-sm text-red-600 pl-2">{ __( '3. The Instagram Account was unused on Spectra for 60 days.', 'ultimate-addons-for-gutenberg' ) }</p>
+				<p className="text-sm text-red-600">
+					{ __( 'Please unlink and relink the account(s) marked in red.', 'ultimate-addons-for-gutenberg' ) }
+				</p>
+			</>
+		) : null;
+	}
 
 	// Render Developer Mode Settings.
 	const renderDevSettings = () => (
@@ -437,6 +473,7 @@ const InstagramUsers = () => {
 
 	return (
 		<>
+			{ refreshAllTokens }
 			<section className="block border-b border-solid border-slate-200 px-12 py-8 justify-between">  
 				<div className="mr-16 w-full flex items-center">
 					<h3 className="p-0 flex-1 justify-right inline-flex text-lg leading-8 font-medium text-gray-900">
@@ -464,6 +501,7 @@ const InstagramUsers = () => {
 						<p className="text-sm text-slate-500">
 							{ __( 'Link your Instagram account(s), or enable Developer Mode to link someone else\'s account(s).', 'ultimate-addons-for-gutenberg' ) }
 						</p>
+						{ renderDeactivatedAccountMessage() }
 						{ instagramDevMode ? renderDevSettings() : (
 							<button
 								type="button"
