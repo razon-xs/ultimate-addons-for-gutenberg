@@ -178,11 +178,15 @@ const InstagramUsers = () => {
 		setLinkingUser( true );
 		theButton.disabled = true;
 		handleInstaLinkUserLable( 'saving' );
-		window.fetch( checkUser ).then( ( response ) => response.json() ).then( ( data ) => {
-			if ( ! data.error ) {
-				handleNewUserCreation( data.id, data.username, theButton );
+		window.fetch( checkUser ).then( ( response ) => {
+			if ( response.status === 400 ) {
+				throw new Exception();
 			}
+			return response.json();
+		 } ).then( ( data ) => {
+			handleNewUserCreation( data.id, data.username, theButton );
 		} ).catch( () => {
+			dispatch( { type: 'UPDATE_SETTINGS_SAVED_NOTIFICATION', payload: 'Invalid Token' } );
 			setLinkingUser( false );
 			handleInstaLinkUserLable( 'invalid' );
 			setTimeout( () => {

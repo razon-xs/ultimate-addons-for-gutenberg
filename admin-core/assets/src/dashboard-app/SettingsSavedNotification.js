@@ -18,6 +18,7 @@ export default function SettingsSavedNotification() {
 	];
 	const failedPayloads = [
 		'Failed to Add Account',
+		'Invalid Token',
 	];
 
 	useEffect( () => {
