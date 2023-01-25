@@ -178,7 +178,9 @@ const InstagramUsers = () => {
 		theButton.disabled = true;
 		handleInstaLinkUserLable( 'saving' );
 		window.fetch( checkUser ).then( ( response ) => response.json() ).then( ( data ) => {
-			handleNewUserCreation( data.id, data.username, theButton );
+			if ( ! data.error ) {
+				handleNewUserCreation( data.id, data.username, theButton );
+			}
 		} ).catch( () => {
 			setLinkingUser( false );
 			handleInstaLinkUserLable( 'invalid' );
@@ -312,17 +314,30 @@ const InstagramUsers = () => {
 	};
 
 	// Generate a Display Picture based on the Account Type.
-	const generateDP = ( user ) => (
-		( 'business' === user.userType.toLowerCase() ) ? (
-			// Render Profile Picture from ( profile_picture_url )
-			<div className="h-12 w-12 aspect-square rounded-full bg-spectra"></div>
-		) : (
-			<div className="h-12 w-12 aspect-square rounded-full bg-violet-100 text-spectra flex justify-center items-center text-xl">{ user.userName[0] ? user.userName[0].toUpperCase() : UAGB_Block_Icons[ 'instagram-feed' ] }</div>
-		)
-	);
+	const generateDP = ( user ) => {
+		if ( ! user.userName ) {
+			return <div className="h-12 w-12 aspect-square rounded-full bg-violet-100 text-spectra flex justify-center items-center text-xl">NO</div>
+		}
+		switch ( user.userType.toLowerCase() ) {
+			case 'personal':
+				return (
+					<div className="h-12 w-12 aspect-square rounded-full bg-violet-100 text-spectra flex justify-center items-center text-xl">
+						{ user.userName[0] ? user.userName[0].toUpperCase() : UAGB_Block_Icons[ 'instagram-feed' ] }
+					</div>
+				);
+			case 'business':
+				// Will be the profile picture.
+				return <div className="h-12 w-12 aspect-square rounded-full bg-spectra"></div>;
+			default:
+				return <div className="h-12 w-12 aspect-square rounded-full bg-spectra"></div>;
+		}
+	};
 
 	// Get the Account Type Internationalized Label.
 	const getAccountType = ( userType ) => {
+		if ( ! userType ) {
+			return __( 'Testing Error', 'ultimate-addons-for-gutenberg' );
+		}
 		switch ( userType ) {
 			case 'personal':
 				return __( 'Personal Account', 'ultimate-addons-for-gutenberg' );
