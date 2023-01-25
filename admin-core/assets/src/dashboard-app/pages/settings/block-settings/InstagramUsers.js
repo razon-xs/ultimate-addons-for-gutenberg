@@ -179,7 +179,7 @@ const InstagramUsers = () => {
 		theButton.disabled = true;
 		handleInstaLinkUserLable( 'saving' );
 		window.fetch( checkUser ).then( ( response ) => {
-			if ( response.status === 400 ) {
+			if ( ! response.ok ) {
 				throw new Exception();
 			}
 			return response.json();
