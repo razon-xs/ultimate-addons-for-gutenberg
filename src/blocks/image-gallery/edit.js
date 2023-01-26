@@ -49,6 +49,7 @@ const UAGBImageGallery = ( props ) => {
 				<Render
 					parentProps={ props }
 					lightboxPreview={ lightboxPreview }
+					setLightboxPreview={ setLightboxPreview }
 				/>
 			</>
 		)
