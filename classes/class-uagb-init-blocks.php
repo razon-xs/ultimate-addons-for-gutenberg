@@ -136,8 +136,13 @@ class UAGB_Init_Blocks {
 					}
 
 					if ( 'redirect' === $block_attributes['timerEndAction'] ) {
-						$block_attributes['redirectURL'] = ! empty( $block_attributes['redirectURL'] ) ? $block_attributes['redirectURL'] : home_url( '/' );
-						header( 'Location: ' . $block_attributes['redirectURL'] );
+						$redirect_url = ! empty( $block_attributes['redirectURL'] ) ? $block_attributes['redirectURL'] : home_url( '/' );
+						?>
+						<script>
+							// Simulate an HTTP redirect:
+							window.location.replace( <?php echo "'" . esc_url( $redirect_url ) . "'"; ?> );
+						</script>
+						<?php
 					}
 				}
 
