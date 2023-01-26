@@ -625,7 +625,8 @@
 	
 				.swiper-slide {
 					height: 100%;
-					display: flex;  
+					display: flex;
+					flex-direction: column; 
 					justify-content: center;
 					align-items: center;
 	
@@ -635,6 +636,11 @@
 						max-width: 80%;
 					}
 				}
+			}
+
+			&--caption {
+				color: white;
+				text-align: center;
 			}
 		}
 	}

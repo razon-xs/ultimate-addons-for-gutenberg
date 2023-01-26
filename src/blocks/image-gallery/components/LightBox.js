@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Swiper, {
 	FreeMode,
+	Lazy,
 	Navigation,
 	Thumbs,
 } from 'swiper';
@@ -40,11 +41,12 @@ const Lightbox = ( { attributes, lightboxPreview, setLightboxPreview } ) => {
 
 		// Lightbox Swiper Settings.
 		const settings = {
-			slidesPerView: 1,
 			autoplay: false,
+			lazy: true,
+			slidesPerView: 1,
 			navigation: {
-				nextEl: ".swiper-button-next",
-				prevEl: ".swiper-button-prev",
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
 			},
 			on: {
 				beforeInit ( swiperInstance ) {
@@ -58,6 +60,38 @@ const Lightbox = ( { attributes, lightboxPreview, setLightboxPreview } ) => {
 			...settings,
 			modules: [
 				FreeMode,
+				Lazy,
+				Navigation,
+				Thumbs,
+			],
+		} );
+	}
+
+	// Initialize the Thumbnail Slider.
+	const initThumbnailSwiper = () => {
+
+		// Lightbox Swiper Settings.
+		const settings = {
+			autoplay: false,
+			lazy: true,
+			slidesPerView: 1,
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+			on: {
+				beforeInit ( swiperInstance ) {
+					setThumbnailSwiper( swiperInstance );
+				},
+			},
+		}
+
+		// Lightbox Swiper Creation with Modules.
+		new Swiper( lightboxRef.current, {
+			...settings,
+			modules: [
+				FreeMode,
+				Lazy,
 				Navigation,
 				Thumbs,
 			],
@@ -74,13 +108,18 @@ const Lightbox = ( { attributes, lightboxPreview, setLightboxPreview } ) => {
 					{ mediaGallery.map( ( media ) => (
 						<div className='swiper-slide' >
 							<img
-								src={ media.url }
+								className='swiper-lazy'
+								data-src={ media.url }
 							/>
+							<div className='swiper-lazy-preloader swiper-lazy-preloader-white'/>
+							<div className='spectra-image-gallery__control-lightbox--caption'>
+								{ media.caption }
+							</div>
 						</div>
 					) ) }
 				</div>
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
+				<div className='swiper-button-next'/>
+				<div className='swiper-button-prev'/>
 			</div>
 		</div>
 	)
