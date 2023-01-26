@@ -42,9 +42,6 @@ $btn_padding_bottom = isset( $attr['ctaBottomPadding'] ) ? $attr['ctaBottomPaddi
 $btn_padding_left   = isset( $attr['ctaLeftPadding'] ) ? $attr['ctaLeftPadding'] : $attr['ctaBtnHrPadding'];
 $btn_padding_right  = isset( $attr['ctaRightPadding'] ) ? $attr['ctaRightPadding'] : $attr['ctaBtnHrPadding'];
 
-$ctaLeftMargin = $attr['ctaLeftSpace'];
-
-
 if ( 'left' === $attr['textAlign'] ) {
 	$alignment = 'flex-start';
 } elseif ( 'right' === $attr['textAlign'] ) {
@@ -237,7 +234,7 @@ $selectors['.wp-block-uagb-call-to-action'] = array(
 
 if ( 'left' === $attr['textAlign'] && 'right' === $attr['ctaPosition'] ) {
 	$selectors[' .uagb-cta__left-right-wrap .uagb-cta__content'] = array(
-		'margin-left'  => UAGB_Helper::get_css_value( $ctaLeftMargin, 'px' ),
+		'margin-left'  => UAGB_Helper::get_css_value( $attr['ctaLeftSpace'], 'px' ),
 		'margin-right' => '0',
 	);
 }
