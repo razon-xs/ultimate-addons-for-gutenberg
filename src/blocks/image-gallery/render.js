@@ -50,6 +50,7 @@ const Render = ( props ) => {
 						{ lightboxPreview && (
 							<Lightbox
 								attributes={ attributes }
+								setAttributes={ setAttributes }
 								lightboxPreview={ lightboxPreview }
 								setLightboxPreview={ setLightboxPreview }
 							/>

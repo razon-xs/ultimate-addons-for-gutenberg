@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import renderSVG from '@Controls/renderIcon';
 import Swiper, {
 	FreeMode,
 	Lazy,
@@ -6,7 +7,7 @@ import Swiper, {
 	Thumbs,
 } from 'swiper';
 
-const Lightbox = ( { attributes, lightboxPreview, setLightboxPreview } ) => {
+const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPreview } ) => {
 
 	const {
 		mediaGallery,
@@ -112,7 +113,10 @@ const Lightbox = ( { attributes, lightboxPreview, setLightboxPreview } ) => {
 								data-src={ media.url }
 							/>
 							<div className='swiper-lazy-preloader swiper-lazy-preloader-white'/>
-							<div className='spectra-image-gallery__control-lightbox--caption'>
+							<div
+								className='spectra-image-gallery__control-lightbox--caption'
+								style={ { display: lightboxDisplayCaptions ? undefined : 'none' } }
+							>
 								{ media.caption }
 							</div>
 						</div>
@@ -121,6 +125,14 @@ const Lightbox = ( { attributes, lightboxPreview, setLightboxPreview } ) => {
 				<div className='swiper-button-next'/>
 				<div className='swiper-button-prev'/>
 			</div>
+			( { lightboxCloseIcon && (
+				<button
+					className='spectra-image-gallery__control-lightbox--close'
+					onClick={ () => setLightboxPreview( false ) }
+				>
+					{ renderSVG( lightboxCloseIcon, setAttributes ) }
+				</button>
+			) } )
 		</div>
 	)
 };
