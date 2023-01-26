@@ -125,12 +125,21 @@ class UAGB_Init_Blocks {
 
 				// var_dump( $block['blockName'] );
 
-				// $js_time      = strtotime( $block_attributes['endDateTime'] );
-				// $current_time = time();
+				$js_time      = strtotime( $block_attributes['endDateTime'] );
+				$current_time = time();
 
-				// if ( $current_time > $js_time ) {
-				// 	return null;
-				// }
+				// If the timer is overtime.
+				if ( ( $current_time > $js_time ) && ( 'zero' !== $block_attributes['timerEndAction'] ) ) {
+
+					if ( 'hide' === $block_attributes['timerEndAction'] ) {
+						return null;
+					}
+
+					if ( 'redirect' === $block_attributes['timerEndAction'] ) {
+						$block_attributes['redirectURL'] = ! empty( $block_attributes['redirectURL'] ) ? $block_attributes['redirectURL'] : home_url( '/' );
+						header( 'Location: ' . $block_attributes['redirectURL'] );
+					}
+				}
 
 				// if ( isset( $block_attributes['UAGDisplayConditions'] ) && array_key_exists( 'UAGDisplayConditions', $block_attributes ) ) {
 
