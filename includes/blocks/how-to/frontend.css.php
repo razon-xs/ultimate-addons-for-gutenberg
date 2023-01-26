@@ -10,10 +10,6 @@
 // Adds Fonts.
 UAGB_Block_JS::blocks_how_to_gfont( $attr );
 
-$block_name = 'how-to';
-
-$step_gap_fallback = $attr['step_gap'];
-
 $t_selectors = array();
 $m_selectors = array();
 
@@ -95,14 +91,14 @@ $selectors = array(
 	),
 
 	' .uagb-infobox__content-wrap'                         => array(
-		'margin-bottom' => UAGB_Helper::get_css_value( $step_gap_fallback, 'px' ),
+		'margin-bottom' => UAGB_Helper::get_css_value( $attr['step_gap'], 'px' ),
 	),
 
 	' .uagb-infobox__content-wrap:last-child'              => array(
 		'margin-bottom' => '0px',
 	),
 	' .uagb-how-to-step-wrap'                              => array(
-		'margin-bottom' => UAGB_Helper::get_css_value( $step_gap_fallback, 'px' ),
+		'margin-bottom' => UAGB_Helper::get_css_value( $attr['step_gap'], 'px' ),
 	),
 
 	' .uagb-how-to-step-wrap:last-child'                   => array(
