@@ -128,14 +128,16 @@ class UAGB_Init_Blocks {
 				$js_time      = strtotime( $block_attributes['endDateTime'] );
 				$current_time = time();
 
-				// If the timer is overtime.
-				if ( ( $current_time > $js_time ) && ( 'zero' !== $block_attributes['timerEndAction'] ) ) {
+				$timerEndAction = array_key_exists( 'timerEndAction', $block_attributes ) ? $block_attributes['timerEndAction'] : 'zero';
 
-					if ( 'hide' === $block_attributes['timerEndAction'] ) {
+				// If the timer is overtime AND end action is not 'keep the timer at zero'.
+				if ( ( $current_time > $js_time ) && ( 'zero' !== $timerEndAction ) ) {
+
+					if ( 'hide' === $timerEndAction ) {
 						return null;
 					}
 
-					if ( 'redirect' === $block_attributes['timerEndAction'] ) {
+					if ( 'redirect' === $timerEndAction ) {
 						$redirect_url = ! empty( $block_attributes['redirectURL'] ) ? $block_attributes['redirectURL'] : home_url( '/' );
 						?>
 						<script>
