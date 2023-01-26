@@ -123,8 +123,6 @@ class UAGB_Init_Blocks {
 
 				$block_attributes = $block['attrs'];
 
-				// var_dump( $block['blockName'] );
-
 				$js_time      = strtotime( $block_attributes['endDateTime'] );
 				$current_time = time();
 
@@ -147,14 +145,7 @@ class UAGB_Init_Blocks {
 						<?php
 					}
 				}
-
-				// if ( isset( $block_attributes['UAGDisplayConditions'] ) && array_key_exists( 'UAGDisplayConditions', $block_attributes ) ) {
-
-				// }
 			}
-
-			// var_dump( $block_content );
-			// var_dump( $block );
 		}
 
 		return $block_content;
