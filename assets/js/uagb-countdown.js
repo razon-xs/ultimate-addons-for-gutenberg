@@ -118,40 +118,8 @@ UAGBCountdown = { // eslint-disable-line no-undef
 
 			clearInterval( this.countdownInterval[ mainSelector ] );
 
-			if ( data.isFrontend ) {
-
-				if ( data.timerEndAction === 'hide' ) {
-
-					const boxes = this.elements[ mainSelector ].countdownWrapper?.querySelectorAll( '.wp-block-uagb-countdown__box' );
-
-					boxes.forEach( box => {
-						box.style.display = 'none';
-					} );
-
-				}
-
-				if ( data.timerEndAction === 'redirect' && this.isValidURL( data.redirectURL )  ) {
-
-					window.location.replace( data.redirectURL );
-
-				}
-
-			}
-
 		}
 
     },
-
-
-	// Checks if string is a valid URL.
-	isValidURL( str ) {
-		const pattern = new RegExp( '^(https?:\\/\\/)?'+ // protocol
-		'((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-		'((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-		'(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-		'(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-		'(\\#[-a-z\\d_]*)?$','i' ); // fragment locator
-	  	return !!pattern.test( str );
-	},
 
 };
