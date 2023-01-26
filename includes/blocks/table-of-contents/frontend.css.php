@@ -10,11 +10,6 @@
 // Adds Fonts.
 UAGB_Block_JS::blocks_table_of_contents_gfont( $attr );
 
-$t_columns_desktop_fallback = $attr['tColumnsDesktop'];
-$t_columns_tablet_fallback  = $attr['tColumnsTablet'];
-$t_columns_mobile_fallback  = $attr['tColumnsMobile'];
-$width_desktop_fallback     = $attr['widthDesktop'];
-
 $m_selectors = array();
 $t_selectors = array();
 
@@ -100,7 +95,7 @@ $selectors = array(
 		'border-color' => $attr['overallBorderHColor'],
 	),
 	' .uagb-toc__list-wrap'                               => array(
-		'column-count' => $t_columns_desktop_fallback,
+		'column-count' => $attr['tColumnsDesktop'],
 		'overflow'     => 'hidden',
 		'text-align'   => $attr['align'],
 	),
@@ -142,7 +137,7 @@ if ( '' !== $attr['contentPaddingDesktop'] ) {
 }
 
 if ( $attr['customWidth'] ) {
-	$selectors[' .uagb-toc__wrap']['width'] = UAGB_Helper::get_css_value( $width_desktop_fallback, $attr['widthTypeDesktop'] );
+	$selectors[' .uagb-toc__wrap']['width'] = UAGB_Helper::get_css_value( $attr['widthDesktop'], $attr['widthTypeDesktop'] );
 }
 
 if ( $attr['customWidth'] && $attr['makeCollapsible'] ) {
@@ -189,7 +184,7 @@ $m_selectors = array(
 		'margin-bottom' => UAGB_Helper::get_css_value( $mobile_bottom_margin, $attr['marginTypeMobile'] ),
 	),
 	' .uagb-toc__list-wrap'                               => array(
-		'column-count' => $t_columns_mobile_fallback,
+		'column-count' => $attr['tColumnsMobile'],
 		'overflow'     => 'hidden',
 		'text-align'   => $attr['align'],
 	),
@@ -228,7 +223,7 @@ $t_selectors = array(
 		'margin-bottom' => UAGB_Helper::get_css_value( $tablet_bottom_margin, $attr['marginTypeTablet'] ),
 	),
 	' .uagb-toc__list-wrap'                               => array(
-		'column-count' => $t_columns_tablet_fallback,
+		'column-count' => $attr['tColumnsTablet'],
 		'overflow'     => 'hidden',
 		'text-align'   => $attr['align'],
 	),
