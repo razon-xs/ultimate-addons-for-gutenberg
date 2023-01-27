@@ -21,3 +21,20 @@
 		}
 	}
 }
+
+// Toolbar.
+.uagb-countdown-pro-toolbar {
+
+	.components-toolbar-button {
+		font-weight: bold;
+
+		&:focus {
+			color: #ffffff;
+
+			&::before {
+				background-color: #0063A1;
+				box-shadow: unset;
+			}
+		}
+	}
+}
