@@ -117,7 +117,7 @@ class UAGB_Init_Blocks {
 	 */
 	public function countdown_render_block( $block_content, $block ) {
 
-		if ( 'uagb/countdown' === $block['blockName'] ) {
+		if ( ( 'uagb/countdown' === $block['blockName'] ) && ( ! is_admin() ) ) {
 
 			if ( isset( $block['attrs'] ) ) {
 
