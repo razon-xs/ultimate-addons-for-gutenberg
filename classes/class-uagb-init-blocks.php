@@ -76,8 +76,6 @@ class UAGB_Init_Blocks {
 
 		add_action( 'spectra_analytics_complete_action', array( $this, 'regenerate_analytics_data' ) );
 
-		// Extra filter for Countdown block's functionalities.
-		add_action( 'render_block', array( $this, 'countdown_render_block' ), 5, 2 );
 	}
 
 	/**
@@ -105,50 +103,6 @@ class UAGB_Init_Blocks {
 		delete_option( 'spectra_saved_blocks_settings' );
 		delete_transient( 'spectra_background_process_action' );
 
-	}
-
-	/**
-	 * Render block function for Countdown.
-	 *
-	 * @param mixed $block_content The block content.
-	 * @param array $block The block data.
-	 * @since 1.21.0
-	 * @return mixed Returns the new block content.
-	 */
-	public function countdown_render_block( $block_content, $block ) {
-
-		if ( 'uagb/countdown' === $block['blockName'] ) {
-
-			if ( isset( $block['attrs'] ) ) {
-
-				$block_attributes = $block['attrs'];
-
-				$js_time      = strtotime( $block_attributes['endDateTime'] );
-				$current_time = time();
-
-				$timerEndAction = array_key_exists( 'timerEndAction', $block_attributes ) ? $block_attributes['timerEndAction'] : 'zero';
-
-				// If the timer is overtime AND end action is not 'keep the timer at zero'.
-				if ( ( $current_time > $js_time ) && ( 'zero' !== $timerEndAction ) ) {
-
-					if ( 'hide' === $timerEndAction ) {
-						return null;
-					}
-
-					if ( 'redirect' === $timerEndAction ) {
-						$redirect_url = ! empty( $block_attributes['redirectURL'] ) ? $block_attributes['redirectURL'] : home_url( '/' );
-						?>
-						<script>
-							// Simulate an HTTP redirect:
-							window.location.replace( <?php echo "'" . esc_url( $redirect_url ) . "'"; ?> );
-						</script>
-						<?php
-					}
-				}
-			}
-		}
-
-		return $block_content;
 	}
 
 	/**
