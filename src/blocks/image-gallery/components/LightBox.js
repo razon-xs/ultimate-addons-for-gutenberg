@@ -125,14 +125,14 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 				<div className='swiper-button-next'/>
 				<div className='swiper-button-prev'/>
 			</div>
-			( { lightboxCloseIcon && (
+			{ lightboxCloseIcon && (
 				<button
 					className='spectra-image-gallery__control-lightbox--close'
 					onClick={ () => setLightboxPreview( false ) }
 				>
 					{ renderSVG( lightboxCloseIcon, setAttributes ) }
 				</button>
-			) } )
+			) }
 		</div>
 	)
 };
