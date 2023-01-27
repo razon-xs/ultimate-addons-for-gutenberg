@@ -57,11 +57,17 @@ const UAGBCountdownEdit = ( props ) => {
 		setTimeChanged( 1 );
 	}, [ props.attributes.endDateTime ] )
 
+	const countdownProToolbar = wp.hooks.applyFilters( 'spectra.countdown.toolbar-hook', '', props.name );
+
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/countdown.svg`;
 
 	return (
 		props.attributes.isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 		<>
+			{/* Countdown Toolbar options for Pro */}
+			{ !!uagb_blocks_info.spectra_pro_status &&
+				countdownProToolbar
+			}
 			<Settings parentProps={ props } />
 			<Render countdownRef={ countdownRef } parentProps={ props } />
 		</>
