@@ -18,24 +18,45 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 	} = attributes;
 
 	const lightboxRef = useRef();
+	const thumbnailRef = useRef();
 	const [ lightboxSwiper, setLightboxSwiper ] = useState( null );
 	const [ thumbnailSwiper, setThumbnailSwiper ] = useState( null );
+	const [ currentCaption, setCurrentCaption ] = useState( '' );
 	
 	// Set the Lightbox Slider once the Ref is in use.
 	useEffect( () => {
 		setTimeout( () => {
-			if( lightboxRef.current ) {
+			if ( lightboxRef.current ) {
 				initLightboxSwiper();
 			}
 		}, 500 );
 	}, [ lightboxRef ] );
 
-	// Update the Slider when needed.
+	// Set the Thumbnail Slider once the Ref is in use.
 	useEffect( () => {
-		if( lightboxSwiper ) {
+		setTimeout( () => {
+			if ( thumbnailRef.current ) {
+				initThumbnailSwiper();
+			}
+		}, 500 );
+	}, [ thumbnailRef ] );
+
+	// Update the Sliders when the gallery is updated.
+	useEffect( () => {
+		if ( lightboxSwiper ) {
 			lightboxSwiper.update();
-		}		
+		}
+		if ( lightboxThumbnails && thumbnailSwiper ) {
+			thumbnailSwiper.update();
+		}
 	}, [ mediaGallery ] );
+
+	// Update the Thumbnail Swiper only when needed.
+	useEffect( () => {
+		if ( lightboxThumbnails && thumbnailSwiper ) {
+			thumbnailSwiper.update();
+		}
+	}, [ lightboxThumbnails ] );
 
 	// Initialize the Lightbox Slider.
 	const initLightboxSwiper = () => {
@@ -54,13 +75,15 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 					setLightboxSwiper( swiperInstance );
 				},
 			},
+			thumbs: {
+			  swiper: thumbnailRef.current,
+			},
 		}
 
 		// Lightbox Swiper Creation with Modules.
 		new Swiper( lightboxRef.current, {
 			...settings,
 			modules: [
-				FreeMode,
 				Lazy,
 				Navigation,
 				Thumbs,
@@ -71,15 +94,15 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 	// Initialize the Thumbnail Slider.
 	const initThumbnailSwiper = () => {
 
-		// Lightbox Swiper Settings.
+		// Thumbnail Swiper Settings.
 		const settings = {
 			autoplay: false,
+			centeredSlides: true,
 			lazy: true,
-			slidesPerView: 1,
-			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev',
-			},
+			freeMode: true,
+			slidesPerView: 5,
+			spaceBetween: 10,
+			watchSlidesProgress: true,
 			on: {
 				beforeInit ( swiperInstance ) {
 					setThumbnailSwiper( swiperInstance );
@@ -87,44 +110,67 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 			},
 		}
 
-		// Lightbox Swiper Creation with Modules.
-		new Swiper( lightboxRef.current, {
+		// Thumbnail Swiper Creation with Modules.
+		new Swiper( thumbnailRef.current, {
 			...settings,
 			modules: [
 				FreeMode,
 				Lazy,
-				Navigation,
-				Thumbs,
 			],
 		} );
 	}
 
+	// Render the Lightbox Slider.
+	const renderLightbox = () => (
+		<div
+			className='swiper spectra-image-gallery__control-lightbox--main'
+			ref={ lightboxRef }
+		>
+			<div className='swiper-wrapper'>
+				{ mediaGallery.map( ( media ) => renderSlide( media.url, media.caption ) ) }
+			</div>
+			<div className='swiper-button-next'/>
+			<div className='swiper-button-prev'/>
+		</div>
+	);
+
+	// Render the Thumbnail Slider.
+	const renderThumbnails = () => (
+		<div
+			className='swiper spectra-image-gallery__control-lightbox--thumbnails'
+			style={ {
+				backgroundColor: lightboxDisplayCaptions ? 'black' : 'transparent',
+			} }
+			ref={ thumbnailRef }
+		>
+			<div className='swiper-wrapper'>
+				{ mediaGallery.map( ( media ) => renderSlide( media.sizes.thumbnail.url ) ) }
+			</div>
+		</div>
+	);
+
+	// Render the Common Slider Components.
+	const renderSlide = ( url, caption = '' ) => {
+		return (
+			<div className='swiper-slide'>
+				<img
+					className='swiper-lazy'
+					data-src={ url }
+				/>
+				<div className='swiper-lazy-preloader swiper-lazy-preloader-white'/>
+				{ ( lightboxDisplayCaptions && caption ) && (
+					<div className='spectra-image-gallery__control-lightbox--caption'>
+						{ caption }
+					</div>
+				) }
+			</div>
+		);
+	}
+
 	return (
 		<div className='spectra-image-gallery__control-lightbox' >
-			<div
-				className='swiper spectra-image-gallery__control-lightbox--main'
-				ref={ lightboxRef }
-			>
-				<div className='swiper-wrapper'>
-					{ mediaGallery.map( ( media ) => (
-						<div className='swiper-slide' >
-							<img
-								className='swiper-lazy'
-								data-src={ media.url }
-							/>
-							<div className='swiper-lazy-preloader swiper-lazy-preloader-white'/>
-							<div
-								className='spectra-image-gallery__control-lightbox--caption'
-								style={ { display: lightboxDisplayCaptions ? undefined : 'none' } }
-							>
-								{ media.caption }
-							</div>
-						</div>
-					) ) }
-				</div>
-				<div className='swiper-button-next'/>
-				<div className='swiper-button-prev'/>
-			</div>
+			{ renderLightbox() }
+			{ lightboxThumbnails && renderThumbnails() }
 			{ lightboxCloseIcon && (
 				<button
 					className='spectra-image-gallery__control-lightbox--close'
