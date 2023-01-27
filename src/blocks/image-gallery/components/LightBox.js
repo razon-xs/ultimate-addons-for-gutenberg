@@ -15,13 +15,13 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 		lightboxThumbnails,
 		lightboxDisplayCount,
 		lightboxCloseIcon,
+		imageDefaultCaption,
 	} = attributes;
 
 	const lightboxRef = useRef();
 	const thumbnailRef = useRef();
 	const [ lightboxSwiper, setLightboxSwiper ] = useState( null );
 	const [ thumbnailSwiper, setThumbnailSwiper ] = useState( null );
-	const [ currentCaption, setCurrentCaption ] = useState( '' );
 	
 	// Set the Lightbox Slider once the Ref is in use.
 	useEffect( () => {
@@ -37,26 +37,31 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 		setTimeout( () => {
 			if ( thumbnailRef.current ) {
 				initThumbnailSwiper();
+				if ( lightboxSwiper ) {
+					lightboxSwiper.destroy();
+					initLightboxSwiper();
+				}
 			}
 		}, 500 );
 	}, [ thumbnailRef ] );
 
 	// Update the Sliders when the gallery is updated.
 	useEffect( () => {
+		if ( lightboxThumbnails && thumbnailSwiper ) {
+			thumbnailSwiper.update();
+		}
 		if ( lightboxSwiper ) {
 			lightboxSwiper.update();
 		}
-		if ( lightboxThumbnails && thumbnailSwiper ) {
-			thumbnailSwiper.update();
-		}
 	}, [ mediaGallery ] );
 
-	// Update the Thumbnail Swiper only when needed.
+	// Destroy and Recreate the Lightbox Slider when Thumbnails are created.
 	useEffect( () => {
-		if ( lightboxThumbnails && thumbnailSwiper ) {
-			thumbnailSwiper.update();
+		if ( lightboxSwiper ) {
+			lightboxSwiper.destroy();
+			initLightboxSwiper();
 		}
-	}, [ lightboxThumbnails ] );
+	}, [ thumbnailSwiper ] )
 
 	// Initialize the Lightbox Slider.
 	const initLightboxSwiper = () => {
@@ -76,7 +81,7 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 				},
 			},
 			thumbs: {
-			  swiper: thumbnailRef.current,
+			  swiper: thumbnailSwiper,
 			},
 		}
 
@@ -98,8 +103,7 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 		const settings = {
 			autoplay: false,
 			centeredSlides: true,
-			lazy: true,
-			freeMode: true,
+			// freeMode: true,
 			slidesPerView: 5,
 			spaceBetween: 10,
 			watchSlidesProgress: true,
@@ -113,10 +117,9 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 		// Thumbnail Swiper Creation with Modules.
 		new Swiper( thumbnailRef.current, {
 			...settings,
-			modules: [
-				FreeMode,
-				Lazy,
-			],
+			// modules: [
+			// 	FreeMode,
+			// ],
 		} );
 	}
 
@@ -127,7 +130,20 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 			ref={ lightboxRef }
 		>
 			<div className='swiper-wrapper'>
-				{ mediaGallery.map( ( media ) => renderSlide( media.url, media.caption ) ) }
+				{ mediaGallery.map( ( media ) => (
+					<div className='swiper-slide'>
+						<img
+							className='swiper-lazy'
+							data-src={ media.url }
+						/>
+						<div className='swiper-lazy-preloader swiper-lazy-preloader-white'/>
+						{ lightboxDisplayCaptions && (
+							<div className='spectra-image-gallery__control-lightbox--caption'>
+								{ media.caption ? media.caption : imageDefaultCaption }
+							</div>
+						) }	
+					</div>
+				) ) }
 			</div>
 			<div className='swiper-button-next'/>
 			<div className='swiper-button-prev'/>
@@ -140,37 +156,24 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 			className='swiper spectra-image-gallery__control-lightbox--thumbnails'
 			style={ {
 				backgroundColor: lightboxDisplayCaptions ? 'black' : 'transparent',
+				display: lightboxThumbnails ? undefined : 'none',
 			} }
 			ref={ thumbnailRef }
 		>
 			<div className='swiper-wrapper'>
-				{ mediaGallery.map( ( media ) => renderSlide( media.sizes.thumbnail.url ) ) }
+				{ mediaGallery.map( ( media ) => (
+					<div className='swiper-slide'>
+						<img src={ media.sizes.thumbnail.url } />
+					</div>
+				) ) }
 			</div>
 		</div>
 	);
 
-	// Render the Common Slider Components.
-	const renderSlide = ( url, caption = '' ) => {
-		return (
-			<div className='swiper-slide'>
-				<img
-					className='swiper-lazy'
-					data-src={ url }
-				/>
-				<div className='swiper-lazy-preloader swiper-lazy-preloader-white'/>
-				{ ( lightboxDisplayCaptions && caption ) && (
-					<div className='spectra-image-gallery__control-lightbox--caption'>
-						{ caption }
-					</div>
-				) }
-			</div>
-		);
-	}
-
 	return (
 		<div className='spectra-image-gallery__control-lightbox' >
 			{ renderLightbox() }
-			{ lightboxThumbnails && renderThumbnails() }
+			{ renderThumbnails() }
 			{ lightboxCloseIcon && (
 				<button
 					className='spectra-image-gallery__control-lightbox--close'
