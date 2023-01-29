@@ -67,9 +67,6 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 
 		// Lightbox Swiper Settings.
 		const settings = {
-			autoplay: {
-			  delay: 5000
-			},
 			lazy: true,
 			slidesPerView: 1,
 			navigation: {
