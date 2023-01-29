@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import renderSVG from '@Controls/renderIcon';
 import Swiper, {
-	FreeMode,
 	Lazy,
 	Navigation,
 	Thumbs,
@@ -68,7 +67,9 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 
 		// Lightbox Swiper Settings.
 		const settings = {
-			autoplay: false,
+			autoplay: {
+			  delay: 5000
+			},
 			lazy: true,
 			slidesPerView: 1,
 			navigation: {
@@ -79,9 +80,14 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 				beforeInit ( swiperInstance ) {
 					setLightboxSwiper( swiperInstance );
 				},
+				activeIndexChange ( swiperInstance ) {
+					if ( thumbnailSwiper ) {
+						thumbnailSwiper.slideTo( swiperInstance.activeIndex );
+					}
+				},
 			},
 			thumbs: {
-			  swiper: thumbnailSwiper,
+				swiper: thumbnailSwiper,
 			},
 		}
 
@@ -101,12 +107,11 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 
 		// Thumbnail Swiper Settings.
 		const settings = {
-			autoplay: false,
 			centeredSlides: true,
-			// freeMode: true,
 			slidesPerView: 5,
-			spaceBetween: 10,
+			slideToClickedSlide: true,
 			watchSlidesProgress: true,
+			watchSlidesVisibility: true,
 			on: {
 				beforeInit ( swiperInstance ) {
 					setThumbnailSwiper( swiperInstance );
@@ -117,9 +122,6 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 		// Thumbnail Swiper Creation with Modules.
 		new Swiper( thumbnailRef.current, {
 			...settings,
-			// modules: [
-			// 	FreeMode,
-			// ],
 		} );
 	}
 
@@ -153,19 +155,23 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 	// Render the Thumbnail Slider.
 	const renderThumbnails = () => (
 		<div
-			className='swiper spectra-image-gallery__control-lightbox--thumbnails'
+			className='spectra-image-gallery__control-lightbox--thumbnails-wrapper'
 			style={ {
 				backgroundColor: lightboxDisplayCaptions ? 'black' : 'transparent',
 				display: lightboxThumbnails ? undefined : 'none',
 			} }
-			ref={ thumbnailRef }
 		>
-			<div className='swiper-wrapper'>
-				{ mediaGallery.map( ( media ) => (
-					<div className='swiper-slide'>
-						<img src={ media.sizes.thumbnail.url } />
-					</div>
-				) ) }
+			<div
+				className='swiper spectra-image-gallery__control-lightbox--thumbnails'
+				ref={ thumbnailRef }
+			>
+				<div className='swiper-wrapper'>
+					{ mediaGallery.map( ( media ) => (
+						<div className='swiper-slide'>
+							<img src={ media.sizes.thumbnail.url } />
+						</div>
+					) ) }
+				</div>
 			</div>
 		</div>
 	);
