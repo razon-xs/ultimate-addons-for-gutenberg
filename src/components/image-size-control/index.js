@@ -25,6 +25,7 @@ export default function ImageSizeControl( {
 	heightMobile,
 	setAttributes,
 	onChange,
+	help,
 } ) {
 
 	// Add and remove the CSS on the drop and remove of the component.
@@ -192,6 +193,9 @@ export default function ImageSizeControl( {
 							{output[deviceType]}
 						</div>
 					</div>
+					{ help && (
+						<p className="uag-control-help-notice">{ help }</p>
+					) }
 				</div>
 			) }
 		</>

@@ -202,6 +202,9 @@ const UAGPresets = ( props ) => {
 			</div>
             { 'dropdown' === presetInputType && presetDropdown }
             { 'radioImage' === presetInputType && presetRadioImage }
+			{ props.help && (
+				<p className="uag-control-help-notice">{ props.help }</p>
+			) }
         </div>
     );
 }

@@ -329,7 +329,7 @@ const ResponsiveBorder = ( props ) => {
 						label: prefix + 'BorderRadiusLink',
 					} }
 					help={ borderRadiusHelp ? borderRadiusHelp : false }
-				/> 
+				/>
 			) }
 			{ 'none' !== borderStyle && 'default' !== borderStyle && (
 				<UAGTabsControl
@@ -339,6 +339,9 @@ const ResponsiveBorder = ( props ) => {
 					active={ '' }
 					disableBottomSeparator={ disableBottomSeparator }
 				/>
+			) }
+			{ props.help && (
+				<p className="uag-control-help-notice">{ props.help }</p>
 			) }
 		</>
 	);

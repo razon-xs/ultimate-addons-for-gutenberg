@@ -90,6 +90,9 @@ const ResponsiveSlider = ( props ) => {
 			<div className="uagb-responsive-control-inner">
 				{ output[ deviceType ] ? output[ deviceType ] : output.Desktop }
 			</div>
+			{ props.help && (
+				<p className="uag-control-help-notice">{ props.help }</p>
+			) }
 		</div>
 	);
 };

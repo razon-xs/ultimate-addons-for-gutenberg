@@ -15,7 +15,7 @@ const UAGTabsControl = ( props ) => {
 		};
 	}, [] );
 
-	
+
 	const tabRef = useRef( null );
 
 	const tabsCountClass =
@@ -74,6 +74,9 @@ const UAGTabsControl = ( props ) => {
 				} }
 			</TabPanel>
 			{ ! props?.disableBottomSeparator && <Separator/> }
+			{ props.help && (
+				<p className="uag-control-help-notice">{ props.help }</p>
+			) }
 		</>
 	);
 };

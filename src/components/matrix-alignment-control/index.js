@@ -32,7 +32,7 @@ const SpectraMatrixControl = ( props ) => {
 
 	// Extract all props.
 	const {
-		label, 
+		label,
 		data,
 		onChange,
 		setAttributes,
@@ -50,6 +50,7 @@ const SpectraMatrixControl = ( props ) => {
 
 	// Render the Alignment Matrix Control.
 	return (
+		<>
 		<div className="components-base-control spectra__matrix-control">
 			<div className='uag-control-label'>
 				{ label }
@@ -61,6 +62,10 @@ const SpectraMatrixControl = ( props ) => {
 				onChange={ ( onChange || setAttributes ) ? ( newValue ) => onChangeHandler( newValue ) : false }
 			/>
 		</div>
+		{ props.help && (
+			<p className="uag-control-help-notice">{ props.help }</p>
+		) }
+		</>
 	);
 }
 

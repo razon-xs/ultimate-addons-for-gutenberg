@@ -899,6 +899,9 @@ const Background = ( props ) => {
 	return (
 		<div className="uag-bg-select-control components-base-control">
 			{ advancedControls }
+			{ props.help && (
+				<p className="uag-control-help-notice">{ props.help }</p>
+			) }
 		</div>
 	);
 };

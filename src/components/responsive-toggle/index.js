@@ -194,6 +194,9 @@ const devices = [
 				) }
 			</ButtonGroup>
 		) }
+		{ props.help && (
+				<p className="uag-control-help-notice">{ props.help }</p>
+			) }
 	</div>
 	)
 }
