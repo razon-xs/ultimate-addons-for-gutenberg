@@ -2,6 +2,8 @@ UAGBCounter = { // eslint-disable-line no-undef
 	elements: {},
 	init( mainSelector, data = {} ) {
 		this.elements = this.getDefaultElements( mainSelector );
+		data = this._getCounterData( this.elements.counterWrapper, data );
+
 		if( !data.isFrontend ){
 			this.elements.counterWrapper.removeAttribute( 'played' );
 		}
@@ -172,5 +174,17 @@ UAGBCounter = { // eslint-disable-line no-undef
 		}
 
 		return ( data.totalNumber || parseFloat( data.startNumber ) === parseFloat( 0 ) ) ? parseFloat( data.totalNumber ) : parseFloat( 100 );
+	},
+	_getCounterData( element,data ){
+		let getCounterData = element.getAttribute( 'data-counter' );
+		if( !getCounterData || null === getCounterData || undefined === getCounterData ){
+			return data;
+		}
+
+		getCounterData = JSON.parse( getCounterData );
+		if( getCounterData ){
+			data = { ...data, ...getCounterData};
+		}
+		return data;
 	}
 };
