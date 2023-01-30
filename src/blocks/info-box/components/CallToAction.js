@@ -49,7 +49,6 @@ const InfoBoxCta = ( props ) => {
 							ctaIconOutput }
 					</a>
 				) }
-              
 				{ attributes.ctaType === 'button' && (
 					<div
 						className={ classnames(
