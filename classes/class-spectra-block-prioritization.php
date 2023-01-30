@@ -28,7 +28,9 @@ class Spectra_Block_Prioritization {
 		'image',
 		'buttons',
 		'info-box',
+		'icon',
 		'call-to-action',
+		'icon',
 		// Alphabetically Ordered Blocks.
 		'blockquote',
 		'content-timeline',

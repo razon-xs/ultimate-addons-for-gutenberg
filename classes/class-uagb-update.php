@@ -93,6 +93,7 @@ if ( ! class_exists( 'UAGB_Update' ) ) :
 						'buttons',
 						'info-box',
 						'call-to-action',
+						'icon',
 					);
 
 					foreach ( $core_blocks as $block ) {
