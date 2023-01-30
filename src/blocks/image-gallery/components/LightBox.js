@@ -109,7 +109,7 @@ const Lightbox = ( { attributes, setAttributes, setLightboxPreview } ) => {
 		// Thumbnail Swiper Settings.
 		const settings = {
 			centeredSlides: true,
-			slidesPerView: 5,
+			slidesPerView: 7,
 			slideToClickedSlide: true,
 			watchSlidesProgress: true,
 			watchSlidesVisibility: true,

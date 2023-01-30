@@ -653,33 +653,32 @@
 			}
 
 			&--thumbnails {
-				width: 50%;
+				width: 75%;
 
 				&-wrapper {
 					width: 100%;
-					height: 100px;
+				}
+
+				.swiper-wrapper {
+					height: 150px;
 				}
 
 				.swiper-slide {
+					cursor: pointer;
 					height: 100%;
 					display: flex;
 					flex-direction: column;
 					align-items: center;
 					justify-content: center;
-
-					img {
-						opacity: 0.5;
-						transform: scale( 75% );
-						transition-property: opacity, transform;
-						transition-duration: 200ms;
-					}
+					opacity: 0.5;
+					transform: scale( 75% );
+					transition-property: opacity, transform, margin;
+					transition-duration: 200ms;
 
 					&-active {
-
-						img {
-							opacity: 1;
-							transform: scale( 100% );
-						}
+						opacity: 1;
+						transform: scale( 100% );
+						margin: 0 18px;
 					}
 				}
 			}
