@@ -6,7 +6,7 @@ import Swiper, {
 	Thumbs,
 } from 'swiper';
 
-const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPreview } ) => {
+const Lightbox = ( { attributes, setAttributes, setLightboxPreview } ) => {
 
 	const {
 		mediaGallery,
@@ -21,6 +21,8 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 	const thumbnailRef = useRef();
 	const [ lightboxSwiper, setLightboxSwiper ] = useState( null );
 	const [ thumbnailSwiper, setThumbnailSwiper ] = useState( null );
+	const [ lightboxTotal, setLightboxTotal ] = useState( 0 );
+	const [ CurrentSlide, setCurrentSlide ] = useState( 0 );
 	
 	// Set the Lightbox Slider once the Ref is in use.
 	useEffect( () => {
@@ -46,6 +48,7 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 
 	// Update the Sliders when the gallery is updated.
 	useEffect( () => {
+		setLightboxTotal( mediaGallery.length );
 		if ( lightboxThumbnails && thumbnailSwiper ) {
 			thumbnailSwiper.update();
 		}
@@ -78,6 +81,7 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 					setLightboxSwiper( swiperInstance );
 				},
 				activeIndexChange ( swiperInstance ) {
+					setCurrentSlide( swiperInstance.activeIndex );
 					if ( thumbnailSwiper ) {
 						thumbnailSwiper.slideTo( swiperInstance.activeIndex );
 					}
@@ -177,6 +181,11 @@ const Lightbox = ( { attributes, setAttributes, lightboxPreview, setLightboxPrev
 		<div className='spectra-image-gallery__control-lightbox' >
 			{ renderLightbox() }
 			{ renderThumbnails() }
+			{ lightboxDisplayCount && (
+				<div className='spectra-image-gallery__control-lightbox--count' >
+					{ `${ CurrentSlide + 1 } / ${ lightboxTotal }` }
+				</div>
+			) }
 			{ lightboxCloseIcon && (
 				<button
 					className='spectra-image-gallery__control-lightbox--close'

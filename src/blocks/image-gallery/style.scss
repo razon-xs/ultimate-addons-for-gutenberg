@@ -684,6 +684,14 @@
 				}
 			}
 
+			&--count {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				z-index: 999;
+				color: white;
+			}
+
 			&--close {
 				position: absolute;
 				top: 10px;
