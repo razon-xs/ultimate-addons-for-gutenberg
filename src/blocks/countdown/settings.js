@@ -23,6 +23,7 @@ import {
 	Icon,
     ToggleControl,
 	DateTimePicker,
+	Notice,
 } from '@wordpress/components';
 import {
     InspectorControls
@@ -327,6 +328,9 @@ export default function Settings( props ) {
 		);
 	}
 
+	// This is to fetch the local system's offset from UTC and helps the user know their offset from 00:00UTC.
+	const timezone = new Date().toLocaleTimeString( 'en-us',{timeZoneName:'short'} ).split( ' ' )[2].slice( 3 );
+
     // <------------------ GENERAL TAB ------------------>
     const generalPanel = (
         <UAGAdvancedPanelBody
@@ -335,7 +339,17 @@ export default function Settings( props ) {
 		>
             { timerType && 
                 <div className='uagb-countdown__datetime-picker'>
-                    <h2>Timer End Date &amp; Time (UTC)</h2>
+                    <div><h2>{ __( 'Timer End Date & Time (UTC)', 'ultimate-addons-for-gutenberg' ) }</h2></div>
+					<Notice
+						className='uagb-countdown-settings_utc-notice'
+						status='info'
+						isDismissible={false}
+					>
+						<em>
+							<p>{ __( 'The time entered should be in UTC which is the same. ', 'ultimate-addons-for-gutenberg' ) }<a href='https://www.worldtimeserver.com/time-zones/utc/'>{ __( 'Click here to know more about UTC.', 'ultimate-addons-for-gutenberg' ) }</a></p>
+							<p><strong>{ __( 'Your offset from UTC: ', 'ultimate-addons-for-gutenberg' ) }</strong>{timezone}</p>
+						</em>
+					</Notice>
                     <DateTimePicker
 						className="uagb-date-picker"
 						currentDate={ endDateTime.slice( 0, -1 ) }
