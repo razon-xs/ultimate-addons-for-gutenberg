@@ -12,13 +12,19 @@ const Render = ( props ) => {
 		block_id,
 	} = attributes;
 
+	const iconHtml = (
+			( renderSVG( icon ? icon : 'circle-check' ) )
+		)
+
 	const blockProps = useBlockProps( {
-		className: classnames( `uagb-block-${ block_id } uagb-editor-preview-mode-${ deviceType.toLowerCase() }` )
+		className: classnames( `uagb-block-${ block_id }` )
 	} );
 
 	return (
 		<div { ...blockProps }>
-			{ renderSVG( icon ) }
+			<div className={`uagb-icon-wrapper uagb-editor-preview-mode-${ deviceType.toLowerCase() }` }>
+				{ iconHtml }
+			</div>
 		</div>
 	);
 };

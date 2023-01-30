@@ -7,6 +7,7 @@ const attributes = {
 	   type: 'string',
 	   default: 'circle-check',
    },
+   // Size
    iconSize: {
 	   type: 'number',
 	   default: 30,
@@ -26,48 +27,79 @@ const attributes = {
 		   styleType: 'icon-size-mobile'
 	   }
    },
-   iconSizeType: {
-	   type: 'String',
+   iconSizeUnit: {
+	   type: 'string',
 	   default: 'px',
 	   UAGCopyPaste: {
 		   styleType: 'icon-size-type'
 	   }
    },
-   iconHover: {
-	   type: 'string',
-	   default: '',
-	   UAGCopyPaste: {
-		   styleType: 'icon-hover-color'
-	   }
-   },
-   iconBgHover: {
-	   type: 'string',
-	   default: '',
-	   UAGCopyPaste: {
-		   styleType: 'icon-bg-hover-color'
-	   }
-   },
-   iconColor: {
+   // Alignment
+   align: {
+		type: 'string',
+		default: 'center',
+		UAGCopyPaste: {
+			styleType: 'overall-alignment'
+		},
+	},
+	alignTablet: {
+		type: 'string',
+		default: '',
+		UAGCopyPaste: {
+			styleType: 'overall-alignment-tablet'
+		}
+	},
+	alignMobile: {
+		type: 'string',
+		default: '',
+		UAGCopyPaste: {
+			styleType: 'overall-alignment-mobile'
+		}
+	},
+	iconColor: {
 	   type: 'string',
 	   default: '#333',
 	   UAGCopyPaste: {
 		   styleType: 'icon-color'
 	   }
-   },
-
-   source_type: {
-	   type: 'string',
-	   default: 'icon',
-   },
-   block_id: {
-	   type: 'string',
-   },
-   iconLeftMargin: {
-	   type: 'number',
-	   UAGCopyPaste: {
-		   styleType: 'icon-left-margin'
-	   },
-   },
+	},
+	// Rotation
+	rotation: {
+		type: 'number',
+		default: 0,
+		UAGCopyPaste: {
+			styleType: 'icon-rotation'
+		},
+	},
+	rotationUnit: {
+		type: 'string',
+		default: 'deg',
+		UAGCopyPaste: {
+			styleType: 'icon-rotation-type'
+		},
+	},
+	block_id: {
+		type: 'string',
+	},
+	// Link related attributes.
+	link: {
+		type: 'string',
+		default: '',
+	},
+	target: {
+		type: 'boolean',
+		default: false,
+	},
+	disableLink: {
+		type: 'boolean',
+		default: false,
+	},
+	iconLeftMargin: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'icon-left-margin'
+		},
+	},
    iconRightMargin: {
 	   type: 'number',
 	   UAGCopyPaste: {
@@ -187,36 +219,7 @@ const attributes = {
 		   styleType: 'icon-margin-unit-tablet'
 	   }
    },
-	imageWidthUnit: {
-	   type: 'string',
-	   default: 'px',
-	   UAGCopyPaste: {
-		   styleType: 'image-width-unit'
-	   }
-   },
-   imageWidthUnitTablet: {
-	   type: 'string',
-	   default: 'px',
-	   UAGCopyPaste: {
-		   styleType: 'image-width-unit-tablet'
-	   }
-   },
-   imageWidthUnitMobile: {
-	   type: 'string',
-	   default: 'px',
-	   UAGCopyPaste: {
-		   styleType: 'image-width-unit-mobile'
-	   }
-   },
-   iconimgBorderRadiusUnit: {
-	   type: 'string',
-	   default: 'px',
-	   UAGCopyPaste: {
-		   styleType: 'icon-border-radius-unit'
-	   }
-   },
-
-   // padding
+   // Padding
    blockTopPadding : {
 	   type: 'number',
 	   isUAGStyle: true,
