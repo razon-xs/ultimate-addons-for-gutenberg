@@ -47,7 +47,7 @@ const GeneralSettings = ( props ) => {
 					presetInputType = 'radioImage'
 				/>
 			</UAGAdvancedPanelBody>
-			<UAGAdvancedPanelBody title={__( 'Icon', 'ultimate-addons-for-gutenberg' )} initialOpen={ true }>
+			<UAGAdvancedPanelBody title={__( 'Icon', 'ultimate-addons-for-gutenberg' )} initialOpen={ false }>
 				<UAGIconPicker
 					label={ __(
 						'Icon',
