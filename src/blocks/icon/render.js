@@ -6,14 +6,15 @@ import { useBlockProps } from '@wordpress/block-editor';
 
 const Render = ( props ) => {
 
-	const { attributes, deviceType } = props;
+	const { attributes, setAttributes, deviceType } = props;
 	const {
 		icon,
 		block_id,
 	} = attributes;
 
+	const iconSvg = icon ? icon : 'circle-check';
 	const iconHtml = (
-			( renderSVG( icon ? icon : 'circle-check' ) )
+			( renderSVG( iconSvg, setAttributes ) )
 		)
 
 	const blockProps = useBlockProps( {
@@ -23,7 +24,7 @@ const Render = ( props ) => {
 	return (
 		<div { ...blockProps }>
 			<div className={`uagb-icon-wrapper uagb-editor-preview-mode-${ deviceType.toLowerCase() }` }>
-				{ iconHtml }
+				<span className='uagb-svg-wrapper' >{ iconHtml }</span>
 			</div>
 		</div>
 	);

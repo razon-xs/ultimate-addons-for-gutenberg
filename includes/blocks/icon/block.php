@@ -1,6 +1,6 @@
 <?php
 /**
- * Block Information & Attributes File.
+ * Block Information.
  *
  * @since x.x.x
  *

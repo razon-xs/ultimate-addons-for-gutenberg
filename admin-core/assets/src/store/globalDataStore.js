@@ -51,6 +51,7 @@ const initialState = {
         'buttons',
         'info-box',
         'call-to-action',
+		'icon',
     ]
 };
 

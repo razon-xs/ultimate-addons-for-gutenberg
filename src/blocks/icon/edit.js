@@ -20,29 +20,28 @@ const UAGBIcon = ( props ) => {
 		attributes,
 		isSelected,
 	} = props;
-	const block_id = attributes.block_id;
+	const blockId = clientId.substr( 0, 8 );
 
 	props = { ...props, deviceType };
 
 	useEffect( () => {
-		// Assigns block_id only for the first time when block is initialized.
-		if( ! block_id ) {
-			props.setAttributes( { block_id: clientId.substr( 0, 8 ) } );
-		}
+		// Assigning block_id in the attribute.
+		props.setAttributes( { block_id: blockId } );
+		props.attributes.block_id = blockId;
 	}, [] );
 
 	useEffect( () => {
 		if( true === isSelected ) {
 			// Replacement for componentDidUpdate.
 			const blockStyling = styling( props );
-			addBlockEditorDynamicStyles( 'uagb-icon-' + block_id, blockStyling );
+			addBlockEditorDynamicStyles( 'uagb-style-icon-' + blockId, blockStyling );
 		}
 	}, [ props ] );
 
 	useEffect( () => {
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
-		addBlockEditorDynamicStyles( 'uagb-icon-' + block_id, blockStyling );
+		addBlockEditorDynamicStyles( 'uagb-style-icon-' + blockId, blockStyling );
 		scrollBlockToView();
 	}, [ deviceType ] );
 

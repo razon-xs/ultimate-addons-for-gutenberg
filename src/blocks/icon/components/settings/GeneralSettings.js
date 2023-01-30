@@ -1,3 +1,6 @@
+/**
+ * Block Icon : General Settings.
+ */
 import UAGIconPicker from '@Components/icon-picker';
 import React from 'react';
 import { __ } from '@wordpress/i18n';

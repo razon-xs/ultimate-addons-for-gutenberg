@@ -44,7 +44,7 @@ export default function save( props ){
 	return (
 		<div { ...blockProps }>
 			<div className='uagb-icon-wrapper'>
-				{ iconHtml }
+				<span className='uagb-svg-wrapper' >{ iconHtml }</span>
 			</div>
 		</div>
 	);
