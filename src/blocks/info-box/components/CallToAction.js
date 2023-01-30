@@ -33,7 +33,6 @@ const InfoBoxCta = ( props ) => {
 	if ( setAttributes !== 'not_set' ) {
 		return (
 			<div className="uagb-ifb-cta uagb-infobox-cta-link-style">
-
 				{ attributes.ctaType === 'text' && (
 					<a // eslint-disable-line jsx-a11y/anchor-is-valid
 						target={ target }
