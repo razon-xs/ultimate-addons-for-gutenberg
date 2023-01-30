@@ -34,7 +34,15 @@ const UAGBImageGallery = ( props ) => {
 
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
+	// Lightbox disabled by default for the block on every instance.
 	const [ lightboxPreview, setLightboxPreview ] = useState( false );
+
+	// Disable the Lightbox when the block isn't selected.
+	useEffect( () => {
+		if ( ! props.isSelected ) {
+			setLightboxPreview( false );
+		}
+	}, [ props.isSelected ] );
 
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/image-gallery.svg`;
 
