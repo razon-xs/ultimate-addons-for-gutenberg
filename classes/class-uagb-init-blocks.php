@@ -132,13 +132,17 @@ class UAGB_Init_Blocks {
 		update_option('spectra_global_block_styles', $spectra_global_block_styles);
 		$spectra_gbs_google_fonts = get_option('spectra_gbs_google_fonts', array());
 		
+		$font_families = array();
 		foreach($blockattr as $name => $attribute) {
 			if ( false !== strpos( $name, 'Family' ) && '' !== $attribute )  {
 				
-				$spectra_gbs_google_fonts[] = $attribute;
+				$font_families[] = $attribute;
 			}
 		}
-		$spectra_gbs_google_fonts = array_unique($spectra_gbs_google_fonts);
+		$spectra_gbs_google_fonts[$blockattr['globalBlockStyleId']] = $font_families;
+		if ( isset($spectra_gbs_google_fonts[$blockattr['globalBlockStyleId']]) && is_array($spectra_gbs_google_fonts[$blockattr['globalBlockStyleId']])) {
+			$spectra_gbs_google_fonts[$blockattr['globalBlockStyleId']] = array_unique($spectra_gbs_google_fonts[$blockattr['globalBlockStyleId']]);
+		}
 		update_option('spectra_gbs_google_fonts', $spectra_gbs_google_fonts);
 		wp_send_json_success();
 	}

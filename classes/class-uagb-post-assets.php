@@ -208,15 +208,21 @@ class UAGB_Post_Assets {
 	 * @param int $post_id Post ID.
 	 */
 	public function __construct( $post_id ) {
-		// delete_option('spectra_global_block_styles');
+		// delete_option('spectra_gbs_google_fonts');
 		$this->post_id = intval( $post_id );
 
 		$this->preview = isset( $_GET['preview'] ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$spectra_gbs_google_fonts = get_option('spectra_gbs_google_fonts', array());
-		var_dump($spectra_gbs_google_fonts);
-		foreach( $spectra_gbs_google_fonts as $family ) {
-
-			UAGB_Helper::blocks_google_font( true , $family, false );
+		$families = array();
+		foreach( $spectra_gbs_google_fonts as $style ) {
+			if (is_array($style)) {
+				foreach( $style as $family ) {
+					if ( ! in_array( $family, $families ) ) {
+						UAGB_Helper::blocks_google_font( true , $family, false );
+						$families[] = $family;
+					}
+				}
+			}
 		}
 		$this->load_uag_fonts = apply_filters( 'uagb_enqueue_google_fonts', $this->load_uag_fonts );
 
