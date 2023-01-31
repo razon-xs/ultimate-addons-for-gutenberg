@@ -39,6 +39,9 @@ function styling( props ) {
 		gridImageGapUnitTab,
 		gridImageGapUnitMob,
 
+		// Lightbox Settings.
+		lightboxDisplayCaptions,
+
 		// Caption Settings.
 		captionVisibility,
 		captionDisplayType,
@@ -91,6 +94,14 @@ function styling( props ) {
 		captionBackgroundEnableBlur,
 		captionBackgroundBlurAmount,
 		captionBackgroundBlurAmountHover,
+
+		// Lightbox Styling.
+		lightboxBackgroundEnableBlur,
+		lightboxBackgroundBlurAmount,
+		lightboxBackgroundColor,
+		lightboxCaptionColor,
+		lightboxCaptionBackgroundColor,
+		lightboxIconColor,
 
 		// Caption Font.
 		captionFontFamily,
@@ -550,6 +561,32 @@ function styling( props ) {
 					)
 				)
 			),
+		},
+
+		// Lightbox Selectors.
+
+		' .spectra-image-gallery__control-lightbox': {
+			'background-color': lightboxBackgroundColor,
+			'backdrop-filter': lightboxBackgroundEnableBlur ? `blur(${ lightboxBackgroundBlurAmount }px)` : undefined,
+		},
+		' .spectra-image-gallery__control-lightbox--caption': {
+			'color': lightboxCaptionColor,
+			'background': `linear-gradient(rgba(0,0,0,0), ${ lightboxCaptionBackgroundColor })`,
+		},
+		' .spectra-image-gallery__control-lightbox--thumbnails-wrapper': {
+			'background-color': lightboxDisplayCaptions ? lightboxCaptionBackgroundColor : 'transparent',
+		},
+		' .spectra-image-gallery__control-lightbox--count': {
+			'color': lightboxIconColor,			
+		},
+		' .spectra-image-gallery__control-lightbox--close svg': {
+			'fill': lightboxIconColor,
+		},
+		' .spectra-image-gallery__control-lightbox--main .swiper-button-prev': {
+			'color': lightboxIconColor,			
+		},
+		' .spectra-image-gallery__control-lightbox--main .swiper-button-next': {
+			'color': lightboxIconColor,			
 		},
 	};
 

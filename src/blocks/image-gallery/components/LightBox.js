@@ -158,7 +158,6 @@ const Lightbox = ( { attributes, setAttributes, setLightboxPreview } ) => {
 		<div
 			className='spectra-image-gallery__control-lightbox--thumbnails-wrapper'
 			style={ {
-				backgroundColor: lightboxDisplayCaptions ? 'black' : 'transparent',
 				display: lightboxThumbnails ? undefined : 'none',
 			} }
 		>

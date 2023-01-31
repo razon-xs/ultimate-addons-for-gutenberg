@@ -148,6 +148,13 @@ const Settings = ( props ) => {
 		captionBackgroundBlurAmount,
 		captionBackgroundBlurAmountHover,
 
+		lightboxBackgroundEnableBlur,
+		lightboxBackgroundBlurAmount,
+		lightboxBackgroundColor,
+		lightboxCaptionColor,
+		lightboxCaptionBackgroundColor,
+		lightboxIconColor,
+
 		captionLoadGoogleFonts,
 		captionFontFamily,
 		captionFontWeight,
@@ -1437,6 +1444,75 @@ const Settings = ( props ) => {
 	);
 
 
+	const lightboxStyling = () => (
+		<UAGAdvancedPanelBody title={ __( 'Lightbox', 'ultimate-addons-for-gutenberg' ) } initialOpen={ false }>
+			<ToggleControl
+				label={ __(
+					`Blur Background`,
+					'ultimate-addons-for-gutenberg'
+				) }
+				checked={ lightboxBackgroundEnableBlur }
+				onChange={ () => 
+					setAttributes( { lightboxBackgroundEnableBlur: ! lightboxBackgroundEnableBlur } )
+				}
+			/>
+			{ lightboxBackgroundEnableBlur && (
+				<Range
+					label={ __( `Blur Amount`, 'ultimate-addons-for-gutenberg' ) }
+					setAttributes={ setAttributes }
+					value={ lightboxBackgroundBlurAmount }
+					data={ {
+						value:lightboxBackgroundBlurAmount,
+						label: 'lightboxBackgroundBlurAmount',
+					} }
+					min={ 0 }
+					max={ 10 }
+					displayUnit={ false }
+				/>
+			) }
+			<AdvancedPopColorControl
+				label={ __( 'Background Color', 'ultimate-addons-for-gutenberg' ) }
+				colorValue={ lightboxBackgroundColor ? lightboxBackgroundColor : '' }
+				data={ {
+					value: lightboxBackgroundColor,
+					label: 'lightboxBackgroundColor',
+				} }
+				setAttributes={ setAttributes }
+			/>
+			<AdvancedPopColorControl
+				label={ __( 'Accent Color', 'ultimate-addons-for-gutenberg' ) }
+				colorValue={ lightboxIconColor ? lightboxIconColor : '' }
+				data={ {
+					value: lightboxIconColor,
+					label: 'lightboxIconColor',
+				} }
+				setAttributes={ setAttributes }
+				hint={ __( 'This color affects the Image Count, Close Button, and Arrows', 'ultimate-addons-for-gutenberg' ) }
+			/>
+			{ lightboxDisplayCaptions && (
+				<>
+					<AdvancedPopColorControl
+						label={ __( 'Caption Color', 'ultimate-addons-for-gutenberg' ) }
+						colorValue={ lightboxCaptionColor ? lightboxCaptionColor : '' }
+						data={ {
+							value: lightboxCaptionColor,
+							label: 'lightboxCaptionColor',
+						} }
+						setAttributes={ setAttributes }
+					/>
+					<AdvancedPopColorControl
+						label={ __( 'Caption Background', 'ultimate-addons-for-gutenberg' ) }
+						colorValue={ lightboxCaptionBackgroundColor ? lightboxCaptionBackgroundColor : '' }
+						data={ {
+							value: lightboxCaptionBackgroundColor,
+							label: 'lightboxCaptionBackgroundColor',
+						} }
+						setAttributes={ setAttributes }
+					/>
+				</>
+			) }
+		</UAGAdvancedPanelBody>
+	);
 
 	const captionStyling = () => (
 		<UAGAdvancedPanelBody title={ __( 'Caption', 'ultimate-addons-for-gutenberg' ) } initialOpen={ false }>
@@ -2043,6 +2119,7 @@ const Settings = ( props ) => {
 					<InspectorTab { ...UAGTabs.style }>
 						{ ! readyToRender && initialSettings() }
 						{ readyToRender && imageStyling() }
+						{ ( readyToRender && 'lightbox' === imageClickEvent ) && lightboxStyling() }
 						{ ( readyToRender && imageDisplayCaption ) && captionStyling() }
 						{/* This Condition Below Renders the Arrows and Dots Panel ONLY if:
 						1. Images are readyToRender AND

@@ -635,6 +635,51 @@ const attributes = {
 		},
 	},
 
+	// LightBox Styling
+
+	lightboxBackgroundEnableBlur: {
+		type: 'boolean',
+		default: true,
+		UAGCopyPaste: {
+			styleType: 'lightbox-background-blur'
+		},
+	},
+	lightboxBackgroundBlurAmount: {
+		type: 'number',
+		default: 5,
+		UAGCopyPaste: {
+			styleType: 'lightbox-background-blur-amount'
+		},
+	},
+	lightboxBackgroundColor: {
+		type: 'string',
+		default: 'rgba(0,0,0,0.75)',
+		UAGCopyPaste: {
+			styleType: 'lightbox-background-color'
+		},
+	},
+	lightboxIconColor: {
+		type: 'string',
+		default: 'rgba(255,255,255,1)',
+		UAGCopyPaste: {
+			styleType: 'lightbox-icon-color'
+		},
+	},
+	lightboxCaptionColor: {
+		type: 'string',
+		default: 'rgba(255,255,255,1)',
+		UAGCopyPaste: {
+			styleType: 'lightbox-caption-color'
+		},
+	},
+	lightboxCaptionBackgroundColor: {
+		type: 'string',
+		default: 'rgba(0,0,0,1)',
+		UAGCopyPaste: {
+			styleType: 'lightbox-caption-background-color'
+		},
+	},
+
 	// Caption Typography Styling
 
 	captionLoadGoogleFonts: {

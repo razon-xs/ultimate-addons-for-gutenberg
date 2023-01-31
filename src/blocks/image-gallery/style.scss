@@ -611,17 +611,10 @@
 			height: 100%;
 			display: flex;
 			flex-direction: column;
-			background-color: rgba(0, 0, 0, 0.75);
-			backdrop-filter: blur(5px);
 
 			&--main {
 				width: 100%;
 				flex: 1;
-
-				.swiper-button-next,
-				.swiper-button-prev {
-					color: white;
-				}
 
 				.swiper-slide {
 					height: 100%;
@@ -647,9 +640,6 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				color: white;
-				background: rgb(0,0,0);
-				background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));
 			}
 
 			&--thumbnails {
@@ -680,6 +670,10 @@
 						transform: scale( 100% );
 						margin: 0 18px;
 					}
+
+					img {
+						border-radius: 3px;
+					}
 				}
 			}
 
@@ -688,7 +682,6 @@
 				top: 10px;
 				left: 10px;
 				z-index: 999;
-				color: white;
 			}
 
 			&--close {
@@ -700,10 +693,6 @@
 				border: none;
 				line-height: 0;
 				z-index: 999;
-
-				svg {
-					fill: white;
-				}
 			}
 		}
 	}
