@@ -124,6 +124,10 @@ export default function styling( props ) {
 		boxAlign,
 		boxAlignTablet,
 		boxAlignMobile,
+		// Box Width.
+		boxWidth,
+		boxWidthTablet,
+		boxWidthMobile,
 		// Box Spacing.
 		boxSpacing,
 		boxSpacingTablet,
@@ -220,6 +224,7 @@ export default function styling( props ) {
 			'padding-left': generateCSSUnit( blockLeftPadding, blockPaddingUnit ),
         },
 		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box':{
+			'width': generateCSSUnit( boxWidth, 'px' ),
 			'flex-direction': boxFlex,
 			'text-align': boxAlign,
 			'background-color': ( boxBgType !== 'transparent' ) ? boxBgColor : 'transparent', 
@@ -293,6 +298,7 @@ export default function styling( props ) {
     };
 
 	tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = {
+		'width': generateCSSUnit( boxWidthTablet, 'px' ),
 		'flex-direction': boxFlexTablet,
 		'text-align': boxAlignTablet,
         'padding-top': generateCSSUnit( boxTopPaddingTablet, boxPaddingUnitTablet ),
@@ -335,6 +341,7 @@ export default function styling( props ) {
     };
 
 	mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = {
+		'width': generateCSSUnit( boxWidthMobile, 'px' ),
 		'flex-direction': boxFlexMobile,
 		'text-align': boxAlignMobile,
         'padding-top': generateCSSUnit( boxTopPaddingMobile, boxPaddingUnitMobile ),

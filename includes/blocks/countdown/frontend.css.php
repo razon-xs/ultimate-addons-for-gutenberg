@@ -72,6 +72,7 @@ $selectors = array(
 
 	'.wp-block-uagb-countdown .wp-block-uagb-countdown__box' => array_merge(
 		array(
+			'width'            => UAGB_Helper::get_css_value( $attr['boxWidth'], 'px' ),
 			'flex-direction'   => $attr['boxFlex'],
 			'text-align'       => $attr['boxAlign'],
 			'background-color' => ( 'transparent' !== $attr['boxBgType'] ) ? $attr['boxBgColor'] : 'transparent',
@@ -162,6 +163,7 @@ $t_selectors['.wp-block-uagb-countdown'] = array(
 
 $t_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = array_merge(
 	array(
+		'width'          => UAGB_Helper::get_css_value( $attr['boxWidthTablet'], 'px' ),
 		'flex-direction' => $attr['boxFlexTablet'],
 		'text-align'     => $attr['boxAlignTablet'],
 		'padding-top'    => UAGB_Helper::get_css_value( $attr['boxTopPaddingTablet'], $attr['boxPaddingUnitTablet'] ),
@@ -206,6 +208,7 @@ $m_selectors['.wp-block-uagb-countdown'] = array(
 
 $m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = array_merge(
 	array(
+		'width'          => UAGB_Helper::get_css_value( $attr['boxWidthMobile'], 'px' ),
 		'flex-direction' => $attr['boxFlexMobile'],
 		'text-align'     => $attr['boxAlignMobile'],
 		'padding-top'    => UAGB_Helper::get_css_value( $attr['boxTopPaddingMobile'], $attr['boxPaddingUnitMobile'] ),

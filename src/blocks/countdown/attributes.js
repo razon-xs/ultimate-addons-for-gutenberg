@@ -879,6 +879,25 @@ const attributes = {
 			styleType: 'countdown-box-alignment-mobile'
 		},
 	},
+	// Box Width.
+	boxWidth: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-width'
+		},
+	},
+	boxWidthTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-width-tablet'
+		},
+	},
+	boxWidthMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-width-mobile'
+		},
+	},
 	// Box Spacing.
 	boxSpacing: {
 		type: 'number',

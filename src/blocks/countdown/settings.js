@@ -165,6 +165,10 @@ export default function Settings( props ) {
 		boxAlign,
 		boxAlignTablet,
 		boxAlignMobile,
+		// Box Width.
+		boxWidth,
+		boxWidthTablet,
+		boxWidthMobile,
 		// Box Spacing.
 		boxSpacing,
 		boxSpacingTablet,
@@ -552,6 +556,30 @@ export default function Settings( props ) {
 					setAttributes={ setAttributes }
 				/>
 			}
+			<ResponsiveSlider
+				label={ __(
+					'Width',
+					'ultimate-addons-for-gutenberg'
+				) }
+				data={ {
+					desktop: {
+						value: boxWidth,
+						label: 'boxWidth',
+					},
+					tablet: {
+						value: boxWidthTablet,
+						label: 'boxWidthTablet',
+					},
+					mobile: {
+						value: boxWidthMobile,
+						label: 'boxWidthMobile',
+					},
+				} }
+				min={ 0 }
+				max={ 250 }
+				displayUnit={ false }
+				setAttributes={ setAttributes }
+			/>
 			<ResponsiveSlider
 				label={ __(
 					'Gap Between Boxes',

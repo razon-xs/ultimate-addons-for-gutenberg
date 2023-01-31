@@ -135,6 +135,10 @@ return array_merge(
 		'boxAlign'                    => 'center',
 		'boxAlignTablet'              => '',
 		'boxAlignMobile'              => '',
+		// Box Width.
+		'boxWidth'                    => '',
+		'boxWidthTablet'              => '',
+		'boxWidthMobile'              => '',
 		// Box Spacing.
 		'boxSpacing'                  => 38,
 		'boxSpacingTablet'            => 20,
