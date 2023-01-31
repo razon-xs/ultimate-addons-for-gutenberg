@@ -5,7 +5,6 @@
 import generateCSS from '@Controls/generateCSS';
 import generateCSSUnit from '@Controls/generateCSSUnit';
 import generateBorderCSS from '@Controls/generateBorderCSS';
-import { getFallbackNumber } from '@Controls/getAttributeFallback';
  
 export default function styling( props ) {
 
@@ -161,32 +160,12 @@ export default function styling( props ) {
 		boxBorderHColor,
     } = attributes;
 
-    const blockName = props.name.replace( 'uagb/', '' );
-
 	const isRTL = ( '1' === uagb_blocks_info.is_rtl ) ? true : false;
 
 	const childSelectorType = isRTL ? 'first' : 'last';
 	const pseudoElementSelectorType = isRTL ? 'before' : 'after';
 
 	const separatorSelector = '.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:' + childSelectorType + '-child) .wp-block-uagb-countdown__time::' + pseudoElementSelectorType;
-
-	// Fallbacks.
-
-	const boxSpacingFallback = getFallbackNumber( boxSpacing, 'boxSpacing', blockName );
-	const boxSpacingFallbackTablet = isNaN( boxSpacingTablet ) ? boxSpacing : boxSpacingTablet;
-	const boxSpacingFallbackMobile = isNaN( boxSpacingMobile ) ? boxSpacingTablet : boxSpacingMobile;
-
-	const internalBoxSpacingFallback = getFallbackNumber( internalBoxSpacing, 'internalBoxSpacing', blockName );
-	const internalBoxSpacingFallbackTablet = isNaN( internalBoxSpacingTablet ) ? internalBoxSpacing : internalBoxSpacingTablet;
-	const internalBoxSpacingFallbackMobile = isNaN( internalBoxSpacingMobile ) ? internalBoxSpacingTablet : internalBoxSpacingMobile;
-
-	const separatorRightSpacingFallback = getFallbackNumber( separatorRightSpacing, 'separatorRightSpacing', blockName );
-	const separatorRightSpacingTabletFallback = isNaN( separatorRightSpacingTablet ) ? separatorRightSpacing : separatorRightSpacingTablet;
-	const separatorRightSpacingMobileFallback = isNaN( separatorRightSpacingMobile ) ? separatorRightSpacingTablet : separatorRightSpacingMobile;
-
-	const separatorTopSpacingFallback = getFallbackNumber( separatorTopSpacing, 'separatorTopSpacing', blockName );
-	const separatorTopSpacingTabletFallback = isNaN( separatorTopSpacingTablet ) ? separatorTopSpacing : separatorTopSpacingTablet;
-	const separatorTopSpacingMobileFallback = isNaN( separatorTopSpacingMobile ) ? separatorTopSpacingTablet : separatorTopSpacingMobile;
 
 	// Border.
 	const boxBorderCSS = generateBorderCSS( props.attributes, 'box' );
@@ -232,8 +211,8 @@ export default function styling( props ) {
 			'padding-right': generateCSSUnit( boxRightPadding, boxPaddingUnit ),
 			'padding-bottom': generateCSSUnit( boxBottomPadding, boxPaddingUnit ),
 			'padding-left': generateCSSUnit( boxLeftPadding, boxPaddingUnit ),
-			'row-gap': generateCSSUnit( internalBoxSpacingFallback, 'px' ),
-			'column-gap': generateCSSUnit( internalBoxSpacingFallback, 'px' ),
+			'row-gap': generateCSSUnit( internalBoxSpacing, 'px' ),
+			'column-gap': generateCSSUnit( internalBoxSpacing, 'px' ),
 			'box-shadow': generateCSSUnit( boxShadowHOffset, 'px' ) + ' ' + generateCSSUnit( boxShadowVOffset, 'px' ) +	' ' +
 			generateCSSUnit( boxShadowBlur, 'px' ) + ' ' +	generateCSSUnit( boxShadowSpread, 'px' ) + ' ' +
 			boxShadowColor + ' ' +	boxShadowPositionCSS,
@@ -243,7 +222,7 @@ export default function styling( props ) {
 			'border-color': boxBorderHColor,
 		},
 		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)':{
-			'margin-right': generateCSSUnit( boxSpacingFallback, 'px' ),
+			'margin-right': generateCSSUnit( boxSpacing, 'px' ),
 		},
         '.wp-block-uagb-countdown .wp-block-uagb-countdown__time':{
 			'font-family': digitFontFamily,
@@ -305,13 +284,13 @@ export default function styling( props ) {
         'padding-right': generateCSSUnit( boxRightPaddingTablet, boxPaddingUnitTablet ),
         'padding-bottom': generateCSSUnit( boxBottomPaddingTablet, boxPaddingUnitTablet ),
         'padding-left': generateCSSUnit( boxLeftPaddingTablet, boxPaddingUnitTablet ),
-		'row-gap': generateCSSUnit( internalBoxSpacingFallbackTablet, 'px' ),
-		'column-gap': generateCSSUnit( internalBoxSpacingFallbackTablet, 'px' ),
+		'row-gap': generateCSSUnit( internalBoxSpacingTablet, 'px' ),
+		'column-gap': generateCSSUnit( internalBoxSpacingTablet, 'px' ),
 		...boxBorderCSSTablet,
     };
 
 	tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)'] = {
-		'margin-right': generateCSSUnit( boxSpacingFallbackTablet, 'px' ),
+		'margin-right': generateCSSUnit( boxSpacingTablet, 'px' ),
     };
 
 	tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:first-child)'] = {}; // Empty ruleset to prevent undefined error (for RTL Box Gap).
@@ -348,13 +327,13 @@ export default function styling( props ) {
         'padding-right': generateCSSUnit( boxRightPaddingMobile, boxPaddingUnitMobile ),
         'padding-bottom': generateCSSUnit( boxBottomPaddingMobile, boxPaddingUnitMobile ),
         'padding-left': generateCSSUnit( boxLeftPaddingMobile, boxPaddingUnitMobile ),
-		'row-gap': generateCSSUnit( internalBoxSpacingFallbackMobile, 'px' ),
-		'column-gap': generateCSSUnit( internalBoxSpacingFallbackMobile, 'px' ),
+		'row-gap': generateCSSUnit( internalBoxSpacingMobile, 'px' ),
+		'column-gap': generateCSSUnit( internalBoxSpacingMobile, 'px' ),
 		...boxBorderCSSMobile,
     };
 
 	mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)'] = {
-		'margin-right': generateCSSUnit( boxSpacingFallbackMobile, 'px' ),
+		'margin-right': generateCSSUnit( boxSpacingMobile, 'px' ),
     };
 
 	mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:first-child)'] = {}; // Empty ruleset to prevent undefined error (for RTL Box Gap).
@@ -382,22 +361,22 @@ export default function styling( props ) {
 			'line-height': generateCSSUnit( separatorLineHeight, separatorLineHeightType ),
 			'color': separatorColor,
 
-			'right': generateCSSUnit( -separatorRightSpacingFallback, 'px' ),
-			'top': generateCSSUnit( separatorTopSpacingFallback, 'px' ),
+			'right': generateCSSUnit( -separatorRightSpacing, 'px' ),
+			'top': generateCSSUnit( separatorTopSpacing, 'px' ),
 		};
 
 		tabletSelectors[ separatorSelector ] = {
 			'font-size': generateCSSUnit( separatorFontSizeTablet, separatorFontSizeType ),
 			'line-height': generateCSSUnit( separatorLineHeightTablet, separatorLineHeightType ),
-			'right': generateCSSUnit( -separatorRightSpacingTabletFallback, 'px' ),
-			'top': generateCSSUnit( separatorTopSpacingTabletFallback, 'px' ),
+			'right': generateCSSUnit( -separatorRightSpacingTablet, 'px' ),
+			'top': generateCSSUnit( separatorTopSpacingTablet, 'px' ),
 		};
 
 		mobileSelectors[ separatorSelector ] = {
 			'font-size': generateCSSUnit( separatorFontSizeMobile, separatorFontSizeType ),
 			'line-height': generateCSSUnit( separatorLineHeightMobile, separatorLineHeightType ),
-			'right': generateCSSUnit( -separatorRightSpacingMobileFallback, 'px' ),
-			'top': generateCSSUnit( separatorTopSpacingMobileFallback, 'px' ),
+			'right': generateCSSUnit( -separatorRightSpacingMobile, 'px' ),
+			'top': generateCSSUnit( separatorTopSpacingMobile, 'px' ),
 		};
 	}
 
@@ -411,9 +390,9 @@ export default function styling( props ) {
 		tabletSelectors[boxGapSelectorLTR]['margin-right'] = 'unset';
 		mobileSelectors[boxGapSelectorLTR]['margin-right'] = 'unset';
 
-		selectors[boxGapSelectorRTL]['margin-right'] = generateCSSUnit( boxSpacingFallback, 'px' );
-		tabletSelectors[boxGapSelectorRTL]['margin-right'] = generateCSSUnit( boxSpacingFallbackTablet, 'px' );
-		mobileSelectors[boxGapSelectorRTL]['margin-right'] = generateCSSUnit( boxSpacingFallbackMobile, 'px' );
+		selectors[boxGapSelectorRTL]['margin-right'] = generateCSSUnit( boxSpacing, 'px' );
+		tabletSelectors[boxGapSelectorRTL]['margin-right'] = generateCSSUnit( boxSpacingTablet, 'px' );
+		mobileSelectors[boxGapSelectorRTL]['margin-right'] = generateCSSUnit( boxSpacingMobile, 'px' );
 
 	}
 

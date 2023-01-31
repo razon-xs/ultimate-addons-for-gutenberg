@@ -18,23 +18,6 @@ $pseudo_element_selector_type = $is_rtl ? 'before' : 'after';
 
 $separator_selector = '.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:' . $child_selector_type . '-child) .wp-block-uagb-countdown__time::' . $pseudo_element_selector_type;
 
-// Fallbacks.
-$box_spacing_fallback     = UAGB_Block_Helper::get_fallback_number( $attr['boxSpacing'], 'boxSpacing', $block_name );
-$attr['boxSpacingTablet'] = is_numeric( $attr['boxSpacingTablet'] ) ? $attr['boxSpacingTablet'] : $box_spacing_fallback;
-$attr['boxSpacingMobile'] = is_numeric( $attr['boxSpacingMobile'] ) ? $attr['boxSpacingMobile'] : $attr['boxSpacingTablet'];
-
-$internal_box_spacing_fallback    = UAGB_Block_Helper::get_fallback_number( $attr['internalBoxSpacing'], 'internalBoxSpacing', $block_name );
-$attr['internalBoxSpacingTablet'] = is_numeric( $attr['internalBoxSpacingTablet'] ) ? $attr['internalBoxSpacingTablet'] : $internal_box_spacing_fallback;
-$attr['internalBoxSpacingMobile'] = is_numeric( $attr['internalBoxSpacingMobile'] ) ? $attr['internalBoxSpacingMobile'] : $attr['internalBoxSpacingTablet'];
-
-$separator_right_spacing_fallback    = UAGB_Block_Helper::get_fallback_number( $attr['separatorRightSpacing'], 'separatorRightSpacing', $block_name );
-$attr['separatorRightSpacingTablet'] = is_numeric( $attr['separatorRightSpacingTablet'] ) ? $attr['separatorRightSpacingTablet'] : $separator_right_spacing_fallback;
-$attr['separatorRightSpacingMobile'] = is_numeric( $attr['separatorRightSpacingMobile'] ) ? $attr['separatorRightSpacingMobile'] : $attr['separatorRightSpacingTablet'];
-
-$separator_top_spacing_fallback    = UAGB_Block_Helper::get_fallback_number( $attr['separatorTopSpacing'], 'separatorTopSpacing', $block_name );
-$attr['separatorTopSpacingTablet'] = is_numeric( $attr['separatorTopSpacingTablet'] ) ? $attr['separatorTopSpacingTablet'] : $separator_top_spacing_fallback;
-$attr['separatorTopSpacingMobile'] = is_numeric( $attr['separatorTopSpacingMobile'] ) ? $attr['separatorTopSpacingMobile'] : $attr['separatorTopSpacingTablet'];
-
 // Box Border CSS.
 $box_border_css        = UAGB_Block_Helper::uag_generate_border_css( $attr, 'box' );
 $box_border_css_tablet = UAGB_Block_Helper::uag_generate_border_css( $attr, 'box', 'tablet' );
@@ -80,8 +63,8 @@ $selectors = array(
 			'padding-right'    => UAGB_Helper::get_css_value( $attr['boxRightPadding'], $attr['boxPaddingUnit'] ),
 			'padding-bottom'   => UAGB_Helper::get_css_value( $attr['boxBottomPadding'], $attr['boxPaddingUnit'] ),
 			'padding-left'     => UAGB_Helper::get_css_value( $attr['boxLeftPadding'], $attr['boxPaddingUnit'] ),
-			'row-gap'          => UAGB_Helper::get_css_value( $internal_box_spacing_fallback, 'px' ),
-			'column-gap'       => UAGB_Helper::get_css_value( $internal_box_spacing_fallback, 'px' ),
+			'row-gap'          => UAGB_Helper::get_css_value( $attr['internalBoxSpacing'], 'px' ),
+			'column-gap'       => UAGB_Helper::get_css_value( $attr['internalBoxSpacing'], 'px' ),
 			'box-shadow'       => UAGB_Helper::get_css_value( $attr['boxShadowHOffset'], 'px' ) .
 													' ' .
 													UAGB_Helper::get_css_value( $attr['boxShadowVOffset'], 'px' ) .
@@ -102,7 +85,7 @@ $selectors = array(
 	),
 
 	'.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)' => array(
-		'margin-right' => UAGB_Helper::get_css_value( $box_spacing_fallback, 'px' ),
+		'margin-right' => UAGB_Helper::get_css_value( $attr['boxSpacing'], 'px' ),
 	),
 
 	'.wp-block-uagb-countdown .wp-block-uagb-countdown__time' => array(
@@ -247,7 +230,7 @@ if ( true === $attr['showSeparator'] ) {
 		'font-size'   => UAGB_Helper::get_css_value( $attr['separatorFontSize'], $attr['separatorFontSizeType'] ),
 		'line-height' => UAGB_Helper::get_css_value( $attr['separatorLineHeight'], $attr['separatorLineHeightType'] ),
 		'color'       => $attr['separatorColor'],
-		'right'       => UAGB_Helper::get_css_value( -$separator_right_spacing_fallback, 'px' ),
+		'right'       => UAGB_Helper::get_css_value( -$attr['separatorRightSpacing'], 'px' ),
 		'top'         => UAGB_Helper::get_css_value( $attr['separatorTopSpacing'], 'px' ),
 	);
 
@@ -275,7 +258,7 @@ if ( $is_rtl ) {
 	$t_selectors[ $boxGapSelectorLTR ]['margin-right'] = 'unset';
 	$m_selectors[ $boxGapSelectorLTR ]['margin-right'] = 'unset';
 
-	$selectors[ $boxGapSelectorRTL ]['margin-right']   = UAGB_Helper::get_css_value( $box_spacing_fallback, 'px' );
+	$selectors[ $boxGapSelectorRTL ]['margin-right']   = UAGB_Helper::get_css_value( $attr['boxSpacing'], 'px' );
 	$t_selectors[ $boxGapSelectorRTL ]['margin-right'] = UAGB_Helper::get_css_value( $attr['boxSpacingTablet'], 'px' );
 	$m_selectors[ $boxGapSelectorRTL ]['margin-right'] = UAGB_Helper::get_css_value( $attr['boxSpacingMobile'], 'px' );
 }
