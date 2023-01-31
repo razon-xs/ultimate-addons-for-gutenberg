@@ -23,6 +23,10 @@ $box_spacing_fallback     = UAGB_Block_Helper::get_fallback_number( $attr['boxSp
 $attr['boxSpacingTablet'] = is_numeric( $attr['boxSpacingTablet'] ) ? $attr['boxSpacingTablet'] : $box_spacing_fallback;
 $attr['boxSpacingMobile'] = is_numeric( $attr['boxSpacingMobile'] ) ? $attr['boxSpacingMobile'] : $attr['boxSpacingTablet'];
 
+$internal_box_spacing_fallback    = UAGB_Block_Helper::get_fallback_number( $attr['internalBoxSpacing'], 'internalBoxSpacing', $block_name );
+$attr['internalBoxSpacingTablet'] = is_numeric( $attr['internalBoxSpacingTablet'] ) ? $attr['internalBoxSpacingTablet'] : $internal_box_spacing_fallback;
+$attr['internalBoxSpacingMobile'] = is_numeric( $attr['internalBoxSpacingMobile'] ) ? $attr['internalBoxSpacingMobile'] : $attr['internalBoxSpacingTablet'];
+
 $separator_right_spacing_fallback    = UAGB_Block_Helper::get_fallback_number( $attr['separatorRightSpacing'], 'separatorRightSpacing', $block_name );
 $attr['separatorRightSpacingTablet'] = is_numeric( $attr['separatorRightSpacingTablet'] ) ? $attr['separatorRightSpacingTablet'] : $separator_right_spacing_fallback;
 $attr['separatorRightSpacingMobile'] = is_numeric( $attr['separatorRightSpacingMobile'] ) ? $attr['separatorRightSpacingMobile'] : $attr['separatorRightSpacingTablet'];
@@ -75,6 +79,8 @@ $selectors = array(
 			'padding-right'    => UAGB_Helper::get_css_value( $attr['boxRightPadding'], $attr['boxPaddingUnit'] ),
 			'padding-bottom'   => UAGB_Helper::get_css_value( $attr['boxBottomPadding'], $attr['boxPaddingUnit'] ),
 			'padding-left'     => UAGB_Helper::get_css_value( $attr['boxLeftPadding'], $attr['boxPaddingUnit'] ),
+			'row-gap'          => UAGB_Helper::get_css_value( $internal_box_spacing_fallback, 'px' ),
+			'column-gap'       => UAGB_Helper::get_css_value( $internal_box_spacing_fallback, 'px' ),
 			'box-shadow'       => UAGB_Helper::get_css_value( $attr['boxShadowHOffset'], 'px' ) .
 													' ' .
 													UAGB_Helper::get_css_value( $attr['boxShadowVOffset'], 'px' ) .
@@ -170,6 +176,8 @@ $t_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = array_m
 		'padding-right'  => UAGB_Helper::get_css_value( $attr['boxRightPaddingTablet'], $attr['boxPaddingUnitTablet'] ),
 		'padding-bottom' => UAGB_Helper::get_css_value( $attr['boxBottomPaddingTablet'], $attr['boxPaddingUnitTablet'] ),
 		'padding-left'   => UAGB_Helper::get_css_value( $attr['boxLeftPaddingTablet'], $attr['boxPaddingUnitTablet'] ),
+		'row-gap'        => UAGB_Helper::get_css_value( $attr['internalBoxSpacingTablet'], 'px' ),
+		'column-gap'     => UAGB_Helper::get_css_value( $attr['internalBoxSpacingTablet'], 'px' ),
 	),
 	$box_border_css_tablet
 );
@@ -220,6 +228,8 @@ $m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = array_m
 		'padding-right'  => UAGB_Helper::get_css_value( $attr['boxRightPaddingMobile'], $attr['boxPaddingUnitMobile'] ),
 		'padding-bottom' => UAGB_Helper::get_css_value( $attr['boxBottomPaddingMobile'], $attr['boxPaddingUnitMobile'] ),
 		'padding-left'   => UAGB_Helper::get_css_value( $attr['boxLeftPaddingMobile'], $attr['boxPaddingUnitMobile'] ),
+		'row-gap'        => UAGB_Helper::get_css_value( $attr['internalBoxSpacingMobile'], 'px' ),
+		'column-gap'     => UAGB_Helper::get_css_value( $attr['internalBoxSpacingMobile'], 'px' ),
 	),
 	$box_border_css_mobile
 );

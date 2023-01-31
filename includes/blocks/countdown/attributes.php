@@ -169,6 +169,10 @@ return array_merge(
 		'boxSpacing'                  => 38,
 		'boxSpacingTablet'            => 20,
 		'boxSpacingMobile'            => 18,
+		// Internal Box Spacing - Gap between digits and labels.
+		'internalBoxSpacing'          => '',
+		'internalBoxSpacingTablet'    => '',
+		'internalBoxSpacingMobile'    => '',
 		// Box Flex.
 		'boxFlex'                     => 'column',
 		'boxFlexTablet'               => '',

@@ -158,6 +158,10 @@ export default function styling( props ) {
 		boxSpacing,
 		boxSpacingTablet,
 		boxSpacingMobile,
+		// Internal Box Spacing.
+		internalBoxSpacing,
+		internalBoxSpacingTablet,
+		internalBoxSpacingMobile,
 		// Box Flex Direction.
 		boxFlex,
 		boxFlexTablet,
@@ -197,6 +201,10 @@ export default function styling( props ) {
 	const boxSpacingFallback = getFallbackNumber( boxSpacing, 'boxSpacing', blockName );
 	const boxSpacingFallbackTablet = isNaN( boxSpacingTablet ) ? boxSpacing : boxSpacingTablet;
 	const boxSpacingFallbackMobile = isNaN( boxSpacingMobile ) ? boxSpacingTablet : boxSpacingMobile;
+
+	const internalBoxSpacingFallback = getFallbackNumber( internalBoxSpacing, 'internalBoxSpacing', blockName );
+	const internalBoxSpacingFallbackTablet = isNaN( internalBoxSpacingTablet ) ? internalBoxSpacing : internalBoxSpacingTablet;
+	const internalBoxSpacingFallbackMobile = isNaN( internalBoxSpacingMobile ) ? internalBoxSpacingTablet : internalBoxSpacingMobile;
 
 	const separatorRightSpacingFallback = getFallbackNumber( separatorRightSpacing, 'separatorRightSpacing', blockName );
 	const separatorRightSpacingTabletFallback = isNaN( separatorRightSpacingTablet ) ? separatorRightSpacing : separatorRightSpacingTablet;
@@ -249,6 +257,8 @@ export default function styling( props ) {
 			'padding-right': generateCSSUnit( boxRightPadding, boxPaddingUnit ),
 			'padding-bottom': generateCSSUnit( boxBottomPadding, boxPaddingUnit ),
 			'padding-left': generateCSSUnit( boxLeftPadding, boxPaddingUnit ),
+			'row-gap': generateCSSUnit( internalBoxSpacingFallback, 'px' ),
+			'column-gap': generateCSSUnit( internalBoxSpacingFallback, 'px' ),
 			'box-shadow': generateCSSUnit( boxShadowHOffset, 'px' ) + ' ' + generateCSSUnit( boxShadowVOffset, 'px' ) +	' ' +
 			generateCSSUnit( boxShadowBlur, 'px' ) + ' ' +	generateCSSUnit( boxShadowSpread, 'px' ) + ' ' +
 			boxShadowColor + ' ' +	boxShadowPositionCSS,
@@ -327,6 +337,8 @@ export default function styling( props ) {
         'padding-right': generateCSSUnit( boxRightPaddingTablet, boxPaddingUnitTablet ),
         'padding-bottom': generateCSSUnit( boxBottomPaddingTablet, boxPaddingUnitTablet ),
         'padding-left': generateCSSUnit( boxLeftPaddingTablet, boxPaddingUnitTablet ),
+		'row-gap': generateCSSUnit( internalBoxSpacingFallbackTablet, 'px' ),
+		'column-gap': generateCSSUnit( internalBoxSpacingFallbackTablet, 'px' ),
 		...boxBorderCSSTablet,
     };
 
@@ -375,6 +387,8 @@ export default function styling( props ) {
         'padding-right': generateCSSUnit( boxRightPaddingMobile, boxPaddingUnitMobile ),
         'padding-bottom': generateCSSUnit( boxBottomPaddingMobile, boxPaddingUnitMobile ),
         'padding-left': generateCSSUnit( boxLeftPaddingMobile, boxPaddingUnitMobile ),
+		'row-gap': generateCSSUnit( internalBoxSpacingFallbackMobile, 'px' ),
+		'column-gap': generateCSSUnit( internalBoxSpacingFallbackMobile, 'px' ),
 		...boxBorderCSSMobile,
     };
 

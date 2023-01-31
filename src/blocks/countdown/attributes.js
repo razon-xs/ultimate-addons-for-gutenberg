@@ -1129,6 +1129,25 @@ const attributes = {
 			styleType: 'countdown-box-gap-mobile'
 		},
 	},
+	// Internal Box Spacing - Gap Between Digits & Labels.
+	internalBoxSpacing: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-internal-box-gap'
+		},
+	},
+	internalBoxSpacingTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-internal-box-gap-tablet'
+		},
+	},
+	internalBoxSpacingMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-internal-box-gap-mobile'
+		},
+	},
 	// Box Flex.
 	boxFlex: {
 		type: 'string',

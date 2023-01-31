@@ -201,6 +201,10 @@ export default function Settings( props ) {
 		boxSpacing,
 		boxSpacingTablet,
 		boxSpacingMobile,
+		// Internal Box Spacing.
+		internalBoxSpacing,
+		internalBoxSpacingTablet,
+		internalBoxSpacingMobile,
 		// Box Flex Direction.
 		boxFlex,
 		boxFlexTablet,
@@ -597,6 +601,30 @@ export default function Settings( props ) {
 					mobile: {
 						value: boxSpacingMobile,
 						label: 'boxSpacingMobile',
+					},
+				} }
+				min={ 0 }
+				max={ 200 }
+				displayUnit={ false }
+				setAttributes={ setAttributes }
+			/>
+			<ResponsiveSlider
+				label={ __(
+					'Gap Between Digits & Labels',
+					'ultimate-addons-for-gutenberg'
+				) }
+				data={ {
+					desktop: {
+						value: internalBoxSpacing,
+						label: 'internalBoxSpacing',
+					},
+					tablet: {
+						value: internalBoxSpacingTablet,
+						label: 'internalBoxSpacingTablet',
+					},
+					mobile: {
+						value: internalBoxSpacingMobile,
+						label: 'internalBoxSpacingMobile',
 					},
 				} }
 				min={ 0 }
