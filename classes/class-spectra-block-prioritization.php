@@ -26,11 +26,10 @@ class Spectra_Block_Prioritization {
 		'container',
 		'advanced-heading',
 		'image',
+		'icon',
 		'buttons',
 		'info-box',
-		'icon',
 		'call-to-action',
-		'icon',
 		// Alphabetically Ordered Blocks.
 		'blockquote',
 		'content-timeline',
