@@ -254,6 +254,49 @@ export default function Settings( props ) {
 		},
 	];
 
+	const flexAlignmentOptions = [
+		{
+			value: 'flex-start',
+			icon: (
+				<Icon
+					icon={ renderSVG( 'fa fa-align-left' ) }
+				/>
+			),
+			tooltip: __(
+				'Left',
+				'ultimate-addons-for-gutenberg'
+			),
+		},
+		{
+			value: 'center',
+			icon: (
+				<Icon
+					icon={ renderSVG(
+						'fa fa-align-center'
+					) }
+				/>
+			),
+			tooltip: __(
+				'Center',
+				'ultimate-addons-for-gutenberg'
+			),
+		},
+		{
+			value: 'flex-end',
+			icon: (
+				<Icon
+					icon={ renderSVG(
+						'fa fa-align-right'
+					) }
+				/>
+			),
+			tooltip: __(
+				'Right',
+				'ultimate-addons-for-gutenberg'
+			),
+		},
+	];
+
 	// <------------------ GOOGLE FONTS ------------------>
 	// Loading Google Fonts.
 	let loadDigitGoogleFonts;
@@ -491,7 +534,7 @@ export default function Settings( props ) {
 						},
 				} }
 				className="uagb-multi-button-alignment-control"
-				options={ alignmentOptions }
+				options={ flexAlignmentOptions }
 				showIcons={ true }
 			/>
 			<MultiButtonsControl

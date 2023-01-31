@@ -205,7 +205,6 @@ export default function styling( props ) {
 		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box':{
 			'width': generateCSSUnit( boxWidth, 'px' ),
 			'flex-direction': boxFlex,
-			'text-align': boxAlign,
 			'background-color': ( boxBgType !== 'transparent' ) ? boxBgColor : 'transparent', 
 			'padding-top': generateCSSUnit( boxTopPadding, boxPaddingUnit ),
 			'padding-right': generateCSSUnit( boxRightPadding, boxPaddingUnit ),
@@ -220,6 +219,9 @@ export default function styling( props ) {
 		},
 		'.wp-block-uagb-countdown:hover .wp-block-uagb-countdown__box':{
 			'border-color': boxBorderHColor,
+		},
+		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box > div':{
+			'align-self': boxAlign,
 		},
 		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)':{
 			'margin-right': generateCSSUnit( boxSpacing, 'px' ),
@@ -279,7 +281,6 @@ export default function styling( props ) {
 	tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = {
 		'width': generateCSSUnit( boxWidthTablet, 'px' ),
 		'flex-direction': boxFlexTablet,
-		'text-align': boxAlignTablet,
         'padding-top': generateCSSUnit( boxTopPaddingTablet, boxPaddingUnitTablet ),
         'padding-right': generateCSSUnit( boxRightPaddingTablet, boxPaddingUnitTablet ),
         'padding-bottom': generateCSSUnit( boxBottomPaddingTablet, boxPaddingUnitTablet ),
@@ -288,6 +289,10 @@ export default function styling( props ) {
 		'column-gap': generateCSSUnit( internalBoxSpacingTablet, 'px' ),
 		...boxBorderCSSTablet,
     };
+
+	tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box > div'] = {
+		'align-self': boxAlignTablet,
+	};
 
 	tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)'] = {
 		'margin-right': generateCSSUnit( boxSpacingTablet, 'px' ),
@@ -322,7 +327,6 @@ export default function styling( props ) {
 	mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = {
 		'width': generateCSSUnit( boxWidthMobile, 'px' ),
 		'flex-direction': boxFlexMobile,
-		'text-align': boxAlignMobile,
         'padding-top': generateCSSUnit( boxTopPaddingMobile, boxPaddingUnitMobile ),
         'padding-right': generateCSSUnit( boxRightPaddingMobile, boxPaddingUnitMobile ),
         'padding-bottom': generateCSSUnit( boxBottomPaddingMobile, boxPaddingUnitMobile ),
@@ -331,6 +335,10 @@ export default function styling( props ) {
 		'column-gap': generateCSSUnit( internalBoxSpacingMobile, 'px' ),
 		...boxBorderCSSMobile,
     };
+
+	mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box > div'] = {
+		'align-self': boxAlignMobile,
+	};
 
 	mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)'] = {
 		'margin-right': generateCSSUnit( boxSpacingMobile, 'px' ),
