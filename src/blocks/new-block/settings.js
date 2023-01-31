@@ -181,19 +181,7 @@ const Settings = ( props ) => {
 									'Right',
 									'ultimate-addons-for-gutenberg'
 								),
-							},
-							{
-								value: 'full',
-								icon: (
-									<Icon
-										icon={ renderSVG( 'fa fa-align-justify' ) }
-									/>
-								),
-								tooltip: __(
-									'Full Width',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
+							}
 						] }
 						showIcons={ true }
 						responsive={true}
