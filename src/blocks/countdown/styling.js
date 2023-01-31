@@ -30,21 +30,6 @@ export default function styling( props ) {
 		digitLetterSpacingType,
 		digitLetterSpacingMobile,
 		digitLetterSpacingTablet,
-		digitTopMargin,
-		digitRightMargin,
-		digitLeftMargin,
-		digitBottomMargin,
-		digitTopMarginTablet,
-		digitRightMarginTablet,
-		digitLeftMarginTablet,
-		digitBottomMarginTablet,
-		digitTopMarginMobile,
-		digitRightMarginMobile,
-		digitLeftMarginMobile,
-		digitBottomMarginMobile,
-		digitMarginUnit,
-		digitMarginUnitTablet,
-		digitMarginUnitMobile,
         // label.
 		labelFontFamily,
 		labelFontWeight,
@@ -279,10 +264,6 @@ export default function styling( props ) {
 			'line-height': generateCSSUnit( digitLineHeight, digitLineHeightType ),
 			'letter-spacing': generateCSSUnit( digitLetterSpacing, digitLetterSpacingType ),
 			'color': digitColor,
-			'margin-top': generateCSSUnit( digitTopMargin, digitMarginUnit ),
-			'margin-right': generateCSSUnit( digitRightMargin, digitMarginUnit ),
-			'margin-bottom': generateCSSUnit( digitBottomMargin, digitMarginUnit ),
-			'margin-left': generateCSSUnit( digitLeftMargin, digitMarginUnit ),
 		},
 		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child) .wp-block-uagb-countdown__time::after': {}, // Empty ruleset to prevent undefined error.
 		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:first-child)':{},  // Empty ruleset to prevent undefined error (for RTL Box Gap).
@@ -352,10 +333,6 @@ export default function styling( props ) {
         'font-size': generateCSSUnit( digitFontSizeTablet, digitFontSizeType ),
         'line-height': generateCSSUnit( digitLineHeightTablet, digitLineHeightType ),
 		'letter-spacing': generateCSSUnit( digitLetterSpacingTablet, digitLetterSpacingType ),
-        'margin-top': generateCSSUnit( digitTopMarginTablet, digitMarginUnitTablet ),
-        'margin-right': generateCSSUnit( digitRightMarginTablet, digitMarginUnitTablet ),
-        'margin-bottom': generateCSSUnit( digitBottomMarginTablet, digitMarginUnitTablet ),
-        'margin-left': generateCSSUnit( digitLeftMarginTablet, digitMarginUnitTablet ),
     };
 
     tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__label'] = {
@@ -402,10 +379,6 @@ export default function styling( props ) {
         'font-size': generateCSSUnit( digitFontSizeMobile, digitFontSizeType ),
         'line-height': generateCSSUnit( digitLineHeightMobile, digitLineHeightType ),
 		'letter-spacing': generateCSSUnit( digitLetterSpacingMobile, digitLetterSpacingType ),
-        'margin-top': generateCSSUnit( digitTopMarginMobile, digitMarginUnitMobile ),
-        'margin-right': generateCSSUnit( digitRightMarginMobile, digitMarginUnitMobile ),
-        'margin-bottom': generateCSSUnit( digitBottomMarginMobile, digitMarginUnitMobile ),
-        'margin-left': generateCSSUnit( digitLeftMarginMobile, digitMarginUnitMobile ),
     };
 
     mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__label'] = {

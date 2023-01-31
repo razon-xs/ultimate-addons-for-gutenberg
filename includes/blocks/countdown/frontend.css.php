@@ -113,10 +113,6 @@ $selectors = array(
 		'line-height'     => UAGB_Helper::get_css_value( $attr['digitLineHeight'], $attr['digitLineHeightType'] ),
 		'letter-spacing'  => UAGB_Helper::get_css_value( $attr['digitLetterSpacing'], $attr['digitLetterSpacingType'] ),
 		'color'           => $attr['digitColor'],
-		'margin-top'      => UAGB_Helper::get_css_value( $attr['digitTopMargin'], $attr['digitMarginUnit'] ),
-		'margin-right'    => UAGB_Helper::get_css_value( $attr['digitRightMargin'], $attr['digitMarginUnit'] ),
-		'margin-bottom'   => UAGB_Helper::get_css_value( $attr['digitBottomMargin'], $attr['digitMarginUnit'] ),
-		'margin-left'     => UAGB_Helper::get_css_value( $attr['digitLeftMargin'], $attr['digitMarginUnit'] ),
 	),
 
 	'.wp-block-uagb-countdown .wp-block-uagb-countdown__label' => array(
@@ -190,10 +186,6 @@ $t_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = array(
 	'font-size'      => UAGB_Helper::get_css_value( $attr['digitFontSizeTablet'], $attr['digitFontSizeType'] ),
 	'line-height'    => UAGB_Helper::get_css_value( $attr['digitLineHeightTablet'], $attr['digitLineHeightType'] ),
 	'letter-spacing' => UAGB_Helper::get_css_value( $attr['digitLetterSpacingTablet'], $attr['digitLetterSpacingType'] ),
-	'margin-top'     => UAGB_Helper::get_css_value( $attr['digitTopMarginTablet'], $attr['digitMarginUnitTablet'] ),
-	'margin-right'   => UAGB_Helper::get_css_value( $attr['digitRightMarginTablet'], $attr['digitMarginUnitTablet'] ),
-	'margin-bottom'  => UAGB_Helper::get_css_value( $attr['digitBottomMarginTablet'], $attr['digitMarginUnitTablet'] ),
-	'margin-left'    => UAGB_Helper::get_css_value( $attr['digitLeftMarginTablet'], $attr['digitMarginUnitTablet'] ),
 );
 
 $t_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__label'] = array(
@@ -242,10 +234,6 @@ $m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = array(
 	'font-size'      => UAGB_Helper::get_css_value( $attr['digitFontSizeMobile'], $attr['digitFontSizeType'] ),
 	'line-height'    => UAGB_Helper::get_css_value( $attr['digitLineHeightMobile'], $attr['digitLineHeightType'] ),
 	'letter-spacing' => UAGB_Helper::get_css_value( $attr['digitLetterSpacingMobile'], $attr['digitLetterSpacingType'] ),
-	'margin-top'     => UAGB_Helper::get_css_value( $attr['digitTopMarginMobile'], $attr['digitMarginUnitMobile'] ),
-	'margin-right'   => UAGB_Helper::get_css_value( $attr['digitRightMarginMobile'], $attr['digitMarginUnitMobile'] ),
-	'margin-bottom'  => UAGB_Helper::get_css_value( $attr['digitBottomMarginMobile'], $attr['digitMarginUnitMobile'] ),
-	'margin-left'    => UAGB_Helper::get_css_value( $attr['digitLeftMarginMobile'], $attr['digitMarginUnitMobile'] ),
 );
 
 $m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__label'] = array(

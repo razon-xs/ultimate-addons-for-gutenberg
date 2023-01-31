@@ -66,22 +66,6 @@ export default function Settings( props ) {
 		digitLetterSpacingType,
 		digitLetterSpacingMobile,
 		digitLetterSpacingTablet,
-		digitTopMargin,
-		digitRightMargin,
-		digitLeftMargin,
-		digitBottomMargin,
-		digitTopMarginTablet,
-		digitRightMarginTablet,
-		digitLeftMarginTablet,
-		digitBottomMarginTablet,
-		digitTopMarginMobile,
-		digitRightMarginMobile,
-		digitLeftMarginMobile,
-		digitBottomMarginMobile,
-		digitMarginUnit,
-		digitMarginUnitTablet,
-		digitMarginUnitMobile,
-		digitMarginLink,
         // label.
 		labelLoadGoogleFonts,
 		labelFontFamily,
@@ -809,79 +793,6 @@ export default function Settings( props ) {
 				letterSpacingTablet={ {
 					value: digitLetterSpacingTablet,
 					label: 'digitLetterSpacingTablet',
-				} }
-			/>
-            <SpacingControl
-				label={ __(
-					'Margin',
-					'ultimate-addons-for-gutenberg'
-				) }
-				valueTop={ {
-					value: digitTopMargin,
-					label: 'digitTopMargin',
-				} }
-				valueRight={ {
-					value: digitRightMargin,
-					label: 'digitRightMargin',
-				} }
-				valueBottom={ {
-					value: digitBottomMargin,
-					label: 'digitBottomMargin',
-				} }
-				valueLeft={ {
-					value: digitLeftMargin,
-					label: 'digitLeftMargin',
-				} }
-				valueTopTablet={ {
-					value: digitTopMarginTablet,
-					label: 'digitTopMarginTablet',
-				} }
-				valueRightTablet={ {
-					value: digitRightMarginTablet,
-					label: 'digitRightMarginTablet',
-				} }
-				valueBottomTablet={ {
-					value: digitBottomMarginTablet,
-					label: 'digitBottomMarginTablet',
-				} }
-				valueLeftTablet={ {
-					value: digitLeftMarginTablet,
-					label: 'digitLeftMarginTablet',
-				} }
-				valueTopMobile={ {
-					value: digitTopMarginMobile,
-					label: 'digitTopMarginMobile',
-				} }
-				valueRightMobile={ {
-					value: digitRightMarginMobile,
-					label: 'digitRightMarginMobile',
-				} }
-				valueBottomMobile={ {
-					value: digitBottomMarginMobile,
-					label: 'digitBottomMarginMobile',
-				} }
-				valueLeftMobile={ {
-					value: digitLeftMarginMobile,
-					label: 'digitLeftMarginMobile',
-				} }
-				unit={ {
-					value: digitMarginUnit,
-					label: 'digitMarginUnit',
-				} }
-				mUnit={ {
-					value: digitMarginUnitMobile,
-					label: 'digitMarginUnitMobile',
-				} }
-				tUnit={ {
-					value: digitMarginUnitTablet,
-					label: 'digitMarginUnitTablet',
-				} }
-				deviceType={ deviceType }
-				attributes={ attributes }
-				setAttributes={ setAttributes }
-				link={ {
-					value: digitMarginLink,
-					label: 'digitMarginLink',
 				} }
 			/>
         </UAGAdvancedPanelBody>
