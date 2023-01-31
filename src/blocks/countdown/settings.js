@@ -86,22 +86,6 @@ export default function Settings( props ) {
 		labelLetterSpacingType,
 		labelLetterSpacingMobile,
 		labelLetterSpacingTablet,
-		labelTopMargin,
-		labelRightMargin,
-		labelLeftMargin,
-		labelBottomMargin,
-		labelTopMarginTablet,
-		labelRightMarginTablet,
-		labelLeftMarginTablet,
-		labelBottomMarginTablet,
-		labelTopMarginMobile,
-		labelRightMarginMobile,
-		labelLeftMarginMobile,
-		labelBottomMarginMobile,
-		labelMarginUnit,
-		labelMarginUnitTablet,
-		labelMarginUnitMobile,
-		labelMarginLink,
 		// Separator styling.
 		separatorLoadGoogleFonts,
 		separatorFontFamily,
@@ -894,79 +878,6 @@ export default function Settings( props ) {
 				letterSpacingTablet={ {
 					value: labelLetterSpacingTablet,
 					label: 'labelLetterSpacingTablet',
-				} }
-			/>
-            <SpacingControl
-				label={ __(
-					'Margin',
-					'ultimate-addons-for-gutenberg'
-				) }
-				valueTop={ {
-					value: labelTopMargin,
-					label: 'labelTopMargin',
-				} }
-				valueRight={ {
-					value: labelRightMargin,
-					label: 'labelRightMargin',
-				} }
-				valueBottom={ {
-					value: labelBottomMargin,
-					label: 'labelBottomMargin',
-				} }
-				valueLeft={ {
-					value: labelLeftMargin,
-					label: 'labelLeftMargin',
-				} }
-				valueTopTablet={ {
-					value: labelTopMarginTablet,
-					label: 'labelTopMarginTablet',
-				} }
-				valueRightTablet={ {
-					value: labelRightMarginTablet,
-					label: 'labelRightMarginTablet',
-				} }
-				valueBottomTablet={ {
-					value: labelBottomMarginTablet,
-					label: 'labelBottomMarginTablet',
-				} }
-				valueLeftTablet={ {
-					value: labelLeftMarginTablet,
-					label: 'labelLeftMarginTablet',
-				} }
-				valueTopMobile={ {
-					value: labelTopMarginMobile,
-					label: 'labelTopMarginMobile',
-				} }
-				valueRightMobile={ {
-					value: labelRightMarginMobile,
-					label: 'labelRightMarginMobile',
-				} }
-				valueBottomMobile={ {
-					value: labelBottomMarginMobile,
-					label: 'labelBottomMarginMobile',
-				} }
-				valueLeftMobile={ {
-					value: labelLeftMarginMobile,
-					label: 'labelLeftMarginMobile',
-				} }
-				unit={ {
-					value: labelMarginUnit,
-					label: 'labelMarginUnit',
-				} }
-				mUnit={ {
-					value: labelMarginUnitMobile,
-					label: 'labelMarginUnitMobile',
-				} }
-				tUnit={ {
-					value: labelMarginUnitTablet,
-					label: 'labelMarginUnitTablet',
-				} }
-				deviceType={ deviceType }
-				attributes={ attributes }
-				setAttributes={ setAttributes }
-				link={ {
-					value: labelMarginLink,
-					label: 'labelMarginLink',
 				} }
 			/>
         </UAGAdvancedPanelBody>

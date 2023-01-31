@@ -49,21 +49,6 @@ export default function styling( props ) {
 		labelLetterSpacingType,
 		labelLetterSpacingMobile,
 		labelLetterSpacingTablet,
-		labelTopMargin,
-		labelRightMargin,
-		labelLeftMargin,
-		labelBottomMargin,
-		labelTopMarginTablet,
-		labelRightMarginTablet,
-		labelLeftMarginTablet,
-		labelBottomMarginTablet,
-		labelTopMarginMobile,
-		labelRightMarginMobile,
-		labelLeftMarginMobile,
-		labelBottomMarginMobile,
-		labelMarginUnit,
-		labelMarginUnitTablet,
-		labelMarginUnitMobile,
 		// Separator styling.
 		separatorFontFamily,
 		separatorFontWeight,
@@ -277,10 +262,6 @@ export default function styling( props ) {
 			'line-height': generateCSSUnit( labelLineHeight, labelLineHeightType ),
 			'letter-spacing': generateCSSUnit( labelLetterSpacing, labelLetterSpacingType ),
 			'color': labelColor,
-			'margin-top': generateCSSUnit( labelTopMargin, labelMarginUnit ),
-			'margin-right': generateCSSUnit( labelRightMargin, labelMarginUnit ),
-			'margin-bottom': generateCSSUnit( labelBottomMargin, labelMarginUnit ),
-			'margin-left': generateCSSUnit( labelLeftMargin, labelMarginUnit ),
         },
 
     };
@@ -339,10 +320,6 @@ export default function styling( props ) {
         'font-size': generateCSSUnit( labelFontSizeTablet, labelFontSizeType ),
         'line-height': generateCSSUnit( labelLineHeightTablet, labelLineHeightType ),
 		'letter-spacing': generateCSSUnit( labelLetterSpacingTablet, labelLetterSpacingType ),
-        'margin-top': generateCSSUnit( labelTopMarginTablet, labelMarginUnitTablet ),
-        'margin-right': generateCSSUnit( labelRightMarginTablet, labelMarginUnitTablet ),
-        'margin-bottom': generateCSSUnit( labelBottomMarginTablet, labelMarginUnitTablet ),
-        'margin-left': generateCSSUnit( labelLeftMarginTablet, labelMarginUnitTablet ),
     };
 
     mobileSelectors['.wp-block-uagb-countdown'] = {
@@ -385,10 +362,6 @@ export default function styling( props ) {
         'font-size': generateCSSUnit( labelFontSizeMobile, labelFontSizeType ),
         'line-height': generateCSSUnit( labelLineHeightMobile, labelLineHeightType ),
 		'letter-spacing': generateCSSUnit( labelLetterSpacingMobile, labelLetterSpacingType ),
-        'margin-top': generateCSSUnit( labelTopMarginMobile, labelMarginUnitMobile ),
-        'margin-right': generateCSSUnit( labelRightMarginMobile, labelMarginUnitMobile ),
-        'margin-bottom': generateCSSUnit( labelBottomMarginMobile, labelMarginUnitMobile ),
-        'margin-left': generateCSSUnit( labelLeftMarginMobile, labelMarginUnitMobile ),
     };
 
 	// Separator.
