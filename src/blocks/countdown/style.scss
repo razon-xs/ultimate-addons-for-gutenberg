@@ -6,12 +6,17 @@
 
 	&__box {
 		position: relative;  // Helps to position separators.
-		width: fit-content;
 		display: flex;
 		flex-direction: column;
+
+		width: 155px;
+		aspect-ratio: 1;
+		justify-content: center;
+
 	}
 
 	&__time {
+		align-self: center;
 		font-size: 52px;
 
 		@media (max-width: 976px) {
