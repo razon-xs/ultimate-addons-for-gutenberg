@@ -136,6 +136,21 @@ function styling( props ) {
 		loadMoreLineHeightTab,
 		loadMoreLineHeightMob,
 
+		// Lightbox Font.
+		lightboxFontFamily,
+		lightboxFontWeight,
+		lightboxFontStyle,
+		lightboxTransform,
+		lightboxDecoration,
+		lightboxFontSizeType,
+		lightboxFontSize,
+		lightboxFontSizeTab,
+		lightboxFontSizeMob,
+		lightboxLineHeightType,
+		lightboxLineHeight,
+		lightboxLineHeightTab,
+		lightboxLineHeightMob,
+
 		// Caption Styling.
 		captionBackgroundEffect,
 		captionBackgroundEffectHover,
@@ -580,12 +595,26 @@ function styling( props ) {
 			'color': lightboxCaptionColor,
 			'background': `linear-gradient(rgba(0,0,0,0), ${ lightboxCaptionBackgroundColor })`,
 			'height': generateCSSUnit( lightboxCaptionHeightFallback, 'px' ),
+			'font-family': ( 'Default' === lightboxFontFamily ) ? '' : lightboxFontFamily,
+			'font-weight': lightboxFontWeight,
+			'font-style': lightboxFontStyle,
+			'text-decoration': lightboxDecoration,
+			'text-transform': lightboxTransform,
+			'font-size': generateCSSUnit( lightboxFontSize, lightboxFontSizeType ),
+			'line-height': generateCSSUnit( lightboxLineHeight, lightboxLineHeightType ),
 		},
 		' .spectra-image-gallery__control-lightbox--thumbnails-wrapper': {
 			'background-color': lightboxDisplayCaptions ? lightboxCaptionBackgroundColor : 'transparent',
 		},
 		' .spectra-image-gallery__control-lightbox--count': {
-			'color': lightboxIconColor,			
+			'color': lightboxIconColor,
+			'font-family': ( 'Default' === lightboxFontFamily ) ? '' : lightboxFontFamily,
+			'font-weight': lightboxFontWeight,
+			'font-style': lightboxFontStyle,
+			'text-decoration': lightboxDecoration,
+			'text-transform': lightboxTransform,
+			'font-size': generateCSSUnit( lightboxFontSize, lightboxFontSizeType ),
+			'line-height': generateCSSUnit( lightboxLineHeight, lightboxLineHeightType ),
 		},
 		' .spectra-image-gallery__control-lightbox--close svg': {
 			'fill': lightboxIconColor,
@@ -685,6 +714,12 @@ function styling( props ) {
 		},
 		' .spectra-image-gallery__control-lightbox--caption': {
 			'height': generateCSSUnit( lightboxCaptionHeightTabFallback, 'px' ),
+			'font-size': generateCSSUnit( lightboxFontSizeTab, lightboxFontSizeType ),
+			'line-height': generateCSSUnit( lightboxLineHeightTab, lightboxLineHeightType ),
+		},
+		' .spectra-image-gallery__control-lightbox--count': {
+			'font-size': generateCSSUnit( lightboxFontSizeTab, lightboxFontSizeType ),
+			'line-height': generateCSSUnit( lightboxLineHeightTab, lightboxLineHeightType ),
 		},
 	};
 
@@ -775,6 +810,12 @@ function styling( props ) {
 		},
 		' .spectra-image-gallery__control-lightbox--caption': {
 			'height': generateCSSUnit( lightboxCaptionHeightMobFallback, 'px' ),
+			'font-size': generateCSSUnit( lightboxFontSizeMob, lightboxFontSizeType ),
+			'line-height': generateCSSUnit( lightboxLineHeightMob, lightboxLineHeightType ),
+		},
+		' .spectra-image-gallery__control-lightbox--count': {
+			'font-size': generateCSSUnit( lightboxFontSizeMob, lightboxFontSizeType ),
+			'line-height': generateCSSUnit( lightboxLineHeightMob, lightboxLineHeightType ),
 		},
 	};
 

@@ -188,6 +188,21 @@ const Settings = ( props ) => {
 		loadMoreLineHeightMob,
 		loadMoreLineHeightTab,
 
+		lightboxLoadGoogleFonts,
+		lightboxFontFamily,
+		lightboxFontWeight,
+		lightboxFontStyle,
+		lightboxTransform,
+		lightboxDecoration,
+		lightboxFontSizeType,
+		lightboxFontSize,
+		lightboxFontSizeMob,
+		lightboxFontSizeTab,
+		lightboxLineHeightType,
+		lightboxLineHeight,
+		lightboxLineHeightMob,
+		lightboxLineHeightTab,
+
 		captionBackgroundEffect,
 		captionBackgroundEffectHover,
 		captionBackgroundEffectAmount,
@@ -228,6 +243,7 @@ const Settings = ( props ) => {
 	// Loading Google Fonts.
 	let loadCaptionGoogleFonts;
 	let loadLoadMoreGoogleFonts;
+	let loadLightboxGoogleFonts;
 
 	if ( captionLoadGoogleFonts === true ) {
 		const captionConfig = {
@@ -255,6 +271,20 @@ const Settings = ( props ) => {
 
 		loadLoadMoreGoogleFonts = (
 			<WebfontLoader config={ loadMoreConfig }></WebfontLoader>
+		);
+	}
+
+	if ( lightboxLoadGoogleFonts === true ) {
+		const lightboxConfig = {
+			google: {
+				families: [
+					lightboxFontFamily + ( lightboxFontWeight ? ':' + lightboxFontWeight : '' ),
+				],
+			},
+		};
+
+		loadLightboxGoogleFonts = (
+			<WebfontLoader config={ lightboxConfig }></WebfontLoader>
 		);
 	}
 
@@ -1472,6 +1502,72 @@ const Settings = ( props ) => {
 
 	const lightboxStyling = () => (
 		<UAGAdvancedPanelBody title={ __( 'Lightbox', 'ultimate-addons-for-gutenberg' ) } initialOpen={ false }>
+			{ ( lightboxDisplayCaptions || lightboxDisplayCount ) && (
+				<TypographyControl
+					label={ __(
+						'Typography',
+						'ultimate-addons-for-gutenberg'
+					) }
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+					loadGoogleFonts={ {
+						value: lightboxLoadGoogleFonts,
+						label: 'lightboxLoadGoogleFonts',
+					} }
+					fontFamily={ {
+						value: lightboxFontFamily,
+						label: 'lightboxFontFamily',
+					} }
+					fontWeight={ {
+						value: lightboxFontWeight,
+						label: 'lightboxFontWeight',
+					} }
+					fontStyle={ {
+						value: lightboxFontStyle,
+						label: 'lightboxFontStyle',
+					} }
+					transform={ {
+						value: lightboxTransform,
+						label: 'lightboxTransform',
+					} }
+					decoration={ {
+						value: lightboxDecoration,
+						label: 'lightboxDecoration',
+					} }
+					fontSizeType={ {
+						value: lightboxFontSizeType,
+						label: 'lightboxFontSizeType',
+					} }
+					fontSize={ {
+						value: lightboxFontSize,
+						label: 'lightboxFontSize',
+					} }
+					fontSizeMobile={ {
+						value: lightboxFontSizeMob,
+						label: 'lightboxFontSizeMob',
+					} }
+					fontSizeTablet={ {
+						value: lightboxFontSizeTab,
+						label: 'lightboxFontSizeTab',
+					} }
+					lineHeightType={ {
+						value: lightboxLineHeightType,
+						label: 'lightboxLineHeightType',
+					} }
+					lineHeight={ {
+						value: lightboxLineHeight,
+						label: 'lightboxLineHeight',
+					} }
+					lineHeightMobile={ {
+						value: lightboxLineHeightMob,
+						label: 'lightboxLineHeightMob',
+					} }
+					lineHeightTablet={ {
+						value: lightboxLineHeightTab,
+						label: 'lightboxLineHeightTab',
+					} }
+				/>
+			) }
 			<ToggleControl
 				label={ __(
 					`Blur Background`,
@@ -2170,6 +2266,7 @@ const Settings = ( props ) => {
 			</InspectorControls>
 			{ loadCaptionGoogleFonts }
 			{ loadLoadMoreGoogleFonts }
+			{ loadLightboxGoogleFonts }
 		</>
 	);
 };
