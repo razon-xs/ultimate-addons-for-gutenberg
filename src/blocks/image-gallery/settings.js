@@ -891,10 +891,15 @@ const Settings = ( props ) => {
 	const lightboxSettings = () => (
 		<UAGAdvancedPanelBody title={ __( 'Lightbox', 'ultimate-addons-for-gutenberg' ) } initialOpen={ false }>
 			<ToggleControl
-				label={ __( 'Preview Lightbox', 'ultimate-addons-for-gutenberg' ) }
-				checked={ lightboxPreview }
+				label={ __( 'Preview Lightbox (Desktop)', 'ultimate-addons-for-gutenberg' ) }
+				checked={ ( 'Desktop' === deviceType ) ? lightboxPreview : false }
+				disabled={ ( 'Desktop' === deviceType ) ? undefined : true }
 				onChange={ () => setLightboxPreview( ! lightboxPreview ) }
-				help={ __( 'Note: The Lightbox will be fullscreen on the front end.', 'ultimate-addons-for-gutenberg' ) }
+				help={ ( 'Desktop' === deviceType ) ? (
+					__( 'Note: The Lightbox will be fullscreen on the front end.', 'ultimate-addons-for-gutenberg' )
+	 			) : (
+					__( 'To preview this in the editor, use Desktop mode.', 'ultimate-addons-for-gutenberg' )
+				) }
 			/>
 			<UAGIconPicker
 				label={ __( 'Close Icon', 'ultimate-addons-for-gutenberg' ) }
