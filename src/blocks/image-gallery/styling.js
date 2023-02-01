@@ -102,6 +102,9 @@ function styling( props ) {
 		lightboxCaptionColor,
 		lightboxCaptionBackgroundColor,
 		lightboxIconColor,
+		lightboxCaptionHeight,
+		lightboxCaptionHeightTablet,
+		lightboxCaptionHeightMobile,
 
 		// Caption Font.
 		captionFontFamily,
@@ -194,6 +197,7 @@ function styling( props ) {
 	const paginateArrowSizeFallback = getFallbackNumber( paginateArrowSize, 'paginateArrowSize', blockName );
 	const paginateLoaderSizeFallback = getFallbackNumber( paginateLoaderSize, 'paginateLoaderSize', blockName );
 	const gridImageGapFallback = getFallbackNumber( gridImageGap, 'gridImageGap', blockName );
+	const lightboxCaptionHeightFallback = getFallbackNumber( lightboxCaptionHeight, 'lightboxCaptionHeight', blockName );
 
 	// Spacing Fallback - Needed for Carousel Editor.
 	const feedMarginTopFallback = isNaN( feedMarginTop ) ? 0 : feedMarginTop;
@@ -212,6 +216,9 @@ function styling( props ) {
 	// Responsive Slider Fallback.
 	const gridImageGapTabFallback = isNaN( gridImageGapTab ) ? gridImageGapFallback : gridImageGapTab;
 	const gridImageGapMobFallback = isNaN( gridImageGapMob ) ? gridImageGapTabFallback : gridImageGapMob;
+	const lightboxCaptionHeightTabFallback = ( 'number' === typeof lightboxCaptionHeightTablet ) ? lightboxCaptionHeightTablet : lightboxCaptionHeightFallback;
+	const lightboxCaptionHeightMobFallback = ( 'number' === typeof lightboxCaptionHeightMobile ) ? lightboxCaptionHeightMobile : lightboxCaptionHeightTabFallback;
+	
 
 	// Border Attributes.
 	const arrowBorderCSS = generateBorderCSS( props.attributes, 'arrow' );
@@ -572,6 +579,7 @@ function styling( props ) {
 		' .spectra-image-gallery__control-lightbox--caption': {
 			'color': lightboxCaptionColor,
 			'background': `linear-gradient(rgba(0,0,0,0), ${ lightboxCaptionBackgroundColor })`,
+			'height': generateCSSUnit( lightboxCaptionHeightFallback, 'px' ),
 		},
 		' .spectra-image-gallery__control-lightbox--thumbnails-wrapper': {
 			'background-color': lightboxDisplayCaptions ? lightboxCaptionBackgroundColor : 'transparent',
@@ -675,6 +683,9 @@ function styling( props ) {
 		' .spectra-image-gallery__media-thumbnail-caption--bar-outside': {
 			...mainTitleBorderCSSTablet,
 		},
+		' .spectra-image-gallery__control-lightbox--caption': {
+			'height': generateCSSUnit( lightboxCaptionHeightTabFallback, 'px' ),
+		},
 	};
 
 	const mobileSelectors = {
@@ -761,6 +772,9 @@ function styling( props ) {
 
 		' .spectra-image-gallery__media-thumbnail-caption--bar-outside': {
 			...mainTitleBorderCSSMobile,
+		},
+		' .spectra-image-gallery__control-lightbox--caption': {
+			'height': generateCSSUnit( lightboxCaptionHeightMobFallback, 'px' ),
 		},
 	};
 

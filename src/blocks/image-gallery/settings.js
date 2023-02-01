@@ -154,6 +154,9 @@ const Settings = ( props ) => {
 		lightboxCaptionColor,
 		lightboxCaptionBackgroundColor,
 		lightboxIconColor,
+		lightboxCaptionHeight,
+		lightboxCaptionHeightTablet,
+		lightboxCaptionHeightMobile,
 
 		captionLoadGoogleFonts,
 		captionFontFamily,
@@ -1440,6 +1443,29 @@ const Settings = ( props ) => {
 				] }
 				setAttributes={ setAttributes }
 			/>
+			{ lightboxDisplayCaptions && (
+				<ResponsiveSlider
+					label={ __( 'Lightbox Caption Height', 'ultimate-addons-for-gutenberg' ) }
+					data={ {
+						desktop: {
+							value: lightboxCaptionHeight,
+							label: 'lightboxCaptionHeight',
+						},
+						tablet: {
+							value: lightboxCaptionHeightTablet,
+							label: 'lightboxCaptionHeightTablet',
+						},
+						mobile: {
+							value: lightboxCaptionHeightMobile,
+							label: 'lightboxCaptionHeightMobile',
+						},
+					} }
+					min={ 0 }
+					max={ 300 }
+					displayUnit={ false }
+					setAttributes={ setAttributes }
+				/>
+			) }
 		</UAGAdvancedPanelBody>
 	);
 

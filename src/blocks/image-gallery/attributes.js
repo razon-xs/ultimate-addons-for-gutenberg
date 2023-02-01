@@ -679,6 +679,25 @@ const attributes = {
 			styleType: 'lightbox-caption-background-color'
 		},
 	},
+	lightboxCaptionHeight: {
+		type: 'number',
+		default: 50,
+		UAGCopyPaste: {
+			styleType: 'lightbox-caption-height'
+		},
+	},
+	lightboxCaptionHeightTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'lightbox-caption-height-tablet'
+		},
+	},
+	lightboxCaptionHeightMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'lightbox-caption-height-mobile'
+		},
+	},
 
 	// Caption Typography Styling
 
