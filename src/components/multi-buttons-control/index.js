@@ -172,7 +172,7 @@ const MultiButtonsControl = ( props ) => {
 				</div>
 				{ output[ deviceType ] ? output[ deviceType ] : output.Desktop }
 				{ props.help && (
-					<p className="uag-control-help-notice">{ props.help }</p>
+					<p className="components-base-control__help">{ props.help }</p>
 				) }
 			</div>
 		);
@@ -226,7 +226,7 @@ const MultiButtonsControl = ( props ) => {
 				) ) }
 			</ButtonGroup>
 			{ props.help && (
-				<p className="uag-control-help-notice">{ props.help }</p>
+				<p className="components-base-control__help">{ props.help }</p>
 			) }
 		</div>
 	);

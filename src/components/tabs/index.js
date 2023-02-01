@@ -75,7 +75,7 @@ const UAGTabsControl = ( props ) => {
 			</TabPanel>
 			{ ! props?.disableBottomSeparator && <Separator/> }
 			{ props.help && (
-				<p className="uag-control-help-notice">{ props.help }</p>
+				<p className="components-base-control__help">{ props.help }</p>
 			) }
 		</>
 	);

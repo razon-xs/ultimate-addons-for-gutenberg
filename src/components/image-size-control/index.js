@@ -194,7 +194,7 @@ export default function ImageSizeControl( {
 						</div>
 					</div>
 					{ help && (
-						<p className="uag-control-help-notice">{ help }</p>
+						<p className="components-base-control__help">{ help }</p>
 					) }
 				</div>
 			) }

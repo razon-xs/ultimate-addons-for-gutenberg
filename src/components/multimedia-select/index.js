@@ -91,7 +91,7 @@ const MultiMediaSelector = ( props ) => {
 				) }
 			</div>
 			{ props.help && (
-				<p className="uag-control-help-notice">{ props.help }</p>
+				<p className="components-base-control__help">{ props.help }</p>
 			) }
 		</BaseControl>
 	);
