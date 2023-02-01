@@ -6,6 +6,14 @@ const attributes = {
 	block_id: {
 		type: 'string',
 	},
+	changeVariation:{
+		type: 'boolean',
+		default: false,
+	},
+	lockTemplate: {
+		type: 'boolean',
+		default: false,
+	},
 	align: {
 		type: 'string',
 		default: 'center',

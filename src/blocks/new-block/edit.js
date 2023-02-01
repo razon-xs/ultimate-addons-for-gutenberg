@@ -95,7 +95,9 @@ const UAGBNewBlock = ( props ) => {
 					)
 				);
 			}
+			props.setAttributes( { variationChange: false } );
 		}
+		
 	);
 	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
 
@@ -108,7 +110,7 @@ const UAGBNewBlock = ( props ) => {
 	
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/form.svg`;
 
-	if ( ! props.attributes.isPreview && ! hasInnerBlocks ) {
+	if ( ( ! props.attributes.isPreview && ! hasInnerBlocks ) || props.attributes.variationChange && hasInnerBlocks ) {
 		return (
 			props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
 				<div className='uagb-forms-variations'>

@@ -11,7 +11,6 @@ const ALLOWED_BLOCKS = [
 	'uagb/icon-list',
 	'uagb/social-share',
 	'uagb/star-rating',
-	'core/paragraph',
 	'uagb/container'
 ];
 
@@ -26,6 +25,7 @@ const Render = ( props ) => {
 	const { attributes } = props;
 	const {
 		block_id,
+		lockTemplate
 	} = attributes;
 
 	return (
@@ -37,7 +37,8 @@ const Render = ( props ) => {
 					`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`
 				) }
 			>
-				<InnerBlocks allowedBlocks={ ALLOWED_BLOCKS } />
+				<InnerBlocks allowedBlocks={ ALLOWED_BLOCKS }
+   					templateLock={ lockTemplate ? 'all' : false } />
 			</div>
 		</>
 	);

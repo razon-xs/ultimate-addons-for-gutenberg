@@ -6,9 +6,9 @@ import InspectorTab, {
 } from '@Components/inspector-tabs/InspectorTab.js';
 import ResponsiveSlider from '@Components/responsive-slider';
 import { __ } from '@wordpress/i18n';
-
 import {
-	InspectorControls
+	InspectorControls,
+	BlockControls
 } from '@wordpress/block-editor';
 import BoxShadowControl from '@Components/box-shadow';
 import SpacingControl from '@Components/spacing-control';
@@ -18,7 +18,7 @@ import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import UAGTabsControl from '@Components/tabs';
 import MultiButtonsControl from '@Components/multi-buttons-control';
 import renderSVG from '@Controls/renderIcon';
-import { Icon } from '@wordpress/components';
+import { Icon, ToolbarGroup } from '@wordpress/components';
 
 const Settings = ( props ) => {
 
@@ -117,9 +117,9 @@ const Settings = ( props ) => {
 		align,
 		alignTablet,
 		alignMobile,
-
+		variationChange,
+		lockTemplate
 	} = attributes;
-
 	
 	const generalSettings = () => {
 		return (
@@ -181,19 +181,7 @@ const Settings = ( props ) => {
 									'Right',
 									'ultimate-addons-for-gutenberg'
 								),
-							},
-							{
-								value: 'full',
-								icon: (
-									<Icon
-										icon={ renderSVG( 'fa fa-align-justify' ) }
-									/>
-								),
-								tooltip: __(
-									'Full Width',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
+							}
 						] }
 						showIcons={ true }
 						responsive={true}
@@ -733,8 +721,34 @@ const Settings = ( props ) => {
 		);
 	}
 
-	return (
+	const getBlockControls = () => {
+		return (
+			<BlockControls>
+				<ToolbarGroup
+					controls={ [
+						{
+							icon: 'update',
+							title: __( 'Change Variation' ),
+							onClick: () => setAttributes( { variationChange: ! variationChange } )
+						},
+					] }
+				/>
+				<ToolbarGroup
+					controls={ [
+						{
+							icon: 'lock',
+							title: __( 'Lock Template' ),
+							onClick: () => setAttributes( { lockTemplate: ! lockTemplate } )
+						},
+					] }
+				/>
+			</BlockControls>
+		);
+	};
 
+	return (
+		<>
+			{ getBlockControls()}
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
@@ -752,7 +766,7 @@ const Settings = ( props ) => {
 					></InspectorTab>
 				</InspectorTabs>
 			</InspectorControls>
-
+		</>
 	);
 };
 export default React.memo( Settings );
