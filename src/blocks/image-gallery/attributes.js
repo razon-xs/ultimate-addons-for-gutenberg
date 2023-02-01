@@ -85,6 +85,44 @@ const attributes = {
 		type: 'string',
 		default: 'xmark',
 	},
+	lightboxCaptionHeight: {
+		type: 'number',
+		default: 50,
+		UAGCopyPaste: {
+			styleType: 'desc-height'
+		},
+	},
+	lightboxCaptionHeightTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'desc-height-tablet'
+		},
+	},
+	lightboxCaptionHeightMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'desc-height-mobile'
+		},
+	},
+	lightboxIconSize: {
+		type: 'number',
+		default: 24,
+		UAGCopyPaste: {
+			styleType: 'icon-size'
+		},
+	},
+	lightboxIconSizeTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'icon-size-tablet'
+		},
+	},
+	lightboxIconSizeMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'icon-size-mobile'
+		},
+	},
 
 	// Caption Settings
 	
@@ -637,6 +675,25 @@ const attributes = {
 
 	// LightBox Styling
 
+	lightboxEdgeDistance: {
+		type: 'number',
+		default: 10,
+		UAGCopyPaste: {
+			styleType: 'lightbox-padding'
+		},
+	},
+	lightboxEdgeDistanceTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'lightbox-padding-tablet'
+		},
+	},
+	lightboxEdgeDistanceMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'lightbox-padding-mobile'
+		},
+	},
 	lightboxBackgroundEnableBlur: {
 		type: 'boolean',
 		default: true,
@@ -677,25 +734,6 @@ const attributes = {
 		default: 'rgba(0,0,0,1)',
 		UAGCopyPaste: {
 			styleType: 'desc-background'
-		},
-	},
-	lightboxCaptionHeight: {
-		type: 'number',
-		default: 50,
-		UAGCopyPaste: {
-			styleType: 'desc-height'
-		},
-	},
-	lightboxCaptionHeightTablet: {
-		type: 'number',
-		UAGCopyPaste: {
-			styleType: 'desc-height-tablet'
-		},
-	},
-	lightboxCaptionHeightMobile: {
-		type: 'number',
-		UAGCopyPaste: {
-			styleType: 'desc-height-mobile'
 		},
 	},
 

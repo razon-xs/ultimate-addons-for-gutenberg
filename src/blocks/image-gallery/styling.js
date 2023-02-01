@@ -41,6 +41,12 @@ function styling( props ) {
 
 		// Lightbox Settings.
 		lightboxDisplayCaptions,
+		lightboxCaptionHeight,
+		lightboxCaptionHeightTablet,
+		lightboxCaptionHeightMobile,
+		lightboxIconSize,
+		lightboxIconSizeTablet,
+		lightboxIconSizeMobile,
 
 		// Caption Settings.
 		captionVisibility,
@@ -96,15 +102,15 @@ function styling( props ) {
 		captionBackgroundBlurAmountHover,
 
 		// Lightbox Styling.
+		lightboxEdgeDistance,
+		lightboxEdgeDistanceTablet,
+		lightboxEdgeDistanceMobile,
 		lightboxBackgroundEnableBlur,
 		lightboxBackgroundBlurAmount,
 		lightboxBackgroundColor,
 		lightboxCaptionColor,
 		lightboxCaptionBackgroundColor,
 		lightboxIconColor,
-		lightboxCaptionHeight,
-		lightboxCaptionHeightTablet,
-		lightboxCaptionHeightMobile,
 
 		// Caption Font.
 		captionFontFamily,
@@ -607,23 +613,28 @@ function styling( props ) {
 			'background-color': lightboxDisplayCaptions ? lightboxCaptionBackgroundColor : 'transparent',
 		},
 		' .spectra-image-gallery__control-lightbox--count': {
+			'top': generateCSSUnit( lightboxEdgeDistance, 'px' ),
+			'left': generateCSSUnit( lightboxEdgeDistance, 'px' ),
 			'color': lightboxIconColor,
 			'font-family': ( 'Default' === lightboxFontFamily ) ? '' : lightboxFontFamily,
-			'font-weight': lightboxFontWeight,
-			'font-style': lightboxFontStyle,
-			'text-decoration': lightboxDecoration,
-			'text-transform': lightboxTransform,
-			'font-size': generateCSSUnit( lightboxFontSize, lightboxFontSizeType ),
-			'line-height': generateCSSUnit( lightboxLineHeight, lightboxLineHeightType ),
+			'font-size': generateCSSUnit( lightboxIconSize, 'px' ) ? `calc(${ generateCSSUnit( lightboxIconSize, 'px' ) } * 3 / 4 )` : undefined,
+		},
+		' .spectra-image-gallery__control-lightbox--close': {
+			'top': generateCSSUnit( lightboxEdgeDistance, 'px' ),
+			'right': generateCSSUnit( lightboxEdgeDistance, 'px' ),
 		},
 		' .spectra-image-gallery__control-lightbox--close svg': {
+			'width': generateCSSUnit( lightboxIconSize, 'px' ),
+			'height': generateCSSUnit( lightboxIconSize, 'px' ),
 			'fill': lightboxIconColor,
 		},
 		' .spectra-image-gallery__control-lightbox--main .swiper-button-prev': {
-			'color': lightboxIconColor,			
+			'left': generateCSSUnit( lightboxEdgeDistance, 'px' ),
+			'color': lightboxIconColor,
 		},
 		' .spectra-image-gallery__control-lightbox--main .swiper-button-next': {
-			'color': lightboxIconColor,			
+			'right': generateCSSUnit( lightboxEdgeDistance, 'px' ),
+			'color': lightboxIconColor,
 		},
 	};
 
@@ -718,8 +729,23 @@ function styling( props ) {
 			'line-height': generateCSSUnit( lightboxLineHeightTab, lightboxLineHeightType ),
 		},
 		' .spectra-image-gallery__control-lightbox--count': {
-			'font-size': generateCSSUnit( lightboxFontSizeTab, lightboxFontSizeType ),
-			'line-height': generateCSSUnit( lightboxLineHeightTab, lightboxLineHeightType ),
+			'top': generateCSSUnit( lightboxEdgeDistanceTablet, 'px' ),
+			'left': generateCSSUnit( lightboxEdgeDistanceTablet, 'px' ),
+			'font-size': generateCSSUnit( lightboxIconSizeTablet, 'px' ) ? `calc(${ generateCSSUnit( lightboxIconSizeTablet, 'px' ) } * 3 / 4 )` : undefined,
+		},
+		' .spectra-image-gallery__control-lightbox--close': {
+			'top': generateCSSUnit( lightboxEdgeDistanceTablet, 'px' ),
+			'right': generateCSSUnit( lightboxEdgeDistanceTablet, 'px' ),
+		},
+		' .spectra-image-gallery__control-lightbox--close svg': {
+			'width': generateCSSUnit( lightboxIconSizeTablet, 'px' ),
+			'height': generateCSSUnit( lightboxIconSizeTablet, 'px' ),
+		},
+		' .spectra-image-gallery__control-lightbox--main .swiper-button-prev': {
+			'left': generateCSSUnit( lightboxEdgeDistanceTablet, 'px' ),
+		},
+		' .spectra-image-gallery__control-lightbox--main .swiper-button-next': {
+			'right': generateCSSUnit( lightboxEdgeDistanceTablet, 'px' ),
 		},
 	};
 
@@ -814,8 +840,23 @@ function styling( props ) {
 			'line-height': generateCSSUnit( lightboxLineHeightMob, lightboxLineHeightType ),
 		},
 		' .spectra-image-gallery__control-lightbox--count': {
-			'font-size': generateCSSUnit( lightboxFontSizeMob, lightboxFontSizeType ),
-			'line-height': generateCSSUnit( lightboxLineHeightMob, lightboxLineHeightType ),
+			'top': generateCSSUnit( lightboxEdgeDistanceMobile, 'px' ),
+			'left': generateCSSUnit( lightboxEdgeDistanceMobile, 'px' ),
+			'font-size': generateCSSUnit( lightboxIconSizeMobile, 'px' ) ? `calc(${ generateCSSUnit( lightboxIconSizeMobile, 'px' ) } * 3 / 4 )` : undefined,
+		},
+		' .spectra-image-gallery__control-lightbox--close': {
+			'top': generateCSSUnit( lightboxEdgeDistanceMobile, 'px' ),
+			'right': generateCSSUnit( lightboxEdgeDistanceMobile, 'px' ),
+		},
+		' .spectra-image-gallery__control-lightbox--close svg': {
+			'width': generateCSSUnit( lightboxIconSizeMobile, 'px' ),
+			'height': generateCSSUnit( lightboxIconSizeMobile, 'px' ),
+		},
+		' .spectra-image-gallery__control-lightbox--main .swiper-button-prev': {
+			'left': generateCSSUnit( lightboxEdgeDistanceMobile, 'px' ),
+		},
+		' .spectra-image-gallery__control-lightbox--main .swiper-button-next': {
+			'right': generateCSSUnit( lightboxEdgeDistanceMobile, 'px' ),
 		},
 	};
 

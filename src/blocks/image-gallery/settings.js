@@ -58,6 +58,12 @@ const Settings = ( props ) => {
 		lightboxThumbnails,
 		lightboxDisplayCount,
 		lightboxCloseIcon,
+		lightboxCaptionHeight,
+		lightboxCaptionHeightTablet,
+		lightboxCaptionHeightMobile,
+		lightboxIconSize,
+		lightboxIconSizeTablet,
+		lightboxIconSizeMobile,
 		
 		columnsDesk,
 		columnsTab,
@@ -148,15 +154,15 @@ const Settings = ( props ) => {
 		captionBackgroundBlurAmount,
 		captionBackgroundBlurAmountHover,
 
+		lightboxEdgeDistance,
+		lightboxEdgeDistanceTablet,
+		lightboxEdgeDistanceMobile,
 		lightboxBackgroundEnableBlur,
 		lightboxBackgroundBlurAmount,
 		lightboxBackgroundColor,
 		lightboxCaptionColor,
 		lightboxCaptionBackgroundColor,
 		lightboxIconColor,
-		lightboxCaptionHeight,
-		lightboxCaptionHeightTablet,
-		lightboxCaptionHeightMobile,
 
 		captionLoadGoogleFonts,
 		captionFontFamily,
@@ -896,6 +902,11 @@ const Settings = ( props ) => {
 				onChange={ ( value ) => setAttributes( { lightboxCloseIcon: value } ) }
 			/>
 			<ToggleControl
+				label={ __( 'Display Image Number', 'ultimate-addons-for-gutenberg' ) }
+				checked={ lightboxDisplayCount }
+				onChange={ () => setAttributes( { lightboxDisplayCount: ! lightboxDisplayCount } ) }
+			/>
+			<ToggleControl
 				label={ __( 'Display Captions', 'ultimate-addons-for-gutenberg' ) }
 				checked={ lightboxDisplayCaptions }
 				onChange={ () => setAttributes( { lightboxDisplayCaptions: ! lightboxDisplayCaptions } ) }
@@ -905,11 +916,52 @@ const Settings = ( props ) => {
 				checked={ lightboxThumbnails }
 				onChange={ () => setAttributes( { lightboxThumbnails: ! lightboxThumbnails } ) }
 			/>
-			<ToggleControl
-				label={ __( 'Display Image Number', 'ultimate-addons-for-gutenberg' ) }
-				checked={ lightboxDisplayCount }
-				onChange={ () => setAttributes( { lightboxDisplayCount: ! lightboxDisplayCount } ) }
-			/>
+			{ ( lightboxCloseIcon || lightboxDisplayCount ) && (
+				<ResponsiveSlider
+					label={ __( 'Icon/Number Size', 'ultimate-addons-for-gutenberg' ) }
+					data={ {
+						desktop: {
+							value: lightboxIconSize,
+							label: 'lightboxIconSize',
+						},
+						tablet: {
+							value: lightboxIconSizeTablet,
+							label: 'lightboxIconSizeTablet',
+						},
+						mobile: {
+							value: lightboxIconSizeMobile,
+							label: 'lightboxIconSizeMobile',
+						},
+					} }
+					min={ 0 }
+					max={ 100 }
+					displayUnit={ false }
+					setAttributes={ setAttributes }
+				/>
+			) }
+			{ lightboxDisplayCaptions && (
+				<ResponsiveSlider
+					label={ __( 'Caption Height', 'ultimate-addons-for-gutenberg' ) }
+					data={ {
+						desktop: {
+							value: lightboxCaptionHeight,
+							label: 'lightboxCaptionHeight',
+						},
+						tablet: {
+							value: lightboxCaptionHeightTablet,
+							label: 'lightboxCaptionHeightTablet',
+						},
+						mobile: {
+							value: lightboxCaptionHeightMobile,
+							label: 'lightboxCaptionHeightMobile',
+						},
+					} }
+					min={ 0 }
+					max={ 300 }
+					displayUnit={ false }
+					setAttributes={ setAttributes }
+				/>
+			) }
 		</UAGAdvancedPanelBody>
 	);
 
@@ -1473,29 +1525,6 @@ const Settings = ( props ) => {
 				] }
 				setAttributes={ setAttributes }
 			/>
-			{ lightboxDisplayCaptions && (
-				<ResponsiveSlider
-					label={ __( 'Lightbox Caption Height', 'ultimate-addons-for-gutenberg' ) }
-					data={ {
-						desktop: {
-							value: lightboxCaptionHeight,
-							label: 'lightboxCaptionHeight',
-						},
-						tablet: {
-							value: lightboxCaptionHeightTablet,
-							label: 'lightboxCaptionHeightTablet',
-						},
-						mobile: {
-							value: lightboxCaptionHeightMobile,
-							label: 'lightboxCaptionHeightMobile',
-						},
-					} }
-					min={ 0 }
-					max={ 300 }
-					displayUnit={ false }
-					setAttributes={ setAttributes }
-				/>
-			) }
 		</UAGAdvancedPanelBody>
 	);
 
@@ -1578,20 +1607,6 @@ const Settings = ( props ) => {
 					setAttributes( { lightboxBackgroundEnableBlur: ! lightboxBackgroundEnableBlur } )
 				}
 			/>
-			{ lightboxBackgroundEnableBlur && (
-				<Range
-					label={ __( `Blur Amount`, 'ultimate-addons-for-gutenberg' ) }
-					setAttributes={ setAttributes }
-					value={ lightboxBackgroundBlurAmount }
-					data={ {
-						value:lightboxBackgroundBlurAmount,
-						label: 'lightboxBackgroundBlurAmount',
-					} }
-					min={ 0 }
-					max={ 10 }
-					displayUnit={ false }
-				/>
-			) }
 			<AdvancedPopColorControl
 				label={ __( 'Background Color', 'ultimate-addons-for-gutenberg' ) }
 				colorValue={ lightboxBackgroundColor ? lightboxBackgroundColor : '' }
@@ -1633,6 +1648,41 @@ const Settings = ( props ) => {
 					/>
 				</>
 			) }
+			{ lightboxBackgroundEnableBlur && (
+				<Range
+					label={ __( `Blur Amount`, 'ultimate-addons-for-gutenberg' ) }
+					setAttributes={ setAttributes }
+					value={ lightboxBackgroundBlurAmount }
+					data={ {
+						value:lightboxBackgroundBlurAmount,
+						label: 'lightboxBackgroundBlurAmount',
+					} }
+					min={ 0 }
+					max={ 10 }
+					displayUnit={ false }
+				/>
+			) }
+			<ResponsiveSlider
+				label={ __( 'Edge Distance', 'ultimate-addons-for-gutenberg' ) }
+				data={ {
+					desktop: {
+						value: lightboxEdgeDistance,
+						label: 'lightboxEdgeDistance',
+					},
+					tablet: {
+						value: lightboxEdgeDistanceTablet,
+						label: 'lightboxEdgeDistanceTablet',
+					},
+					mobile: {
+						value: lightboxEdgeDistanceMobile,
+						label: 'lightboxEdgeDistanceMobile',
+					},
+				} }
+				min={ 0 }
+				max={ 100 }
+				displayUnit={ false }
+				setAttributes={ setAttributes }
+			/>
 		</UAGAdvancedPanelBody>
 	);
 
