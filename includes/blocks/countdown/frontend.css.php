@@ -292,9 +292,9 @@ if ( $is_rtl ) {
 }
 
 $combined_selectors = array(
-	'desktop' => $selectors,
-	'tablet'  => $t_selectors,
-	'mobile'  => $m_selectors,
+	'desktop' => apply_filters( 'spectra_' . $block_name . '_styling', $selectors, $attr ),
+	'tablet'  => apply_filters( 'spectra_' . $block_name . '_tablet_styling', $t_selectors, $attr ),
+	'mobile'  => apply_filters( 'spectra_' . $block_name . '_mobile_styling', $m_selectors, $attr ),
 );
 
 $base_selector = '.uagb-block-';
