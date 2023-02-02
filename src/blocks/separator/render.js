@@ -47,7 +47,7 @@ const Render = ( props ) => {
 					elementType !== 'none' && (
 						<div className='wp-block-uagb-separator-element'>
 							{
-								elementType === 'icon' ? renderSVG( separatorIcon ) : separatorText
+								elementType === 'icon' ? renderSVG( separatorIcon ) : <RichText tagName={separatorTextTag} placeholder={separatorText} />
 							}
 						</div>
 					)

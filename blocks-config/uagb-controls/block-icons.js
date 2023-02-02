@@ -1273,8 +1273,8 @@ const UAGB_Block_Icons = {
 		el( 'path', {
 			fill: spectraDarkColor,
 			stokeWidth: 1.4,
-			strokeLinecap: "round",
-			strokeLinejoin: "round",
+			strokeLinecap: 'round',
+			strokeLinejoin: 'round',
 			d: 'M4 12H20M14 17L12 19L10 17M14 7L12 5L10 7',
 		} ),
 	),
