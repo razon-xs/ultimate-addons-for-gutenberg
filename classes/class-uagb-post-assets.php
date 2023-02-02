@@ -166,7 +166,7 @@ class UAGB_Post_Assets {
 	 * Post ID
 	 *
 	 * @since 1.23.0
-	 * @var array
+	 * @var integer
 	 */
 	protected $post_id;
 
@@ -562,7 +562,7 @@ class UAGB_Post_Assets {
 			return;
 		}
 
-		echo '<script type="text/javascript" id="uagb-script-frontend-' . $this->post_id . '">' . $this->script . '</script>'; //phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+		echo '<script type="text/javascript" id="uagb-script-frontend-' . esc_attr( $this->post_id ) . '">' . $this->script . '</script>'; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -573,8 +573,7 @@ class UAGB_Post_Assets {
 		if ( empty( $this->stylesheet ) ) {
 			return;
 		}
-
-		echo '<style id="uagb-style-frontend-' . $this->post_id . '">' . $this->stylesheet . '</style>'; //phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+		echo '<style id="uagb-style-frontend-' . esc_attr( $this->post_id ) . '">' . $this->stylesheet . '</style>'; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**

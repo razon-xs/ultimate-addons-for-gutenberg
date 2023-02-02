@@ -5,7 +5,7 @@
 **Requires at least:** 4.7  
 **Requires PHP:** 5.6  
 **Tested up to:** 6.1  
-**Stable tag:** 2.2.0  
+**Stable tag:** 2.3.5  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -170,16 +170,48 @@ The awesome React FontIconPicker is developed by [Alessandro Benoit](http://code
 
 ## Changelog ##
 
-### 2.2.1 ###
+### 2.3.5 - THURSDAY, 2nd FEBRUARY 2023 ###
+* Global - Removed Backward compatibility of button padding for old users from multiple blocks.
+* Global - Updated SVG icons rendering conditions & optimized the loading.
+* Fix: Container - Full height and Fixed background Image not working properly on editor.
+* Fix: Info-Box - CTA padding not working on responsive devices.
+* Fix: Heading - Disabling heading and sub-heading hides the separator.
+* Fix: Forms - Using form inside inner blocks, it was showing an error on submit.
+* Fix: Background control - Image has wrong units for custom positioning.
+
+### 2.3.4 - WEDNESDAY, 25th JANUARY 2023 ###
+* Improvement: Updated Gutenberg Templates Library.
+
+### 2.3.3 - TUESDAY, 24th JANUARY 2023 ###
+* Fix: Post Block - PHP comment appears on frontend.
+
+### 2.3.2 - MONDAY, 23rd JANUARY 2023 ###
+* Security fixes: Props to Patchstack for reporting security issues. Those are fixed in this release. Plus we’ve hardened security in other areas of the plugin.
+* Improvement: Modal - Added presets for a button trigger.
+* Fix: Forms - Multiple Form Submit AJAX related issues.
+* Fix: Timeline - unable to set connector Icon Background Size to zero.
+* Fix: Gradient Picker - block encounter an error when using gradient picker for Spectra block when Gutenberg is activated.
+
+### 2.3.1 - FRIDAY, 20th JANUARY 2023 ###
+* Fix: Info-Box - Margin unit set to `px` after refresh in editor.
+* Fix: Post Block - First post is getting empty when post block used on shop page.
+* Fix: Background processing issue in some cases.
+
+### 2.3.0 - THURSDAY, 12th JANUARY 2023 ###
+* New: Introducing the Slider block that allows you to make almost anything into a carousel, a good way to grab attention!
+* Improvement: Added support for Astra's 4.0 theme menu position next to the Dashboard in admin.
+* Fix: Container - Adding padding to paragraph cause uneven space and cross the boundary of container on responsive devices.
+* Fix: Container - Background video goes out the boundary of the container if we have rounded corner.
 * Fix: Image Gallery - When adding any of the HTML code or adding the link, the visibility of that caption gets changed to always visible
-* Fix: Image Gallery - Broken link were shown in gallery on frontend when added to caption.
+* Fix: Image Gallery - Broken links were shown in the gallery on frontend when added to caption.
 * Fix: Icon List - Disable link for the list item, it turns on the toggle again.
 * Fix: Testimonial - Carousel dots overlapping on below blocks in the mobile device.
 * Fix: Post Grid - Undefined array key issue.
-* Fix: How-To : Image is not visible when image selected from Image control.
+* Fix: How-To - Image is not visible when image selected from Image control.
 * Fix: Image - Does not wrap with paragraph.
 * Fix: Tabs - Container get hidden inside tabs body whenever use.
 * Fix: Global - Buttons - Removed the WP default allowedFormats from the toolbar.
+* Fix: Global - SVG Icons for blocks look big after switching to responsive devices inside the editor.
 * Deprecated: Global - Removed deprecated toolbar and multiline for rich text.
 
 ### 2.2.0 - TUESDAY, 27th DECEMBER 2022 ###
