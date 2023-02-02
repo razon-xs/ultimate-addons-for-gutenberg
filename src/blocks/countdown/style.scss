@@ -47,6 +47,10 @@ html:not([dir="rtl"]) {
 	}
 }
 
+.wp-block-uagb-countdown-innerblocks {
+	display: none;
+}
+
 html[dir="rtl"] {
 
 	.wp-block-uagb-countdown {
