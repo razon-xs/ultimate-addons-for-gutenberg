@@ -14,7 +14,8 @@ const UAGIconPicker = ( props ) => {
 	}, [] );
 
 	const { label, value, onChange } = props;
-	
+	const defaultIcons = [ ...wp.UAGBSvgIcons ];
+	const iconCateList = [ ...wp.uagb_icon_category_list ];
 	// For modal.
 	const [ isOpen, setOpen ] = useState( false );
 
@@ -61,7 +62,16 @@ const UAGIconPicker = ( props ) => {
 				{ label || __( 'Icon', 'ultimate-addons-for-gutenberg' ) }
 			</span>
 			{ modalPlaceHolder }
-			{ isOpen && <ModalContainer { ...{ ...props, closeModal } } /> }
+			{ isOpen && (
+				<ModalContainer
+					{ ...{
+						...props,
+						closeModal,
+						defaultIcons,
+						iconCateList,
+					} }
+				/>
+			) }
 		</div>
 	);
 };

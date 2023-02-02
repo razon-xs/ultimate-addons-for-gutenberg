@@ -105,86 +105,146 @@
 	}
 }
 
+// Modal popup style.
+.components-modal__screen-overlay.uagb-ip-modal-wrapper-overlay {
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
 .components-modal__frame.uagb-ip-modal-wrapper {
-	width: 766px;
-	height: 566px;
+	width: 1080px;
+	height: 792px;
 	max-height: 80%;
+	max-width: 90%;
+	overflow: unset;
 
 	.components-modal__content {
-		padding: 0;
-		margin-top: 60px;
-		background-color: #f6f7f7;
+		padding: 32px 24px;
+		margin: 0;
+		background-color: #fff;
+		overflow: unset;
 
 		.components-modal__header {
-			height: 60px;
-			padding: 0 18px;
+			height: 0;
+
+			.components-modal__header-heading-container {
+				display: none !important;
+			}
+
+			.components-button {
+				color: #aaa;
+				position: absolute;
+				width: 12px;
+				height: 12px;
+				top: 4px;
+				right: -32px;
+				transition: 0.2s color linear;
+
+				&:hover {
+					color: #fff;
+				}
+			}
+		}
+
+		.uagb-ip-header {
+			display: flex;
+			align-items: baseline;
+			height: 66px;
+
+			> h2 {
+				width: 156px;
+				margin: 0;
+				font-size: 20px;
+				font-weight: 400;
+			}
+		}
+
+		.uagb-ip-footer {
+			height: 68px;
+			text-align: right;
+			display: flex;
+			align-items: flex-end;
+			justify-content: flex-end;
+
+			> button {
+				font-size: 13px;
+				color: #fff;
+				border: none;
+				background-color: #007cba;
+				border-radius: 2px;
+				width: 89px;
+				height: 36px;
+				cursor: pointer;
+
+				&.disable {
+					opacity: 0.7;
+					cursor: not-allowed;
+				}
+			}
 		}
 	}
-	// Header.
-	.components-modal__header {
 
-		.components-modal__header-heading {
-			font-size: 16px;
+	.uagb-ip-lr-container {
+		display: flex;
+		// Height 100% - height of footer and header
+		height: calc(100% - 134px);
+		grid-gap: 24px;
+
+		.uagb-ip-left {
+			width: 156px;
+		}
+
+		.uagb-ip-right {
+			flex: 1;
+			padding: 24px;
+			overflow: auto;
+			height: 100%;
+			border: 1px solid #e6e7e9;
 		}
 	}
 
-	.uagb-ip-modal-container {
-		height: 100%;
-		padding: $spectra-popup-vertical-gap 18px 0 18px;
+	.uagb-ip-categories-list {
+
+		> div {
+			padding: 10px;
+			cursor: pointer;
+
+			&.selected {
+				background-color: #dcf2ff;
+				color: #0063a1;
+			}
+		}
 	}
+
 	// Search bar.
 	.uagb-ip-search-container {
-		display: flex;
-		grid-gap: 16px;
+		flex: 1;
+		padding-left: 24px;
 
 		.uagb-ip-search-bar {
-			width: 72%;
+			position: relative;
 
+			> svg,
+			> span {
+				width: 14px;
+				height: 14px;
+				position: absolute;
+				top: calc(18px - 7px);
+				fill: #1e1e1e;
+				transform: rotateZ(90deg);
+				left: 12px;
+			}
+
+			> span {
+				width: unset;
+				cursor: pointer;
+			}
+			// Input padding left = left input padding * 2 both input and icon padding + width of icon
 			input {
-				height: $spectra-control-input-height;
+				height: 36px;
 				width: 100%;
-				padding: $spectra-control-input-padding;
+				padding: 7px 12px 7px calc(12px * 2 + 14px);
 				border: 1px solid $spectra-color-border;
 				margin: 0;
-			}
-		}
-
-		.uagb-ip-search-pagination {
-			display: flex;
-			align-items: center;
-			grid-gap: 30px;
-
-			.uagb-ip-pagination-input {
-				display: flex;
-				align-items: center;
-				grid-gap: 4px;
-			}
-
-			input {
-				width: 60px;
-				line-height: 1;
-				height: $spectra-control-input-height;
-				padding: $spectra-control-input-padding;
-				border: 1px solid $spectra-color-border;
-				margin: 0;
-			}
-
-			.uagb-ip-pagination-np {
-				display: flex;
-				grid-gap: 10px;
-
-				span {
-					cursor: pointer;
-					line-height: 1;
-
-					svg {
-						height: 25px;
-						width: 25px;
-						background-color: #dfdfdf;
-						padding: 5px;
-						fill: #505050;
-					}
-				}
 			}
 		}
 	}
@@ -202,12 +262,11 @@
 			display: flex;
 			flex-wrap: wrap;
 			grid-gap: 10px;
-			padding: $spectra-popup-vertical-gap 0;
 		}
 
 		.uagb-icon-item {
-			width: 56px;
-			height: 56px;
+			width: 80px;
+			height: 80px;
 			background-color: $spectra-color-plain-background;
 			border: 1px solid $spectra-color-border;
 			border-radius: $spectra-control-border-radius;
@@ -216,18 +275,33 @@
 			justify-content: center;
 			cursor: pointer;
 			transition: 0.2s transform ease;
+			flex-direction: column;
+			grid-gap: 6px;
+
+			&.default {
+				border-color: #e6e7e9;
+				box-shadow: 0 0 0 4px #f0f0f1;
+				pointer-events: none;
+			}
 
 			&.selected {
-				background-color: #dedede;
+				border-color: #007cba;
+				box-shadow: 0 0 0 2px #007cba;
+				pointer-events: none;
 			}
 
 			> svg {
-				width: 19px;
-				height: 19px;
+				width: 20.9px;
+				height: 20.27px;
+			}
+
+			> span {
+				font-size: 11px;
 			}
 
 			&:hover {
-				transform: scale(1.1);
+				border-color: #007cba;
+				box-shadow: 0 0 0 2px #dcf2ff;
 			}
 		}
 	}

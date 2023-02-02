@@ -290,10 +290,32 @@ module.exports = function ( grunt ) {
 		}
 	} );
 
+	// Keep category in each icon.
+	function keep_category( fonts, currentFont,getCategories ){
+		for( const category in getCategories ){
+			if( Array.isArray( getCategories[ category ].icons ) && getCategories[ category ].icons.includes( currentFont ) ){
+				fonts[currentFont].categories.push( category );
+			}
+		}
+	}
+
+	// Keep category list in icons array.
+	function keep_category_list( fonts,getCategories ){
+		const keep_cate_list = [];
+		for( const category in getCategories ){
+			if( getCategories[ category ] && getCategories[ category ] ?.label ){
+				keep_cate_list.push( { title : getCategories[ category ].label, slug:category } );
+			}
+		}
+		fonts.uagb_category_list = keep_cate_list;
+		return fonts;
+	}
+
 	// Update Font Awesome library.
 	grunt.registerTask( 'font-awesome', function () {
 		this.async();
 		const request = require( 'request' );
+		const getCategories = grunt.file.readJSON( './fontawesome-category.json' );
 		const fs = require( 'fs' );
 
 		request(
@@ -304,13 +326,14 @@ module.exports = function ( grunt ) {
 
 					const fonts = JSON.parse( body );
 					Object.keys( fonts ).map( ( key ) => {
-
+						// Put category.
+						fonts[key].categories = [];
+						keep_category( fonts, key, getCategories );
 						delete fonts[key].changes;
 						delete fonts[key].ligatures;
 						delete fonts[key].search;
 						delete fonts[key].styles;
 						delete fonts[key].unicode;
-						delete fonts[key].label;
 						delete fonts[key].voted;
 						delete fonts[key].free;
 						return key;
@@ -334,28 +357,30 @@ module.exports = function ( grunt ) {
 	grunt.registerTask( 'font-awesome-v6', function () {
 		this.async();
 		const request = require( 'request' );
+		const getCategories = grunt.file.readJSON( './fontawesome-category.json' );
 		const fs = require( 'fs' );
-
 		request(
 			'https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/metadata/icons.json',
 			function ( error, response, body ) {
 				if ( response && response.statusCode === 200 ) {
 					console.log( 'V6 Fonts successfully fetched!' ); // eslint-disable-line
 
-					const fonts = JSON.parse( body );
+					let fonts = JSON.parse( body );
 					Object.keys( fonts ).map( ( key ) => {
-
+						fonts[key].categories = [];
+						keep_category( fonts, key, getCategories );
 						delete fonts[key].changes;
 						delete fonts[key].ligatures;
 						delete fonts[key].search;
 						delete fonts[key].styles;
 						delete fonts[key].unicode;
-						delete fonts[key].label;
 						delete fonts[key].voted;
 						delete fonts[key].free;
 						delete fonts[key].aliases;
 						return key;
 					} );
+
+					fonts = keep_category_list( fonts, getCategories );
 
 					fs.writeFile(
 						'blocks-config/uagb-controls/SpectraIconsV6.json',
