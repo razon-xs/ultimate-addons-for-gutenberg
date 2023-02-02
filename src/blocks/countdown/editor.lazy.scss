@@ -29,10 +29,8 @@
 		font-weight: bold;
 
 		&:focus {
-			color: #fff;
 
 			&::before {
-				background-color: #0063a1;
 				box-shadow: unset;
 			}
 		}

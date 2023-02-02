@@ -29,6 +29,9 @@ const UAGBCountdownEdit = ( props ) => {
 			} );
 		}
 
+		// This attribute is used to display innerblocks preview for 'Replace with Content' mode.
+		setAttributes( { editorInnerblocksPreview: false } );
+
 		// Assigning block_id in the attribute.
 		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 	}, [] );
