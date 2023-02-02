@@ -68,7 +68,7 @@ const UAGBCountdownEdit = ( props ) => {
 		props.attributes.isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 		<>
 			{/* Countdown Toolbar options for Pro */}
-			{ !!uagb_blocks_info.spectra_pro_status &&
+			{ ( !!uagb_blocks_info.spectra_pro_status && props.attributes.timerEndAction === 'content' ) &&
 				countdownProToolbar
 			}
 			<Settings parentProps={ props } />
