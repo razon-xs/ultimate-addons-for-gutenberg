@@ -1,6 +1,7 @@
 // Custom icon picker
 @import "../../styles/variables";
 
+
 .uag-custom-ip {
 
 	.uag-control-label {
@@ -122,6 +123,7 @@
 		margin: 0;
 		background-color: #fff;
 		overflow: unset;
+		border-radius: $spectra-control-popup-border-radius;
 
 		.components-modal__header {
 			height: 0;
@@ -170,7 +172,7 @@
 				color: #fff;
 				border: none;
 				background-color: #007cba;
-				border-radius: 2px;
+				border-radius: $spectra-control-popup-border-radius;
 				width: 89px;
 				height: 36px;
 				cursor: pointer;
@@ -199,6 +201,21 @@
 			overflow: auto;
 			height: 100%;
 			border: 1px solid #e6e7e9;
+			border-radius: $spectra-control-popup-border-radius;
+
+			&::-webkit-scrollbar-track {
+				background-color: #fff0;
+			}
+
+			&::-webkit-scrollbar {
+				width: 4px;
+			}
+
+			&::-webkit-scrollbar-thumb {
+				height: 280px;
+				background: #1c222666;
+				border-radius: 2px;
+			}
 		}
 	}
 
@@ -207,6 +224,8 @@
 		> div {
 			padding: 10px;
 			cursor: pointer;
+			border-radius: $spectra-control-popup-border-radius;
+			color: #1d2327;
 
 			&.selected {
 				background-color: #dcf2ff;
@@ -229,7 +248,8 @@
 				height: 14px;
 				position: absolute;
 				top: calc(18px - 7px);
-				fill: #1e1e1e;
+				color: #555d66;
+				fill: #555d66;
 				transform: rotateZ(90deg);
 				left: 12px;
 			}
@@ -245,12 +265,21 @@
 				padding: 7px 12px 7px calc(12px * 2 + 14px);
 				border: 1px solid $spectra-color-border;
 				margin: 0;
+				border-radius: $spectra-control-popup-border-radius;
+				color: #1d2327;
+
+				&::placeholder {
+					color: #50575e;
+				}
+
+				&:focus {
+					border: 1.5px solid #007cba;
+				}
 			}
 		}
 	}
 	// Icons container
 	.uagb-ip-icons {
-		height: calc(100% - 60px);
 
 		&.icon-not-found {
 			display: flex;
@@ -261,7 +290,7 @@
 		> div {
 			display: flex;
 			flex-wrap: wrap;
-			grid-gap: 10px;
+			grid-gap: 21.5px;
 		}
 
 		.uagb-icon-item {

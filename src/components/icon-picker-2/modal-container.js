@@ -202,6 +202,7 @@ const ModalContainer = ( props ) => {
 			className="uagb-ip-modal-wrapper"
 			onRequestClose={ closeModal }
 			overlayClassName="uagb-ip-modal-wrapper-overlay"
+			shouldCloseOnClickOutside={false}
 		>
 			{ /* Header  */ }
 			<div className="uagb-ip-header">
