@@ -724,6 +724,7 @@ export default function Settings( props ) {
 						onSelectImage={ onSelectImage }
 						backgroundImage={ iconImage }
 						onRemoveImage={ onRemoveImage }
+						disableDynamicContent={true}
 					/>
 					{ iconImage &&
 						iconImage.url !== 'null' &&
