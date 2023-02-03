@@ -601,7 +601,7 @@ export default function Settings( props ) {
 			}
 			<ResponsiveSlider
 				label={ __(
-					'Width',
+					'Box Width',
 					'ultimate-addons-for-gutenberg'
 				) }
 				data={ {
@@ -620,6 +620,54 @@ export default function Settings( props ) {
 				} }
 				min={ 0 }
 				max={ 250 }
+				displayUnit={ false }
+				setAttributes={ setAttributes }
+			/>
+			<ResponsiveSlider
+				label={ __(
+					'Gap Between Boxes',
+					'ultimate-addons-for-gutenberg'
+				) }
+				data={ {
+					desktop: {
+						value: boxSpacing,
+						label: 'boxSpacing',
+					},
+					tablet: {
+						value: boxSpacingTablet,
+						label: 'boxSpacingTablet',
+					},
+					mobile: {
+						value: boxSpacingMobile,
+						label: 'boxSpacingMobile',
+					},
+				} }
+				min={ 0 }
+				max={ 200 }
+				displayUnit={ false }
+				setAttributes={ setAttributes }
+			/>
+			<ResponsiveSlider
+				label={ __(
+					'Gap Between Digits & Labels',
+					'ultimate-addons-for-gutenberg'
+				) }
+				data={ {
+					desktop: {
+						value: internalBoxSpacing,
+						label: 'internalBoxSpacing',
+					},
+					tablet: {
+						value: internalBoxSpacingTablet,
+						label: 'internalBoxSpacingTablet',
+					},
+					mobile: {
+						value: internalBoxSpacingMobile,
+						label: 'internalBoxSpacingMobile',
+					},
+				} }
+				min={ 0 }
+				max={ 200 }
 				displayUnit={ false }
 				setAttributes={ setAttributes }
 			/>
@@ -1166,54 +1214,6 @@ export default function Settings( props ) {
 			title={ __( 'Spacing', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
-			<ResponsiveSlider
-				label={ __(
-					'Gap Between Boxes',
-					'ultimate-addons-for-gutenberg'
-				) }
-				data={ {
-					desktop: {
-						value: boxSpacing,
-						label: 'boxSpacing',
-					},
-					tablet: {
-						value: boxSpacingTablet,
-						label: 'boxSpacingTablet',
-					},
-					mobile: {
-						value: boxSpacingMobile,
-						label: 'boxSpacingMobile',
-					},
-				} }
-				min={ 0 }
-				max={ 200 }
-				displayUnit={ false }
-				setAttributes={ setAttributes }
-			/>
-			<ResponsiveSlider
-				label={ __(
-					'Gap Between Digits & Labels',
-					'ultimate-addons-for-gutenberg'
-				) }
-				data={ {
-					desktop: {
-						value: internalBoxSpacing,
-						label: 'internalBoxSpacing',
-					},
-					tablet: {
-						value: internalBoxSpacingTablet,
-						label: 'internalBoxSpacingTablet',
-					},
-					mobile: {
-						value: internalBoxSpacingMobile,
-						label: 'internalBoxSpacingMobile',
-					},
-				} }
-				min={ 0 }
-				max={ 200 }
-				displayUnit={ false }
-				setAttributes={ setAttributes }
-			/>
 			<SpacingControl
 				label={ __(
 					'Padding',
