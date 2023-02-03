@@ -13,7 +13,7 @@ const attributes = {
    // Size
    iconSize: {
 	   type: 'number',
-	   default: 30,
+	   default: 40,
 	   UAGCopyPaste: {
 		   styleType: 'icon-size'
 	   }

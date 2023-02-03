@@ -14,7 +14,7 @@ return array_merge(
 	array(
 		// Size.
 		'icon'                             => '',
-		'iconSize'                         => 30,
+		'iconSize'                         => 40,
 		'iconSizeTablet'                   => '',
 		'iconSizeMobile'                   => '',
 		'iconSizeUnit'                     => 'px',

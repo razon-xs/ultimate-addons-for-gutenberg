@@ -50,7 +50,7 @@ const UAGBIcon = ( props ) => {
 		responsiveConditionPreview( props );
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/icon-list.svg`; // using this until preview image is provided by designers
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/icon.svg`;
 
 	return (
 		attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
