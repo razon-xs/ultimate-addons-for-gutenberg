@@ -122,7 +122,7 @@ return array_merge(
 		'failedMessageTextColor'         => '',
 		'failedMessageBGColor'           => '',
 		'reCaptchaEnable'                => false,
-		'reCaptchaType'                  => '',
+		'reCaptchaType'                  => 'v2',
 		'reCaptchaSiteKeyV2'             => '',
 		'reCaptchaSecretKeyV2'           => '',
 		'reCaptchaSiteKeyV3'             => '',

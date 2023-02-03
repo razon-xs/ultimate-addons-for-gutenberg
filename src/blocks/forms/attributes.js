@@ -779,7 +779,7 @@ const attributes = {
 	},
 	reCaptchaType: {
 		type: 'string',
-		default: '',
+		default: 'v2',
 	},
 	reCaptchaSiteKeyV2: {
 		type: 'string',
