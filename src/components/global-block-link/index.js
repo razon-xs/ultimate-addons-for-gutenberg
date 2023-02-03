@@ -275,7 +275,7 @@ const GlobalBlockStyles = (props) => {
                                     {
                                         value: uniqueID,
                                         label: globalBlockStyleName,
-                                        attributes: attributes
+                                        props: props
                                     }
                                 ]
                                 uagLocalStorage.setItem(
