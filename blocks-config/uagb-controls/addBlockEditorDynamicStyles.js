@@ -86,7 +86,11 @@ const addBlockEditorDynamicStyles = ( styleTagId, styling ) => {
 			);
 
 			$style.innerHTML = styling;
-			document.head.appendChild( $style );
+			if ( styleTagId.includes('uagb-global-block-style-') ) {
+				document.head.prepend( $style );
+			} else {
+				document.head.appendChild( $style );
+			}
 		}
 
 		if ( null !== element && undefined !== element ) {

@@ -355,6 +355,13 @@ class UAGB_Post_Assets {
 	 */
 	public function enqueue_scripts() {
 
+		$spectra_global_block_styles = get_option('spectra_global_block_styles', array());
+		
+		foreach( $spectra_global_block_styles as $style_id => $style ) {
+			wp_add_inline_style('uagb-global-block-styles-' . $style_id, $style );
+			// echo '<style id="uagb-global-block-styles-' . $style_id . '">' . $style . '</style>'; //phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+		}
+
 		// Global Required assets.
 		if ( has_blocks( $this->post_id ) ) {
 			/* Print conditional css for all blocks */
@@ -590,12 +597,9 @@ class UAGB_Post_Assets {
 		if ( in_array( 'uagb/masonry-gallery', $this->current_block_list, true ) ) {
 			$conditional_block_css .= UAGB_Block_Helper::get_masonry_gallery_css();
 		}
-		$spectra_global_block_styles = get_option('spectra_global_block_styles', array());
 
 		echo '<style id="uagb-style-conditional-extension">' . $conditional_block_css . '</style>'; //phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
-		foreach( $spectra_global_block_styles as $style_id => $style ) {
-			echo '<style id="uagb-global-block-styles' . $style_id . '">' . $style . '</style>'; //phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
-		}
+		
 		self::$conditional_blocks_printed = true;
 
 	}

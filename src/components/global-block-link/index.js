@@ -274,7 +274,8 @@ const GlobalBlockStyles = (props) => {
                                     ...spectraGlobalStyles,
                                     {
                                         value: uniqueID,
-                                        label: globalBlockStyleName
+                                        label: globalBlockStyleName,
+                                        attributes: attributes
                                     }
                                 ]
                                 uagLocalStorage.setItem(
