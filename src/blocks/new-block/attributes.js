@@ -14,25 +14,6 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
-	align: {
-		type: 'string',
-		default: 'center',
-		UAGCopyPaste: {
-			styleType: 'overall-align'
-		}
-	},
-	alignTablet: {
-		type: 'string',
-		UAGCopyPaste: {
-			styleType: 'overall-align-tablet'
-		}
-	},
-	alignMobile: {
-		type: 'string',
-		UAGCopyPaste: {
-			styleType: 'overall-align-mobile'
-		}
-	},
 	backgroundType: {
 		type: 'string',
 		default: 'color',
@@ -562,129 +543,28 @@ const attributes = {
 		type: 'string',
 		default: 'px',
 	},
-	// text Font Family
-	textLoadGoogleFonts: {
-		type: 'boolean',
-		default: false,
-		UAGCopyPaste: {
-			styleType: 'text-load-google-font'
-		}
-	},
-	textFontFamily: {
-		type: 'string',
-		UAGCopyPaste: {
-			styleType: 'text-font-family'
-		},
-		default: 'Default',
-	},
-	textFontWeight: {
-		type: 'string',
-		UAGCopyPaste: {
-			styleType: 'text-font-weight'
-		}
-	},
-	textFontStyle: {
-		type: 'string',
-		UAGCopyPaste: {
-			styleType: 'text-font-style'
-		}
-	},
-	// text Font Size
-	textFontSize: {
-		type: 'number',
-		UAGCopyPaste: {
-			styleType: 'text-font-size'
-		},
-	},
-	textFontSizeType: {
-		type: 'string',
-		UAGCopyPaste: {
-			styleType: 'text-font-size-unit'
-		},
-		default: 'px',
-	},
-	textFontSizeTablet: {
-		type: 'number',
-		UAGCopyPaste: {
-			styleType: 'text-font-size-tablet'
-		},
-	},
-	textFontSizeMobile: {
-		type: 'number',
-		UAGCopyPaste: {
-			styleType: 'text-font-size-mobile'
-		},
-	},
-	// text Line Height
-	textLineHeightType: {
-		type: 'string',
-		UAGCopyPaste: {
-			styleType: 'text-line-height-type'
-		},
-		default: 'em',
-	},
-	textLineHeight: {
-		type: 'number',
-		UAGCopyPaste: {
-			styleType: 'text-line-height'
-		},
-	},
-	textLineHeightTablet: {
-		type: 'number',
-		UAGCopyPaste: {
-			styleType: 'text-line-height-tablet'
-		}
-	},
-	textLineHeightMobile: {
-		type: 'number',
-		UAGCopyPaste: {
-			styleType: 'text-line-height-mobile'
-		}
-	},
-	// letter spacing
-	textLetterSpacing: {
-		type: 'number',
-		UAGCopyPaste: {
-			styleType: 'text-letter-spacing'
-		}
-	},
-	textLetterSpacingTablet: {
-		type: 'number',
-		UAGCopyPaste: {
-			styleType: 'text-letter-spacing-tablet'
-		}
-	},
-	textLetterSpacingMobile: {
-		type: 'number',
-		UAGCopyPaste: {
-			styleType: 'text-letter-spacing-mobile'
-		}
-	},
-	textLetterSpacingType: {
-		type: 'string',
-		default: 'px',
-		UAGCopyPaste: {
-			styleType: 'text-letter-spacing-type'
-		}
-	},
-	textDecoration: {
-		type: 'string',
-		default: '',
-		UAGCopyPaste: {
-			styleType: 'text-decoration'
-		}
-	},
-	textTransform: {
-		type: 'string',
-		default: '',
-		UAGCopyPaste: {
-			styleType: 'text-transform'
-		}
-	},
 	color: {
 		type: 'string',
 		UAGCopyPaste: {
 			styleType: 'text-color'
+		}
+	},
+	headingColor: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'heading-color'
+		}
+	},
+	linkColor: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'link-color'
+		}
+	},
+	linkHoverColor: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'link-hover-color'
 		}
 	},
 	...borderAttributes

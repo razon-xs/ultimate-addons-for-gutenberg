@@ -7,7 +7,6 @@
  * @package uagb
  */
 
-UAGB_Block_JS::blocks_new_block_gfont( $attr );
 $block_name               = 'new-block';
 $border_css               = UAGB_Block_Helper::uag_generate_border_css( $attr, 'block' );
 $border_css_tablet        = UAGB_Block_Helper::uag_generate_border_css( $attr, 'block', 'tablet' );
@@ -96,12 +95,23 @@ $selectors    = array(
 	'.uagb-info-box__wrap'                        => $info_box_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 	'.uagb-info-box__wrap > div'                  => array(
 		'margin-bottom' => UAGB_Helper::get_css_value( $row_gap_desktop_fallback, $attr['rowGapType'] ),
-		'color'         => $attr['color'],
 	),
-	'.uagb-info-box__wrap :is(h1, h2, h3, h4, h5, h6, span)' => array(
+	' :is(h1, h2, h3, h4, h5, h6)' => array(
+		'color' => $attr['headingColor'],
+	),
+	' .wp-block-button__link' => array(
+		'color' => $attr['linkColor'],
+	),
+	' .wp-block-uagb-buttons-child .wp-block-button__link:hover' => array(
+		'color' => $attr['linkHoverColor'],
+	),
+	' p' => array(
 		'color' => $attr['color'],
 	),
-	'.uagb-info-box__wrap .wp-block-button__link' => array(
+	' span' => array(
+		'color' => $attr['color'],
+	),
+	' blockquote' => array(
 		'color' => $attr['color'],
 	),
 );
@@ -207,67 +217,9 @@ $m_selectors = array(
 	),
 );
 
-if ( 'left' === $attr['align'] ) {
-	$align = 'flex-start';
-} elseif ( 'right' === $attr['align'] ) {
-	$align = 'flex-end';
-} else {
-	$align = 'center';
-}
-
-$selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *']                  = array(
-	'text-align'      => $attr['align'],
-	'justify-content' => $align,
-);
-$selectors['.uagb-info-box__wrap.wp-block-uagb-new-block .uagb-icon-list__wrap'] = array(
-	'align-items' => $align,
-);
-$selectors['.uagb-info-box__wrap.wp-block-uagb-new-block .uagb-buttons__wrap ']  = array(
-	'text-align'      => $attr['align'],
-	'justify-content' => $align,
-);
-
-if ( 'left' === $attr['alignTablet'] ) {
-	$t_selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
-		'text-align'      => $attr['alignTablet'],
-		'justify-content' => 'flex-start',
-	);
-} elseif ( 'right' === $attr['alignTablet'] ) {
-	$t_selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
-		'text-align'      => $attr['alignTablet'],
-		'justify-content' => 'flex-end',
-	);
-} else {
-	$t_selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
-		'text-align'      => $attr['alignTablet'],
-		'justify-content' => $attr['alignTablet'],
-	);
-}
-
-if ( 'left' === $attr['alignMobile'] ) {
-	$m_selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
-		'text-align'      => $attr['alignMobile'],
-		'justify-content' => 'flex-start',
-	);
-} elseif ( 'right' === $attr['alignMobile'] ) {
-	$m_selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
-		'text-align'      => $attr['alignMobile'],
-		'justify-content' => 'flex-end',
-	);
-} else {
-	$m_selectors['.uagb-info-box__wrap.wp-block-uagb-new-block  > *'] = array(
-		'text-align'      => $attr['alignMobile'],
-		'justify-content' => $attr['alignMobile'],
-	);
-}
-
 $combined_selectors = array(
 	'desktop' => $selectors,
 	'tablet'  => $t_selectors,
 	'mobile'  => $m_selectors,
 );
-
-$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'text', '.uagb-info-box__wrap', $combined_selectors );
-
-$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'text', '.uagb-info-box__wrap .uagb-heading-text', $combined_selectors );
 return UAGB_Helper::generate_all_css( $combined_selectors, '.uagb-block-' . $id );

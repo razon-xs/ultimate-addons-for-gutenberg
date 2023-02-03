@@ -93,35 +93,16 @@ function styling( props ) {
 		yPositionType,
 		yPositionTypeTablet,
 		yPositionTypeMobile,
-		align,
-		alignTablet,
-		alignMobile,
 		rowGapDesktop,
 		rowGapTablet,
 		rowGapMobile,
 		rowGapTypeTablet,
 		rowGapType,
 		rowGapTypeMobile,
-
-		//Typography
-		textFontFamily,
-		textFontWeight,
-		textFontSize,
-		textFontSizeType,
-		textFontSizeTablet,
-		textFontSizeMobile,
-		textLineHeightType,
-		textLineHeight,
-		textLineHeightTablet,
-		textLineHeightMobile,
-		textTransform,
-		textDecoration,
-		textFontStyle,
-		textLetterSpacing,
-		textLetterSpacingTablet,
-		textLetterSpacingMobile,
-		textLetterSpacingType,
-		color
+		headingColor,
+		color,
+		linkColor,
+		linkHoverColor
 
 	} = attributes;
 
@@ -157,65 +138,32 @@ function styling( props ) {
 		'.uagb-info-box__wrap > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapDesktop, rowGapType ),
 		},
-		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block': {
-			'font-size': generateCSSUnit( textFontSize, textFontSizeType ),
-			'line-height': generateCSSUnit(
-				textLineHeight,
-				textLineHeightType
-			),
-			'font-family': textFontFamily,
-			'font-weight': textFontWeight,
-			'font-style': textFontStyle,
-			'text-transform': textTransform,
-			'text-decoration': textDecoration,
+		' .wp-block': {
 			'color': color,
-			'letter-spacing': generateCSSUnit( textLetterSpacing, textLetterSpacingType ),
 		},
-		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block :is(h1, h2, h3, h4, h5, h6, span)': {
-			'font-size': generateCSSUnit( textFontSize, textFontSizeType ),
-			'line-height': generateCSSUnit(
-				textLineHeight,
-				textLineHeightType
-			),
-			'font-family': textFontFamily,
-			'font-weight': textFontWeight,
-			'font-style': textFontStyle,
-			'text-transform': textTransform,
-			'text-decoration': textDecoration,
+		' span': {
 			'color': color,
-			'letter-spacing': generateCSSUnit( textLetterSpacing, textLetterSpacingType ),
 		},
-		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block .wp-block-button__link': {
-			'font-size': generateCSSUnit( textFontSize, textFontSizeType ),
-			'line-height': generateCSSUnit(
-				textLineHeight,
-				textLineHeightType
-			),
-			'font-family': textFontFamily,
-			'font-weight': textFontWeight,
-			'font-style': textFontStyle,
-			'text-transform': textTransform,
-			'text-decoration': textDecoration,
+		' p': {
 			'color': color,
-			'letter-spacing': generateCSSUnit( textLetterSpacing, textLetterSpacingType ),
+		},
+		' .uagb-heading-text': {
+			'color': headingColor,
+		},
+		' .uagb-marketing-btn__title': {
+			'color': linkColor,
+		},
+		' .uagb-marketing-btn__title:hover': {
+			'color': linkHoverColor,
+		},
+		' .wp-block-button__link': {
+			'color': linkColor,
+		},
+		' .wp-block-button__link:hover': {
+			'color': linkHoverColor,
 		},
 	};
-	if( 'left' === align ) {
-		selectors[ '.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': align,
-			'justify-content': 'flex-start'
-		}
-	} else if( 'right' === align ) {
-		selectors[ '.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': align,
-			'justify-content': 'flex-end'
-		}
-	} else {
-		selectors[ '.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': align,
-			'justify-content': align
-		}
-	}
+	
 	const backgroundAttributesDesktop = {
         'backgroundType': backgroundType,
         'backgroundImage': backgroundImageDesktop,
@@ -250,7 +198,7 @@ function styling( props ) {
 		boxShadowPositionCSSHover = '';
 	}
 
-	const containerCSS = {
+	const blockCSS = {
 		'padding-top': generateCSSUnit( topPaddingDesktop, paddingType ),
 		'padding-bottom': generateCSSUnit( bottomPaddingDesktop, paddingType ),
 		'padding-left': generateCSSUnit( leftPaddingDesktop, paddingType ),
@@ -267,7 +215,7 @@ function styling( props ) {
 		...borderCSS,
 	}
 
-	selectors['.uagb-info-box__wrap'] = containerCSS;
+	selectors['.uagb-info-box__wrap'] = blockCSS;
 	selectors['.uagb-info-box__wrap:hover'] = {
 		'border-color': blockBorderHColor,
 	};
@@ -322,56 +270,7 @@ function styling( props ) {
 		'.uagb-info-box__wrap > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapTablet, rowGapTypeTablet ),
 		},
-		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block': {
-			'font-size': generateCSSUnit(
-				textFontSizeTablet,
-				textFontSizeType
-			),
-			'line-height': generateCSSUnit(
-				textLineHeightTablet,
-				textLineHeightType
-			),
-			'letter-spacing': generateCSSUnit( textLetterSpacingTablet, textLetterSpacingType ),
-		},
-		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block :is(h1, h2, h3, h4, h5, h6, span)': {
-			'font-size': generateCSSUnit(
-				textFontSizeTablet,
-				textFontSizeType
-			),
-			'line-height': generateCSSUnit(
-				textLineHeightTablet,
-				textLineHeightType
-			),
-			'letter-spacing': generateCSSUnit( textLetterSpacingTablet, textLetterSpacingType ),
-		},
-		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block .wp-block-button__link': {
-			'font-size': generateCSSUnit(
-				textFontSizeTablet,
-				textFontSizeType
-			),
-			'line-height': generateCSSUnit(
-				textLineHeightTablet,
-				textLineHeightType
-			),
-			'letter-spacing': generateCSSUnit( textLetterSpacingTablet, textLetterSpacingType ),
-		},
 	};
-	if( 'left' === alignTablet ) {
-		tablet_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': alignTablet,
-			'justify-content': 'flex-start'
-		}
-	} else if( 'right' === alignTablet ) {
-		tablet_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': alignTablet,
-			'justify-content': 'flex-end'
-		}
-	} else {
-		tablet_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': alignTablet,
-			'justify-content': alignTablet
-		}
-	}
 
 	const backgroundAttributesMobile = {
         'backgroundType': backgroundType,
@@ -411,57 +310,7 @@ function styling( props ) {
 		'.uagb-info-box__wrap .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapMobile, rowGapTypeMobile ),
 		},
-		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block': {
-			'font-size': generateCSSUnit(
-				textFontSizeMobile,
-				textFontSizeType
-			),
-			'line-height': generateCSSUnit(
-				textLineHeightMobile,
-				textLineHeightType
-			),
-			'letter-spacing': generateCSSUnit( textLetterSpacingMobile, textLetterSpacingType ),
-		},
-		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block :is(h1, h2, h3, h4, h5, h6, span)': {
-			'font-size': generateCSSUnit(
-				textFontSizeMobile,
-				textFontSizeType
-			),
-			'line-height': generateCSSUnit(
-				textLineHeightMobile,
-				textLineHeightType
-			),
-			'letter-spacing': generateCSSUnit( textLetterSpacingMobile, textLetterSpacingType ),
-		},
-		'.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout .wp-block .wp-block-button__link': {
-			'font-size': generateCSSUnit(
-				textFontSizeMobile,
-				textFontSizeType
-			),
-			'line-height': generateCSSUnit(
-				textLineHeightMobile,
-				textLineHeightType
-			),
-			'letter-spacing': generateCSSUnit( textLetterSpacingMobile, textLetterSpacingType ),
-		},
-
 	};
-	if( 'left' === alignMobile ) {
-		mobile_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': alignMobile,
-			'justify-content': 'flex-start'
-		}
-	} else if( 'right' === alignMobile ) {
-		mobile_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': alignMobile,
-			'justify-content': 'flex-end'
-		}
-	} else {
-		mobile_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': alignMobile,
-			'justify-content': alignMobile
-		}
-	}
 
 	const id = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr(
 		0,

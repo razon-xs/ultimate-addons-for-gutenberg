@@ -1,8 +1,5 @@
 import React from 'react';
-import TypographyControl from '@Components/typography';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
-import WebfontLoader from '@Components/typography/fontloader';
-
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, {
 	UAGTabs,
@@ -19,9 +16,7 @@ import Background from '@Components/background';
 import ResponsiveBorder from '@Components/responsive-border';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import UAGTabsControl from '@Components/tabs';
-import MultiButtonsControl from '@Components/multi-buttons-control';
-import renderSVG from '@Controls/renderIcon';
-import { Icon, ToolbarGroup } from '@wordpress/components';
+import { ToolbarGroup } from '@wordpress/components';
 
 const Settings = ( props ) => {
 
@@ -117,118 +112,13 @@ const Settings = ( props ) => {
 		yPositionType,
 		yPositionTypeTablet,
 		yPositionTypeMobile,
-		align,
-		alignTablet,
-		alignMobile,
 		variationChange,
 		lockTemplate,
+		headingColor,
 		color,
-		textLoadGoogleFonts,
-		textFontFamily,
-		textFontWeight,
-		textFontStyle,
-		textFontSizeType,
-		textFontSize,
-		textFontSizeMobile,
-		textFontSizeTablet,
-		textLineHeightType,
-		textLineHeight,
-		textLineHeightMobile,
-		textLineHeightTablet,
-		textTransform,
-		textDecoration,
-		textLetterSpacing,
-		textLetterSpacingTablet,
-		textLetterSpacingMobile,
-		textLetterSpacingType
+		linkColor,
+		linkHoverColor
 	} = attributes;
-	
-	let loadTextGoogleFonts;
-
-	if ( textLoadGoogleFonts === true ) {
-		const hconfig = {
-			google: {
-				families: [
-					textFontFamily +
-						( textFontWeight ? ':' + textFontWeight : '' ),
-				],
-			},
-		};
-
-		loadTextGoogleFonts = (
-			<WebfontLoader config={ hconfig }></WebfontLoader>
-		);
-	}
-
-	const generalSettings = () => {
-		return (
-			<>
-				<UAGAdvancedPanelBody
-					title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
-					initialOpen={ true }
-				>
-					<MultiButtonsControl
-						setAttributes={ setAttributes }
-						label={ __( 'Overall Alignment', 'ultimate-addons-for-gutenberg' ) }
-						data={ {
-							desktop: {
-								value: align,
-								label: 'align',
-							},
-							tablet: {
-								value: alignTablet,
-								label: 'alignTablet',
-							},
-							mobile: {
-								value: alignMobile,
-								label: 'alignMobile',
-							},
-						} }
-						options={ [
-							{
-								value: 'left',
-								icon: (
-									<Icon
-										icon={ renderSVG( 'fa fa-align-left' ) }
-									/>
-								),
-								tooltip: __(
-									'Left',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'center',
-								icon: (
-									<Icon
-										icon={ renderSVG( 'fa fa-align-center' ) }
-									/>
-								),
-								tooltip: __(
-									'Center',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'right',
-								icon: (
-									<Icon
-										icon={ renderSVG( 'fa fa-align-right' ) }
-									/>
-								),
-								tooltip: __(
-									'Right',
-									'ultimate-addons-for-gutenberg'
-								),
-							}
-						] }
-						showIcons={ true }
-						responsive={true}
-					/>
-				</UAGAdvancedPanelBody>
-			</>
-		);
-	};
 
 	const backgroundSettings = () => {
 		return (
@@ -788,98 +678,54 @@ const Settings = ( props ) => {
 	const textControls = () => {
 		return (
 			<UAGAdvancedPanelBody
-				title={ __( 'Text', 'ultimate-addons-for-gutenberg' ) }
+				title={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ true }
 			>
-				<TypographyControl
+				<AdvancedPopColorControl
 					label={ __(
-						'Typography',
+						'Heading',
 						'ultimate-addons-for-gutenberg'
 					) }
-					attributes={ attributes }
+					colorValue={ headingColor ? headingColor : '' }
+					data={ {
+						value: headingColor,
+						label: 'headingColor',
+					} }
 					setAttributes={ setAttributes }
-					loadGoogleFonts={ {
-						value: textLoadGoogleFonts,
-						label: 'textLoadGoogleFonts',
-					} }
-					fontFamily={ {
-						value: textFontFamily,
-						label: 'textFontFamily',
-					} }
-					fontWeight={ {
-						value: textFontWeight,
-						label: 'textFontWeight',
-					} }
-					fontStyle={ {
-						value: textFontStyle,
-						label: 'textFontStyle',
-					} }
-					fontSizeType={ {
-						value: textFontSizeType,
-						label: 'textFontSizeType',
-					} }
-					fontSize={ {
-						value: textFontSize,
-						label: 'textFontSize',
-					} }
-					fontSizeMobile={ {
-						value: textFontSizeMobile,
-						label: 'textFontSizeMobile',
-					} }
-					fontSizeTablet={ {
-						value: textFontSizeTablet,
-						label: 'textFontSizeTablet',
-					} }
-					lineHeightType={ {
-						value: textLineHeightType,
-						label: 'textLineHeightType',
-					} }
-					lineHeight={ {
-						value: textLineHeight,
-						label: 'textLineHeight',
-					} }
-					lineHeightMobile={ {
-						value: textLineHeightMobile,
-						label: 'textLineHeightMobile',
-					} }
-					lineHeightTablet={ {
-						value: textLineHeightTablet,
-						label: 'textLineHeightTablet',
-					} }
-					transform={ {
-						value: textTransform,
-						label: 'textTransform',
-					} }
-					decoration={ {
-						value: textDecoration,
-						label: 'textDecoration',
-					} }
-					letterSpacing={ {
-						value: textLetterSpacing,
-						label: 'textLetterSpacing',
-					} }
-					letterSpacingTablet={ {
-						value: textLetterSpacingTablet,
-						label: 'textLetterSpacingTablet',
-					} }
-					letterSpacingMobile={ {
-						value: textLetterSpacingMobile,
-						label: 'textLetterSpacingMobile',
-					} }
-					letterSpacingType={ {
-						value: textLetterSpacingType,
-						label: 'textLetterSpacingType',
-					} }
 				/>
 				<AdvancedPopColorControl
 					label={ __(
-						'Color',
+						'Text',
 						'ultimate-addons-for-gutenberg'
 					) }
 					colorValue={ color ? color : '' }
 					data={ {
 						value: color,
 						label: 'color',
+					} }
+					setAttributes={ setAttributes }
+				/>
+				<AdvancedPopColorControl
+					label={ __(
+						'Link',
+						'ultimate-addons-for-gutenberg'
+					) }
+					colorValue={ linkColor ? linkColor : '' }
+					data={ {
+						value: linkColor,
+						label: 'linkColor',
+					} }
+					setAttributes={ setAttributes }
+				/>
+				<AdvancedPopColorControl
+					label={ __(
+						'Link Hover Color',
+						'ultimate-addons-for-gutenberg'
+					) }
+					colorValue={ linkHoverColor ? linkHoverColor : '' }
+					data={ {
+						value: linkHoverColor,
+						label: 'linkHoverColor',
 					} }
 					setAttributes={ setAttributes }
 				/>
@@ -891,10 +737,7 @@ const Settings = ( props ) => {
 		<>
 			{ getBlockControls()}
 			<InspectorControls>
-				<InspectorTabs>
-					<InspectorTab { ...UAGTabs.general }>
-						{ generalSettings() }
-					</InspectorTab>
+				<InspectorTabs tabs={ [ 'style', 'advance' ] }>
 					<InspectorTab { ...UAGTabs.style }>
 						{ textControls() }
 						{ backgroundSettings() }
@@ -908,7 +751,6 @@ const Settings = ( props ) => {
 					></InspectorTab>
 				</InspectorTabs>
 			</InspectorControls>
-			{ loadTextGoogleFonts }
 		</>
 	);
 };
