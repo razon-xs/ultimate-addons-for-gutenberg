@@ -16,9 +16,7 @@ import Background from '@Components/background';
 import ResponsiveBorder from '@Components/responsive-border';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import UAGTabsControl from '@Components/tabs';
-import MultiButtonsControl from '@Components/multi-buttons-control';
-import renderSVG from '@Controls/renderIcon';
-import { Icon, ToolbarGroup } from '@wordpress/components';
+import { ToolbarGroup } from '@wordpress/components';
 
 const Settings = ( props ) => {
 
@@ -114,82 +112,9 @@ const Settings = ( props ) => {
 		yPositionType,
 		yPositionTypeTablet,
 		yPositionTypeMobile,
-		align,
-		alignTablet,
-		alignMobile,
 		variationChange,
 		lockTemplate
 	} = attributes;
-	
-	const generalSettings = () => {
-		return (
-			<>
-				<UAGAdvancedPanelBody
-					title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
-					initialOpen={ true }
-				>
-					<MultiButtonsControl
-						setAttributes={ setAttributes }
-						label={ __( 'Overall Alignment', 'ultimate-addons-for-gutenberg' ) }
-						data={ {
-							desktop: {
-								value: align,
-								label: 'align',
-							},
-							tablet: {
-								value: alignTablet,
-								label: 'alignTablet',
-							},
-							mobile: {
-								value: alignMobile,
-								label: 'alignMobile',
-							},
-						} }
-						options={ [
-							{
-								value: 'left',
-								icon: (
-									<Icon
-										icon={ renderSVG( 'fa fa-align-left' ) }
-									/>
-								),
-								tooltip: __(
-									'Left',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'center',
-								icon: (
-									<Icon
-										icon={ renderSVG( 'fa fa-align-center' ) }
-									/>
-								),
-								tooltip: __(
-									'Center',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'right',
-								icon: (
-									<Icon
-										icon={ renderSVG( 'fa fa-align-right' ) }
-									/>
-								),
-								tooltip: __(
-									'Right',
-									'ultimate-addons-for-gutenberg'
-								),
-							}
-						] }
-						showIcons={ true }
-						responsive={true}
-					/>
-				</UAGAdvancedPanelBody>
-			</>
-		);
-	};
 
 	const backgroundSettings = () => {
 		return (
@@ -751,9 +676,6 @@ const Settings = ( props ) => {
 			{ getBlockControls()}
 			<InspectorControls>
 				<InspectorTabs>
-					<InspectorTab { ...UAGTabs.general }>
-						{ generalSettings() }
-					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
 						{ backgroundSettings() }
 						{ borderSettings() }
