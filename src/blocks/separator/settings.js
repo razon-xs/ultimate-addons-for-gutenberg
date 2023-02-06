@@ -293,12 +293,15 @@ const Settings = ( props ) => {
 										label: __( 'H6', 'ultimate-addons-for-gutenberg' ),
 									},
 									{
-										value: 'p',
-										label: __( 'P', 'ultimate-addons-for-gutenberg' ),
+										value: 'span',
+										label: __(
+											'Span',
+											'ultimate-addons-for-gutenberg'
+										),
 									},
 									{
-										value: 'div',
-										label: __( 'Div', 'ultimate-addons-for-gutenberg' ),
+										value: 'p',
+										label: __( 'P', 'ultimate-addons-for-gutenberg' ),
 									},
 								] }
 							/>

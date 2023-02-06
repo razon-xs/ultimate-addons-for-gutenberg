@@ -1269,9 +1269,8 @@ const UAGB_Block_Icons = {
 	),
 	separator: el(
 		'svg',
-		{ width: 24, height: 24, viewBox: '0 0 24 24', fill: 'red', className: 'uagb-editor-icons' },
+		{ width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none' , className: 'uagb-editor-icons' },
 		el( 'path', {
-			fill: spectraDarkColor,
 			stokeWidth: 1.4,
 			strokeLinecap: 'round',
 			strokeLinejoin: 'round',

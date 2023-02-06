@@ -4,6 +4,7 @@
 
 import renderSVG from '@Controls/renderIcon';
 import classnames from 'classnames';
+import { RichText } from '@wordpress/block-editor'; 
 
 export default function save( props ) {
 	const {
@@ -28,7 +29,7 @@ export default function save( props ) {
 					elementType !== 'none' && (
 						<div className='wp-block-uagb-separator-element'>
 							{
-								elementType === 'icon' ? renderSVG( separatorIcon ) : separatorText
+								elementType === 'icon' ? renderSVG( separatorIcon ) : <RichText  tagName={separatorTextTag} value={separatorText} />
 							}
 						</div>
 					)

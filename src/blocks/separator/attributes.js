@@ -200,7 +200,7 @@ const attributes = {
 	},
 	separatorTextTag: {
 		type: 'string',
-		default: 'span',
+		default: 'h4',
 	},
 	separatorIcon: {
 		type: 'string',
@@ -209,14 +209,23 @@ const attributes = {
 	elementPosition: {
 		type: 'string',
 		default: 'center',
+		UAGCopyPaste: {
+			styleType: 'element-position'
+		}
 	},
 	elementPositionTablet: {
 		type: 'string',
 		default: 'center',
+		UAGCopyPaste: {
+			styleType: 'element-position-tablet'
+		}
 	},
 	elementPositionMobile: {
 		type: 'string',
 		default: 'center',
+		UAGCopyPaste: {
+			styleType: 'element-position-mobile'
+		}
 	},
 	elementSpacing: {
 		type: 'number',
@@ -367,14 +376,23 @@ const attributes = {
 	elementIconWidth:{
 		type: 'number',
 		default: '',
+		UAGCopyPaste: {
+			styleType: 'main-icon-width'
+		}
 	},
 	elementIconWidthTablet:{
 		type: 'number',
 		default: '',
+		UAGCopyPaste: {
+			styleType: 'main-icon-width-tablet'
+		}
 	},
 	elementIconWidthMobile:{
 		type: 'number',
 		default: '',
+		UAGCopyPaste: {
+			styleType: 'main-icon-width-mobile'
+		}
 	},
 	elementIconWidthType: {
 		type: 'string',

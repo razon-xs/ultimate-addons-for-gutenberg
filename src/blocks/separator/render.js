@@ -1,6 +1,5 @@
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
-import { __ } from '@wordpress/i18n';
 import React , { useLayoutEffect } from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
 import renderSVG from '@Controls/renderIcon';
@@ -24,7 +23,6 @@ const Render = ( props ) => {
 			separatorTextTag,
 			separatorIcon
 		},
-		setAttributes,
 		className,
 	} = props;
 
