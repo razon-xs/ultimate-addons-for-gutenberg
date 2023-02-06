@@ -72,9 +72,12 @@ const ResponsiveUAGFocalPointPicker = ( props ) => {
 	const controlAfterDomElement = wp.hooks.applyFilters( `spectra.${blockNameForHook}.${panelNameForHook}.${controlName}`, '', blockNameForHook );
 
 	return (
-		<>
+		<div
+			ref={panelRef}
+			
+		>
 			{controlBeforeDomElement}
-			<div ref={panelRef} className="components-base-control uagb-responsive-select-control">
+			<div className="components-base-control uagb-responsive-select-control">
 				<div className="uagb-size-type-field-tabs">
 					<div className="uagb-control__header">
 						<ResponsiveToggle
@@ -89,7 +92,7 @@ const ResponsiveUAGFocalPointPicker = ( props ) => {
 				) }
 			</div>
 			{controlAfterDomElement}
-		</>
+		</div>
 	);
 };
 
