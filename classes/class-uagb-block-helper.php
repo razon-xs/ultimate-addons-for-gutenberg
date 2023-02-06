@@ -46,9 +46,6 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			$border_css_tablet = self::uag_generate_border_css( $attr, 'btn', 'tablet' );
 			$border_css_mobile = self::uag_generate_border_css( $attr, 'btn', 'mobile' );
 
-			function check( $arr, $key, $default ) {
-				return ! empty( $arr[ $key ] ) ? $arr[ $key ] : $default;
-			}
 			$top_padding    = isset( $attr['topPadding'] ) ? $attr['topPadding'] : $attr['vPadding'];
 			$bottom_padding = isset( $attr['bottomPadding'] ) ? $attr['bottomPadding'] : $attr['vPadding'];
 			$left_padding   = isset( $attr['leftPadding'] ) ? $attr['leftPadding'] : $attr['hPadding'];
