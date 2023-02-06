@@ -92,26 +92,41 @@ $info_box_css = array_merge(
 );
 $info_box_css = array_merge( $info_box_css, $bg_css_desktop );
 $selectors    = array(
-	'.uagb-info-box__wrap'                        => $info_box_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-	'.uagb-info-box__wrap > div'                  => array(
+	'.uagb-info-box__wrap'                             => $info_box_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+	'.uagb-info-box__wrap > div'                       => array(
 		'margin-bottom' => UAGB_Helper::get_css_value( $row_gap_desktop_fallback, $attr['rowGapType'] ),
 	),
-	' :is(h1, h2, h3, h4, h5, h6)' => array(
+	' :is(h1, h2, h3, h4, h5, h6)'                     => array(
 		'color' => $attr['headingColor'],
 	),
-	' .wp-block-button__link' => array(
+	' .wp-block-button__link'                          => array(
 		'color' => $attr['linkColor'],
 	),
-	' .wp-block-uagb-buttons-child .wp-block-button__link:hover' => array(
+	' .wp-block-button__link:hover'                    => array(
 		'color' => $attr['linkHoverColor'],
 	),
-	' p' => array(
+	' a .uagb-marketing-btn__title'                    => array(
+		'color' => $attr['linkColor'],
+	),
+	' a'                                               => array(
+		'color' => $attr['linkColor'],
+	),
+	' a:hover'                                         => array(
+		'color' => $attr['linkHoverColor'],
+	),
+	' .wp-block-button__link:hover .uagb-button__link' => array(
+		'color' => $attr['linkHoverColor'],
+	),
+	' .wp-block-button__link:hover .uagb-marketing-btn__title' => array(
+		'color' => $attr['linkHoverColor'],
+	),
+	' p'                                               => array(
 		'color' => $attr['color'],
 	),
-	' span' => array(
+	' span'                                            => array(
 		'color' => $attr['color'],
 	),
-	' blockquote' => array(
+	' blockquote'                                      => array(
 		'color' => $attr['color'],
 	),
 );

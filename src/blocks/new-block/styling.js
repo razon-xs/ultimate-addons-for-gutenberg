@@ -153,7 +153,13 @@ function styling( props ) {
 		' .uagb-marketing-btn__title': {
 			'color': linkColor,
 		},
-		' .uagb-marketing-btn__title:hover': {
+		' a': {
+			'color': linkColor,
+		},
+		' a:hover': {
+			'color': linkHoverColor,
+		},
+		' .uagb-marketing-btn__link:hover .uagb-marketing-btn__title': {
 			'color': linkHoverColor,
 		},
 		' .wp-block-button__link': {
