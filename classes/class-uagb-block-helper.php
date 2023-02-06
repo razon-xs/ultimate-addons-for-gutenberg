@@ -1596,7 +1596,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 		public static function uag_generate_border_css( $attr, $prefix, $device = 'desktop' ) {
 			$gen_border_css = array();
 			// ucfirst function is used to tranform text into first letter capital.
-			$device = $device === 'desktop' ? '' : ucfirst( $device );
+			$device = ( $device === 'desktop' ) ? '' : ucfirst( $device );
 			if ( 'none' !== $attr[ $prefix . 'BorderStyle' ] && ! empty( $attr[ $prefix . 'BorderStyle' ] ) ) {
 				$gen_border_css['border-top-width']    = UAGB_Helper::get_css_value( $attr[ "{$prefix}BorderTopWidth{$device}" ], 'px' );
 				$gen_border_css['border-left-width']   = UAGB_Helper::get_css_value( $attr[ "{$prefix}BorderTopWidth{$device}" ], 'px' );
