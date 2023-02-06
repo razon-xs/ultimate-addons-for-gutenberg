@@ -39,7 +39,6 @@ export default function UAGSelectControl( { layout, label, options, data, setAtt
 	const blockNameForHook = getSelectedBlock()?.name.split( '/' ).pop(); // eslint-disable-line @wordpress/no-unused-vars-before-return
 	useEffect( () => {
 		setPanelNameForHook( getPanelIdFromRef( panelRef ) )
-		console.log( panelRef );
 	}, [blockNameForHook] )
 
 	const controlName = getIdFromString( label );
@@ -47,8 +46,6 @@ export default function UAGSelectControl( { layout, label, options, data, setAtt
 	const controlBeforeDomElement = wp.hooks.applyFilters( `spectra.${blockNameForHook}.${panelNameForHook}.${controlName}.before`, '', blockNameForHook );
 	const controlAfterDomElement = wp.hooks.applyFilters( `spectra.${blockNameForHook}.${panelNameForHook}.${controlName}`, '', blockNameForHook );
 	const allOptions = wp.hooks.applyFilters( `spectra.${blockNameForHook}.${panelNameForHook}.${controlName}.options`, options, blockNameForHook );
-
-	console.log( `spectra.${blockNameForHook}.${panelNameForHook}.${controlName}.options`, allOptions);
 
 	return (
 		<div
