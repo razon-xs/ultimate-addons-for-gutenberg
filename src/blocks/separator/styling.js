@@ -2,7 +2,6 @@
  * Returns Dynamic Generated CSS
  */
 
-import generateBorderCSS from '@Controls/generateBorderCSS';
 import generateCSS from '@Controls/generateCSS';
 import generateCSSUnit from '@Controls/generateCSSUnit';
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
@@ -87,8 +86,8 @@ function styling( props ) {
 		'border-top-style': separatorStyle,
 	}
 	let borderStyle = {}
-	let iconSpacingStyle = {}
-	if(elementType === 'none'){
+	const iconSpacingStyle  = {}
+	if ( elementType === 'none' ) {
 		borderStyle = {
 			'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
 				'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
@@ -97,12 +96,12 @@ function styling( props ) {
 		}
 	} else {
 		let alignCSS = {}
-		if(separatorAlign === 'left'){
+		if ( separatorAlign === 'left' ) {
 			alignCSS = {
 				'margin-left': 0
 			}
 		}
-		if(separatorAlign === 'right'){
+		if ( separatorAlign === 'right' ) {
 			alignCSS = {
 				'margin-right': 0
 			}
@@ -117,7 +116,7 @@ function styling( props ) {
 			'.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::after': borderCSS,
 			'.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::after': borderCSS
 		}
-		if(elementPosition === 'left'){
+		if ( elementPosition === 'left' ) {
 			iconSpacingStyle['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
 				'margin-right': generateCSSUnit( elementSpacing, elementSpacingUnit )
 			}
@@ -128,7 +127,7 @@ function styling( props ) {
 				'display': 'none'
 			}
 		}
-		if(elementPosition === 'right'){
+		if ( elementPosition === 'right' ) {
 			iconSpacingStyle['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
 				'margin-left': generateCSSUnit( elementSpacing, elementSpacingUnit )
 			}
@@ -139,7 +138,7 @@ function styling( props ) {
 				'display': 'none'
 			}
 		}
-		if(elementPosition === 'center'){
+		if ( elementPosition === 'center' ) {
 			iconSpacingStyle['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
 				'margin-right': generateCSSUnit( elementSpacing, elementSpacingUnit ),
 				'margin-left': generateCSSUnit( elementSpacing, elementSpacingUnit )
@@ -180,10 +179,10 @@ function styling( props ) {
 		}
 	}
 
-	let borderStyleTablet = {}
-	let iconSpacingStyleTablet = {}
-	if(elementType !== 'none') {
-		if(elementPositionTablet === 'left'){
+	const borderStyleTablet = {}
+	const iconSpacingStyleTablet = {}
+	if ( elementType !== 'none' ) {
+		if ( elementPositionTablet === 'left' ) {
 			iconSpacingStyleTablet['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
 				'margin-right': generateCSSUnit( elementSpacingTablet, elementSpacingUnit )
 			}
@@ -194,7 +193,7 @@ function styling( props ) {
 				'display': 'none'
 			}
 		}
-		if(elementPositionTablet === 'center'){
+		if ( elementPositionTablet === 'center' ) {
 			iconSpacingStyleTablet['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
 				'margin-left': generateCSSUnit( elementSpacingTablet, elementSpacingUnit ),
 				'margin-right': generateCSSUnit( elementSpacingTablet, elementSpacingUnit )
@@ -212,7 +211,7 @@ function styling( props ) {
 				'display': 'block'
 			}
 		}
-		if(elementPositionTablet === 'right'){
+		if ( elementPositionTablet === 'right' ) {
 			iconSpacingStyleTablet['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
 				'margin-left': generateCSSUnit( elementSpacingTablet, elementSpacingUnit ),
 			}
@@ -251,10 +250,10 @@ function styling( props ) {
 		}
 	};
 
-	let borderStyleMobile = {}
-	let iconSpacingStyleMobile = {}
-	if(elementType !== 'none') {
-		if(elementPositionMobile === 'left'){
+	const borderStyleMobile = {}
+	const iconSpacingStyleMobile = {}
+	if ( elementType !== 'none' ) {
+		if ( elementPositionMobile === 'left' ) {
 			iconSpacingStyleMobile['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
 				'margin-right': generateCSSUnit( elementSpacingMobile, elementSpacingUnit )
 			}
@@ -265,7 +264,7 @@ function styling( props ) {
 				'display': 'none'
 			}
 		}
-		if(elementPositionMobile === 'center'){
+		if ( elementPositionMobile === 'center' ) {
 			iconSpacingStyleMobile['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
 				'margin-left': generateCSSUnit( elementSpacingMobile, elementSpacingUnit ),
 				'margin-right': generateCSSUnit( elementSpacingMobile, elementSpacingUnit )
@@ -283,7 +282,7 @@ function styling( props ) {
 				'display': 'block'
 			}
 		}
-		if(elementPositionMobile === 'right'){
+		if ( elementPositionMobile === 'right' ) {
 			iconSpacingStyleMobile['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
 				'margin-left': generateCSSUnit( elementSpacingMobile, elementSpacingUnit )
 			}

@@ -97,6 +97,7 @@ const Settings = ( props ) => {
 
 	// Separator settings.
 	const separatorGeneralSettings = () => {
+
 		return (
 			<UAGAdvancedPanelBody
 				title={ __( 'Separator', 'ultimate-addons-for-gutenberg' ) }
@@ -114,6 +115,13 @@ const Settings = ( props ) => {
 					setAttributes={ setAttributes }
 					options={ [
 						{
+							value: 'none',
+							label: __(
+								'None',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
 							value: 'solid',
 							label: __(
 								'Solid',
@@ -121,9 +129,9 @@ const Settings = ( props ) => {
 							),
 						},
 						{
-							value: 'double',
+							value: 'dotted',
 							label: __(
-								'Double',
+								'Dotted',
 								'ultimate-addons-for-gutenberg'
 							),
 						},
@@ -135,9 +143,37 @@ const Settings = ( props ) => {
 							),
 						},
 						{
-							value: 'dotted',
+							value: 'double',
 							label: __(
-								'Dotted',
+								'Double',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'groove',
+							label: __(
+								'Groove',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'inset',
+							label: __(
+								'Inset',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'outset',
+							label: __(
+								'Outset',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'ridge',
+							label: __(
+								'Ridge',
 								'ultimate-addons-for-gutenberg'
 							),
 						},
