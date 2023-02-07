@@ -91,9 +91,9 @@ const ModalContainer = ( props ) => {
 				return '';
 			}
 
-			return defaultIconsWithKeys[ slug ].label.length < 13
+			return defaultIconsWithKeys[ slug ].label.length < 11
 				? defaultIconsWithKeys[ slug ].label
-				: defaultIconsWithKeys[ slug ].label.slice( 0, 11 ) + '..';
+				: defaultIconsWithKeys[ slug ].label.slice( 0, 10 ) + '..';
 		};
 		return (
 			<div className="uagb-ip-icons">

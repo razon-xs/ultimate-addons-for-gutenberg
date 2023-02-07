@@ -349,11 +349,15 @@ module.exports = function ( grunt ) {
 
 					const fonts = JSON.parse( body );
 					Object.keys( fonts ).map( ( key ) => {
+
 						// Put category.
 						fonts[key].categories = [];
 						fonts[key].custom_categories = [];
 						keep_category( fonts, key, getCategories );
 						keep_custom_cate( fonts, key, getCategoriesCustomTitle );
+						if( isNaN( fonts[key].label ) ){
+							fonts[key].label = `%%translation_start%%${fonts[key].label}%%translation_end%%`;
+						}
 						delete fonts[key].categories;
 						delete fonts[key].changes;
 						delete fonts[key].ligatures;
@@ -400,7 +404,6 @@ module.exports = function ( grunt ) {
 							}
 						}
 					);
-				// }
 			}
 		);
 
@@ -413,6 +416,7 @@ module.exports = function ( grunt ) {
 		const getCategories = grunt.file.readJSON( './fontawesome-category.json' );
 		const getCategoriesCustomTitle = grunt.file.readJSON( './fontawesome-custom-shorted-category.json' );
 		const fs = require( 'fs' );
+		
 		request(
 			'https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/metadata/icons.json',
 			function ( error, response, body ) {
@@ -421,12 +425,12 @@ module.exports = function ( grunt ) {
 
 					let fonts = JSON.parse( body );
 					Object.keys( fonts ).map( ( key ) => {
+						
 						fonts[key].categories = [];
 						fonts[key].custom_categories = [];
 						keep_category( fonts, key, getCategories );
 						keep_custom_cate( fonts, key, getCategoriesCustomTitle );
 						delete fonts[key].categories;
-						
 						if( isNaN( fonts[key].label ) ){
 							fonts[key].label = `%%translation_start%%${fonts[key].label}%%translation_end%%`;
 						}

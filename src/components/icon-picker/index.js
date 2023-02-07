@@ -57,7 +57,7 @@ const UAGIconPicker = ( props ) => {
 		</div>
 	);
 	return (
-		<div className="uag-custom-ip">
+		<div className="uag-custom-ip components-base-control">
 			<span className="uag-control-label">
 				{ label || __( 'Icon', 'ultimate-addons-for-gutenberg' ) }
 			</span>

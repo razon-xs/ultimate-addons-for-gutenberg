@@ -229,14 +229,6 @@
 			display: flex;
 			justify-content: space-between;
 			font-size: 13px;
-			// .icon-count{
-			// 	&::before{
-			// 		content: "(";
-			// 	}
-			// 	&::after{
-			// 		content: ")";
-			// 	}
-			// }
 
 			&.selected {
 				background-color: #dcf2ff;
@@ -319,14 +311,14 @@
 			grid-gap: 6px;
 
 			&.default {
-				border-color: #e6e7e9;
-				box-shadow: 0 0 0 4px #f0f0f1;
+				border-color: #007cba;
+				box-shadow: 0 0 0 2px #007cba;
 				pointer-events: none;
 			}
 
 			&.selected {
 				border-color: #007cba;
-				box-shadow: 0 0 0 2px #007cba;
+				box-shadow: 0 0 0 2px #dcf2ff;
 				pointer-events: none;
 			}
 
@@ -337,11 +329,12 @@
 
 			> span {
 				font-size: 11px;
+				text-align: center;
 			}
 
 			&:hover {
-				border-color: #007cba;
-				box-shadow: 0 0 0 2px #dcf2ff;
+				border-color: #e6e7e9;
+				box-shadow: 0 0 0 4px #f0f0f1;
 			}
 		}
 	}
