@@ -128,6 +128,7 @@ class UAGB_Init_Blocks {
 		update_option('spectra_global_block_styles', $spectra_global_block_styles);
 		$spectra_gbs_google_fonts = get_option('spectra_gbs_google_fonts', array());
 		
+		// Global Font Families.
 		$font_families = array();
 		foreach($blockattr as $name => $attribute) {
 			if ( false !== strpos( $name, 'Family' ) && '' !== $attribute )  {

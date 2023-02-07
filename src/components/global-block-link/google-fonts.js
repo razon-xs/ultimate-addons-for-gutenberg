@@ -24,7 +24,7 @@ const SpectraLoadGlobaGoogleFonts = () => {
     });
 
 
-console.log(renderFonts);
+
 	return (
         <div className='hello-moto'>
         {renderFonts}

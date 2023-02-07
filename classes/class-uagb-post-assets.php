@@ -354,14 +354,6 @@ class UAGB_Post_Assets {
 	 * @since 1.23.0
 	 */
 	public function enqueue_scripts() {
-
-		$spectra_global_block_styles = get_option('spectra_global_block_styles', array());
-		
-		foreach( $spectra_global_block_styles as $style_id => $style ) {
-			wp_add_inline_style('uagb-global-block-styles-' . $style_id, $style );
-			// echo '<style id="uagb-global-block-styles-' . $style_id . '">' . $style . '</style>'; //phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
-		}
-
 		// Global Required assets.
 		if ( has_blocks( $this->post_id ) ) {
 			/* Print conditional css for all blocks */
@@ -580,7 +572,15 @@ class UAGB_Post_Assets {
 		if ( empty( $this->stylesheet ) ) {
 			return;
 		}
+		
 		echo '<style id="uagb-style-frontend-' . esc_attr( $this->post_id ) . '">' . $this->stylesheet . '</style>'; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+		$spectra_global_block_styles = get_option('spectra_global_block_styles', array());
+		
+		foreach( $spectra_global_block_styles as $style_id => $style ) {
+			
+			echo '<style id="uagb-global-block-styles-' . $style_id . '">' . $style . '</style>'; //phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+		}
 	}
 
 	/**

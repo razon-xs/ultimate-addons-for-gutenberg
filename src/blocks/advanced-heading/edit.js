@@ -60,7 +60,6 @@ const UAGBAdvancedHeading = ( props ) => {
 	}, [deviceType] );
 
 	useEffect( () => {
-		console.log(refreshEditorGlobal);
 		const uagLocalStorage = getUAGEditorStateLocalStorage();
 
 		let spectraGlobalStylesStoreObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];

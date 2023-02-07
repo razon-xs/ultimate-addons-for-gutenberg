@@ -35,7 +35,7 @@ const GlobalBlockStyles = (props) => {
     } = props;
 
     const [ isOpen, setOpen ] = useState( false );
-    const [ uniqueID, setUniqueID ] = useState( '' );
+    const [ uniqueID, setUniqueID ] = useState( false );
     const [ saveToDatabase, setSaveToDatabase ] = useState( false );
     const [ gbsPanel, setGbsPanel ] = useState( false );
     const [currentAttributesState, setCurrentAttributesState] = useState( attributes );
@@ -85,11 +85,21 @@ const GlobalBlockStyles = (props) => {
 		
 		
         if ( saveToDatabase ) {
-            const formData = new window.FormData();
 
+            let spectraGlobalStylesStoreObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
+
+            let styleAttrs = {};
+
+            spectraGlobalStylesStoreObject.map( ( style ) => {
+                if ( (style?.value === uniqueID) || (style?.value === globalBlockStyleId) ) {
+                    styleAttrs = style?.props?.attributes;
+                }
+            });
+            const formData = new window.FormData();
+console.log(styleAttrs);
             formData.append( 'action', 'uag_global_block_styles' );
             formData.append( 'security', uagb_blocks_info.uagb_ajax_nonce );
-            formData.append( 'attributes', JSON.stringify(attributes) );     
+            formData.append( 'attributes', JSON.stringify(styleAttrs) );     
             formData.append( 'blockName', name );
 
 
@@ -148,8 +158,7 @@ const GlobalBlockStyles = (props) => {
 
         
         spectraGlobalStylesStoreObject.map( ( style ) => {
-            
-            if ( (style?.value == uniqueID) || (style?.value === globalBlockStyleId) ) {
+            if ( (style?.value === uniqueID) || (style?.value === globalBlockStyleId) ) {
                 
                 const baseSelector = `.spectra-gbs-${blockNameClass}-${style?.label}`;
                 const asArray = Object.entries(props.attributes);
@@ -158,8 +167,6 @@ const GlobalBlockStyles = (props) => {
                 } );
 
                 const justStrings = Object.fromEntries(filtered);
-                console.log(justStrings);
-                console.log(style?.props);
                 let newProps = {...props};
                 if ( style?.props ) {
                     newProps.attributes = {
@@ -167,12 +174,11 @@ const GlobalBlockStyles = (props) => {
                         ...justStrings
                     }
                 }
-                console.log(newProps);
                 const blockStyling = styling( newProps, baseSelector );
                 style['styles'] = blockStyling;
+                style['props'] = newProps;
             }
-
-            return style;
+            return style
 
         } );
 
