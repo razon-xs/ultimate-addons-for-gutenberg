@@ -130,7 +130,7 @@ function styling( props ) {
 			'border-color': iconBorderHColor,
 			'background': hoverBackground,
 		},
-		'.uagb-icon-wrapper svg:hover': {
+		'.uagb-icon-wrapper .uagb-svg-wrapper:hover svg': {
 			'fill' : iconHoverColor,
 		},
 	};
