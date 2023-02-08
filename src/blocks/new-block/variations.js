@@ -35,10 +35,10 @@ const variations = [
 		},
 		isDefault: true,
 		innerBlocks: [
-			[ 'uagb/advanced-heading', { headingAlign: '',blockBottomPadding:0, headingDescToggle:true, headingDesc: 'Prefix',subHeadSpace:0 }],
-			[ 'uagb/advanced-heading', { headingAlign: '', headingTitleToggle: false, headingDescToggle:true,headingDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' } ],
-			[ 'uagb/advanced-heading', { headingAlign: '',blockBottomPadding:0, headingDescToggle:true, headingDesc: 'Prefix',subHeadSpace:0 }],
-			[ 'uagb/advanced-heading', { headingAlign: '', headingTitleToggle: false, headingDescToggle:true,headingDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' } ],  
+			[ 'uagb/image', { align:'', width: 330, height: 300, url:`${ uagb_blocks_info.uagb_url }/admin/assets/images/image.jpg`}],
+			[ 'uagb/advanced-heading', { headingAlign: 'left', headingTitleToggle: true, headingDescToggle: true, headingDesc: 'Design', headingTag: 'h3',headingTitle: 'UX Review Presentation' , headingDescPosition: 'above-heading', headSpace: 5, subHeadSpace: 12, blockTopPadding: 15, blockBottomPadding: 0 }],
+			[ 'uagb/advanced-heading', { headingAlign: 'left', headingTitleToggle: false, headingDescToggle: true, blockTopPadding: 0, blockBottomPadding: 0, headingDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' } ],
+			[ 'uagb/advanced-heading', { headingAlign: 'left', headingTitleToggle: true, headingDescToggle: true, headingTag: 'h6', headingTitle: 'Olivia Rhye', blockTopPadding: 0, blockBottomPadding: 0, headingDesc: '20 Jan 2022', headSpace: 5 } ],
 		],
 		scope: [ 'block' ],
 	},
@@ -46,13 +46,20 @@ const variations = [
 		name: 'style-2',
 		icon: icons['style-2'],
 		title: __( 'Style 2', 'ultimate-addons-for-gutenberg' ),
-		attributes: {},
+		attributes: {
+			topPaddingDesktop: 25,
+			bottomPaddingDesktop: 25,
+			leftPaddingDesktop: 25,
+			rightPaddingDesktop: 25,
+		},
 		isDefault: true,
 		innerBlocks: [
-			[ 'uagb/advanced-heading', { seperatorStyle: 'solid', separatorHeight: 5, separatorWidth: 25, headingAlign: '', separatorSpace: 0, blockBottomPadding:0 } ],
-			[ 'uagb/advanced-heading', { headingAlign: '', headingTitleToggle: false, headingDescToggle:true,headingDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' } ],
-			[ 'uagb/icon-list', { itemCount: 6 , Label: 'Lorem Ipsum dolor' , icon: 'check-square', align: ''}],
-			[ 'uagb/buttons',{ align: ''} ],
+			[ 'uagb/advanced-heading', { headingAlign: 'center', headingTitleToggle: true, headingDescToggle: true, headingDesc: 'Check out the team dashboard', headingTag: 'h1',headingTitle: 'Beautiful analytics to grow smarter' , headingDescPosition: 'above-heading', headSpace: 15, subHeadSpace: 0, blockTopPadding: 0, blockBottomPadding: 0, headFontWeight: 500, subHeadingColor: '#7F56D9' }],
+			[ 'uagb/advanced-heading', { headingAlign: 'center', headingTitleToggle: false, headingDescToggle: true, blockTopPadding: 0, blockBottomPadding: 0, subHeadSpace: 15, headingDesc: 'Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users. Trusted by over 4,000 startups. Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users. Trusted by over 4,000 startups.' } ],
+			[ 'uagb/buttons', {}, [
+				[ 'uagb/buttons-child', { backgroundType: 'color', background: '#7F56D9', color: '#fff', topPadding: 12, rightPadding: 20, bottomPadding: 12, leftPadding: 20, btnBorderTopLeftRadius: 4, btnBorderTopRightRadius: 4, btnBorderBottomRightRadius: 4, btnBorderBottomLeftRadius: 4, btnBorderStyle: 'none' } ],
+				[ 'uagb/buttons-child', { backgroundType: 'transparent', color: '#667085', showIcon: true, iconPosition: 'after', btnBorderStyle: 'none' } ]
+			]]
 		],
 		scope: [ 'block' ],
 	},
@@ -63,10 +70,26 @@ const variations = [
 		attributes: {},
 		isDefault: true,
 		innerBlocks: [
-			[ 'uagb/image', { align:'', width: 100, height: 100, url:`${ uagb_blocks_info.uagb_url }/admin/assets/images/uag-placeholder.svg`,maskShape: 'circle'}],
-			[ 'uagb/advanced-heading', { headingAlign: '', blockTopPadding:0, headingDescToggle:true,headingDesc: 'Designation', headingTitle: 'Author Name' } ],
-			[ 'uagb/social-share', { align: '' } ],
-			[ 'uagb/advanced-heading', { headingAlign: '', headingTitleToggle: false, headingDescToggle:true,headingDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' } ],
+			[ 'uagb/container', { directionDesktop: 'row' }, [
+				[ 'uagb/container', {}, [
+					[ 'uagb/image', { 
+						url:`${ uagb_blocks_info.uagb_url }/admin/assets/images/image.jpg`,
+						width: 500,
+						height: 400
+					}],
+				]],
+				[ 'uagb/container', { alignItemsDesktop: 'left' }, [
+					[ 'uagb/advanced-heading', { headingAlign: 'left', headingTitleToggle: true, headingDescToggle: true, headingDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book.', headingTag: 'h3',headingTitle: 'UX Review Presentation' , headingDescPosition: 'below-heading', headSpace: 5, subHeadSpace: 0, blockTopPadding: 15, blockBottomPadding: 0 }],
+					[ 'uagb/star-rating', { starPosition: 'before', title: '(10) Reviews', size: 20 } ],
+					[ 'uagb/advanced-heading', { headingAlign: 'left', headingTitleToggle: true, headingDescToggle: false , headingTag: 'h2', headingTitle: '$59', headSpace: 0, subHeadSpace: 0, blockTopPadding: 0, blockBottomPadding: 0, headFontWeight: 500, subHeadingColor: '#7F56D9' }],
+					[ 'uagb/buttons', { align: 'full' }, [
+						[ 'uagb/buttons-child', { backgroundType: 'color', background: '#7F56D9', showIcon: true, icon: 'fa-circle-notch', label: 'Buy Now', color: '#fff', topPadding: 12, rightPadding: 20, bottomPadding: 12, leftPadding: 20, btnBorderTopLeftRadius: 4, btnBorderTopRightRadius: 4, btnBorderBottomRightRadius: 4, btnBorderBottomLeftRadius: 4, btnBorderStyle: 'none' } ],
+					]],
+					[ 'uagb/buttons', { align: 'full' }, [
+						[ 'uagb/buttons-child', { iconHColor: '#000', hColor: '#000', backgroundType: 'transparent', iconPosition: 'before', showIcon: true, icon: 'heart', label: 'Add to Wishlist', color: '#000', topPadding: 12, rightPadding: 20, bottomPadding: 12, leftPadding: 20, btnBorderTopLeftRadius: 4, btnBorderTopRightRadius: 4, btnBorderBottomRightRadius: 4, btnBorderBottomLeftRadius: 4, btnBorderStyle: 'none' } ],
+					]]
+				]]
+			]]
 		],
 		scope: [ 'block' ],
 	},
@@ -77,8 +100,9 @@ const variations = [
 		attributes: {},
 		isDefault: true,
 		innerBlocks: [
-			[ 'uagb/blockquote', { align: '', descriptionText: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', author: 'John Smith', quoteStyle: 'style_1',enableTweet:false,skinStyle:'quotation' } ],
-			[ 'uagb/star-rating' , {displayTitle: false}],
+			[ 'uagb/advanced-heading', { headingAlign: 'center', seperatorStyle: 'solid', seperatorPosition: 'below-heading', headingTitleToggle: true, headingDescToggle: true, headingDesc: 'Standard', headingTag: 'h2',headingTitle: '$25/-' , headingDescPosition: 'above-heading', headSpace: 5, subHeadSpace: 12, blockTopPadding: 15, blockBottomPadding: 0 }],
+			[ 'uagb/icon-list', { itemCount: 6 , Label: 'Lorem Ipsum dolor' , icon: 'check-square', align: ''}],
+			[ 'uagb/buttons',{ align: '' } ],
 		],
 		scope: [ 'block' ],
 	},

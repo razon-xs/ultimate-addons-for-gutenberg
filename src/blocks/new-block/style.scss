@@ -2,10 +2,12 @@
 	display: block;
 }
 
-.block-editor-block-variation-picker__variations {
-
+.uagb-new-block_variations .block-editor-block-variation-picker__variations {
+	.block-editor-block-variation-picker__variation.components-button {
+		padding: 15px;
+	}
 	svg {
-		fill: transparent;
+		fill: #fff;
 	}
 }
 

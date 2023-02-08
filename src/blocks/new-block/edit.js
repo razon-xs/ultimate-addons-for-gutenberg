@@ -113,9 +113,9 @@ const UAGBNewBlock = ( props ) => {
 	if ( ( ! props.attributes.isPreview && ! hasInnerBlocks ) || props.attributes.variationChange && hasInnerBlocks ) {
 		return (
 			props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-				<div className='uagb-forms-variations'>
+				<div className='uagb-new-block_variations'>
 					<__experimentalBlockVariationPicker
-						label={ __( 'Info Box 2.0', 'ultimate-addons-for-gutenberg' ) }
+						label={ __( 'Template Everything!', 'ultimate-addons-for-gutenberg' ) }
 						instructions={ __(
 							'Select a variation to start with.',
 							'ultimate-addons-for-gutenberg'
