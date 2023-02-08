@@ -1,7 +1,6 @@
 import React from 'react';
 
 import TypographyControl from '@Components/typography';
-import WebfontLoader from '@Components/typography/fontloader';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, {
 	UAGTabs,
@@ -14,12 +13,8 @@ import {
 	InspectorControls,
 } from '@wordpress/block-editor';
 import renderSVG from '@Controls/renderIcon';
-import { Icon, ToggleControl } from '@wordpress/components';
+import { Icon } from '@wordpress/components';
 import SpacingControl from '@Components/spacing-control';
-import ColorSwitchControl from '@Components/color-switch-control';
-import TextShadowControl from '@Components/text-shadow';
-import UAGTabsControl from '@Components/tabs';
-import ResponsiveBorder from '@Components/responsive-border'
 import UAGTextControl from '@Components/text-control';
 import ResponsiveSlider from '@Components/responsive-slider';
 import UAGSelectControl from '@Components/select-control';
@@ -97,7 +92,59 @@ const Settings = ( props ) => {
 
 	// Separator settings.
 	const separatorGeneralSettings = () => {
-
+	    const borders = [
+			{
+				value: 'none',
+				label: __( 'None', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 'dotted',
+				label: __( 'Dotted', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 'dashed',
+				label: __( 'Dashed', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 'double',
+				label: __( 'Double', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 'solid',
+				label: __( 'Solid', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 'waves',
+				label: __( 'Waves', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 'wave_pattern',
+				label: __( 'Waves Pattern', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 'clouds',
+				label: __( 'Clouds', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 'zigzag',
+				label: __( 'ZigZag', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 'pyramids',
+				label: __( 'Pyramids', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 'curve',
+				label: __( 'Curve', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 'curve_asymmetrical',
+				label: __(
+					'Curve Asymmetrical',
+					'ultimate-addons-for-gutenberg'
+				),
+			},
+		];
 		return (
 			<UAGAdvancedPanelBody
 				title={ __( 'Separator', 'ultimate-addons-for-gutenberg' ) }
@@ -113,71 +160,7 @@ const Settings = ( props ) => {
 						label: 'separatorStyle',
 					} }
 					setAttributes={ setAttributes }
-					options={ [
-						{
-							value: 'none',
-							label: __(
-								'None',
-								'ultimate-addons-for-gutenberg'
-							),
-						},
-						{
-							value: 'solid',
-							label: __(
-								'Solid',
-								'ultimate-addons-for-gutenberg'
-							),
-						},
-						{
-							value: 'dotted',
-							label: __(
-								'Dotted',
-								'ultimate-addons-for-gutenberg'
-							),
-						},
-						{
-							value: 'dashed',
-							label: __(
-								'Dashed',
-								'ultimate-addons-for-gutenberg'
-							),
-						},
-						{
-							value: 'double',
-							label: __(
-								'Double',
-								'ultimate-addons-for-gutenberg'
-							),
-						},
-						{
-							value: 'groove',
-							label: __(
-								'Groove',
-								'ultimate-addons-for-gutenberg'
-							),
-						},
-						{
-							value: 'inset',
-							label: __(
-								'Inset',
-								'ultimate-addons-for-gutenberg'
-							),
-						},
-						{
-							value: 'outset',
-							label: __(
-								'Outset',
-								'ultimate-addons-for-gutenberg'
-							),
-						},
-						{
-							value: 'ridge',
-							label: __(
-								'Ridge',
-								'ultimate-addons-for-gutenberg'
-							),
-						},
-					] }
+					options={ borders }
 				/>
 				<MultiButtonsControl
 					setAttributes={ setAttributes }
