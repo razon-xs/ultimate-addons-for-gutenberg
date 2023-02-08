@@ -618,6 +618,7 @@ function styling( props ) {
 			'color': lightboxIconColor,
 			'font-family': ( 'Default' === lightboxFontFamily ) ? '' : lightboxFontFamily,
 			'font-size': generateCSSUnit( lightboxIconSize, 'px' ) ? `calc(${ generateCSSUnit( lightboxIconSize, 'px' ) } * 3 / 4 )` : undefined,
+			'line-height': generateCSSUnit( lightboxIconSize, 'px' ) ? `calc(${ generateCSSUnit( lightboxIconSize, 'px' ) } * 3 / 4 )` : undefined,
 		},
 		' .spectra-image-gallery__control-lightbox--close': {
 			'top': generateCSSUnit( lightboxEdgeDistance, 'px' ),
@@ -732,6 +733,7 @@ function styling( props ) {
 			'top': generateCSSUnit( lightboxEdgeDistanceTablet, 'px' ),
 			'left': generateCSSUnit( lightboxEdgeDistanceTablet, 'px' ),
 			'font-size': generateCSSUnit( lightboxIconSizeTablet, 'px' ) ? `calc(${ generateCSSUnit( lightboxIconSizeTablet, 'px' ) } * 3 / 4 )` : undefined,
+			'line-height': generateCSSUnit( lightboxIconSizeTablet, 'px' ) ? `calc(${ generateCSSUnit( lightboxIconSizeTablet, 'px' ) } * 3 / 4 )` : undefined,
 		},
 		' .spectra-image-gallery__control-lightbox--close': {
 			'top': generateCSSUnit( lightboxEdgeDistanceTablet, 'px' ),
@@ -843,6 +845,7 @@ function styling( props ) {
 			'top': generateCSSUnit( lightboxEdgeDistanceMobile, 'px' ),
 			'left': generateCSSUnit( lightboxEdgeDistanceMobile, 'px' ),
 			'font-size': generateCSSUnit( lightboxIconSizeMobile, 'px' ) ? `calc(${ generateCSSUnit( lightboxIconSizeMobile, 'px' ) } * 3 / 4 )` : undefined,
+			'line-height': generateCSSUnit( lightboxIconSizeMobile, 'px' ) ? `calc(${ generateCSSUnit( lightboxIconSizeMobile, 'px' ) } * 3 / 4 )` : undefined,
 		},
 		' .spectra-image-gallery__control-lightbox--close': {
 			'top': generateCSSUnit( lightboxEdgeDistanceMobile, 'px' ),
