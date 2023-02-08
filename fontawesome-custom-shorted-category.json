@@ -1,30 +1,4 @@
 {
-	"science-and-technology": {
-		"title": "Science",
-		"original_cate": [
-			"astronomy",
-			"coding",
-			"connectivity",
-			"devices-hardware",
-			"energy",
-			"media-playback",
-			"medical-health",
-			"science-fiction",
-			"security",
-			"science"
-		]
-	},
-	"design": {
-		"title": "Design",
-		"original_cate": [
-			"accessibility",
-			"design",
-			"editing",
-			"emoji",
-			"photos-images",
-			"shapes"
-		]
-	},
 	"business": {
 		"title": "Business",
 		"original_cate": [
@@ -48,9 +22,24 @@
 			"writing"
 		]
 	},
+	"design": {
+		"title": "Design",
+		"original_cate": [
+			"accessibility",
+			"design",
+			"editing",
+			"emoji",
+			"photos-images",
+			"shapes"
+		]
+	},
 	"education": {
 		"title": "Education",
 		"original_cate": [ "alphabet","childhood", "education", "mathematics" ]
+	},
+	"environment": {
+		"title": "Environment",
+		"original_cate": [ "animals","disaster", "nature", "weather" ]
 	},
 	"lifestyle-and-hobbies": {
 		"title": "Lifestyle and Hobbies",
@@ -67,6 +56,25 @@
 			"sports-fitness"
 		]
 	},
+	"science-and-technology": {
+		"title": "Science",
+		"original_cate": [
+			"astronomy",
+			"coding",
+			"connectivity",
+			"devices-hardware",
+			"energy",
+			"media-playback",
+			"medical-health",
+			"science-fiction",
+			"security",
+			"science"
+		]
+	},
+	"social": {
+		"title": "Social",
+		"original_cate": ["charity", "gender", "political", "religion", "social","humanitarian" ]
+	},
 	"travel": {
 		"title": "Travel",
 		"original_cate": [
@@ -78,13 +86,5 @@
 			"transportation",
 			"travel-hotel"
 		]
-	},
-	"environment": {
-		"title": "Environment",
-		"original_cate": [ "animals","disaster", "nature", "weather" ]
-	},
-	"social": {
-		"title": "Social",
-		"original_cate": ["charity", "gender", "political", "religion", "social","humanitarian" ]
 	}
 }
