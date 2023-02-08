@@ -51,6 +51,9 @@ import imageAttribute from '@Blocks/image/attributes';
 import modalAttribute from '@Blocks/modal/attributes';
 import counterAttribute from '@Blocks/counter/attributes';
 import imageGalleryAttribute from '@Blocks/image-gallery/attributes';
+import sliderAttribute from '@Blocks/slider/attributes';
+import sliderChildAttribute from '@Blocks/slider-child/attributes';
+
 
 export const blocksAttributes = {
 	'advanced-heading' : advancedHeadingAttribute,
@@ -106,4 +109,6 @@ export const blocksAttributes = {
 	'modal': modalAttribute,
 	'counter': counterAttribute,
 	'image-gallery': imageGalleryAttribute,
+	'slider': sliderAttribute,
+	'slider-child': sliderChildAttribute
 };
