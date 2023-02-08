@@ -369,6 +369,14 @@ $selectors = array(
 		'right' => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistance'], 'px' ),
 		'color' => $attr['lightboxIconColor'],
 	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main.swiper-rtl .swiper-button-prev' => array(
+		'right' => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistance'], 'px' ),
+		'left'  => 'auto',
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main.swiper-rtl .swiper-button-next' => array(
+		'left'  => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistance'], 'px' ),
+		'right' => 'auto',
+	),
 );
 
 $t_selectors = array(
@@ -477,6 +485,14 @@ $t_selectors = array(
 	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main .swiper-button-next' => array(
 		'right' => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceTablet'], 'px' ),
 	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main.swiper-rtl .swiper-button-prev' => array(
+		'right' => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceTablet'], 'px' ),
+		'left'  => 'auto',
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main.swiper-rtl .swiper-button-next' => array(
+		'left'  => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceTablet'], 'px' ),
+		'right' => 'auto',
+	),
 );
 
 $m_selectors = array(
@@ -584,6 +600,14 @@ $m_selectors = array(
 	),
 	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main .swiper-button-next' => array(
 		'right' => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceMobile'], 'px' ),
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main.swiper-rtl .swiper-button-prev' => array(
+		'right' => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceMobile'], 'px' ),
+		'left'  => 'auto',
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main.swiper-rtl .swiper-button-next' => array(
+		'left'  => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceMobile'], 'px' ),
+		'right' => 'auto',
 	),
 );
 

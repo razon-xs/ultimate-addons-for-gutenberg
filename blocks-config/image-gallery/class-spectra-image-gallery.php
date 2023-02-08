@@ -1013,7 +1013,11 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 							<?php if ( $attributes['lightboxThumbnails'] ) { echo $this->render_thumbnails( $attributes ); } ?>
 							<?php if ( $attributes['lightboxDisplayCount'] ): ?>
 								<div class='spectra-image-gallery__control-lightbox--count'>
-									<span class='spectra-image-gallery__control-lightbox--count-page'>1</span>/<span class='spectra-image-gallery__control-lightbox--count-total'>1</span>
+									<?php if ( is_rtl() ): ?>
+										<span class='spectra-image-gallery__control-lightbox--count-total'>1</span>/<span class='spectra-image-gallery__control-lightbox--count-page'>1</span>
+									<?php else: ?>
+										<span class='spectra-image-gallery__control-lightbox--count-page'>1</span>/<span class='spectra-image-gallery__control-lightbox--count-total'>1</span>
+									<?php endif; ?>									
 								</div>
 							<?php endif; ?>
 							<?php if ( $attributes['lightboxDisplayCount'] ): ?>
