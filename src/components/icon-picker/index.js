@@ -11,7 +11,7 @@ const UAGIconPicker = ( props ) => {
 	const panelRef = useRef( null );
 
 	const { getSelectedBlock } = select( 'core/block-editor' );
-	const blockNameForHook = getSelectedBlock()?.name.split( '/' ).pop();
+	const blockNameForHook = getSelectedBlock()?.name.split( '/' ).pop(); // eslint-disable-line @wordpress/no-unused-vars-before-return
 	useEffect( () => {
 		setPanelNameForHook( getPanelIdFromRef( panelRef ) )
 	}, [blockNameForHook] )
@@ -31,12 +31,12 @@ const UAGIconPicker = ( props ) => {
 	return (
 		<div
 			ref={panelRef}
-			className={`spectra-components-control spectra-components-control--${controlName}`}
+			className="components-base-control"
 		>
 			{
 				controlBeforeDomElement
 			}
-			<div className="components-base-control uag-icon-picker">
+			<div className="uag-icon-picker">
 				<span className="uag-control-label">
 					{ props?.label ||
 						__( 'Icon', 'ultimate-addons-for-gutenberg' ) }

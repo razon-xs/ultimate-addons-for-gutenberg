@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { getPanelIdFromRef } from '@Utils/Helpers';
 import { useDeviceType } from '@Controls/getPreviewType';
 import ResponsiveToggle from '../responsive-toggle';
@@ -74,10 +74,11 @@ const ResponsiveUAGFocalPointPicker = ( props ) => {
 	return (
 		<div
 			ref={panelRef}
-			className={`spectra-components-control spectra-components-control--${controlName}`}
+			className="components-base-control"
+			
 		>
 			{controlBeforeDomElement}
-			<div className="components-base-control uagb-responsive-select-control">
+			<div className="uagb-responsive-select-control">
 				<div className="uagb-size-type-field-tabs">
 					<div className="uagb-control__header">
 						<ResponsiveToggle
