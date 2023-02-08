@@ -27,7 +27,8 @@ const ModalContainer = ( props ) => {
 		} else if ( 'no-category' === cate ) {
 			for ( const defaultIcon in defaultIconsWithKeys ) {
 				if (
-					0 === defaultIconsWithKeys[ defaultIcon ].custom_categories.length
+					0 ===
+					defaultIconsWithKeys[ defaultIcon ].custom_categories.length
 				) {
 					findIconsByCate.push( defaultIcon );
 				}
@@ -35,9 +36,9 @@ const ModalContainer = ( props ) => {
 		} else {
 			for ( const defaultIcon in defaultIconsWithKeys ) {
 				if (
-					defaultIconsWithKeys[ defaultIcon ].custom_categories.includes(
-						cate
-					)
+					defaultIconsWithKeys[
+						defaultIcon
+					].custom_categories.includes( cate )
 				) {
 					findIconsByCate.push( defaultIcon );
 				}
@@ -58,9 +59,17 @@ const ModalContainer = ( props ) => {
 	const searchIcon = ( e ) => {
 		const inputValue = e.target.value.toLowerCase();
 		if ( '' !== inputValue ) {
-			const resultIcons = [ ...iconListByCate ].filter(
-				( icons ) => -1 !== icons.indexOf( inputValue )
-			);
+			const filterIcons = ( icons ) => {
+				if ( defaultIconsWithKeys[ icons ]?.label ) {
+					return (
+						-1 !==
+						defaultIconsWithKeys[ icons ].label
+							.toLowerCase()
+							.indexOf( inputValue )
+					);
+				}
+			};
+			const resultIcons = [ ...iconListByCate ].filter( filterIcons );
 			setSearchIconList( resultIcons );
 			setIconList( resultIcons );
 		} else {
@@ -173,12 +182,13 @@ const ModalContainer = ( props ) => {
 						<div
 							key={ key }
 							className={
-								cateValue.slug === cateListName ? 'selected' : null
+								cateValue.slug === cateListName
+									? 'selected'
+									: null
 							}
 							onClick={ () => clickToCate( cateValue.slug ) }
 						>
 							{ cateValue.title }
-							{/* <span className='icon-count'>{cateValue.count_icons}</span> */}
 						</div>
 					);
 				} ) }
@@ -189,7 +199,10 @@ const ModalContainer = ( props ) => {
 					}
 					onClick={ () => clickToCate( 'no-category' ) }
 				>
-					{ __( 'Miscellaneous/Other', 'ultimate-addons-for-gutenberg' ) }
+					{ __(
+						'Miscellaneous/Other',
+						'ultimate-addons-for-gutenberg'
+					) }
 				</div>
 			</div>
 		);
@@ -202,7 +215,7 @@ const ModalContainer = ( props ) => {
 			className="uagb-ip-modal-wrapper"
 			onRequestClose={ closeModal }
 			overlayClassName="uagb-ip-modal-wrapper-overlay"
-			shouldCloseOnClickOutside={false}
+			shouldCloseOnClickOutside={ false }
 		>
 			{ /* Header  */ }
 			<div className="uagb-ip-header">
