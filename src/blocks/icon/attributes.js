@@ -157,6 +157,7 @@ const attributes = {
 	iconTopPadding : {
 		type: 'number',
 		isUAGStyle: true,
+		default: 5,
 		UAGCopyPaste: {
 			styleType: 'icon-top-padding'
 		},
@@ -164,6 +165,7 @@ const attributes = {
 	iconRightPadding : {
 		type: 'number',
 		isUAGStyle: true,
+		default: 5,
 		UAGCopyPaste: {
 			styleType: 'icon-right-padding'
 		},
@@ -171,6 +173,7 @@ const attributes = {
 	iconLeftPadding : {
 		type: 'number',
 		isUAGStyle: true,
+		default: 5,
 		UAGCopyPaste: {
 			styleType: 'icon-left-padding'
 		},
@@ -178,6 +181,7 @@ const attributes = {
 	iconBottomPadding : {
 		type: 'number',
 		isUAGStyle: true,
+		default: 5,
 		UAGCopyPaste: {
 			styleType: 'icon-bottom-padding'
 		},
