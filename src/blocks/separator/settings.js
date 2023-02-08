@@ -13,7 +13,6 @@ import {
 	InspectorControls,
 } from '@wordpress/block-editor';
 import renderSVG from '@Controls/renderIcon';
-import renderCustomSVG from './separator-svg';
 import { Icon } from '@wordpress/components';
 import SpacingControl from '@Components/spacing-control';
 import UAGTextControl from '@Components/text-control';
@@ -131,7 +130,7 @@ const Settings = ( props ) => {
 					},
 					{
 						value: 'zigzag',
-						label: __( 'ZigZag', 'ultimate-addons-for-gutenberg' ),	
+						label: __( 'ZigZag', 'ultimate-addons-for-gutenberg' ),
 					},
 					{
 						value: 'curved',

@@ -22,14 +22,15 @@ const Render = ( props ) => {
 			elementType,
 			separatorText,
 			separatorTextTag,
-			separatorIcon
+			separatorIcon,
+			separatorStyle,
 		},
 		className,
 	} = props;
 
 	const deviceType = useDeviceType();
 
-
+    const renderSvg=renderCustomSVG( separatorStyle );
 
 	return (
 		<div
@@ -42,6 +43,7 @@ const Render = ( props ) => {
 			) }
 		>
 			<div className='wp-block-uagb-separator__inner'>
+			{renderSvg }
 				{
 					elementType !== 'none' && (
 						<div className='wp-block-uagb-separator-element'>
@@ -51,6 +53,7 @@ const Render = ( props ) => {
 						</div>
 					)
 				}
+				{renderSvg }
 			</div>
 		</div>
 	);
