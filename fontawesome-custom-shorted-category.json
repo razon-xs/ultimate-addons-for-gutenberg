@@ -10,7 +10,8 @@
 			"media-playback",
 			"medical-health",
 			"science-fiction",
-			"security"
+			"security",
+			"science"
 		]
 	},
 	"design": {
@@ -32,7 +33,9 @@
 			"charity",
 			"logistics",
 			"marketing",
-			"money"
+			"money",
+			"buildings",
+			"construction"
 		]
 	},
 	"communication": {
@@ -82,6 +85,6 @@
 	},
 	"social": {
 		"title": "Social",
-		"original_cate": ["charity", "gender", "political", "religion", "social" ]
+		"original_cate": ["charity", "gender", "political", "religion", "social","humanitarian" ]
 	}
 }
