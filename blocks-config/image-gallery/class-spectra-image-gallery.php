@@ -1609,7 +1609,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 										lightbox.style.display = 'none';
 									}, 250 );
 								} );
-								if ( adminBar ) {
+								if ( adminBar && screen.width > 600 ) {
 									closeButton.style.marginTop = '32px';
 								}
 							}
@@ -1618,7 +1618,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 						<?php if ( $attr['lightboxDisplayCount'] ): ?>
 							const lightboxTotal = lightbox.querySelector( '.spectra-image-gallery__control-lightbox--count-total' );
 							lightboxTotal.innerHTML = '<?= count( (array) $attr['mediaGallery'] ) ?>';
-							if ( adminBar ) {
+							if ( adminBar && screen.width > 600 ) {
 								lightboxTotal.parentElement.style.marginTop = '32px';
 							}
 						<?php endif; ?>
