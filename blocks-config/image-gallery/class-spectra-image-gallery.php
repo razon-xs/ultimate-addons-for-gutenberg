@@ -151,7 +151,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 								'default' => true,
 							),
 							'imageClickEvent'     => array(
-								'type'    =>'string',
+								'type'    => 'string',
 								'default' => 'none',
 							),
 						),
@@ -529,33 +529,33 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 						),
 						// Lightbox Styling.
 						array(
-							'lightboxEdgeDistance'           => array(
+							'lightboxEdgeDistance'         => array(
 								'type'    => 'number',
 								'default' => 10,
 							),
-							'lightboxEdgeDistanceTablet'     => array(
+							'lightboxEdgeDistanceTablet'   => array(
 								'type' => 'number',
 							),
-							'lightboxEdgeDistanceMobile'     => array(
+							'lightboxEdgeDistanceMobile'   => array(
 								'type' => 'number',
 							),
-							'lightboxBackgroundEnableBlur'   => array(
+							'lightboxBackgroundEnableBlur' => array(
 								'type'    => 'boolean',
 								'default' => true,
 							),
-							'lightboxBackgroundBlurAmount'   => array(
+							'lightboxBackgroundBlurAmount' => array(
 								'type'    => 'number',
 								'default' => 5,
 							),
-							'lightboxBackgroundColor'        => array(
+							'lightboxBackgroundColor'      => array(
 								'type'    => 'string',
 								'default' => 'rgba(0,0,0,0.75)',
 							),
-							'lightboxIconColor'              => array(
+							'lightboxIconColor'            => array(
 								'type'    => 'string',
 								'default' => 'rgba(255,255,255,1)',
 							),
-							'lightboxCaptionColor'           => array(
+							'lightboxCaptionColor'         => array(
 								'type'    => 'string',
 								'default' => 'rgba(255,255,255,1)',
 							),
@@ -1007,12 +1007,14 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 				}
 				?>
 					</div>
-					<?php if ( 'lightbox' === $attributes['imageClickEvent'] ): ?>
+					<?php if ( 'lightbox' === $attributes['imageClickEvent'] ) : ?>
 						<div class='spectra-image-gallery__control-lightbox'>
-							<?php $this->render_lightbox( $attributes ) ?>
-							<?php if ( $attributes['lightboxThumbnails'] ) {
-								$this->render_thumbnails( $attributes );
-							} ?>
+							<?php $this->render_lightbox( $attributes ); ?>
+							<?php
+								if ( $attributes['lightboxThumbnails'] ) {
+									$this->render_thumbnails( $attributes );
+								}
+							?>
 							<?php if ( $attributes['lightboxDisplayCount'] ) : ?>
 								<div class='spectra-image-gallery__control-lightbox--count'>
 									<?php if ( is_rtl() ) : ?>
