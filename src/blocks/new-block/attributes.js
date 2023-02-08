@@ -14,25 +14,6 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
-	align: {
-		type: 'string',
-		default: 'center',
-		UAGCopyPaste: {
-			styleType: 'overall-align'
-		}
-	},
-	alignTablet: {
-		type: 'string',
-		UAGCopyPaste: {
-			styleType: 'overall-align-tablet'
-		}
-	},
-	alignMobile: {
-		type: 'string',
-		UAGCopyPaste: {
-			styleType: 'overall-align-mobile'
-		}
-	},
 	backgroundType: {
 		type: 'string',
 		default: 'color',
@@ -561,6 +542,30 @@ const attributes = {
 	yPositionTypeMobile: {
 		type: 'string',
 		default: 'px',
+	},
+	color: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'text-color'
+		}
+	},
+	headingColor: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'heading-color'
+		}
+	},
+	linkColor: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'link-color'
+		}
+	},
+	linkHoverColor: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'link-hover-color'
+		}
 	},
 	...borderAttributes
 };

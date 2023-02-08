@@ -1,5 +1,5 @@
 import React from 'react';
-
+import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, {
 	UAGTabs,
@@ -113,14 +113,18 @@ const Settings = ( props ) => {
 		yPositionTypeTablet,
 		yPositionTypeMobile,
 		variationChange,
-		lockTemplate
+		lockTemplate,
+		headingColor,
+		color,
+		linkColor,
+		linkHoverColor
 	} = attributes;
 
 	const backgroundSettings = () => {
 		return (
 			<UAGAdvancedPanelBody
 				title={ __( 'Background', 'ultimate-addons-for-gutenberg' ) }
-				initialOpen={ true }
+				initialOpen={ false }
 			>
 				<Background
 					setAttributes={ setAttributes }
@@ -671,12 +675,71 @@ const Settings = ( props ) => {
 		);
 	};
 
+	const textControls = () => {
+		return (
+			<UAGAdvancedPanelBody
+				title={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
+				initialOpen={ true }
+			>
+				<AdvancedPopColorControl
+					label={ __(
+						'Heading',
+						'ultimate-addons-for-gutenberg'
+					) }
+					colorValue={ headingColor ? headingColor : '' }
+					data={ {
+						value: headingColor,
+						label: 'headingColor',
+					} }
+					setAttributes={ setAttributes }
+				/>
+				<AdvancedPopColorControl
+					label={ __(
+						'Text',
+						'ultimate-addons-for-gutenberg'
+					) }
+					colorValue={ color ? color : '' }
+					data={ {
+						value: color,
+						label: 'color',
+					} }
+					setAttributes={ setAttributes }
+				/>
+				<AdvancedPopColorControl
+					label={ __(
+						'Link',
+						'ultimate-addons-for-gutenberg'
+					) }
+					colorValue={ linkColor ? linkColor : '' }
+					data={ {
+						value: linkColor,
+						label: 'linkColor',
+					} }
+					setAttributes={ setAttributes }
+				/>
+				<AdvancedPopColorControl
+					label={ __(
+						'Link Hover Color',
+						'ultimate-addons-for-gutenberg'
+					) }
+					colorValue={ linkHoverColor ? linkHoverColor : '' }
+					data={ {
+						value: linkHoverColor,
+						label: 'linkHoverColor',
+					} }
+					setAttributes={ setAttributes }
+				/>
+			</UAGAdvancedPanelBody>
+		);
+	};
+
 	return (
 		<>
 			{ getBlockControls()}
 			<InspectorControls>
-				<InspectorTabs>
+				<InspectorTabs tabs={ [ 'style', 'advance' ] }>
 					<InspectorTab { ...UAGTabs.style }>
+						{ textControls() }
 						{ backgroundSettings() }
 						{ borderSettings() }
 						{ boxShadowSettings() }

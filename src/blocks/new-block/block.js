@@ -11,14 +11,14 @@ import variations from './variations';
 import './style.scss';
 
 registerBlockType( 'uagb/new-block', {
-	title: __( 'Info-Box 2.0', 'ultimate-addons-for-gutenberg' ),
+	title: __( 'Template Everything!', 'ultimate-addons-for-gutenberg' ),
 	description: __(
 		'Create beautiful layouts with multiple Spectra blocks.',
 		'ultimate-addons-for-gutenberg'
 	),
 	icon: UAGB_Block_Icons.container,
 	keywords: [
-		__( 'Info-Box 2.0', 'ultimate-addons-for-gutenberg' ),
+		__( 'Template Everything!', 'ultimate-addons-for-gutenberg' ),
 		__( 'uag', 'ultimate-addons-for-gutenberg' ),
 		__( 'flex', 'ultimate-addons-for-gutenberg' ),
 	],

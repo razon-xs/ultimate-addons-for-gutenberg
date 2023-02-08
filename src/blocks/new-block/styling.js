@@ -93,15 +93,16 @@ function styling( props ) {
 		yPositionType,
 		yPositionTypeTablet,
 		yPositionTypeMobile,
-		align,
-		alignTablet,
-		alignMobile,
 		rowGapDesktop,
 		rowGapTablet,
 		rowGapMobile,
 		rowGapTypeTablet,
 		rowGapType,
-		rowGapTypeMobile
+		rowGapTypeMobile,
+		headingColor,
+		color,
+		linkColor,
+		linkHoverColor
 
 	} = attributes;
 
@@ -136,24 +137,39 @@ function styling( props ) {
 	const selectors = {
 		'.uagb-info-box__wrap > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapDesktop, rowGapType ),
-		}
+		},
+		' .wp-block': {
+			'color': color,
+		},
+		' span': {
+			'color': color,
+		},
+		' p': {
+			'color': color,
+		},
+		' .uagb-heading-text': {
+			'color': headingColor,
+		},
+		' .uagb-marketing-btn__title': {
+			'color': linkColor,
+		},
+		' a': {
+			'color': linkColor,
+		},
+		' a:hover': {
+			'color': linkHoverColor,
+		},
+		' .uagb-marketing-btn__link:hover .uagb-marketing-btn__title': {
+			'color': linkHoverColor,
+		},
+		' .wp-block-button__link': {
+			'color': linkColor,
+		},
+		' .wp-block-button__link:hover': {
+			'color': linkHoverColor,
+		},
 	};
-	if( 'left' === align ) {
-		selectors[ '.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': align,
-			'justify-content': 'flex-start'
-		}
-	} else if( 'right' === align ) {
-		selectors[ '.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': align,
-			'justify-content': 'flex-end'
-		}
-	} else {
-		selectors[ '.uagb-info-box__wrap .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': align,
-			'justify-content': align
-		}
-	}
+	
 	const backgroundAttributesDesktop = {
         'backgroundType': backgroundType,
         'backgroundImage': backgroundImageDesktop,
@@ -188,7 +204,7 @@ function styling( props ) {
 		boxShadowPositionCSSHover = '';
 	}
 
-	const containerCSS = {
+	const blockCSS = {
 		'padding-top': generateCSSUnit( topPaddingDesktop, paddingType ),
 		'padding-bottom': generateCSSUnit( bottomPaddingDesktop, paddingType ),
 		'padding-left': generateCSSUnit( leftPaddingDesktop, paddingType ),
@@ -205,7 +221,7 @@ function styling( props ) {
 		...borderCSS,
 	}
 
-	selectors['.uagb-info-box__wrap'] = containerCSS;
+	selectors['.uagb-info-box__wrap'] = blockCSS;
 	selectors['.uagb-info-box__wrap:hover'] = {
 		'border-color': blockBorderHColor,
 	};
@@ -259,24 +275,8 @@ function styling( props ) {
 		},
 		'.uagb-info-box__wrap > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapTablet, rowGapTypeTablet ),
-		}
+		},
 	};
-	if( 'left' === alignTablet ) {
-		tablet_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': alignTablet,
-			'justify-content': 'flex-start'
-		}
-	} else if( 'right' === alignTablet ) {
-		tablet_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': alignTablet,
-			'justify-content': 'flex-end'
-		}
-	} else {
-		tablet_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': alignTablet,
-			'justify-content': alignTablet
-		}
-	}
 
 	const backgroundAttributesMobile = {
         'backgroundType': backgroundType,
@@ -315,25 +315,8 @@ function styling( props ) {
 		},
 		'.uagb-info-box__wrap .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapMobile, rowGapTypeMobile ),
-		}
-
+		},
 	};
-	if( 'left' === alignMobile ) {
-		mobile_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': alignMobile,
-			'justify-content': 'flex-start'
-		}
-	} else if( 'right' === alignMobile ) {
-		mobile_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': alignMobile,
-			'justify-content': 'flex-end'
-		}
-	} else {
-		mobile_selectors[ ' .block-editor-inner-blocks .block-editor-block-list__layout > div' ] = {
-			'text-align': alignMobile,
-			'justify-content': alignMobile
-		}
-	}
 
 	const id = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr(
 		0,

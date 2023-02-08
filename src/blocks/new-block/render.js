@@ -9,7 +9,6 @@ const ALLOWED_BLOCKS = [
 	'uagb/blockquote',
 	'uagb/buttons',
 	'uagb/icon-list',
-	'uagb/social-share',
 	'uagb/star-rating',
 	'uagb/container'
 ];
