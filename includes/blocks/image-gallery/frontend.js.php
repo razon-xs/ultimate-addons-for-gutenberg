@@ -104,8 +104,13 @@ if ( $attr['mediaGallery'] ) {
 			$js = Spectra_Image_Gallery::render_frontend_tiled_layout( $id );
 			break;
 	}
-	if ( 'lightbox' === $attr['imageClickEvent'] ) {
-		$js .= Spectra_Image_Gallery::render_frontend_lightbox( $id, $attr, $lightbox_settings, $thumbnail_settings, $selector );
+	switch ( $attr['imageClickEvent'] ) {
+		case 'lightbox':
+			$js .= Spectra_Image_Gallery::render_frontend_lightbox( $id, $attr, $lightbox_settings, $thumbnail_settings, $selector );
+			break;
+		case 'image':
+			$js .= Spectra_Image_Gallery::render_image_click( $id, $attr['mediaGallery'], $selector );
+			break;
 	}
 }
 

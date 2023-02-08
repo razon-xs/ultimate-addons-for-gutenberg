@@ -1512,7 +1512,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 			<?php
 			return ob_get_clean();
 		}
-		
+
 		/**
 		 * Renders Front-end Lightbox.
 		 *
@@ -1626,6 +1626,37 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 								lightboxTotal.parentElement.style.marginTop = '32px';
 							}
 						<?php endif; ?>
+					}
+				} );
+			<?php
+			return ob_get_clean();
+		}
+
+		/**
+		 * Renders Front-end Click Event.
+		 *
+		 * @param string $id                  Block ID.
+		 * @param array  $attr                Array of attributes.
+		 * @param string $selector            Selector to identify the block.
+		 *
+		 * @since x.x.x
+		 */
+		public static function render_image_click( $id, $attr, $selector ) {
+			ob_start();
+			?>
+				const openImage = ( image ) => {
+					window.open( image.src, '_blank' );
+				}
+
+				window.addEventListener( 'DOMContentLoaded', () => {
+					const blockScope = document.querySelector( '.uagb-block-<?= esc_html( $id ); ?>' );
+					if ( ! blockScope ) {
+						return;
+					}
+					const images = blockScope.querySelectorAll( '.spectra-image-gallery__media-wrapper' );
+					for ( let i = 0; i < images.length; i++ ) {
+						images[ i ].style.cursor = 'pointer';
+						images[ i ].addEventListener( 'click', () => openImage( images[ i ].querySelector( 'img' ) ) );
 					}
 				} );
 			<?php
