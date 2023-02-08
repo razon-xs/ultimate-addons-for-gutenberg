@@ -1537,7 +1537,7 @@ export default function Settings( props ) {
 
 	const closeStylePanel =  (
 		<UAGAdvancedPanelBody
-			title={ __( 'Close Button Styles', 'ultimate-addons-for-gutenberg' ) }
+			title={ __( 'Close Button', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
 			<Range
