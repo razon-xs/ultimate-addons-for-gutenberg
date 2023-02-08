@@ -66,16 +66,17 @@ $thumbnail_options = apply_filters(
 	'uagb_image_gallery_thumbnail_options',
 	array(
 		'centeredSlides'        => true,
-		'slidesPerView'         => 7,
+		'slidesPerView'         => 5,
 		'slideToClickedSlide'   => true,
 		'watchSlidesProgres'    => true,
 		'watchSlidesVisibility' => true,
+		// Swiper Breakpoints go Upward.
 		'breakpoints'           => array(
-			1024 => array(
-				'slidesPerView' => 5,
+			768  => array(
+				'slidesPerView' => 7,
 			),
-			767  => array(
-				'slidesPerView' => 3,
+			1024 => array(
+				'slidesPerView' => 9,
 			),
 		),
 	),
