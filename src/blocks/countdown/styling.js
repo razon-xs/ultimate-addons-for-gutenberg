@@ -6,7 +6,7 @@ import generateCSS from '@Controls/generateCSS';
 import generateCSSUnit from '@Controls/generateCSSUnit';
 import generateBorderCSS from '@Controls/generateBorderCSS';
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
- 
+
 export default function styling( props ) {
 
     const { attributes } = props;
@@ -30,21 +30,6 @@ export default function styling( props ) {
 		digitLetterSpacingType,
 		digitLetterSpacingMobile,
 		digitLetterSpacingTablet,
-		digitTopMargin,
-		digitRightMargin,
-		digitLeftMargin,
-		digitBottomMargin,
-		digitTopMarginTablet,
-		digitRightMarginTablet,
-		digitLeftMarginTablet,
-		digitBottomMarginTablet,
-		digitTopMarginMobile,
-		digitRightMarginMobile,
-		digitLeftMarginMobile,
-		digitBottomMarginMobile,
-		digitMarginUnit,
-		digitMarginUnitTablet,
-		digitMarginUnitMobile,
         // label.
 		labelFontFamily,
 		labelFontWeight,
@@ -64,21 +49,6 @@ export default function styling( props ) {
 		labelLetterSpacingType,
 		labelLetterSpacingMobile,
 		labelLetterSpacingTablet,
-		labelTopMargin,
-		labelRightMargin,
-		labelLeftMargin,
-		labelBottomMargin,
-		labelTopMarginTablet,
-		labelRightMarginTablet,
-		labelLeftMarginTablet,
-		labelBottomMarginTablet,
-		labelTopMarginMobile,
-		labelRightMarginMobile,
-		labelLeftMarginMobile,
-		labelBottomMarginMobile,
-		labelMarginUnit,
-		labelMarginUnitTablet,
-		labelMarginUnitMobile,
 		// Separator styling.
 		separatorFontFamily,
 		separatorFontWeight,
@@ -154,10 +124,18 @@ export default function styling( props ) {
 		boxAlign,
 		boxAlignTablet,
 		boxAlignMobile,
+		// Box Width.
+		boxWidth,
+		boxWidthTablet,
+		boxWidthMobile,
 		// Box Spacing.
 		boxSpacing,
 		boxSpacingTablet,
 		boxSpacingMobile,
+		// Internal Box Spacing.
+		internalBoxSpacing,
+		internalBoxSpacingTablet,
+		internalBoxSpacingMobile,
 		// Box Flex Direction.
 		boxFlex,
 		boxFlexTablet,
@@ -183,7 +161,7 @@ export default function styling( props ) {
 		boxBorderHColor,
     } = attributes;
 
-    const blockName = props.name.replace( 'uagb/', '' );
+	const blockName = props.name.replace( 'uagb/', '' );
 
 	const isRTL = ( '1' === uagb_blocks_info.is_rtl ) ? true : false;
 
@@ -197,6 +175,10 @@ export default function styling( props ) {
 	const boxSpacingFallback = getFallbackNumber( boxSpacing, 'boxSpacing', blockName );
 	const boxSpacingFallbackTablet = isNaN( boxSpacingTablet ) ? boxSpacing : boxSpacingTablet;
 	const boxSpacingFallbackMobile = isNaN( boxSpacingMobile ) ? boxSpacingTablet : boxSpacingMobile;
+
+	const internalBoxSpacingFallback = getFallbackNumber( internalBoxSpacing, 'internalBoxSpacing', blockName );
+	const internalBoxSpacingFallbackTablet = isNaN( internalBoxSpacingTablet ) ? internalBoxSpacing : internalBoxSpacingTablet;
+	const internalBoxSpacingFallbackMobile = isNaN( internalBoxSpacingMobile ) ? internalBoxSpacingTablet : internalBoxSpacingMobile;
 
 	const separatorRightSpacingFallback = getFallbackNumber( separatorRightSpacing, 'separatorRightSpacing', blockName );
 	const separatorRightSpacingTabletFallback = isNaN( separatorRightSpacingTablet ) ? separatorRightSpacing : separatorRightSpacingTablet;
@@ -242,13 +224,15 @@ export default function styling( props ) {
 			'padding-left': generateCSSUnit( blockLeftPadding, blockPaddingUnit ),
         },
 		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box':{
+			'width': generateCSSUnit( boxWidth, 'px' ),
 			'flex-direction': boxFlex,
-			'text-align': boxAlign,
 			'background-color': ( boxBgType !== 'transparent' ) ? boxBgColor : 'transparent', 
 			'padding-top': generateCSSUnit( boxTopPadding, boxPaddingUnit ),
 			'padding-right': generateCSSUnit( boxRightPadding, boxPaddingUnit ),
 			'padding-bottom': generateCSSUnit( boxBottomPadding, boxPaddingUnit ),
 			'padding-left': generateCSSUnit( boxLeftPadding, boxPaddingUnit ),
+			'row-gap': generateCSSUnit( internalBoxSpacingFallback, 'px' ),
+			'column-gap': generateCSSUnit( internalBoxSpacingFallback, 'px' ),
 			'box-shadow': generateCSSUnit( boxShadowHOffset, 'px' ) + ' ' + generateCSSUnit( boxShadowVOffset, 'px' ) +	' ' +
 			generateCSSUnit( boxShadowBlur, 'px' ) + ' ' +	generateCSSUnit( boxShadowSpread, 'px' ) + ' ' +
 			boxShadowColor + ' ' +	boxShadowPositionCSS,
@@ -256,6 +240,9 @@ export default function styling( props ) {
 		},
 		'.wp-block-uagb-countdown:hover .wp-block-uagb-countdown__box':{
 			'border-color': boxBorderHColor,
+		},
+		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box > div':{
+			'align-self': boxAlign,
 		},
 		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)':{
 			'margin-right': generateCSSUnit( boxSpacingFallback, 'px' ),
@@ -269,10 +256,6 @@ export default function styling( props ) {
 			'line-height': generateCSSUnit( digitLineHeight, digitLineHeightType ),
 			'letter-spacing': generateCSSUnit( digitLetterSpacing, digitLetterSpacingType ),
 			'color': digitColor,
-			'margin-top': generateCSSUnit( digitTopMargin, digitMarginUnit ),
-			'margin-right': generateCSSUnit( digitRightMargin, digitMarginUnit ),
-			'margin-bottom': generateCSSUnit( digitBottomMargin, digitMarginUnit ),
-			'margin-left': generateCSSUnit( digitLeftMargin, digitMarginUnit ),
 		},
 		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child) .wp-block-uagb-countdown__time::after': {}, // Empty ruleset to prevent undefined error.
 		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:first-child)':{},  // Empty ruleset to prevent undefined error (for RTL Box Gap).
@@ -286,10 +269,6 @@ export default function styling( props ) {
 			'line-height': generateCSSUnit( labelLineHeight, labelLineHeightType ),
 			'letter-spacing': generateCSSUnit( labelLetterSpacing, labelLetterSpacingType ),
 			'color': labelColor,
-			'margin-top': generateCSSUnit( labelTopMargin, labelMarginUnit ),
-			'margin-right': generateCSSUnit( labelRightMargin, labelMarginUnit ),
-			'margin-bottom': generateCSSUnit( labelBottomMargin, labelMarginUnit ),
-			'margin-left': generateCSSUnit( labelLeftMargin, labelMarginUnit ),
         },
 
     };
@@ -321,14 +300,20 @@ export default function styling( props ) {
     };
 
 	tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = {
+		'width': generateCSSUnit( boxWidthTablet, 'px' ),
 		'flex-direction': boxFlexTablet,
-		'text-align': boxAlignTablet,
         'padding-top': generateCSSUnit( boxTopPaddingTablet, boxPaddingUnitTablet ),
         'padding-right': generateCSSUnit( boxRightPaddingTablet, boxPaddingUnitTablet ),
         'padding-bottom': generateCSSUnit( boxBottomPaddingTablet, boxPaddingUnitTablet ),
         'padding-left': generateCSSUnit( boxLeftPaddingTablet, boxPaddingUnitTablet ),
+		'row-gap': generateCSSUnit( internalBoxSpacingFallbackTablet, 'px' ),
+		'column-gap': generateCSSUnit( internalBoxSpacingFallbackTablet, 'px' ),
 		...boxBorderCSSTablet,
     };
+
+	tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box > div'] = {
+		'align-self': boxAlignTablet,
+	};
 
 	tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)'] = {
 		'margin-right': generateCSSUnit( boxSpacingFallbackTablet, 'px' ),
@@ -340,20 +325,12 @@ export default function styling( props ) {
         'font-size': generateCSSUnit( digitFontSizeTablet, digitFontSizeType ),
         'line-height': generateCSSUnit( digitLineHeightTablet, digitLineHeightType ),
 		'letter-spacing': generateCSSUnit( digitLetterSpacingTablet, digitLetterSpacingType ),
-        'margin-top': generateCSSUnit( digitTopMarginTablet, digitMarginUnitTablet ),
-        'margin-right': generateCSSUnit( digitRightMarginTablet, digitMarginUnitTablet ),
-        'margin-bottom': generateCSSUnit( digitBottomMarginTablet, digitMarginUnitTablet ),
-        'margin-left': generateCSSUnit( digitLeftMarginTablet, digitMarginUnitTablet ),
     };
 
     tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__label'] = {
         'font-size': generateCSSUnit( labelFontSizeTablet, labelFontSizeType ),
         'line-height': generateCSSUnit( labelLineHeightTablet, labelLineHeightType ),
 		'letter-spacing': generateCSSUnit( labelLetterSpacingTablet, labelLetterSpacingType ),
-        'margin-top': generateCSSUnit( labelTopMarginTablet, labelMarginUnitTablet ),
-        'margin-right': generateCSSUnit( labelRightMarginTablet, labelMarginUnitTablet ),
-        'margin-bottom': generateCSSUnit( labelBottomMarginTablet, labelMarginUnitTablet ),
-        'margin-left': generateCSSUnit( labelLeftMarginTablet, labelMarginUnitTablet ),
     };
 
     mobileSelectors['.wp-block-uagb-countdown'] = {
@@ -369,14 +346,20 @@ export default function styling( props ) {
     };
 
 	mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = {
+		'width': generateCSSUnit( boxWidthMobile, 'px' ),
 		'flex-direction': boxFlexMobile,
-		'text-align': boxAlignMobile,
         'padding-top': generateCSSUnit( boxTopPaddingMobile, boxPaddingUnitMobile ),
         'padding-right': generateCSSUnit( boxRightPaddingMobile, boxPaddingUnitMobile ),
         'padding-bottom': generateCSSUnit( boxBottomPaddingMobile, boxPaddingUnitMobile ),
         'padding-left': generateCSSUnit( boxLeftPaddingMobile, boxPaddingUnitMobile ),
+		'row-gap': generateCSSUnit( internalBoxSpacingFallbackMobile, 'px' ),
+		'column-gap': generateCSSUnit( internalBoxSpacingFallbackMobile, 'px' ),
 		...boxBorderCSSMobile,
     };
+
+	mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box > div'] = {
+		'align-self': boxAlignMobile,
+	};
 
 	mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)'] = {
 		'margin-right': generateCSSUnit( boxSpacingFallbackMobile, 'px' ),
@@ -388,20 +371,12 @@ export default function styling( props ) {
         'font-size': generateCSSUnit( digitFontSizeMobile, digitFontSizeType ),
         'line-height': generateCSSUnit( digitLineHeightMobile, digitLineHeightType ),
 		'letter-spacing': generateCSSUnit( digitLetterSpacingMobile, digitLetterSpacingType ),
-        'margin-top': generateCSSUnit( digitTopMarginMobile, digitMarginUnitMobile ),
-        'margin-right': generateCSSUnit( digitRightMarginMobile, digitMarginUnitMobile ),
-        'margin-bottom': generateCSSUnit( digitBottomMarginMobile, digitMarginUnitMobile ),
-        'margin-left': generateCSSUnit( digitLeftMarginMobile, digitMarginUnitMobile ),
     };
 
     mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__label'] = {
         'font-size': generateCSSUnit( labelFontSizeMobile, labelFontSizeType ),
         'line-height': generateCSSUnit( labelLineHeightMobile, labelLineHeightType ),
 		'letter-spacing': generateCSSUnit( labelLetterSpacingMobile, labelLetterSpacingType ),
-        'margin-top': generateCSSUnit( labelTopMarginMobile, labelMarginUnitMobile ),
-        'margin-right': generateCSSUnit( labelRightMarginMobile, labelMarginUnitMobile ),
-        'margin-bottom': generateCSSUnit( labelBottomMarginMobile, labelMarginUnitMobile ),
-        'margin-left': generateCSSUnit( labelLeftMarginMobile, labelMarginUnitMobile ),
     };
 
 	// Separator.

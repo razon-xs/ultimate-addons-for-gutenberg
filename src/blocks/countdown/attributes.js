@@ -199,121 +199,7 @@ const attributes = {
 			styleType: 'digit-line-height-mobile'
 		},
 	},
-
-	// Digit Margin.
-	digitTopMargin : {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-digit-top-margin-desktop'
-		},
-	},
-	digitRightMargin : {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-digit-right-margin-desktop'
-		},
-	},
-	digitLeftMargin : {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-digit-left-margin-desktop'
-		},
-	},
-	digitBottomMargin : {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-digit-bottom-margin-desktop'
-		},
-	},
-	digitTopMarginTablet: {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-digit-top-margin-desktop'
-		},
-	},
-	digitRightMarginTablet: {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-digit-right-margin-tablet'
-		},
-	},
-	digitLeftMarginTablet: {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-digit-left-margin-tablet'
-		},
-	},
-	digitBottomMarginTablet: {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-digit-bottom-margin-tablet'
-		},
-	},
-	digitTopMarginMobile: {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-digit-top-margin-mobile'
-		},
-	},
-	digitRightMarginMobile: {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-digit-right-margin-mobile'
-		},
-	},
-	digitLeftMarginMobile: {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-digit-left-margin-mobile'
-		},
-	},
-	digitBottomMarginMobile: {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-digit-bottom-margin-mobile'
-		},
-	},
-	digitMarginUnit : {
-		type: 'string',
-		default: 'px',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-digit-margin-unit'
-		},
-	},
-	digitMarginUnitTablet: {
-		type: 'string',
-		default: 'px',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-digit-margin-unit-tablet'
-		},
-	},
-	digitMarginUnitMobile : {
-		type: 'string',
-		default: 'px',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-digit-margin-unit-mobile'
-		},
-	},
-	digitMarginLink: {
-		type: 'boolean',
-		default: false,
-		isUAGStyle: true,
-	},
+	// Digit letter spacing.
 	digitLetterSpacing: {
 		type: 'number',
 		isUAGStyle: true,
@@ -473,120 +359,6 @@ const attributes = {
 		},
 	},
 
-	// Label Margin.
-	labelTopMargin : {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-label-top-margin-desktop'
-		},
-	},
-	labelRightMargin : {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-label-right-margin-desktop'
-		},
-	},
-	labelLeftMargin : {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-label-left-margin-desktop'
-		},
-	},
-	labelBottomMargin : {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-label-bottom-margin-desktop'
-		},
-	},
-	labelTopMarginTablet: {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-label-top-margin-desktop'
-		},
-	},
-	labelRightMarginTablet: {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-label-right-margin-tablet'
-		},
-	},
-	labelLeftMarginTablet: {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-label-left-margin-tablet'
-		},
-	},
-	labelBottomMarginTablet: {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-label-bottom-margin-tablet'
-		},
-	},
-	labelTopMarginMobile: {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-label-top-margin-mobile'
-		},
-	},
-	labelRightMarginMobile: {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-label-right-margin-mobile'
-		},
-	},
-	labelLeftMarginMobile: {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-label-left-margin-mobile'
-		},
-	},
-	labelBottomMarginMobile: {
-		type: 'number',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-label-bottom-margin-mobile'
-		},
-	},
-	labelMarginUnit : {
-		type: 'string',
-		default: 'px',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-label-margin-unit'
-		},
-	},
-	labelMarginUnitTablet: {
-		type: 'string',
-		default: 'px',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-label-margin-unit-tablet'
-		},
-	},
-	labelMarginUnitMobile : {
-		type: 'string',
-		default: 'px',
-		isUAGStyle: true,
-		UAGCopyPaste: {
-			styleType: 'countdown-label-margin-unit-mobile'
-		},
-	},
-	labelMarginLink: {
-		type: 'boolean',
-		default: false,
-		isUAGStyle: true,
-	},
 	// Separator Styles.
 	separatorLoadGoogleFonts: {
 		type: 'boolean',
@@ -1107,6 +879,25 @@ const attributes = {
 			styleType: 'countdown-box-alignment-mobile'
 		},
 	},
+	// Box Width.
+	boxWidth: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-width'
+		},
+	},
+	boxWidthTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-width-tablet'
+		},
+	},
+	boxWidthMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-width-mobile'
+		},
+	},
 	// Box Spacing.
 	boxSpacing: {
 		type: 'number',
@@ -1127,6 +918,25 @@ const attributes = {
 		default: 18,
 		UAGCopyPaste: {
 			styleType: 'countdown-box-gap-mobile'
+		},
+	},
+	// Internal Box Spacing - Gap Between Digits & Labels.
+	internalBoxSpacing: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-internal-box-gap'
+		},
+	},
+	internalBoxSpacingTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-internal-box-gap-tablet'
+		},
+	},
+	internalBoxSpacingMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-internal-box-gap-mobile'
 		},
 	},
 	// Box Flex.
