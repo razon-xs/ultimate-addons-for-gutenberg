@@ -1541,7 +1541,6 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 					if ( ! lightboxSwiper ) {
 						return;
 					}
-					theBody.style.overflow = 'hidden';
 					const lightbox = blockScope.nextElementSibling;
 					lightbox.style.display = '';
 					setTimeout( () => {
@@ -1549,6 +1548,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 					}, 100 );
 					setTimeout( () => {
 						lightbox.style.opacity = 1;
+						theBody.style.overflow = 'hidden';
 					}, 250 );
 				}
 
