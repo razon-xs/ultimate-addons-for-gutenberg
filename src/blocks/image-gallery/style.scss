@@ -702,8 +702,13 @@
 				padding: 0;
 				background-color: transparent;
 				border: none;
+				outline: 0;
 				line-height: 0;
 				z-index: 999;
+
+				&:hover {
+					background-color: transparent;
+				}
 			}
 		}
 	}
