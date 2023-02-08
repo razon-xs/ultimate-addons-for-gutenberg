@@ -1636,12 +1636,11 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 		 * Renders Front-end Click Event.
 		 *
 		 * @param string $id                  Block ID.
-		 * @param array  $attr                Array of attributes.
 		 * @param string $selector            Selector to identify the block.
 		 *
 		 * @since x.x.x
 		 */
-		public static function render_image_click( $id, $attr, $selector ) {
+		public static function render_image_click( $id ) {
 			ob_start();
 			?>
 				const openImage = ( image ) => {

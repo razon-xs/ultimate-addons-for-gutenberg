@@ -419,6 +419,13 @@ const Settings = ( props ) => {
 		}
 	}, [ captionDisplayType ] );
 
+	// Disable the Lightbox Preview when the Image Click Event is updated.
+	useEffect( () => {
+		if ( 'lightbox' !== imageClickEvent ) {
+			setLightboxPreview( false );
+		}
+	}, [ imageClickEvent ] );
+
 	// Bar Option Generation.
 	const generateBarOptions = () => (
 		( 'grid' === feedLayout || 'tiled' === feedLayout )
