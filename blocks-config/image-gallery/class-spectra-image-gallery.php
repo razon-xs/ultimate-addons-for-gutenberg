@@ -150,6 +150,49 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 								'type'    => 'boolean',
 								'default' => true,
 							),
+							'imageClickEvent'     => array(
+								'type'    =>'string',
+								'default' => 'none',
+							),
+						),
+						// Lightbox Settings.
+						array(
+							'lightboxDisplayCaptions'     => array(
+								'type'    => 'boolean',
+								'default' => false,
+							),
+							'lightboxThumbnails'          => array(
+								'type'    => 'boolean',
+								'default' => false,
+							),
+							'lightboxDisplayCount'        => array(
+								'type'    => 'boolean',
+								'default' => false,
+							),
+							'lightboxCloseIcon'           => array(
+								'type'    => 'string',
+								'default' => 'xmark',
+							),
+							'lightboxCaptionHeight'       => array(
+								'type'    => 'number',
+								'default' => 50,
+							),
+							'lightboxCaptionHeightTablet' => array(
+								'type' => 'number',
+							),
+							'lightboxCaptionHeightMobile' => array(
+								'type' => 'number',
+							),
+							'lightboxIconSize'            => array(
+								'type'    => 'number',
+								'default' => 24,
+							),
+							'lightboxIconSizeTablet'      => array(
+								'type' => 'number',
+							),
+							'lightboxIconSizeMobile'      => array(
+								'type' => 'number',
+							),
 						),
 						// Caption Settings.
 						array(
@@ -484,6 +527,44 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 								'default' => 5,
 							),
 						),
+						// Lightbox Styling.
+						array(
+							'lightboxEdgeDistance' => array(
+								'type'    => 'number',
+								'default' => 10,
+							),
+							'lightboxEdgeDistanceTablet' => array(
+								'type' => 'number',
+							),
+							'lightboxEdgeDistanceMobile' => array(
+								'type' => 'number',
+							),
+							'lightboxBackgroundEnableBlur' => array(
+								'type'    => 'boolean',
+								'default' => true,
+							),
+							'lightboxBackgroundBlurAmount' => array(
+								'type'    => 'number',
+								'default' => 5,
+							),
+							'lightboxBackgroundColor' => array(
+								'type'    => 'string',
+								'default' => 'rgba(0,0,0,0.75)',
+							),
+							'lightboxIconColor' => array(
+								'type'    => 'string',
+								'default' => 'rgba(255,255,255,1)',
+							),
+							'lightboxCaptionColor' => array(
+								'type'    => 'string',
+								'default' => 'rgba(255,255,255,1)',
+							),
+							'lightboxCaptionBackgroundColor' => array(
+								'type'    => 'string',
+								'default' => 'rgba(0,0,0,1)',
+							),
+
+						),
 						// Caption Typography Styling.
 						array(
 							'captionLoadGoogleFonts' => array(
@@ -583,6 +664,57 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 								'type' => 'number',
 							),
 							'loadMoreLineHeightMob'   => array(
+								'type' => 'number',
+							),
+						),
+						// Lightbox Typography Styling.
+						array(
+							'lightboxLoadGoogleFonts' => array(
+								'type'    => 'boolean',
+								'default' => false,
+							),
+							'lightboxFontFamily' => array(
+								'type'    => 'string',
+								'default' => 'Default',
+							),
+							'lightboxFontWeight' => array(
+								'type' => 'string',
+							),
+							'lightboxFontStyle' => array(
+								'type'    => 'string',
+								'default' => 'normal',
+							),
+							'lightboxTransform' => array(
+								'type' => 'string',
+							),
+							'lightboxDecoration' => array(
+								'type'    => 'string',
+								'default' => 'none',
+							),
+							'lightboxFontSizeType' => array(
+								'type'    => 'string',
+								'default' => 'px',
+							),
+							'lightboxFontSize' => array(
+								'type' => 'number',
+							),
+							'lightboxFontSizeTab' => array(
+								'type' => 'number',
+							),
+							'lightboxFontSizeMob' => array(
+								'type' => 'number',
+							),
+							'lightboxLineHeightType' => array(
+								'type'    => 'string',
+								'default' => 'em',
+							),
+							'lightboxLineHeight' => array(
+								'type' => 'number',
+							),
+							'lightboxLineHeightTab' => array(
+								'type' => 'number',
+							),
+							'lightboxLineHeightMob' => array(
 								'type' => 'number',
 							),
 						),
@@ -830,6 +962,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 				$grid_page_allowed_tags = array_merge( $grid_page_kses, $grid_page_args );
 
 				ob_start();
+
 				?>
 					<div
 						class="<?php echo esc_attr( implode( ' ', $wrap ) ); ?>"
@@ -874,9 +1007,83 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 				}
 				?>
 					</div>
+					<?php if ( 'lightbox' === $attributes['imageClickEvent'] ): ?>
+						<div class='spectra-image-gallery__control-lightbox'>
+							<?= $this->render_lightbox( $attributes ) ?>
+							<?php if ( $attributes['lightboxThumbnails'] ) { echo $this->render_thumbnails( $attributes ); } ?>
+							<?php if ( $attributes['lightboxDisplayCount'] ): ?>
+								<div class='spectra-image-gallery__control-lightbox--count'>
+									<span class='spectra-image-gallery__control-lightbox--count-page'>1</span>/<span class='spectra-image-gallery__control-lightbox--count-total'>1</span>
+								</div>
+							<?php endif; ?>
+							<?php if ( $attributes['lightboxDisplayCount'] ): ?>
+								<button class='spectra-image-gallery__control-lightbox--close'>
+									<?php UAGB_Helper::render_svg_html( $attributes['lightboxCloseIcon'] ); ?>
+								</button>
+							<?php endif; ?>
+						</div>
+					<?php endif; ?>
 				<?php
 				return ob_get_clean();
 			}
+		}
+
+		/**
+		 * Renders Lightbox.
+		 *
+		 * @param array $attributes Array of block attributes.
+		 *
+		 * @since x.x.x
+		 */
+		private function render_lightbox( $attributes ) {
+			$total_images = count( $attributes['mediaGallery'] );
+			ob_start();
+			?>
+				<div class="swiper spectra-image-gallery__control-lightbox--main" dir="<?= is_rtl() ? 'rtl' : '' ?>">
+					<div class="swiper-wrapper">
+						<?php for( $i = 0; $i < $total_images; $i++ ) { ?>							
+							<div class="swiper-slide">
+								<img class="swiper-lazy" data-src="<?= esc_url( $attributes['mediaGallery'][ $i ]['url'] ); ?>"/>
+								<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+								<?php if ( $attributes['lightboxDisplayCaptions'] ): ?>
+									<div class="spectra-image-gallery__control-lightbox--caption">
+										<?= $attributes['mediaGallery'][ $i ]['caption'] ? wp_kses_post( $attributes['mediaGallery'][ $i ]['caption'] ) : wp_kses_post( $attributes['imageDefaultCaption'] ) ?>
+									</div>
+								<?php endif; ?>
+							</div>
+						<?php } ?>
+					</div>
+					<div class="swiper-button-next"></div>
+					<div class="swiper-button-prev"></div>
+				</div>			
+			<?php
+			return ob_get_clean();
+		}
+
+		/**
+		 * Renders Lightbox Thumbnails.
+		 *
+		 * @param array $attributes Array of block attributes.
+		 *
+		 * @since x.x.x
+		 */
+		private function render_thumbnails( $attributes ) {
+			$total_images = count( $attributes['mediaGallery'] );
+			ob_start()
+			?>
+				<div class="spectra-image-gallery__control-lightbox--thumbnails-wrapper">
+					<div class="swiper spectra-image-gallery__control-lightbox--thumbnails">
+						<div class="swiper-wrapper">
+							<?php for( $i = 0; $i < $total_images; $i++ ) { ?>
+								<div class="swiper-slide">
+									<img src="<?= esc_url( $attributes['mediaGallery'][ $i ]['sizes']['thumbnail']['url'] ); ?>"/>
+								</div>
+							<?php } ?>
+						</div>
+					</div>
+				</div>
+			<?php
+			return ob_get_clean();
 		}
 
 		/**
@@ -1296,6 +1503,122 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 							} );
 							tileSizer.style.display = 'none';
 						}
+					}
+				} );
+			<?php
+			return ob_get_clean();
+		}
+		
+		/**
+		 * Renders Front-end Lightbox.
+		 *
+		 * @param string $id                  Block ID.
+		 * @param array  $attr                Array of attributes.
+		 * @param array  $lightbox_settings   Array of Lightbox Swiper Settings.
+		 * @param array  $thumbnail_settings  Array of Thumbnail Swiper Settings.
+		 * @param string $selector            Selector to identify the lightbox.
+		 *
+		 * @since x.x.x
+		 */
+		public static function render_frontend_lightbox( $id, $attr, $lightbox_settings, $thumbnail_settings, $selector ) {
+			ob_start();
+			?>
+				let blockScope = document.querySelector( '.uagb-block-<?= esc_html( $id ); ?>' );
+				let lightboxSwiper = null;
+				let thumbnailSwiper = null;
+
+				const updateCounter = ( curPage ) => {
+					if ( ! blockScope ) {
+						return;
+					}
+					const lightbox = blockScope.nextElementSibling;
+					const counter = lightbox.querySelector( '.spectra-image-gallery__control-lightbox--count-page' );
+					counter.innerHTML = parseInt( curPage ) + 1;
+				};
+
+				const enableLightbox = ( goTo ) => {
+					if ( ! lightboxSwiper ) {
+						return;
+					}
+					const lightbox = blockScope.nextElementSibling;
+					lightbox.style.display = '';
+					setTimeout( () => {
+						lightboxSwiper.slideTo( goTo );
+					}, 100 );
+					setTimeout( () => {
+						lightbox.style.opacity = 1;
+					}, 250 );
+				}
+
+				window.addEventListener( 'DOMContentLoaded', () => {
+					if ( ! blockScope ) {
+						return;
+					}
+					<?php // Check if the adminbar is present. ?>
+					const adminBar = document.getElementById( 'wpadminbar' );
+					<?php // Get all the images and assign them click events. ?>
+					const images = blockScope.querySelectorAll( '.spectra-image-gallery__media-wrapper' );
+					for ( let i = 0; i < images.length; i++ ) {
+						images[ i ].style.cursor = 'pointer';
+						images[ i ].addEventListener( 'click', () => enableLightbox( i ) );
+					}
+					<?php // First set the Thumbnail Swiper if needed. This will be used in the Lightbox Swiper. ?>
+					let lightboxSettings = <?= $lightbox_settings ?>;
+					<?php if ( $attr['lightboxThumbnails'] ): ?>
+						thumbnailSwiper = new Swiper( "<?= esc_attr( $selector . '+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--thumbnails' ); ?>",
+							<?= $thumbnail_settings; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						);
+						lightboxSettings = {
+							...lightboxSettings,
+							thumbs: {
+								swiper: thumbnailSwiper,
+							},
+						}
+					<?php endif; ?>
+					<?php // Next set the Lightbox Swiper. ?>
+					lightboxSwiper = new Swiper( "<?= esc_attr( $selector . '+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main' ); ?>",
+						<?= $lightbox_settings; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					);
+					<?php // Now run the Swiper Updations if needed. ?>
+					lightboxSwiper.on( 'activeIndexChange', ( swiperInstance ) => {
+						<?php if ( $attr['lightboxThumbnails'] ): ?>
+							thumbnailSwiper.slideTo( swiperInstance.activeIndex );
+						<?php endif; ?>
+						<?php if ( $attr['lightboxDisplayCount'] ): ?>
+							updateCounter( swiperInstance.activeIndex );
+						<?php endif; ?>
+					} );
+					<?php if ( $attr['lightboxThumbnails'] ): ?>
+						thumbnailSwiper.on( 'activeIndexChange', ( swiperInstance ) => {
+							lightboxSwiper.slideTo( swiperInstance.activeIndex );
+						} );
+					<?php endif; ?>
+					if ( blockScope.nextElementSibling.classList.contains( 'spectra-image-gallery__control-lightbox' ) ) {
+						<?php // Then set the Close Button if needed. ?>
+						const lightbox = blockScope.nextElementSibling;
+						lightbox.style.display = 'none';
+						<?php if ( $attr['lightboxCloseIcon'] ): ?>
+							const closeButton = lightbox.querySelector( '.spectra-image-gallery__control-lightbox--close' );
+							if ( closeButton ) {
+								closeButton.addEventListener( 'click', () => {
+									lightbox.style.opacity = 0;
+									setTimeout( () => {
+										lightbox.style.display = 'none';
+									}, 250 );
+								} );
+								if ( adminBar ) {
+									closeButton.style.marginTop = '32px';
+								}
+							}
+						<?php endif; ?>
+						<?php // Finally set the Total if needed. ?>
+						<?php if ( $attr['lightboxDisplayCount'] ): ?>
+							const lightboxTotal = lightbox.querySelector( '.spectra-image-gallery__control-lightbox--count-total' );
+							lightboxTotal.innerHTML = '<?= count( (array) $attr['mediaGallery'] ) ?>';
+							if ( adminBar ) {
+								lightboxTotal.parentElement.style.marginTop = '32px';
+							}
+						<?php endif; ?>
 					}
 				} );
 			<?php

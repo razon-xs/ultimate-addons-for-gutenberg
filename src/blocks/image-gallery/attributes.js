@@ -67,7 +67,7 @@ const attributes = {
 		default: 'none',
 	},
 
-	// LightBox Settings
+	// Lightbox Settings
 
 	lightboxDisplayCaptions: {
 		type: 'boolean',
@@ -673,7 +673,7 @@ const attributes = {
 		},
 	},
 
-	// LightBox Styling
+	// Lightbox Styling.
 
 	lightboxEdgeDistance: {
 		type: 'number',
@@ -923,8 +923,7 @@ const attributes = {
 		},
 	},
 
-
-	// Lightbox Typography Styling
+	// Lightbox Typography Styling.
 
 	lightboxLoadGoogleFonts: {
 		type: 'boolean',

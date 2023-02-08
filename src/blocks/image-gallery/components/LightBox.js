@@ -197,42 +197,4 @@ const Lightbox = ( { attributes, setAttributes, setLightboxPreview } ) => {
 	)
 };
 
-
-// Media Object Example.
-
-// alt: ""
-// caption: "A Game of Chess"
-// id: 42
-// link: "https://spectra.test/tirt/pexels-vlada-karpovich-6114952/"
-// mime: "image/jpeg"
-// sizes: {
-// 	full: {
-// 		height: 2560
-// 		orientation: "portrait"
-// 		url: "https://spectra.test/wp-content/uploads/2022/11/pexels-vlada-karpovich-6114952-scaled.jpg"
-// 		width: 1707
-// 	}
-// 	large: {
-// 		height: 1024
-// 		orientation: "portrait"
-// 		url: "https://spectra.test/wp-content/uploads/2022/11/pexels-vlada-karpovich-6114952-683x1024.jpg"
-// 		width: 683
-// 	}
-// 	medium: {
-// 		height: 300
-// 		orientation: "portrait"
-// 		url: "https://spectra.test/wp-content/uploads/2022/11/pexels-vlada-karpovich-6114952-200x300.jpg"
-// 		width: 200
-// 	}
-// 	thumbnail: {
-// 		height: 150
-// 		orientation: "landscape"
-// 		url: "https://spectra.test/wp-content/uploads/2022/11/pexels-vlada-karpovich-6114952-150x150.jpg"
-// 		width: 150
-// 	}
-// }
-// subtype: "jpeg"
-// type: "image"
-// url: "https://spectra.test/wp-content/uploads/2022/11/pexels-vlada-karpovich-6114952-scaled.jpg"
-
 export default Lightbox;

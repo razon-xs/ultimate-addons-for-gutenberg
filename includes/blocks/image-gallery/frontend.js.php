@@ -8,6 +8,8 @@
  */
 
 $block_name = 'image-gallery';
+$selector = '.uagb-block-' . $id;
+$js       = '';
 
 $paginate_arrow_size_fallback = UAGB_Block_Helper::get_fallback_number( $attr['paginateArrowSize'], 'paginateArrowSize', $block_name );
 
@@ -46,9 +48,43 @@ $slick_options = apply_filters(
 	$id
 );
 
-$settings = wp_json_encode( $slick_options );
-$selector = '.uagb-block-' . $id;
-$js       = '';
+// The Thumbnail Swiper Association is handled in the JS in Class Spectra Image Gallery.
+$lightbox_options = apply_filters(
+	'uagb_image_gallery_lightbox_options',
+	array(		
+		'lazy'          => true,
+		'slidesPerView' => 1,
+		'navigation'    => array(
+			'nextEl' => $selector . '+.spectra-image-gallery__control-lightbox .swiper-button-next',
+			'prevEl' => $selector . '+.spectra-image-gallery__control-lightbox .swiper-button-prev',
+		),
+	),
+	$id
+);
+
+$thumbnail_options = apply_filters(
+	'uagb_image_gallery_thumbnail_options',
+	array(
+		'centeredSlides'        => true,
+		'slidesPerView'         => 7,
+		'slideToClickedSlide'   => true,
+		'watchSlidesProgres'    => true,
+		'watchSlidesVisibility' => true,
+		'breakpoints'           => array(
+			1024 => array(
+				'slidesPerView' => 5,
+			),
+			767  => array(
+				'slidesPerView' => 3,
+			),
+		),
+	),
+	$id
+);
+
+$settings           = wp_json_encode( $slick_options );
+$lightbox_settings  = wp_json_encode( $lightbox_options );
+$thumbnail_settings = $attr['lightboxThumbnails'] ? wp_json_encode( $thumbnail_options ) : null;
 
 if ( $attr['mediaGallery'] ) {
 	switch ( $attr['feedLayout'] ) {
@@ -66,6 +102,9 @@ if ( $attr['mediaGallery'] ) {
 		case 'tiled':
 			$js = Spectra_Image_Gallery::render_frontend_tiled_layout( $id );
 			break;
+	}
+	if ( 'lightbox' === $attr['imageClickEvent'] ) {
+		$js .= Spectra_Image_Gallery::render_frontend_lightbox( $id, $attr, $lightbox_settings, $thumbnail_settings, $selector );
 	}
 }
 

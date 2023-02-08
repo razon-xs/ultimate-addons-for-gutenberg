@@ -322,6 +322,51 @@ $selectors = array(
 	' .spectra-image-gallery__media-wrapper:hover .spectra-image-gallery__media-thumbnail-caption a' => array(
 		'color' => ( 'antiHover' === $attr['captionVisibility'] ) ? 'rgba(0,0,0,0)' : ( ( 'always' === $attr['captionVisibility'] && $attr['captionSeparateColors'] ) ? $attr['captionColorHover'] : $attr['captionColor'] ),
 	),
+
+	// Lightbox Selectors.
+	'+.spectra-image-gallery__control-lightbox'          => array(
+		'background-color' => $attr['lightboxBackgroundColor'],
+		'backdrop-filter'  => $attr['lightboxBackgroundEnableBlur'] ? 'blur( ' . $attr['lightboxBackgroundBlurAmount'] . 'px)' : '',
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--caption' => array(
+		'color'           => $attr['lightboxCaptionColor'],
+		'background'      => 'linear-gradient(rgba(0,0,0,0), ' . $attr['lightboxCaptionBackgroundColor'] . ')',
+		'height'          => UAGB_Helper::get_css_value( $attr['lightboxCaptionHeightFallback'], 'px' ),
+		'font-family'     => ( 'Default' === $attr['lightboxFontFamily'] ) ? '' : $attr['lightboxFontFamily'],
+		'font-weight'     => $attr['lightboxFontWeight'],
+		'font-style'      => $attr['lightboxFontStyle'],
+		'text-decoration' => $attr['lightboxDecoration'],
+		'text-transform'  => $attr['lightboxTransform'],
+		'font-size'       => UAGB_Helper::get_css_value( $attr['lightboxFontSize'], $attr['lightboxFontSizeType'] ),
+		'line-height'     => UAGB_Helper::get_css_value( $attr['lightboxLineHeight'], $attr['lightboxLineHeightType'] ),
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--thumbnails-wrapper' => array(
+		'background-color' => $attr['lightboxDisplayCaptions'] ? $attr['lightboxCaptionBackgroundColor'] : 'transparent',
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--count'   => array(
+		'top'         => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistance'], 'px' ),
+		'left'        => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistance'], 'px' ),
+		'color'       => $attr['lightboxIconColor'],
+		'font-family' => ( 'Default' === $attr['lightboxFontFamily'] ) ? '' : $attr['lightboxFontFamily'],
+		'font-size'   => UAGB_Helper::get_css_value( $attr['lightboxIconSize'], 'px' ) ? 'calc(' . UAGB_Helper::get_css_value( $attr['lightboxIconSize'], 'px' ) . ' * 3 / 4 )' : '',
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--close'   => array(
+		'top'   => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistance'], 'px' ),
+		'right' => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistance'], 'px' ),
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--close svg' => array(
+		'width'  => UAGB_Helper::get_css_value( $attr['lightboxIconSize'], 'px' ),
+		'height' => UAGB_Helper::get_css_value( $attr['lightboxIconSize'], 'px' ),
+		'fill'   => $attr['lightboxIconColor'],
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main .swiper-button-prev' => array(
+		'left'  => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistance'], 'px' ),
+		'color' => $attr['lightboxIconColor'],
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main .swiper-button-next' => array(
+		'right' => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistance'], 'px' ),
+		'color' => $attr['lightboxIconColor'],
+	),
 );
 
 $t_selectors = array(
@@ -405,6 +450,30 @@ $t_selectors = array(
 	),
 	' .spectra-image-gallery__media-thumbnail-caption--bar-inside' => $main_title_border_css_tablet,
 	' .spectra-image-gallery__media-thumbnail-caption--bar-outside' => $main_title_border_css_tablet,
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--caption' => array(
+		'height'      => UAGB_Helper::get_css_value( $attr['lightboxCaptionHeightTabFallback'], 'px' ),
+		'font-size'   => UAGB_Helper::get_css_value( $attr['lightboxFontSizeTab'], $attr['lightboxFontSizeType'] ),
+		'line-height' => UAGB_Helper::get_css_value( $attr['lightboxLineHeightTab'], $attr['lightboxLineHeightType'] ),
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--count'  => array(
+		'top'       => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceTablet'], 'px' ),
+		'left'      => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceTablet'], 'px' ),
+		'font-size' => UAGB_Helper::get_css_value( $attr['lightboxIconSizeTablet'], 'px' ) ? 'calc(' . UAGB_Helper::get_css_value( $attr['lightboxIconSizeTablet'], 'px' ) . ' * 3 / 4 )' : '',
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--close'  => array(
+		'top'   => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceTablet'], 'px' ),
+		'right' => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceTablet'], 'px' ),
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--close svg' => array(
+		'width'  => UAGB_Helper::get_css_value( $attr['lightboxIconSizeTablet'], 'px' ),
+		'height' => UAGB_Helper::get_css_value( $attr['lightboxIconSizeTablet'], 'px' ),
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main .swiper-button-prev' => array(
+		'left' => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceTablet'], 'px' ),
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main .swiper-button-next' => array(
+		'right' => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceTablet'], 'px' ),
+	),
 );
 
 $m_selectors = array(
@@ -488,6 +557,30 @@ $m_selectors = array(
 	),
 	' .spectra-image-gallery__media-thumbnail-caption--bar-inside' => $main_title_border_css_mobile,
 	' .spectra-image-gallery__media-thumbnail-caption--bar-outside' => $main_title_border_css_mobile,
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--caption' => array(
+		'height'      => UAGB_Helper::get_css_value( $attr['lightboxCaptionHeightMobFallback'], 'px' ),
+		'font-size'   => UAGB_Helper::get_css_value( $attr['lightboxFontSizeMob'], $attr['lightboxFontSizeType'] ),
+		'line-height' => UAGB_Helper::get_css_value( $attr['lightboxLineHeightMob'], $attr['lightboxLineHeightType'] ),
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--count'  => array(
+		'top'       => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceMobile'], 'px' ),
+		'left'      => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceMobile'], 'px' ),
+		'font-size' => UAGB_Helper::get_css_value( $attr['lightboxIconSizeMobile'], 'px' ) ? 'calc(' . UAGB_Helper::get_css_value( $attr['lightboxIconSizeMobile'], 'px' ) .' * 3 / 4 )' : '',
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--close'  => array(
+		'top'   => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceMobile'], 'px' ),
+		'right' => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceMobile'], 'px' ),
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--close svg' => array(
+		'width'  => UAGB_Helper::get_css_value( $attr['lightboxIconSizeMobile'], 'px' ),
+		'height' => UAGB_Helper::get_css_value( $attr['lightboxIconSizeMobile'], 'px' ),
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main .swiper-button-prev' => array(
+		'left' => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceMobile'], 'px' ),
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main .swiper-button-next' => array(
+		'right' => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceMobile'], 'px' ),
+	),
 );
 
 // Background Effect based styling.
