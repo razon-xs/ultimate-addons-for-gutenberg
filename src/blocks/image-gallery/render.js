@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import React, { useLayoutEffect } from 'react';
 import InitialSelector from './components/InitialSelector';
 import ImageGallery from './components/ImageGallery';
-import Lightbox from './components/Lightbox';
+import Lightbox from './components/LightBox';
 import { useDeviceType } from '@Controls/getPreviewType';
 import styles from './editor.lazy.scss';
 
