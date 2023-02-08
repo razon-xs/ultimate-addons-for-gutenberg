@@ -236,7 +236,7 @@ const Render = ( props ) => {
 					) }
 				>
 					{ ( 'window-top-left' === closeIconPosition || 'window-top-right' === closeIconPosition ) && (
-						<div className={classnames( "uagb-modal-popup-close", closeIconPosition )}>
+						<div className={classnames( 'uagb-modal-popup-close', closeIconPosition )}>
 							{ '' !== closeIcon && ( renderSVG( closeIcon ) ) }
 						</div>
 					) }
