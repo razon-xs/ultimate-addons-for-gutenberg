@@ -671,17 +671,17 @@
 					align-items: center;
 					justify-content: center;
 					opacity: 0.5;
-					transform: scale( 75% );
+					transform: scale(75%);
 					-webkit-transition-property: opacity, transform;
 					-moz-transition-property: opacity, transform;
 					-o-transition-property: opacity, transform;
 					transition-property: opacity, transform;
-					
+
 					@include transitionSpeeds();
 
 					&-active {
 						opacity: 1;
-						transform: scale( 100% );
+						transform: scale(100%);
 					}
 
 					img {

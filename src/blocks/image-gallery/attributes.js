@@ -1,6 +1,5 @@
 import { __ } from '@wordpress/i18n';
 import { getBorderAttributes } from '@Controls/generateAttributes';
-import { bool } from 'prop-types';
 
 const arrowBorderAttributes = getBorderAttributes( 'arrow' );
 const btnBorderAttributes = getBorderAttributes( 'btn' );

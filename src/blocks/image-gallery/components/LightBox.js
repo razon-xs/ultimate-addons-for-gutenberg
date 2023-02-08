@@ -134,10 +134,11 @@ const Lightbox = ( { attributes, setAttributes, setLightboxPreview } ) => {
 		>
 			<div className='swiper-wrapper'>
 				{ mediaGallery.map( ( media ) => (
-					<div className='swiper-slide'>
+					<div className='swiper-slide' key={ media.id }>
 						<img
 							className='swiper-lazy'
 							data-src={ media.url }
+							alt={ media.alt }
 						/>
 						<div className='swiper-lazy-preloader swiper-lazy-preloader-white'/>
 						{ lightboxDisplayCaptions && (
@@ -167,8 +168,8 @@ const Lightbox = ( { attributes, setAttributes, setLightboxPreview } ) => {
 			>
 				<div className='swiper-wrapper'>
 					{ mediaGallery.map( ( media ) => (
-						<div className='swiper-slide'>
-							<img src={ media.sizes.thumbnail.url } />
+						<div className='swiper-slide' key={ media.id }>
+							<img src={ media.sizes.thumbnail.url } alt={ media.alt } />
 						</div>
 					) ) }
 				</div>

@@ -1047,7 +1047,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 					<div class="swiper-wrapper">
 						<?php for( $i = 0; $i < $total_images; $i++ ) { ?>							
 							<div class="swiper-slide">
-								<img class="swiper-lazy" data-src="<?= esc_url( $attributes['mediaGallery'][ $i ]['url'] ); ?>"/>
+								<img class="swiper-lazy" data-src="<?= esc_url( $attributes['mediaGallery'][ $i ]['url'] ); ?>" alt="<?= esc_attr( $attributes['mediaGallery'][ $i ]['alt'] ) ?>"/>
 								<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
 								<?php if ( $attributes['lightboxDisplayCaptions'] ): ?>
 									<div class="spectra-image-gallery__control-lightbox--caption">
@@ -1080,7 +1080,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 						<div class="swiper-wrapper">
 							<?php for( $i = 0; $i < $total_images; $i++ ) { ?>
 								<div class="swiper-slide">
-									<img src="<?= esc_url( $attributes['mediaGallery'][ $i ]['sizes']['thumbnail']['url'] ); ?>"/>
+									<img src="<?= esc_url( $attributes['mediaGallery'][ $i ]['sizes']['thumbnail']['url'] ); ?>" alt="<?= esc_attr( $attributes['mediaGallery'][ $i ]['alt'] ) ?>"/>
 								</div>
 							<?php } ?>
 						</div>
