@@ -1011,9 +1011,9 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 						<div class='spectra-image-gallery__control-lightbox'>
 							<?php $this->render_lightbox( $attributes ); ?>
 							<?php
-								if ( $attributes['lightboxThumbnails'] ) {
+							if ( $attributes['lightboxThumbnails'] ) {
 									$this->render_thumbnails( $attributes );
-								}
+							}
 							?>
 							<?php if ( $attributes['lightboxDisplayCount'] ) : ?>
 								<div class='spectra-image-gallery__control-lightbox--count'>

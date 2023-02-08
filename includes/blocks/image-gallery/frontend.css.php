@@ -581,7 +581,7 @@ $m_selectors = array(
 		'font-size'   => UAGB_Helper::get_css_value( $attr['lightboxFontSizeMob'], $attr['lightboxFontSizeType'] ),
 		'line-height' => UAGB_Helper::get_css_value( $attr['lightboxLineHeightMob'], $attr['lightboxLineHeightType'] ),
 	),
-	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--count'=> array(
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--count' => array(
 		'top'         => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceMobile'], 'px' ),
 		'left'        => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceMobile'], 'px' ),
 		'font-size'   => UAGB_Helper::get_css_value( $attr['lightboxIconSizeMobile'], 'px' ) ? 'calc(' . UAGB_Helper::get_css_value( $attr['lightboxIconSizeMobile'], 'px' ) . ' * 3 / 4 )' : '',
