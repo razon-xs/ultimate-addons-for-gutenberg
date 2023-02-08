@@ -13,6 +13,7 @@ import {
 	InspectorControls,
 } from '@wordpress/block-editor';
 import renderSVG from '@Controls/renderIcon';
+import renderCustomSVG from './separator-svg';
 import { Icon } from '@wordpress/components';
 import SpacingControl from '@Components/spacing-control';
 import UAGTextControl from '@Components/text-control';
@@ -92,59 +93,7 @@ const Settings = ( props ) => {
 
 	// Separator settings.
 	const separatorGeneralSettings = () => {
-	    const borders = [
-			{
-				value: 'none',
-				label: __( 'None', 'ultimate-addons-for-gutenberg' ),
-			},
-			{
-				value: 'dotted',
-				label: __( 'Dotted', 'ultimate-addons-for-gutenberg' ),
-			},
-			{
-				value: 'dashed',
-				label: __( 'Dashed', 'ultimate-addons-for-gutenberg' ),
-			},
-			{
-				value: 'double',
-				label: __( 'Double', 'ultimate-addons-for-gutenberg' ),
-			},
-			{
-				value: 'solid',
-				label: __( 'Solid', 'ultimate-addons-for-gutenberg' ),
-			},
-			{
-				value: 'waves',
-				label: __( 'Waves', 'ultimate-addons-for-gutenberg' ),
-			},
-			{
-				value: 'wave_pattern',
-				label: __( 'Waves Pattern', 'ultimate-addons-for-gutenberg' ),
-			},
-			{
-				value: 'clouds',
-				label: __( 'Clouds', 'ultimate-addons-for-gutenberg' ),
-			},
-			{
-				value: 'zigzag',
-				label: __( 'ZigZag', 'ultimate-addons-for-gutenberg' ),
-			},
-			{
-				value: 'pyramids',
-				label: __( 'Pyramids', 'ultimate-addons-for-gutenberg' ),
-			},
-			{
-				value: 'curve',
-				label: __( 'Curve', 'ultimate-addons-for-gutenberg' ),
-			},
-			{
-				value: 'curve_asymmetrical',
-				label: __(
-					'Curve Asymmetrical',
-					'ultimate-addons-for-gutenberg'
-				),
-			},
-		];
+	
 		return (
 			<UAGAdvancedPanelBody
 				title={ __( 'Separator', 'ultimate-addons-for-gutenberg' ) }
@@ -160,7 +109,51 @@ const Settings = ( props ) => {
 						label: 'separatorStyle',
 					} }
 					setAttributes={ setAttributes }
-					options={ borders }
+					options={ [ {
+						value: 'none',
+						label: __( 'None', 'ultimate-addons-for-gutenberg' ),
+					},
+					{
+						value: 'dotted',
+						label: __( 'Dotted', 'ultimate-addons-for-gutenberg' ),
+					},
+					{
+						value: 'dashed',
+						label: __( 'Dashed', 'ultimate-addons-for-gutenberg' ),
+					},
+					{
+						value: 'double',
+						label: __( 'Double', 'ultimate-addons-for-gutenberg' ),
+					},
+					{
+						value: 'solid',
+						label: __( 'Solid', 'ultimate-addons-for-gutenberg' ),
+					},
+					{
+						value: 'zigzag',
+						label: __( 'ZigZag', 'ultimate-addons-for-gutenberg' ),	
+					},
+					{
+						value: 'curved',
+						label: __( 'Curved', 'ultimate-addons-for-gutenberg' ),
+					},
+					{
+						value: 'curly',
+						label: __( 'Curly', 'ultimate-addons-for-gutenberg' ),
+					},
+					{
+						value: 'square',
+						label: __( 'Square', 'ultimate-addons-for-gutenberg' ),
+					},
+					{
+						value: 'leaves',
+						label: __( 'Leaves', 'ultimate-addons-for-gutenberg' ),
+					},
+					{
+						value: 'slash',
+						label: __( 'Slash', 'ultimate-addons-for-gutenberg' ),
+					},
+				] } 
 				/>
 				<MultiButtonsControl
 					setAttributes={ setAttributes }

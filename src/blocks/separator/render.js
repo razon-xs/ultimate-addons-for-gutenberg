@@ -3,6 +3,7 @@ import { RichText } from '@wordpress/block-editor';
 import React , { useLayoutEffect } from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
 import renderSVG from '@Controls/renderIcon';
+import renderCustomSVG from './separator-svg';
 import styles from './editor.lazy.scss';
 
 const Render = ( props ) => {
