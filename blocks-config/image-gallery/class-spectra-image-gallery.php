@@ -1523,6 +1523,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 		public static function render_frontend_lightbox( $id, $attr, $lightbox_settings, $thumbnail_settings, $selector ) {
 			ob_start();
 			?>
+				const theBody = document.querySelector( 'body' );
 				let blockScope = document.querySelector( '.uagb-block-<?= esc_html( $id ); ?>' );
 				let lightboxSwiper = null;
 				let thumbnailSwiper = null;
@@ -1540,6 +1541,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 					if ( ! lightboxSwiper ) {
 						return;
 					}
+					theBody.style.overflow = 'hidden';
 					const lightbox = blockScope.nextElementSibling;
 					lightbox.style.display = '';
 					setTimeout( () => {
@@ -1601,6 +1603,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 							const closeButton = lightbox.querySelector( '.spectra-image-gallery__control-lightbox--close' );
 							if ( closeButton ) {
 								closeButton.addEventListener( 'click', () => {
+									theBody.style.overflow = '';
 									lightbox.style.opacity = 0;
 									setTimeout( () => {
 										lightbox.style.display = 'none';
