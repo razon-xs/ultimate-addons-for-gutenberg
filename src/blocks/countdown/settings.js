@@ -23,6 +23,7 @@ import {
 	Icon,
     ToggleControl,
 	DateTimePicker,
+	Notice,
 } from '@wordpress/components';
 import {
     InspectorControls
@@ -65,22 +66,6 @@ export default function Settings( props ) {
 		digitLetterSpacingType,
 		digitLetterSpacingMobile,
 		digitLetterSpacingTablet,
-		digitTopMargin,
-		digitRightMargin,
-		digitLeftMargin,
-		digitBottomMargin,
-		digitTopMarginTablet,
-		digitRightMarginTablet,
-		digitLeftMarginTablet,
-		digitBottomMarginTablet,
-		digitTopMarginMobile,
-		digitRightMarginMobile,
-		digitLeftMarginMobile,
-		digitBottomMarginMobile,
-		digitMarginUnit,
-		digitMarginUnitTablet,
-		digitMarginUnitMobile,
-		digitMarginLink,
         // label.
 		labelLoadGoogleFonts,
 		labelFontFamily,
@@ -101,22 +86,6 @@ export default function Settings( props ) {
 		labelLetterSpacingType,
 		labelLetterSpacingMobile,
 		labelLetterSpacingTablet,
-		labelTopMargin,
-		labelRightMargin,
-		labelLeftMargin,
-		labelBottomMargin,
-		labelTopMarginTablet,
-		labelRightMarginTablet,
-		labelLeftMarginTablet,
-		labelBottomMarginTablet,
-		labelTopMarginMobile,
-		labelRightMarginMobile,
-		labelLeftMarginMobile,
-		labelBottomMarginMobile,
-		labelMarginUnit,
-		labelMarginUnitTablet,
-		labelMarginUnitMobile,
-		labelMarginLink,
 		// Separator styling.
 		separatorLoadGoogleFonts,
 		separatorFontFamily,
@@ -196,10 +165,18 @@ export default function Settings( props ) {
 		boxAlign,
 		boxAlignTablet,
 		boxAlignMobile,
+		// Box Width.
+		boxWidth,
+		boxWidthTablet,
+		boxWidthMobile,
 		// Box Spacing.
 		boxSpacing,
 		boxSpacingTablet,
 		boxSpacingMobile,
+		// Internal Box Spacing.
+		internalBoxSpacing,
+		internalBoxSpacingTablet,
+		internalBoxSpacingMobile,
 		// Box Flex Direction.
 		boxFlex,
 		boxFlexTablet,
@@ -277,6 +254,49 @@ export default function Settings( props ) {
 		},
 	];
 
+	const flexAlignmentOptions = [
+		{
+			value: 'flex-start',
+			icon: (
+				<Icon
+					icon={ renderSVG( 'fa fa-align-left' ) }
+				/>
+			),
+			tooltip: __(
+				'Left',
+				'ultimate-addons-for-gutenberg'
+			),
+		},
+		{
+			value: 'center',
+			icon: (
+				<Icon
+					icon={ renderSVG(
+						'fa fa-align-center'
+					) }
+				/>
+			),
+			tooltip: __(
+				'Center',
+				'ultimate-addons-for-gutenberg'
+			),
+		},
+		{
+			value: 'flex-end',
+			icon: (
+				<Icon
+					icon={ renderSVG(
+						'fa fa-align-right'
+					) }
+				/>
+			),
+			tooltip: __(
+				'Right',
+				'ultimate-addons-for-gutenberg'
+			),
+		},
+	];
+
 	// <------------------ GOOGLE FONTS ------------------>
 	// Loading Google Fonts.
 	let loadDigitGoogleFonts;
@@ -327,6 +347,9 @@ export default function Settings( props ) {
 		);
 	}
 
+	// This is to fetch the local system's offset from UTC and helps the user know their offset from 00:00UTC.
+	const timezone = new Date().toLocaleTimeString( 'en-us',{timeZoneName:'short'} ).split( ' ' )[2].slice( 3 );
+
     // <------------------ GENERAL TAB ------------------>
     const generalPanel = (
         <UAGAdvancedPanelBody
@@ -335,7 +358,17 @@ export default function Settings( props ) {
 		>
             { timerType && 
                 <div className='uagb-countdown__datetime-picker'>
-                    <h2>Timer End Date &amp; Time (UTC)</h2>
+                    <div><h2>{ __( 'Timer End Date & Time (UTC)', 'ultimate-addons-for-gutenberg' ) }</h2></div>
+					<Notice
+						className='uagb-countdown-settings_utc-notice'
+						status='info'
+						isDismissible={false}
+					>
+						<em>
+							<p>{ __( 'The time entered should be in UTC which is the same. ', 'ultimate-addons-for-gutenberg' ) }<a href='https://www.worldtimeserver.com/time-zones/utc/'>{ __( 'Click here to know more about UTC.', 'ultimate-addons-for-gutenberg' ) }</a></p>
+							<p><strong>{ __( 'Your offset from UTC: ', 'ultimate-addons-for-gutenberg' ) }</strong>{timezone}</p>
+						</em>
+					</Notice>
                     <DateTimePicker
 						className="uagb-date-picker"
 						currentDate={ endDateTime.slice( 0, -1 ) }
@@ -501,7 +534,7 @@ export default function Settings( props ) {
 						},
 				} }
 				className="uagb-multi-button-alignment-control"
-				options={ alignmentOptions }
+				options={ flexAlignmentOptions }
 				showIcons={ true }
 			/>
 			<MultiButtonsControl
@@ -568,6 +601,30 @@ export default function Settings( props ) {
 			}
 			<ResponsiveSlider
 				label={ __(
+					'Box Width',
+					'ultimate-addons-for-gutenberg'
+				) }
+				data={ {
+					desktop: {
+						value: boxWidth,
+						label: 'boxWidth',
+					},
+					tablet: {
+						value: boxWidthTablet,
+						label: 'boxWidthTablet',
+					},
+					mobile: {
+						value: boxWidthMobile,
+						label: 'boxWidthMobile',
+					},
+				} }
+				min={ 0 }
+				max={ 250 }
+				displayUnit={ false }
+				setAttributes={ setAttributes }
+			/>
+			<ResponsiveSlider
+				label={ __(
 					'Gap Between Boxes',
 					'ultimate-addons-for-gutenberg'
 				) }
@@ -583,6 +640,30 @@ export default function Settings( props ) {
 					mobile: {
 						value: boxSpacingMobile,
 						label: 'boxSpacingMobile',
+					},
+				} }
+				min={ 0 }
+				max={ 200 }
+				displayUnit={ false }
+				setAttributes={ setAttributes }
+			/>
+			<ResponsiveSlider
+				label={ __(
+					'Gap Between Digits & Labels',
+					'ultimate-addons-for-gutenberg'
+				) }
+				data={ {
+					desktop: {
+						value: internalBoxSpacing,
+						label: 'internalBoxSpacing',
+					},
+					tablet: {
+						value: internalBoxSpacingTablet,
+						label: 'internalBoxSpacingTablet',
+					},
+					mobile: {
+						value: internalBoxSpacingMobile,
+						label: 'internalBoxSpacingMobile',
 					},
 				} }
 				min={ 0 }
@@ -769,79 +850,6 @@ export default function Settings( props ) {
 					label: 'digitLetterSpacingTablet',
 				} }
 			/>
-            <SpacingControl
-				label={ __(
-					'Margin',
-					'ultimate-addons-for-gutenberg'
-				) }
-				valueTop={ {
-					value: digitTopMargin,
-					label: 'digitTopMargin',
-				} }
-				valueRight={ {
-					value: digitRightMargin,
-					label: 'digitRightMargin',
-				} }
-				valueBottom={ {
-					value: digitBottomMargin,
-					label: 'digitBottomMargin',
-				} }
-				valueLeft={ {
-					value: digitLeftMargin,
-					label: 'digitLeftMargin',
-				} }
-				valueTopTablet={ {
-					value: digitTopMarginTablet,
-					label: 'digitTopMarginTablet',
-				} }
-				valueRightTablet={ {
-					value: digitRightMarginTablet,
-					label: 'digitRightMarginTablet',
-				} }
-				valueBottomTablet={ {
-					value: digitBottomMarginTablet,
-					label: 'digitBottomMarginTablet',
-				} }
-				valueLeftTablet={ {
-					value: digitLeftMarginTablet,
-					label: 'digitLeftMarginTablet',
-				} }
-				valueTopMobile={ {
-					value: digitTopMarginMobile,
-					label: 'digitTopMarginMobile',
-				} }
-				valueRightMobile={ {
-					value: digitRightMarginMobile,
-					label: 'digitRightMarginMobile',
-				} }
-				valueBottomMobile={ {
-					value: digitBottomMarginMobile,
-					label: 'digitBottomMarginMobile',
-				} }
-				valueLeftMobile={ {
-					value: digitLeftMarginMobile,
-					label: 'digitLeftMarginMobile',
-				} }
-				unit={ {
-					value: digitMarginUnit,
-					label: 'digitMarginUnit',
-				} }
-				mUnit={ {
-					value: digitMarginUnitMobile,
-					label: 'digitMarginUnitMobile',
-				} }
-				tUnit={ {
-					value: digitMarginUnitTablet,
-					label: 'digitMarginUnitTablet',
-				} }
-				deviceType={ deviceType }
-				attributes={ attributes }
-				setAttributes={ setAttributes }
-				link={ {
-					value: digitMarginLink,
-					label: 'digitMarginLink',
-				} }
-			/>
         </UAGAdvancedPanelBody>
     );
 
@@ -941,79 +949,6 @@ export default function Settings( props ) {
 				letterSpacingTablet={ {
 					value: labelLetterSpacingTablet,
 					label: 'labelLetterSpacingTablet',
-				} }
-			/>
-            <SpacingControl
-				label={ __(
-					'Margin',
-					'ultimate-addons-for-gutenberg'
-				) }
-				valueTop={ {
-					value: labelTopMargin,
-					label: 'labelTopMargin',
-				} }
-				valueRight={ {
-					value: labelRightMargin,
-					label: 'labelRightMargin',
-				} }
-				valueBottom={ {
-					value: labelBottomMargin,
-					label: 'labelBottomMargin',
-				} }
-				valueLeft={ {
-					value: labelLeftMargin,
-					label: 'labelLeftMargin',
-				} }
-				valueTopTablet={ {
-					value: labelTopMarginTablet,
-					label: 'labelTopMarginTablet',
-				} }
-				valueRightTablet={ {
-					value: labelRightMarginTablet,
-					label: 'labelRightMarginTablet',
-				} }
-				valueBottomTablet={ {
-					value: labelBottomMarginTablet,
-					label: 'labelBottomMarginTablet',
-				} }
-				valueLeftTablet={ {
-					value: labelLeftMarginTablet,
-					label: 'labelLeftMarginTablet',
-				} }
-				valueTopMobile={ {
-					value: labelTopMarginMobile,
-					label: 'labelTopMarginMobile',
-				} }
-				valueRightMobile={ {
-					value: labelRightMarginMobile,
-					label: 'labelRightMarginMobile',
-				} }
-				valueBottomMobile={ {
-					value: labelBottomMarginMobile,
-					label: 'labelBottomMarginMobile',
-				} }
-				valueLeftMobile={ {
-					value: labelLeftMarginMobile,
-					label: 'labelLeftMarginMobile',
-				} }
-				unit={ {
-					value: labelMarginUnit,
-					label: 'labelMarginUnit',
-				} }
-				mUnit={ {
-					value: labelMarginUnitMobile,
-					label: 'labelMarginUnitMobile',
-				} }
-				tUnit={ {
-					value: labelMarginUnitTablet,
-					label: 'labelMarginUnitTablet',
-				} }
-				deviceType={ deviceType }
-				attributes={ attributes }
-				setAttributes={ setAttributes }
-				link={ {
-					value: labelMarginLink,
-					label: 'labelMarginLink',
 				} }
 			/>
         </UAGAdvancedPanelBody>

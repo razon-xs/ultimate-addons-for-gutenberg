@@ -1,5 +1,18 @@
 .uagb-countdown__datetime-picker {
 
+	// UTC Notice.
+	.uagb-countdown-settings_utc-notice {
+		margin-right: unset;
+		margin-left: unset;
+		padding-right: unset;
+		padding-bottom: unset;
+		margin-bottom: 1.5em;
+
+		.components-notice__content {
+			margin-right: unset;
+		}
+	}
+
 	// Hide timezone since this is UTC timer.
 	.components-datetime__timezone {
 		display: none;

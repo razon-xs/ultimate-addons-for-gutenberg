@@ -18,19 +18,6 @@ $pseudo_element_selector_type = $is_rtl ? 'before' : 'after';
 
 $separator_selector = '.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:' . $child_selector_type . '-child) .wp-block-uagb-countdown__time::' . $pseudo_element_selector_type;
 
-// Fallbacks.
-$box_spacing_fallback     = UAGB_Block_Helper::get_fallback_number( $attr['boxSpacing'], 'boxSpacing', $block_name );
-$attr['boxSpacingTablet'] = is_numeric( $attr['boxSpacingTablet'] ) ? $attr['boxSpacingTablet'] : $box_spacing_fallback;
-$attr['boxSpacingMobile'] = is_numeric( $attr['boxSpacingMobile'] ) ? $attr['boxSpacingMobile'] : $attr['boxSpacingTablet'];
-
-$separator_right_spacing_fallback    = UAGB_Block_Helper::get_fallback_number( $attr['separatorRightSpacing'], 'separatorRightSpacing', $block_name );
-$attr['separatorRightSpacingTablet'] = is_numeric( $attr['separatorRightSpacingTablet'] ) ? $attr['separatorRightSpacingTablet'] : $separator_right_spacing_fallback;
-$attr['separatorRightSpacingMobile'] = is_numeric( $attr['separatorRightSpacingMobile'] ) ? $attr['separatorRightSpacingMobile'] : $attr['separatorRightSpacingTablet'];
-
-$separator_top_spacing_fallback    = UAGB_Block_Helper::get_fallback_number( $attr['separatorTopSpacing'], 'separatorTopSpacing', $block_name );
-$attr['separatorTopSpacingTablet'] = is_numeric( $attr['separatorTopSpacingTablet'] ) ? $attr['separatorTopSpacingTablet'] : $separator_top_spacing_fallback;
-$attr['separatorTopSpacingMobile'] = is_numeric( $attr['separatorTopSpacingMobile'] ) ? $attr['separatorTopSpacingMobile'] : $attr['separatorTopSpacingTablet'];
-
 // Box Border CSS.
 $box_border_css        = UAGB_Block_Helper::uag_generate_border_css( $attr, 'box' );
 $box_border_css_tablet = UAGB_Block_Helper::uag_generate_border_css( $attr, 'box', 'tablet' );
@@ -68,13 +55,15 @@ $selectors = array(
 
 	'.wp-block-uagb-countdown .wp-block-uagb-countdown__box' => array_merge(
 		array(
+			'width'            => UAGB_Helper::get_css_value( $attr['boxWidth'], 'px' ),
 			'flex-direction'   => $attr['boxFlex'],
-			'text-align'       => $attr['boxAlign'],
 			'background-color' => ( 'transparent' !== $attr['boxBgType'] ) ? $attr['boxBgColor'] : 'transparent',
 			'padding-top'      => UAGB_Helper::get_css_value( $attr['boxTopPadding'], $attr['boxPaddingUnit'] ),
 			'padding-right'    => UAGB_Helper::get_css_value( $attr['boxRightPadding'], $attr['boxPaddingUnit'] ),
 			'padding-bottom'   => UAGB_Helper::get_css_value( $attr['boxBottomPadding'], $attr['boxPaddingUnit'] ),
 			'padding-left'     => UAGB_Helper::get_css_value( $attr['boxLeftPadding'], $attr['boxPaddingUnit'] ),
+			'row-gap'          => UAGB_Helper::get_css_value( $attr['internalBoxSpacing'], 'px' ),
+			'column-gap'       => UAGB_Helper::get_css_value( $attr['internalBoxSpacing'], 'px' ),
 			'box-shadow'       => UAGB_Helper::get_css_value( $attr['boxShadowHOffset'], 'px' ) .
 													' ' .
 													UAGB_Helper::get_css_value( $attr['boxShadowVOffset'], 'px' ) .
@@ -94,8 +83,12 @@ $selectors = array(
 		'border-color' => $attr['boxBorderHColor'],
 	),
 
+	'.wp-block-uagb-countdown .wp-block-uagb-countdown__box > div' => array(
+		'align-self' => $attr['boxAlign'],
+	),
+
 	'.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)' => array(
-		'margin-right' => UAGB_Helper::get_css_value( $box_spacing_fallback, 'px' ),
+		'margin-right' => UAGB_Helper::get_css_value( $attr['boxSpacing'], 'px' ),
 	),
 
 	'.wp-block-uagb-countdown .wp-block-uagb-countdown__time' => array(
@@ -107,10 +100,6 @@ $selectors = array(
 		'line-height'     => UAGB_Helper::get_css_value( $attr['digitLineHeight'], $attr['digitLineHeightType'] ),
 		'letter-spacing'  => UAGB_Helper::get_css_value( $attr['digitLetterSpacing'], $attr['digitLetterSpacingType'] ),
 		'color'           => $attr['digitColor'],
-		'margin-top'      => UAGB_Helper::get_css_value( $attr['digitTopMargin'], $attr['digitMarginUnit'] ),
-		'margin-right'    => UAGB_Helper::get_css_value( $attr['digitRightMargin'], $attr['digitMarginUnit'] ),
-		'margin-bottom'   => UAGB_Helper::get_css_value( $attr['digitBottomMargin'], $attr['digitMarginUnit'] ),
-		'margin-left'     => UAGB_Helper::get_css_value( $attr['digitLeftMargin'], $attr['digitMarginUnit'] ),
 	),
 
 	'.wp-block-uagb-countdown .wp-block-uagb-countdown__label' => array(
@@ -123,10 +112,6 @@ $selectors = array(
 		'line-height'     => UAGB_Helper::get_css_value( $attr['labelLineHeight'], $attr['labelLineHeightType'] ),
 		'letter-spacing'  => UAGB_Helper::get_css_value( $attr['labelLetterSpacing'], $attr['labelLetterSpacingType'] ),
 		'color'           => $attr['labelColor'],
-		'margin-top'      => UAGB_Helper::get_css_value( $attr['labelTopMargin'], $attr['labelMarginUnit'] ),
-		'margin-right'    => UAGB_Helper::get_css_value( $attr['labelRightMargin'], $attr['labelMarginUnit'] ),
-		'margin-bottom'   => UAGB_Helper::get_css_value( $attr['labelBottomMargin'], $attr['labelMarginUnit'] ),
-		'margin-left'     => UAGB_Helper::get_css_value( $attr['labelLeftMargin'], $attr['labelMarginUnit'] ),
 	),
 
 );
@@ -164,14 +149,20 @@ $t_selectors['.wp-block-uagb-countdown'] = array(
 
 $t_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = array_merge(
 	array(
+		'width'          => UAGB_Helper::get_css_value( $attr['boxWidthTablet'], 'px' ),
 		'flex-direction' => $attr['boxFlexTablet'],
-		'text-align'     => $attr['boxAlignTablet'],
 		'padding-top'    => UAGB_Helper::get_css_value( $attr['boxTopPaddingTablet'], $attr['boxPaddingUnitTablet'] ),
 		'padding-right'  => UAGB_Helper::get_css_value( $attr['boxRightPaddingTablet'], $attr['boxPaddingUnitTablet'] ),
 		'padding-bottom' => UAGB_Helper::get_css_value( $attr['boxBottomPaddingTablet'], $attr['boxPaddingUnitTablet'] ),
 		'padding-left'   => UAGB_Helper::get_css_value( $attr['boxLeftPaddingTablet'], $attr['boxPaddingUnitTablet'] ),
+		'row-gap'        => UAGB_Helper::get_css_value( $attr['internalBoxSpacingTablet'], 'px' ),
+		'column-gap'     => UAGB_Helper::get_css_value( $attr['internalBoxSpacingTablet'], 'px' ),
 	),
 	$box_border_css_tablet
+);
+
+$t_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box > div'] = array(
+	'align-self' => $attr['boxAlignTablet'],
 );
 
 $t_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)'] = array(
@@ -182,20 +173,12 @@ $t_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = array(
 	'font-size'      => UAGB_Helper::get_css_value( $attr['digitFontSizeTablet'], $attr['digitFontSizeType'] ),
 	'line-height'    => UAGB_Helper::get_css_value( $attr['digitLineHeightTablet'], $attr['digitLineHeightType'] ),
 	'letter-spacing' => UAGB_Helper::get_css_value( $attr['digitLetterSpacingTablet'], $attr['digitLetterSpacingType'] ),
-	'margin-top'     => UAGB_Helper::get_css_value( $attr['digitTopMarginTablet'], $attr['digitMarginUnitTablet'] ),
-	'margin-right'   => UAGB_Helper::get_css_value( $attr['digitRightMarginTablet'], $attr['digitMarginUnitTablet'] ),
-	'margin-bottom'  => UAGB_Helper::get_css_value( $attr['digitBottomMarginTablet'], $attr['digitMarginUnitTablet'] ),
-	'margin-left'    => UAGB_Helper::get_css_value( $attr['digitLeftMarginTablet'], $attr['digitMarginUnitTablet'] ),
 );
 
 $t_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__label'] = array(
 	'font-size'      => UAGB_Helper::get_css_value( $attr['labelFontSizeTablet'], $attr['labelFontSizeType'] ),
 	'line-height'    => UAGB_Helper::get_css_value( $attr['labelLineHeightTablet'], $attr['labelLineHeightType'] ),
 	'letter-spacing' => UAGB_Helper::get_css_value( $attr['labelLetterSpacingTablet'], $attr['labelLetterSpacingType'] ),
-	'margin-top'     => UAGB_Helper::get_css_value( $attr['labelTopMarginTablet'], $attr['labelMarginUnitTablet'] ),
-	'margin-right'   => UAGB_Helper::get_css_value( $attr['labelRightMarginTablet'], $attr['labelMarginUnitTablet'] ),
-	'margin-bottom'  => UAGB_Helper::get_css_value( $attr['labelBottomMarginTablet'], $attr['labelMarginUnitTablet'] ),
-	'margin-left'    => UAGB_Helper::get_css_value( $attr['labelLeftMarginTablet'], $attr['labelMarginUnitTablet'] ),
 );
 
 // MOBILE SELECTORS.
@@ -214,14 +197,20 @@ $m_selectors['.wp-block-uagb-countdown'] = array(
 
 $m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = array_merge(
 	array(
+		'width'          => UAGB_Helper::get_css_value( $attr['boxWidthMobile'], 'px' ),
 		'flex-direction' => $attr['boxFlexMobile'],
-		'text-align'     => $attr['boxAlignMobile'],
 		'padding-top'    => UAGB_Helper::get_css_value( $attr['boxTopPaddingMobile'], $attr['boxPaddingUnitMobile'] ),
 		'padding-right'  => UAGB_Helper::get_css_value( $attr['boxRightPaddingMobile'], $attr['boxPaddingUnitMobile'] ),
 		'padding-bottom' => UAGB_Helper::get_css_value( $attr['boxBottomPaddingMobile'], $attr['boxPaddingUnitMobile'] ),
 		'padding-left'   => UAGB_Helper::get_css_value( $attr['boxLeftPaddingMobile'], $attr['boxPaddingUnitMobile'] ),
+		'row-gap'        => UAGB_Helper::get_css_value( $attr['internalBoxSpacingMobile'], 'px' ),
+		'column-gap'     => UAGB_Helper::get_css_value( $attr['internalBoxSpacingMobile'], 'px' ),
 	),
 	$box_border_css_mobile
+);
+
+$m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box > div'] = array(
+	'align-self' => $attr['boxAlignMobile'],
 );
 
 $m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)'] = array(
@@ -232,20 +221,12 @@ $m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = array(
 	'font-size'      => UAGB_Helper::get_css_value( $attr['digitFontSizeMobile'], $attr['digitFontSizeType'] ),
 	'line-height'    => UAGB_Helper::get_css_value( $attr['digitLineHeightMobile'], $attr['digitLineHeightType'] ),
 	'letter-spacing' => UAGB_Helper::get_css_value( $attr['digitLetterSpacingMobile'], $attr['digitLetterSpacingType'] ),
-	'margin-top'     => UAGB_Helper::get_css_value( $attr['digitTopMarginMobile'], $attr['digitMarginUnitMobile'] ),
-	'margin-right'   => UAGB_Helper::get_css_value( $attr['digitRightMarginMobile'], $attr['digitMarginUnitMobile'] ),
-	'margin-bottom'  => UAGB_Helper::get_css_value( $attr['digitBottomMarginMobile'], $attr['digitMarginUnitMobile'] ),
-	'margin-left'    => UAGB_Helper::get_css_value( $attr['digitLeftMarginMobile'], $attr['digitMarginUnitMobile'] ),
 );
 
 $m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__label'] = array(
 	'font-size'      => UAGB_Helper::get_css_value( $attr['labelFontSizeMobile'], $attr['labelFontSizeType'] ),
 	'line-height'    => UAGB_Helper::get_css_value( $attr['labelLineHeightMobile'], $attr['labelLineHeightType'] ),
 	'letter-spacing' => UAGB_Helper::get_css_value( $attr['labelLetterSpacingMobile'], $attr['labelLetterSpacingType'] ),
-	'margin-top'     => UAGB_Helper::get_css_value( $attr['labelTopMarginMobile'], $attr['labelMarginUnitMobile'] ),
-	'margin-right'   => UAGB_Helper::get_css_value( $attr['labelRightMarginMobile'], $attr['labelMarginUnitMobile'] ),
-	'margin-bottom'  => UAGB_Helper::get_css_value( $attr['labelBottomMarginMobile'], $attr['labelMarginUnitMobile'] ),
-	'margin-left'    => UAGB_Helper::get_css_value( $attr['labelLeftMarginMobile'], $attr['labelMarginUnitMobile'] ),
 );
 
 if ( true === $attr['showSeparator'] ) {
@@ -258,7 +239,7 @@ if ( true === $attr['showSeparator'] ) {
 		'font-size'   => UAGB_Helper::get_css_value( $attr['separatorFontSize'], $attr['separatorFontSizeType'] ),
 		'line-height' => UAGB_Helper::get_css_value( $attr['separatorLineHeight'], $attr['separatorLineHeightType'] ),
 		'color'       => $attr['separatorColor'],
-		'right'       => UAGB_Helper::get_css_value( -$separator_right_spacing_fallback, 'px' ),
+		'right'       => UAGB_Helper::get_css_value( -$attr['separatorRightSpacing'], 'px' ),
 		'top'         => UAGB_Helper::get_css_value( $attr['separatorTopSpacing'], 'px' ),
 	);
 
@@ -286,7 +267,7 @@ if ( $is_rtl ) {
 	$t_selectors[ $boxGapSelectorLTR ]['margin-right'] = 'unset';
 	$m_selectors[ $boxGapSelectorLTR ]['margin-right'] = 'unset';
 
-	$selectors[ $boxGapSelectorRTL ]['margin-right']   = UAGB_Helper::get_css_value( $box_spacing_fallback, 'px' );
+	$selectors[ $boxGapSelectorRTL ]['margin-right']   = UAGB_Helper::get_css_value( $attr['boxSpacing'], 'px' );
 	$t_selectors[ $boxGapSelectorRTL ]['margin-right'] = UAGB_Helper::get_css_value( $attr['boxSpacingTablet'], 'px' );
 	$m_selectors[ $boxGapSelectorRTL ]['margin-right'] = UAGB_Helper::get_css_value( $attr['boxSpacingMobile'], 'px' );
 }
