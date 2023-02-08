@@ -529,33 +529,33 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 						),
 						// Lightbox Styling.
 						array(
-							'lightboxEdgeDistance' => array(
+							'lightboxEdgeDistance'           => array(
 								'type'    => 'number',
 								'default' => 10,
 							),
-							'lightboxEdgeDistanceTablet' => array(
+							'lightboxEdgeDistanceTablet'     => array(
 								'type' => 'number',
 							),
-							'lightboxEdgeDistanceMobile' => array(
+							'lightboxEdgeDistanceMobile'     => array(
 								'type' => 'number',
 							),
-							'lightboxBackgroundEnableBlur' => array(
+							'lightboxBackgroundEnableBlur'   => array(
 								'type'    => 'boolean',
 								'default' => true,
 							),
-							'lightboxBackgroundBlurAmount' => array(
+							'lightboxBackgroundBlurAmount'   => array(
 								'type'    => 'number',
 								'default' => 5,
 							),
-							'lightboxBackgroundColor' => array(
+							'lightboxBackgroundColor'        => array(
 								'type'    => 'string',
 								'default' => 'rgba(0,0,0,0.75)',
 							),
-							'lightboxIconColor' => array(
+							'lightboxIconColor'              => array(
 								'type'    => 'string',
 								'default' => 'rgba(255,255,255,1)',
 							),
-							'lightboxCaptionColor' => array(
+							'lightboxCaptionColor'           => array(
 								'type'    => 'string',
 								'default' => 'rgba(255,255,255,1)',
 							),
@@ -673,48 +673,48 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 								'type'    => 'boolean',
 								'default' => false,
 							),
-							'lightboxFontFamily' => array(
+							'lightboxFontFamily'      => array(
 								'type'    => 'string',
 								'default' => 'Default',
 							),
-							'lightboxFontWeight' => array(
+							'lightboxFontWeight'      => array(
 								'type' => 'string',
 							),
-							'lightboxFontStyle' => array(
+							'lightboxFontStyle'       => array(
 								'type'    => 'string',
 								'default' => 'normal',
 							),
-							'lightboxTransform' => array(
+							'lightboxTransform'       => array(
 								'type' => 'string',
 							),
-							'lightboxDecoration' => array(
+							'lightboxDecoration'      => array(
 								'type'    => 'string',
 								'default' => 'none',
 							),
-							'lightboxFontSizeType' => array(
+							'lightboxFontSizeType'    => array(
 								'type'    => 'string',
 								'default' => 'px',
 							),
-							'lightboxFontSize' => array(
+							'lightboxFontSize'        => array(
 								'type' => 'number',
 							),
-							'lightboxFontSizeTab' => array(
+							'lightboxFontSizeTab'     => array(
 								'type' => 'number',
 							),
-							'lightboxFontSizeMob' => array(
+							'lightboxFontSizeMob'     => array(
 								'type' => 'number',
 							),
-							'lightboxLineHeightType' => array(
+							'lightboxLineHeightType'  => array(
 								'type'    => 'string',
 								'default' => 'em',
 							),
-							'lightboxLineHeight' => array(
+							'lightboxLineHeight'      => array(
 								'type' => 'number',
 							),
-							'lightboxLineHeightTab' => array(
+							'lightboxLineHeightTab'   => array(
 								'type' => 'number',
 							),
-							'lightboxLineHeightMob' => array(
+							'lightboxLineHeightMob'   => array(
 								'type' => 'number',
 							),
 						),
@@ -1009,18 +1009,20 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 					</div>
 					<?php if ( 'lightbox' === $attributes['imageClickEvent'] ): ?>
 						<div class='spectra-image-gallery__control-lightbox'>
-							<?= $this->render_lightbox( $attributes ) ?>
-							<?php if ( $attributes['lightboxThumbnails'] ) { echo $this->render_thumbnails( $attributes ); } ?>
-							<?php if ( $attributes['lightboxDisplayCount'] ): ?>
+							<?php $this->render_lightbox( $attributes ) ?>
+							<?php if ( $attributes['lightboxThumbnails'] ) {
+								$this->render_thumbnails( $attributes );
+							} ?>
+							<?php if ( $attributes['lightboxDisplayCount'] ) : ?>
 								<div class='spectra-image-gallery__control-lightbox--count'>
-									<?php if ( is_rtl() ): ?>
+									<?php if ( is_rtl() ) : ?>
 										<span class='spectra-image-gallery__control-lightbox--count-total'>1</span>/<span class='spectra-image-gallery__control-lightbox--count-page'>1</span>
-									<?php else: ?>
+									<?php else : ?>
 										<span class='spectra-image-gallery__control-lightbox--count-page'>1</span>/<span class='spectra-image-gallery__control-lightbox--count-total'>1</span>
 									<?php endif; ?>									
 								</div>
 							<?php endif; ?>
-							<?php if ( $attributes['lightboxDisplayCount'] ): ?>
+							<?php if ( $attributes['lightboxDisplayCount'] ) : ?>
 								<button class='spectra-image-gallery__control-lightbox--close'>
 									<?php UAGB_Helper::render_svg_html( $attributes['lightboxCloseIcon'] ); ?>
 								</button>
@@ -1041,15 +1043,14 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 		 */
 		private function render_lightbox( $attributes ) {
 			$total_images = count( $attributes['mediaGallery'] );
-			ob_start();
 			?>
 				<div class="swiper spectra-image-gallery__control-lightbox--main" dir="<?= is_rtl() ? 'rtl' : '' ?>">
 					<div class="swiper-wrapper">
-						<?php for( $i = 0; $i < $total_images; $i++ ) { ?>							
+						<?php for ( $i = 0; $i < $total_images; $i++ ) { ?>							
 							<div class="swiper-slide">
 								<img class="swiper-lazy" data-src="<?= esc_url( $attributes['mediaGallery'][ $i ]['url'] ); ?>" alt="<?= esc_attr( $attributes['mediaGallery'][ $i ]['alt'] ) ?>"/>
 								<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-								<?php if ( $attributes['lightboxDisplayCaptions'] ): ?>
+								<?php if ( $attributes['lightboxDisplayCaptions'] ) : ?>
 									<div class="spectra-image-gallery__control-lightbox--caption">
 										<?= $attributes['mediaGallery'][ $i ]['caption'] ? wp_kses_post( $attributes['mediaGallery'][ $i ]['caption'] ) : wp_kses_post( $attributes['imageDefaultCaption'] ) ?>
 									</div>
@@ -1061,7 +1062,6 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 					<div class="swiper-button-prev"></div>
 				</div>			
 			<?php
-			return ob_get_clean();
 		}
 
 		/**
@@ -1073,12 +1073,11 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 		 */
 		private function render_thumbnails( $attributes ) {
 			$total_images = count( $attributes['mediaGallery'] );
-			ob_start()
 			?>
 				<div class="spectra-image-gallery__control-lightbox--thumbnails-wrapper">
 					<div class="swiper spectra-image-gallery__control-lightbox--thumbnails">
 						<div class="swiper-wrapper">
-							<?php for( $i = 0; $i < $total_images; $i++ ) { ?>
+							<?php for ( $i = 0; $i < $total_images; $i++ ) { ?>
 								<div class="swiper-slide">
 									<img src="<?= esc_url( $attributes['mediaGallery'][ $i ]['sizes']['thumbnail']['url'] ); ?>" alt="<?= esc_attr( $attributes['mediaGallery'][ $i ]['alt'] ) ?>"/>
 								</div>
@@ -1087,7 +1086,6 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 					</div>
 				</div>
 			<?php
-			return ob_get_clean();
 		}
 
 		/**
@@ -1569,8 +1567,8 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 						images[ i ].addEventListener( 'click', () => enableLightbox( i ) );
 					}
 					<?php // First set the Thumbnail Swiper if needed. This will be used in the Lightbox Swiper. ?>
-					let lightboxSettings = <?= $lightbox_settings ?>;
-					<?php if ( $attr['lightboxThumbnails'] ): ?>
+					let lightboxSettings = <?= $lightbox_settings //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>;
+					<?php if ( $attr['lightboxThumbnails'] ) : ?>
 						thumbnailSwiper = new Swiper( "<?= esc_attr( $selector . '+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--thumbnails' ); ?>",
 							<?= $thumbnail_settings; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						);
@@ -1587,14 +1585,14 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 					);
 					<?php // Now run the Swiper Updations if needed. ?>
 					lightboxSwiper.on( 'activeIndexChange', ( swiperInstance ) => {
-						<?php if ( $attr['lightboxThumbnails'] ): ?>
+						<?php if ( $attr['lightboxThumbnails'] ) : ?>
 							thumbnailSwiper.slideTo( swiperInstance.activeIndex );
 						<?php endif; ?>
-						<?php if ( $attr['lightboxDisplayCount'] ): ?>
+						<?php if ( $attr['lightboxDisplayCount'] ) : ?>
 							updateCounter( swiperInstance.activeIndex );
 						<?php endif; ?>
 					} );
-					<?php if ( $attr['lightboxThumbnails'] ): ?>
+					<?php if ( $attr['lightboxThumbnails'] ) : ?>
 						thumbnailSwiper.on( 'activeIndexChange', ( swiperInstance ) => {
 							lightboxSwiper.slideTo( swiperInstance.activeIndex );
 						} );
@@ -1603,7 +1601,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 						<?php // Then set the Close Button if needed. ?>
 						const lightbox = blockScope.nextElementSibling;
 						lightbox.style.display = 'none';
-						<?php if ( $attr['lightboxCloseIcon'] ): ?>
+						<?php if ( $attr['lightboxCloseIcon'] ) : ?>
 							const closeButton = lightbox.querySelector( '.spectra-image-gallery__control-lightbox--close' );
 							if ( closeButton ) {
 								closeButton.addEventListener( 'click', () => {
@@ -1619,7 +1617,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 							}
 						<?php endif; ?>
 						<?php // Finally set the Total if needed. ?>
-						<?php if ( $attr['lightboxDisplayCount'] ): ?>
+						<?php if ( $attr['lightboxDisplayCount'] ) : ?>
 							const lightboxTotal = lightbox.querySelector( '.spectra-image-gallery__control-lightbox--count-total' );
 							lightboxTotal.innerHTML = '<?= count( (array) $attr['mediaGallery'] ) ?>';
 							if ( adminBar && screen.width > 600 ) {
@@ -1636,7 +1634,6 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 		 * Renders Front-end Click Event.
 		 *
 		 * @param string $id                  Block ID.
-		 * @param string $selector            Selector to identify the block.
 		 *
 		 * @since x.x.x
 		 */

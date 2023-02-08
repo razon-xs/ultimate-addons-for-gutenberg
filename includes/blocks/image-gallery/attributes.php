@@ -47,7 +47,7 @@ return array_merge(
 		'mediaIDs'                           => array(),
 		'feedLayout'                         => 'grid',
 		'imageDisplayCaption'                => true,
-		'imageClickEvent'                    =>'none',
+		'imageClickEvent'                    => 'none',
 		// Lightbox Settings.
 		'lightboxDisplayCaptions'            => false,
 		'lightboxThumbnails'                 => false,

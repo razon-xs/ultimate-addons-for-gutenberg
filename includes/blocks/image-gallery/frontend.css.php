@@ -343,7 +343,7 @@ $selectors = array(
 	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--thumbnails-wrapper' => array(
 		'background-color' => $attr['lightboxDisplayCaptions'] ? $attr['lightboxCaptionBackgroundColor'] : 'transparent',
 	),
-	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--count'   => array(
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--count' => array(
 		'top'         => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistance'], 'px' ),
 		'left'        => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistance'], 'px' ),
 		'color'       => $attr['lightboxIconColor'],
@@ -352,7 +352,7 @@ $selectors = array(
 		'font-size'   => UAGB_Helper::get_css_value( $attr['lightboxIconSize'], 'px' ) ? 'calc(' . UAGB_Helper::get_css_value( $attr['lightboxIconSize'], 'px' ) . ' * 3 / 4 )' : '',
 		'line-height' => UAGB_Helper::get_css_value( $attr['lightboxIconSize'], 'px' ) ? 'calc(' . UAGB_Helper::get_css_value( $attr['lightboxIconSize'], 'px' ) . ' * 3 / 4 )' : '',
 	),
-	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--close'   => array(
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--close' => array(
 		'top'   => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistance'], 'px' ),
 		'right' => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistance'], 'px' ),
 	),
@@ -465,13 +465,13 @@ $t_selectors = array(
 		'font-size'   => UAGB_Helper::get_css_value( $attr['lightboxFontSizeTab'], $attr['lightboxFontSizeType'] ),
 		'line-height' => UAGB_Helper::get_css_value( $attr['lightboxLineHeightTab'], $attr['lightboxLineHeightType'] ),
 	),
-	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--count'  => array(
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--count' => array(
 		'top'         => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceTablet'], 'px' ),
 		'left'        => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceTablet'], 'px' ),
 		'font-size'   => UAGB_Helper::get_css_value( $attr['lightboxIconSizeTablet'], 'px' ) ? 'calc(' . UAGB_Helper::get_css_value( $attr['lightboxIconSizeTablet'], 'px' ) . ' * 3 / 4 )' : '',
 		'line-height' => UAGB_Helper::get_css_value( $attr['lightboxIconSizeTablet'], 'px' ) ? 'calc(' . UAGB_Helper::get_css_value( $attr['lightboxIconSizeTablet'], 'px' ) . ' * 3 / 4 )' : '',
 	),
-	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--close'  => array(
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--close' => array(
 		'top'   => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceTablet'], 'px' ),
 		'right' => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceTablet'], 'px' ),
 	),
@@ -581,13 +581,13 @@ $m_selectors = array(
 		'font-size'   => UAGB_Helper::get_css_value( $attr['lightboxFontSizeMob'], $attr['lightboxFontSizeType'] ),
 		'line-height' => UAGB_Helper::get_css_value( $attr['lightboxLineHeightMob'], $attr['lightboxLineHeightType'] ),
 	),
-	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--count'  => array(
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--count'=> array(
 		'top'         => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceMobile'], 'px' ),
 		'left'        => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceMobile'], 'px' ),
-		'font-size'   => UAGB_Helper::get_css_value( $attr['lightboxIconSizeMobile'], 'px' ) ? 'calc(' . UAGB_Helper::get_css_value( $attr['lightboxIconSizeMobile'], 'px' ) .' * 3 / 4 )' : '',
-		'line-height' => UAGB_Helper::get_css_value( $attr['lightboxIconSizeMobile'], 'px' ) ? 'calc(' . UAGB_Helper::get_css_value( $attr['lightboxIconSizeMobile'], 'px' ) .' * 3 / 4 )' : '',
+		'font-size'   => UAGB_Helper::get_css_value( $attr['lightboxIconSizeMobile'], 'px' ) ? 'calc(' . UAGB_Helper::get_css_value( $attr['lightboxIconSizeMobile'], 'px' ) . ' * 3 / 4 )' : '',
+		'line-height' => UAGB_Helper::get_css_value( $attr['lightboxIconSizeMobile'], 'px' ) ? 'calc(' . UAGB_Helper::get_css_value( $attr['lightboxIconSizeMobile'], 'px' ) . ' * 3 / 4 )' : '',
 	),
-	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--close'  => array(
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--close' => array(
 		'top'   => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceMobile'], 'px' ),
 		'right' => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceMobile'], 'px' ),
 	),

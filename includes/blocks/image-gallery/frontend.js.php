@@ -8,8 +8,8 @@
  */
 
 $block_name = 'image-gallery';
-$selector = '.uagb-block-' . $id;
-$js       = '';
+$selector   = '.uagb-block-' . $id;
+$js         = '';
 
 $paginate_arrow_size_fallback = UAGB_Block_Helper::get_fallback_number( $attr['paginateArrowSize'], 'paginateArrowSize', $block_name );
 
@@ -51,7 +51,7 @@ $slick_options = apply_filters(
 // The Thumbnail Swiper Association is handled in the JS in Class Spectra Image Gallery.
 $lightbox_options = apply_filters(
 	'uagb_image_gallery_lightbox_options',
-	array(		
+	array(
 		'lazy'          => true,
 		'slidesPerView' => 1,
 		'navigation'    => array(

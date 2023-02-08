@@ -33,13 +33,13 @@ $block_data = array(
 		'uagb-slick-js'         => array(
 			'type' => 'js',
 		),
-		'uagb-swiper-js'  => array(
+		'uagb-swiper-js'        => array(
 			'type' => 'js',
 		),
 		'uagb-slick-css'        => array(
 			'type' => 'css',
 		),
-		'uagb-swiper-css' => array(
+		'uagb-swiper-css'       => array(
 			'type' => 'css',
 		),
 	),
