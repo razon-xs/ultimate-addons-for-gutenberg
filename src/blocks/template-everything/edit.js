@@ -113,7 +113,7 @@ const UAGBNewBlock = ( props ) => {
 	if ( ( ! props.attributes.isPreview && ! hasInnerBlocks ) || props.attributes.variationChange && hasInnerBlocks ) {
 		return (
 			props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-				<div className='uagb-new-block_variations'>
+				<div className='uagb-template-everything_variations'>
 					<__experimentalBlockVariationPicker
 						label={ __( 'Template Everything!', 'ultimate-addons-for-gutenberg' ) }
 						instructions={ __(
