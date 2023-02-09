@@ -16,7 +16,7 @@ registerBlockType( 'uagb/template-everything', {
 		'Create beautiful layouts with multiple Spectra blocks.',
 		'ultimate-addons-for-gutenberg'
 	),
-	icon: UAGB_Block_Icons.container,
+	icon: UAGB_Block_Icons.template_everything,
 	keywords: [
 		__( 'Template Everything!', 'ultimate-addons-for-gutenberg' ),
 		__( 'info box', 'ultimate-addons-for-gutenberg' ),
