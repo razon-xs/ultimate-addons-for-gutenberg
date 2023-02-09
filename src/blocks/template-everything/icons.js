@@ -2,7 +2,7 @@
  * Custom icons
  */
 const rowIcons = {
-	'style-1' : ( //Done
+	'style-1' : ( 
 		<svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
 			<rect x="4.7" y="0.7" width="14.6" height="22.6" rx="1.3" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
 			<path d="M7.11768 10.4167V5.85968C7.11768 4.42153 8.28353 3.25568 9.72168 3.25568H14.2787C15.7168 3.25568 16.8827 4.42153 16.8827 5.85968V10.4167M7.11768 10.4167C7.11768 11.8548 8.28353 13.0207 9.72168 13.0207H14.2787C15.7168 13.0207 16.8827 11.8548 16.8827 10.4167M7.11768 10.4167L9.6524 8.30442C10.4788 7.61573 11.6437 7.50612 12.5841 8.02856L16.8827 10.4167" stroke="#1E293B" strokeWidth="1"/>
@@ -11,7 +11,7 @@ const rowIcons = {
 			<path d="M7.12109 20.3475H10.8716" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
 		</svg>
 	),
-	'style-2' : ( //Done
+	'style-2' : ( 
 		<svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
 			<path d="M2.77197 8.79663H21.3374" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
 			<path d="M2.77197 11.3983H21.3374" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
@@ -22,7 +22,7 @@ const rowIcons = {
 		</svg>	
 	
 	),
-	'style-3' : ( //Done
+	'style-3' : ( 
 		<svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
 			<rect x="0.7" y="4.7" width="22.6" height="14.6" rx="1.3" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
 			<path d="M2.80957 14.0093V9.72326C2.80957 8.37063 3.90609 7.27411 5.25872 7.27411H9.54474C10.8974 7.27411 11.9939 8.37063 11.9939 9.72326V14.0093M2.80957 14.0093C2.80957 15.3619 3.90609 16.4584 5.25872 16.4584H9.54474C10.8974 16.4584 11.9939 15.3619 11.9939 14.0093M2.80957 14.0093L5.19356 12.0226C5.97084 11.3749 7.06642 11.2718 7.95089 11.7632L11.9939 14.0093" stroke="#1E293B" strokeWidth="1"/>
@@ -32,7 +32,7 @@ const rowIcons = {
 			<path d="M13.8914 13.367C13.8914 13.1828 14.0407 13.0335 14.225 13.0335H20.9665C21.1507 13.0335 21.3 13.1828 21.3 13.367C21.3 13.5513 21.1507 13.7006 20.9665 13.7006H14.225C14.0407 13.7006 13.8914 13.5513 13.8914 13.367Z" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
 		</svg>
 	),
-	'style-4' : ( //Done
+	'style-4' : ( 
 		<svg width="25" height="24" viewBox="0 0 25 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
 			<g clipPath="url(#clip0_1760_7675)">
 			<rect x="20.1931" y="0.7" width="22.6" height="14.6" rx="1.3" transform="rotate(90 20.1931 0.7)" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
@@ -52,7 +52,7 @@ const rowIcons = {
 			</defs>
 		</svg>
 	),
-	'style-5' : ( //Done
+	'style-5' : ( 
 		<svg width="25" height="24" viewBox="0 0 25 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
 			<g clipPath="url(#clip0_1760_7689)">
 			<rect x="1.59307" y="4.7" width="22.6" height="14.6" rx="1.3" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>

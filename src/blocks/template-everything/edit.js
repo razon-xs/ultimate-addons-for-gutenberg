@@ -14,8 +14,10 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 import { withNotices } from '@wordpress/components';
 import { compose, createHigherOrderComponent } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
+//  Import CSS.
+import './style.scss';
 
-const UAGBNewBlock = ( props ) => {
+const UAGBTemplateEverything = ( props ) => {
 	const deviceType = useDeviceType();
 
 	useEffect( () => {
@@ -27,13 +29,26 @@ const UAGBNewBlock = ( props ) => {
 	}, [] );
 
 	useEffect( () => {
-
-		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
 
-		addBlockEditorDynamicStyles( 'uagb-new-block-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+		addBlockEditorDynamicStyles( 'uagb-template-everything-style-' + props.clientId.substr( 0, 8 ), blockStyling );
 		
 	}, [ props ] );
+
+	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
+
+	useEffect( () => {
+
+		responsiveConditionPreview( props );
+
+	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
+
+	useEffect( () => {
+	    const blockStyling = styling( props );
+
+        addBlockEditorDynamicStyles( 'uagb-template-everything-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+
+	}, [deviceType] );
 
 	const {
 		innerBlocks, // eslint-disable-line no-unused-vars
@@ -99,16 +114,8 @@ const UAGBNewBlock = ( props ) => {
 		}
 		
 	);
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
 
-	useEffect( () => {
-
-		responsiveConditionPreview( props );
-
-	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
-
-	
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/form.svg`;
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/template-everything.svg`;
 
 	if ( ( ! props.attributes.isPreview && ! hasInnerBlocks ) || props.attributes.variationChange && hasInnerBlocks ) {
 		return (
@@ -150,9 +157,9 @@ const addAdvancedClasses = createHigherOrderComponent( ( BlockListBlock ) => {
 	};
 }, 'addAdvancedClasses' );
 
-wp.hooks.addFilter( 'editor.BlockListBlock', 'uagb/new-block', addAdvancedClasses );
+wp.hooks.addFilter( 'editor.BlockListBlock', 'uagb/template-everything', addAdvancedClasses );
 
 export default compose(
 	withNotices,
 	addAdvancedClasses
-)( UAGBNewBlock );
+)( UAGBTemplateEverything );

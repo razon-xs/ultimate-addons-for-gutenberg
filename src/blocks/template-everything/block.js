@@ -10,7 +10,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import variations from './variations';
 import './style.scss';
 
-registerBlockType( 'uagb/new-block', {
+registerBlockType( 'uagb/template-everything', {
 	title: __( 'Template Everything!', 'ultimate-addons-for-gutenberg' ),
 	description: __(
 		'Create beautiful layouts with multiple Spectra blocks.',
@@ -19,8 +19,9 @@ registerBlockType( 'uagb/new-block', {
 	icon: UAGB_Block_Icons.container,
 	keywords: [
 		__( 'Template Everything!', 'ultimate-addons-for-gutenberg' ),
-		__( 'uag', 'ultimate-addons-for-gutenberg' ),
-		__( 'flex', 'ultimate-addons-for-gutenberg' ),
+		__( 'info box', 'ultimate-addons-for-gutenberg' ),
+		__( 'template', 'ultimate-addons-for-gutenberg' ),
+		__( 'block', 'ultimate-addons-for-gutenberg' ),
 	],
 	supports: {
 		anchor: true,

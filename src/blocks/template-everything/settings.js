@@ -737,7 +737,8 @@ const Settings = ( props ) => {
 		<>
 			{ getBlockControls()}
 			<InspectorControls>
-				<InspectorTabs tabs={ [ 'style', 'advance' ] }>
+				<InspectorTabs 
+					defaultTab='style' tabs={ [ 'style', 'advance' ] }>
 					<InspectorTab { ...UAGTabs.style }>
 						{ textControls() }
 						{ backgroundSettings() }

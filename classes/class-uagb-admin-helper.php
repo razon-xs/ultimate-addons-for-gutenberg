@@ -75,7 +75,7 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 						'image',
 						'buttons',
 						'info-box',
-						'new-block',
+						'template-everything',
 						'call-to-action',
 					)
 				),
