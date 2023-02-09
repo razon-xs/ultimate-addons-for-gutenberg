@@ -21,7 +21,7 @@
 
 		.components-panel__body {
 
-			> div > .components-base-control {
+			> div:not(.components-panel__row):not(.uagb-select-control) > .components-base-control {
 				margin-bottom: $spectra-control-vertical-gap;
 			}
 
