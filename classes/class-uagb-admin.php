@@ -311,7 +311,7 @@ if ( ! class_exists( 'UAGB_Admin' ) ) {
 				return false;
 			}
 
-			$svg = file_get_contents( $svg_path ); //phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+			$svg = file_get_contents( $svg_path ); //phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents,WordPressVIPMinimum.Performance.FetchingRemoteData.FileGetContentsUnknown
 			if ( false === $svg || empty( trim( $svg ) ) ) {
 				return false;
 			}
