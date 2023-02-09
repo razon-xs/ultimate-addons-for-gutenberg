@@ -1008,7 +1008,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 				?>
 					</div>
 					<?php if ( 'lightbox' === $attributes['imageClickEvent'] ) : ?>
-						<div class='spectra-image-gallery__control-lightbox'>
+						<div class='spectra-image-gallery__control-lightbox' tabindex='0'>
 							<?php $this->render_lightbox( $attributes ); ?>
 							<?php
 							if ( $attributes['lightboxThumbnails'] ) {
@@ -1547,6 +1547,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 					}
 					const lightbox = blockScope.nextElementSibling;
 					lightbox.style.display = '';
+					lightbox.focus();
 					setTimeout( () => {
 						lightboxSwiper.slideTo( goTo );
 					}, 100 );
@@ -1602,6 +1603,15 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 					if ( blockScope.nextElementSibling.classList.contains( 'spectra-image-gallery__control-lightbox' ) ) {
 						<?php // Then set the Close Button if needed. ?>
 						const lightbox = blockScope.nextElementSibling;
+						lightbox.addEventListener( 'keydown', ( event ) => {
+							if ( 27 === event.keyCode ) {
+								theBody.style.overflow = '';
+								lightbox.style.opacity = 0;
+								setTimeout( () => {
+									lightbox.style.display = 'none';
+								}, 250 );
+							}
+						} );
 						lightbox.style.display = 'none';
 						<?php if ( $attr['lightboxCloseIcon'] ) : ?>
 							const closeButton = lightbox.querySelector( '.spectra-image-gallery__control-lightbox--close' );
