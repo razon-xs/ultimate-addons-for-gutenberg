@@ -335,7 +335,11 @@ const Settings = ( props ) => {
 	 * Event to set Image as null while removing.
 	 */
 	const onRemoveImage = () => {
-		setAttributes( { iconImage: '' } );
+		if( 'svg' === source_type ) {
+			setAttributes( { iconSvg: '' } );
+		} else {
+			setAttributes( { iconImage: '' } );
+		}
 	};
 
 	if ( iconImage && iconImage.sizes ) {

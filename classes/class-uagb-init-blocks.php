@@ -72,6 +72,9 @@ class UAGB_Init_Blocks {
 			add_action( 'render_block', array( $this, 'render_block' ), 5, 2 );
 		}
 
+		// Needs this as we need to upload svg files for svg picker.
+		add_filter( 'upload_mimes', array( $this, 'custom_upload_mimes' ) ); // phpcs:ignore WordPressVIPMinimum.Hooks.RestrictedHooks.upload_mimes
+
 	}
 
 	/**
@@ -166,7 +169,7 @@ class UAGB_Init_Blocks {
 		);
 
 		$user_agent = isset( $_SERVER['HTTP_USER_AGENT'] ) ? sanitize_text_field( $_SERVER['HTTP_USER_AGENT'] ) : '';
-		
+
 		if ( isset( $os[ $value ] ) && preg_match( '@' . $os[ $value ] . '@', $user_agent ) ) {
 			return '';
 		}
@@ -729,6 +732,20 @@ class UAGB_Init_Blocks {
 		}
 
 		return $field_options;
+	}
+
+	/**
+	 * Permits upload of svg files
+	 *
+	 * @param array $mimes allow mimes.
+	 * @return array
+	 * @since x.x.x
+	 */
+	public function custom_upload_mimes( $mimes ) {
+		// Allows svg files.
+		$mimes['svg'] = 'image/svg+xml';
+
+		return $mimes;
 	}
 }
 
