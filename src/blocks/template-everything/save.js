@@ -17,7 +17,7 @@ export default function save( props ) {
 		<div
 			className={ classnames(
 				`uagb-block-${ block_id }`,
-				'uagb-info-box__wrap'
+				'uagb-template-everything__wrap'
 			) }
 		>
 			<InnerBlocks.Content />

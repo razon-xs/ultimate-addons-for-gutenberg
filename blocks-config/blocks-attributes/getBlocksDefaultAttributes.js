@@ -6,7 +6,7 @@ import sectionAttribute from '@Blocks/section/attributes';
 import buttonsAttribute from '@Blocks/buttons/attributes';
 import buttonsChildAttribute from '@Blocks/buttons-child/attributes';
 import infoboxAttribute from '@Blocks/info-box/attributes';
-import infobox2Attribute from '@Blocks/new-block/attributes';
+import infobox2Attribute from '@Blocks/template-everything/attributes';
 import testimonialAttribute from '@Blocks/testimonial/attributes';
 import teamAttribute from '@Blocks/team/attributes';
 import socialAttribute from '@Blocks/social-share/attributes';

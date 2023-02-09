@@ -32,7 +32,7 @@ const Render = ( props ) => {
 			<div
 				className={ classnames(
 					`uagb-block-${ block_id }`,
-					'uagb-info-box__wrap',
+					'uagb-template-everything__wrap',
 					`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`
 				) }
 			>

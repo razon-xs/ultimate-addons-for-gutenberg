@@ -110,9 +110,9 @@ return array_merge(
 		'backgroundVideo'             => '',
 		'backgroundVideoOpacity'      => 0.5,
 		'color'                       => '',
-		'headingColor'				  => '',
-		'linkColor'				      => '',
-		'linkHoverColor'			  => ''
+		'headingColor'                => '',
+		'linkColor'                   => '',
+		'linkHoverColor'              => '',
 	),
 	$border_attribute
 );

@@ -12,6 +12,27 @@ const rowIcons = {
 		</svg>
 	),
 	'style-2' : ( //Done
+		<svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+			<path d="M2.77197 8.79663H21.3374" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
+			<path d="M2.77197 11.3983H21.3374" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
+			<path d="M6.22266 14H17.7773" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
+			<path d="M5.62207 5.03101H18.4869" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
+			<path d="M14.7041 19.2678H19.2441" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
+			<path d="M5.45586 19.2678C5.45586 18.9542 5.71008 18.7 6.02367 18.7H11.8406C12.1542 18.7 12.4084 18.9542 12.4084 19.2678C12.4084 19.5814 12.1542 19.8356 11.8406 19.8356H6.02367C5.71008 19.8356 5.45586 19.5814 5.45586 19.2678Z" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
+		</svg>	
+	
+	),
+	'style-3' : ( //Done
+		<svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+			<rect x="0.7" y="4.7" width="22.6" height="14.6" rx="1.3" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
+			<path d="M2.80957 14.0093V9.72326C2.80957 8.37063 3.90609 7.27411 5.25872 7.27411H9.54474C10.8974 7.27411 11.9939 8.37063 11.9939 9.72326V14.0093M2.80957 14.0093C2.80957 15.3619 3.90609 16.4584 5.25872 16.4584H9.54474C10.8974 16.4584 11.9939 15.3619 11.9939 14.0093M2.80957 14.0093L5.19356 12.0226C5.97084 11.3749 7.06642 11.2718 7.95089 11.7632L11.9939 14.0093" stroke="#1E293B" strokeWidth="1"/>
+			<path d="M14.0078 9.99866H21.4055" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
+			<path d="M14.0078 7.75214H17.7064" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
+			<path d="M13.4414 16.0628C13.4414 15.6301 13.7922 15.2793 14.225 15.2793H20.9665C21.3992 15.2793 21.75 15.6301 21.75 16.0628C21.75 16.4956 21.3992 16.8464 20.9665 16.8464H14.225C13.7922 16.8464 13.4414 16.4956 13.4414 16.0628Z" stroke="#1E293B" strokeWidth="0.5" strokeLinecap="round"/>
+			<path d="M13.8914 13.367C13.8914 13.1828 14.0407 13.0335 14.225 13.0335H20.9665C21.1507 13.0335 21.3 13.1828 21.3 13.367C21.3 13.5513 21.1507 13.7006 20.9665 13.7006H14.225C14.0407 13.7006 13.8914 13.5513 13.8914 13.367Z" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
+		</svg>
+	),
+	'style-4' : ( //Done
 		<svg width="25" height="24" viewBox="0 0 25 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
 			<g clipPath="url(#clip0_1760_7675)">
 			<rect x="20.1931" y="0.7" width="22.6" height="14.6" rx="1.3" transform="rotate(90 20.1931 0.7)" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
@@ -29,27 +50,6 @@ const rowIcons = {
 				<rect width="24" height="24" fill="white" transform="translate(0.893066)"/>
 			</clipPath>
 			</defs>
-		</svg>
-	
-	),
-	'style-3' : ( //Done
-		<svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-			<path d="M2.77197 8.79663H21.3374" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
-			<path d="M2.77197 11.3983H21.3374" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
-			<path d="M6.22266 14H17.7773" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
-			<path d="M5.62207 5.03101H18.4869" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
-			<path d="M14.7041 19.2678H19.2441" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
-			<path d="M5.45586 19.2678C5.45586 18.9542 5.71008 18.7 6.02367 18.7H11.8406C12.1542 18.7 12.4084 18.9542 12.4084 19.2678C12.4084 19.5814 12.1542 19.8356 11.8406 19.8356H6.02367C5.71008 19.8356 5.45586 19.5814 5.45586 19.2678Z" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
-		</svg>	
-	),
-	'style-4' : ( //Done
-		<svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-			<rect x="0.7" y="4.7" width="22.6" height="14.6" rx="1.3" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
-			<path d="M2.80957 14.0093V9.72326C2.80957 8.37063 3.90609 7.27411 5.25872 7.27411H9.54474C10.8974 7.27411 11.9939 8.37063 11.9939 9.72326V14.0093M2.80957 14.0093C2.80957 15.3619 3.90609 16.4584 5.25872 16.4584H9.54474C10.8974 16.4584 11.9939 15.3619 11.9939 14.0093M2.80957 14.0093L5.19356 12.0226C5.97084 11.3749 7.06642 11.2718 7.95089 11.7632L11.9939 14.0093" stroke="#1E293B" strokeWidth="1"/>
-			<path d="M14.0078 9.99866H21.4055" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
-			<path d="M14.0078 7.75214H17.7064" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
-			<path d="M13.4414 16.0628C13.4414 15.6301 13.7922 15.2793 14.225 15.2793H20.9665C21.3992 15.2793 21.75 15.6301 21.75 16.0628C21.75 16.4956 21.3992 16.8464 20.9665 16.8464H14.225C13.7922 16.8464 13.4414 16.4956 13.4414 16.0628Z" stroke="#1E293B" strokeWidth="0.5" strokeLinecap="round"/>
-			<path d="M13.8914 13.367C13.8914 13.1828 14.0407 13.0335 14.225 13.0335H20.9665C21.1507 13.0335 21.3 13.1828 21.3 13.367C21.3 13.5513 21.1507 13.7006 20.9665 13.7006H14.225C14.0407 13.7006 13.8914 13.5513 13.8914 13.367Z" stroke="#1E293B" strokeWidth="1" strokeLinecap="round"/>
 		</svg>
 	),
 	'style-5' : ( //Done

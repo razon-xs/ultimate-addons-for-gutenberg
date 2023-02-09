@@ -97,12 +97,37 @@ const variations = [
 		name: 'style-4',
 		icon: icons['style-4'],
 		title: __( 'Style 4', 'ultimate-addons-for-gutenberg' ),
-		attributes: {},
+		attributes: {
+			backgroundType: 'color',
+			backgroundColor: '#ffffff',
+			blockBorderTopLeftRadius: 4,
+			blockBorderTopRightRadius: 4,
+			blockBorderBottomRightRadius: 4,
+			blockBorderBottomLeftRadius: 4,
+			boxShadowColor: '#00000021',
+			boxShadowHOffset: 0,
+			boxShadowVOffset: 12,
+			boxShadowBlur: 16,
+			boxShadowSpread: -4,
+			boxShadowPosition: 'outset',
+			topPaddingDesktop: 24,
+			bottomPaddingDesktop: 24,
+			leftPaddingDesktop: 24,
+			rightPaddingDesktop: 24,
+			blockBorderStyle: 'solid',
+			blockBorderTopWidth: 2,
+			blockBorderBottomWidth: 2,
+			blockBorderLeftWidth: 2,
+			blockBorderRightWidth: 2,
+			blockBorderColor: '#0000002E'
+		},
 		isDefault: true,
 		innerBlocks: [
-			[ 'uagb/advanced-heading', { headingAlign: 'center', seperatorStyle: 'solid', seperatorPosition: 'below-heading', headingTitleToggle: true, headingDescToggle: true, headingDesc: 'Standard', headingTag: 'h2',headingTitle: '$25/-' , headingDescPosition: 'above-heading', headSpace: 5, subHeadSpace: 12, blockTopPadding: 15, blockBottomPadding: 0 }],
-			[ 'uagb/icon-list', { itemCount: 6 , Label: 'Lorem Ipsum dolor' , icon: 'check-square', align: ''}],
-			[ 'uagb/buttons',{ align: '' } ],
+			[ 'uagb/advanced-heading', { headingAlign: 'center', seperatorStyle: 'solid', headFontWeight: 500, subHeadingColor: '#0B63E5', seperatorPosition: 'below-heading', headingTitleToggle: true, headingDescToggle: true, headingDesc: 'Standard', headingTag: 'h2',headingTitle: '$25/-' , headingDescPosition: 'above-heading', headSpace: 15, subHeadSpace: 12, blockTopPadding: 15, blockBottomPadding: 0 }],
+			[ 'uagb/icon-list', { icon_count: 6 , blockBottomPadding: 20, Label: 'Lorem Ipsum dolor' , icon: 'check-square', align: 'center', iconColor: '#0B63E5'}],
+			[ 'uagb/buttons', { align: 'full' }, [
+				[ 'uagb/buttons-child', { backgroundType: 'color', background: '#F0F5FF', iconHColor: '#0B63E5', hColor: '#0B63E5', showIcon: true, label: 'Choose Plans', color: '#0B63E5', topPadding: 12, rightPadding: 20, bottomPadding: 12, leftPadding: 20, btnBorderTopLeftRadius: 4, btnBorderTopRightRadius: 4, btnBorderBottomRightRadius: 4, btnBorderBottomLeftRadius: 4, btnBorderStyle: 'none' } ],
+			]],
 		],
 		scope: [ 'block' ],
 	},
@@ -113,10 +138,20 @@ const variations = [
 		attributes: {},
 		isDefault: true,
 		innerBlocks: [
-			[ 'uagb/image', { align:'', width: 100, height: 100, url:`${ uagb_blocks_info.uagb_url }/admin/assets/images/uag-placeholder.svg`,maskShape: 'circle'}],
-			[ 'uagb/advanced-heading', { headingAlign: '', blockTopPadding:0, headingDescToggle:true,headingDesc: 'Designation', headingTitle: 'Author Name' } ],
-			[ 'uagb/social-share', { align: '' } ],
-			[ 'uagb/advanced-heading', { headingAlign: '', headingTitleToggle: false, headingDescToggle:true,headingDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' } ],
+			[ 'uagb/container', { directionDesktop: 'row' }, [
+				[ 'uagb/container', {}, [
+					[ 'uagb/image', { 
+						url:`${ uagb_blocks_info.uagb_url }/admin/assets/images/image.jpg`,
+						width: 500,
+						height: 400
+					}],
+				]],
+				[ 'uagb/container', { alignItemsDesktop: 'left' }, [
+					[ 'uagb/blockquote', { skinStyle: 'quotation', enableTweet: false, quoteStyle: 'style_1' , align: 'left', quoteSize: 25, quotePadding: 15, quoteBorderRadius: 100, quoteColor: '#3D3D3D', displayTitle: false , size: 20, quoteRightMargin: 20, quoteBottomMargin: 15, descSpace: 25, descriptionText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.'} ],
+					[ 'uagb/star-rating', { align: 'left', displayTitle: false , size: 20 } ],
+					[ 'uagb/advanced-heading', { headingAlign: 'left', headingTitleToggle: true, headingDescToggle: true, headingDesc: 'Senior Research Manager', headingTag: 'h5',headingTitle: 'Anthony Bahringer' , headingDescPosition: 'below-heading', headSpace: 5, subHeadSpace: 0, blockTopPadding: 15, blockBottomPadding: 0 }],
+				]]
+			]]
 		],
 		scope: [ 'block' ],
 	}

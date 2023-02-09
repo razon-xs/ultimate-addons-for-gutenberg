@@ -135,7 +135,7 @@ function styling( props ) {
 	rightMarginMobile = 'undefined' !== typeof rightMarginMobile ? rightMarginMobile : rightMarginTablet;
 
 	const selectors = {
-		'.uagb-info-box__wrap > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
+		'.uagb-template-everything__wrap > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapDesktop, rowGapType ),
 		},
 		' .wp-block': {
@@ -215,8 +215,8 @@ function styling( props ) {
 		...borderCSS,
 	}
 
-	selectors['.uagb-info-box__wrap'] = blockCSS;
-	selectors['.uagb-info-box__wrap:hover'] = {
+	selectors['.uagb-template-everything__wrap'] = blockCSS;
+	selectors['.uagb-template-everything__wrap:hover'] = {
 		'border-color': blockBorderHColor,
 	};
 
@@ -227,7 +227,7 @@ function styling( props ) {
 
 		const boxShadowBlurHoverCSSUnit = ( '' === boxShadowBlurHover ) ? '' : generateCSSUnit( boxShadowBlurHover, 'px' );
 
-		selectors['.uagb-info-box__wrap:hover']['box-shadow'] = generateCSSUnit( boxShadowHOffsetHover, 'px' ) + ' ' + generateCSSUnit( boxShadowVOffsetHover, 'px' ) +	' ' +
+		selectors['.uagb-template-everything__wrap:hover']['box-shadow'] = generateCSSUnit( boxShadowHOffsetHover, 'px' ) + ' ' + generateCSSUnit( boxShadowVOffsetHover, 'px' ) +	' ' +
 													boxShadowBlurHoverCSSUnit + ' ' +	generateCSSUnit( boxShadowSpreadHover, 'px' ) + ' ' +
 													boxShadowColorHover + ' ' +	boxShadowPositionCSSHover;
 	}
@@ -255,7 +255,7 @@ function styling( props ) {
 	const infoBoxBackgroundCSSTablet = generateBackgroundCSS( backgroundAttributesTablet );
 
 	const tablet_selectors = {
-		'.uagb-info-box__wrap' : {
+		'.uagb-template-everything__wrap' : {
 			'padding-top': generateCSSUnit( topPaddingTablet, paddingTypeTablet ),
 			'padding-bottom': generateCSSUnit( bottomPaddingTablet, paddingTypeTablet ),
 			'padding-left': generateCSSUnit( leftPaddingTablet, paddingTypeTablet ),
@@ -267,7 +267,7 @@ function styling( props ) {
 			...infoBoxBackgroundCSSTablet,
 			...borderCSSTablet
 		},
-		'.uagb-info-box__wrap > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
+		'.uagb-template-everything__wrap > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapTablet, rowGapTypeTablet ),
 		},
 	};
@@ -295,7 +295,7 @@ function styling( props ) {
 	const containerBackgroundCSSMobile = generateBackgroundCSS( backgroundAttributesMobile );
 
 	const mobile_selectors = {
-		'.uagb-info-box__wrap' : {
+		'.uagb-template-everything__wrap' : {
 			'padding-top': generateCSSUnit( topPaddingMobile, paddingTypeMobile ),
 			'padding-bottom': generateCSSUnit( bottomPaddingMobile, paddingTypeMobile ),
 			'padding-left': generateCSSUnit( leftPaddingMobile, paddingTypeMobile ),
@@ -307,7 +307,7 @@ function styling( props ) {
 			...containerBackgroundCSSMobile,
 			...borderCSSMobile
 		},
-		'.uagb-info-box__wrap .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
+		'.uagb-template-everything__wrap .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block ': {
 			'margin-bottom': generateCSSUnit( rowGapMobile, rowGapTypeMobile ),
 		},
 	};
