@@ -26,7 +26,6 @@ const Settings = ( props ) => {
 	props = props.parentProps;
 	const { attributes, deviceType, setAttributes } = props;
 	const {
-		block_id,
 		separatorStyle,
 		separatorAlign,
 		separatorAlignTablet,
@@ -499,7 +498,7 @@ const Settings = ( props ) => {
 	const iconAndTextStyleSettings = () => {
 		return (
 			<UAGAdvancedPanelBody
-				title={elementType === 'text' ? __('Text', 'ultimate-addons-for-gutenberg') : __('Icon', 'ultimate-addons-for-gutenberg')}
+				title={elementType === 'text' ? __( 'Text', 'ultimate-addons-for-gutenberg' ) : __( 'Icon', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
 				<MultiButtonsControl

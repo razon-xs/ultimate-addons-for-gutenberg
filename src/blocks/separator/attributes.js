@@ -85,6 +85,7 @@ const attributes = {
 	},
 	separatorColor: {
 		type: 'string',
+		default: '#333',
 		UAGCopyPaste: {
 			styleType: 'separator-color'
 		}

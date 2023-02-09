@@ -1,6 +1,5 @@
 import classnames from 'classnames';
-import { RichText } from '@wordpress/block-editor';
-import React , { useLayoutEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
 import renderSVG from '@Controls/renderIcon';
 import renderCustomSVG from './separator-svg';
@@ -24,13 +23,15 @@ const Render = ( props ) => {
 			separatorTextTag,
 			separatorIcon,
 			separatorStyle,
+			separatorColor,
 		},
 		className,
 	} = props;
 
 	const deviceType = useDeviceType();
+	const CustomTag = `${ separatorTextTag }`;
 
-    const renderSvg=renderCustomSVG( separatorStyle );
+	const renderSvg = renderCustomSVG( separatorStyle, separatorColor );
 
 	return (
 		<div
@@ -39,21 +40,25 @@ const Render = ( props ) => {
 				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 				`uagb-block-${ block_id }`,
 				'wp-block-uagb-separator',
-				`${elementType !== 'none' ? 'wp-block-uagb-separator--' + elementType : ''}`
+				`${
+					elementType !== 'none'
+						? 'wp-block-uagb-separator--' + elementType
+						: ''
+				}`
 			) }
 		>
-			<div className='wp-block-uagb-separator__inner'>
-			{renderSvg }
-				{
-					elementType !== 'none' && (
-						<div className='wp-block-uagb-separator-element'>
-							{
-								elementType === 'icon' ? renderSVG( separatorIcon ) : <RichText tagName={separatorTextTag} placeholder={separatorText} />
-							}
-						</div>
-					)
-				}
-				{renderSvg }
+			<div className="wp-block-uagb-separator__inner">
+				{renderSvg}
+				{ elementType !== 'none' && (
+					<div className="wp-block-uagb-separator-element">
+						{ elementType === 'icon' ? (
+							renderSVG( separatorIcon )
+						) : (
+							<CustomTag> { separatorText } </CustomTag>
+						) }
+					</div>
+				) }
+				{renderSvg}
 			</div>
 		</div>
 	);

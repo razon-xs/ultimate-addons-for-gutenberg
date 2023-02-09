@@ -4,7 +4,7 @@
 
 import renderSVG from '@Controls/renderIcon';
 import classnames from 'classnames';
-import { RichText } from '@wordpress/block-editor'; 
+import renderCustomSVG from './separator-svg';
 
 export default function save( props ) {
 	const {
@@ -12,28 +12,36 @@ export default function save( props ) {
 		elementType,
 		separatorText,
 		separatorTextTag,
-		separatorIcon
+		separatorIcon,
+		separatorStyle,
 	} = props.attributes;
-
+	const CustomTag = `${ separatorTextTag }`;
+	const renderSvg = renderCustomSVG( separatorStyle );
 	return (
 		<div
 			className={ classnames(
 				props.className,
 				`uagb-block-${ block_id }`,
 				'wp-block-uagb-separator',
-				`${elementType !== 'none' ? 'wp-block-uagb-separator--' + elementType : ''}`
+				`${
+					elementType !== 'none'
+						? 'wp-block-uagb-separator--' + elementType
+						: ''
+				}`
 			) }
 		>
-			<div className='wp-block-uagb-separator__inner'>
-				{
-					elementType !== 'none' && (
-						<div className='wp-block-uagb-separator-element'>
-							{
-								elementType === 'icon' ? renderSVG( separatorIcon ) : <RichText  tagName={separatorTextTag} value={separatorText} />
-							}
-						</div>
-					)
-				}
+			<div className="wp-block-uagb-separator__inner">
+				{ renderSvg }
+				{ elementType !== 'none' && (
+					<div className="wp-block-uagb-separator-element">
+						{ elementType === 'icon' ? (
+							renderSVG( separatorIcon )
+						) : (
+							<CustomTag> { separatorText } </CustomTag>
+						) }
+					</div>
+				) }
+				{ renderSvg }
 			</div>
 		</div>
 	);
