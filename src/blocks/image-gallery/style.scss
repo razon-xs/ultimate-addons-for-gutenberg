@@ -313,6 +313,7 @@
 		}
 
 		&-wrapper {
+			position: relative;
 
 			&:hover .spectra-image-gallery__control-focus {
 				opacity: 0.25;

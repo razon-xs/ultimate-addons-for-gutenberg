@@ -9,6 +9,7 @@ import '/assets/js/imagesloaded.min';
 import { useDeviceType } from '@Controls/getPreviewType';
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
 import { RichText } from '@wordpress/block-editor';
+import { applyFilters } from '@wordpress/hooks';
 
 const classNames = ( ...classes ) => ( classes.filter( Boolean ).join( ' ' ) );
 
@@ -21,6 +22,7 @@ const ImageGallery = ( { attributes, setAttributes, name } ) => {
 		mediaGallery,
 		feedLayout,
 		imageDisplayCaption,
+		imageClickEvent,
 
 		feedMarginTop,
 		feedMarginRight,
@@ -545,6 +547,7 @@ const ImageGallery = ( { attributes, setAttributes, name } ) => {
 		>
 			{ renderThumbnail( mediaObject ) }
 			{ ( 'tiled' === feedLayout ) && renderFocusControl( mediaObject ) }
+			{ applyFilters( 'spectra.image-gallery.render.customLinks', '', mediaObject.id, attributes, setAttributes ) }
 		</div>
 	);
 
