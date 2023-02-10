@@ -906,19 +906,13 @@ class UAGB_Post_Assets {
 
 		$enable_on_page_css_button = UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_on_page_css_button', 'yes' );
 
-<<<<<<< HEAD
-		if ( $custom_css && is_string( $custom_css ) && ! self::$custom_css_appended ) {
-			$this->stylesheet         .= $custom_css;
-			self::$custom_css_appended = true;
-=======
 		if ( 'yes' === $enable_on_page_css_button ) {
 			$custom_css = get_post_meta( $this->post_id, '_uag_custom_page_level_css', true );
 
-			if ( isset( $custom_css ) && is_string( $custom_css ) && ! self::$custom_css_appended ) {
+			if ( is_string( $custom_css ) && ! self::$custom_css_appended ) {
 				$this->stylesheet         .= $custom_css;
 				self::$custom_css_appended = true;
 			}
->>>>>>> 8c4353431167919673e2a2eddc6fef060caa5e29
 		}
 
 		if ( ! is_array( $blocks ) || empty( $blocks ) ) {
