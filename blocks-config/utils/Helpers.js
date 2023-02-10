@@ -67,6 +67,10 @@ export function initBlockId(props, initialAttr = false) {
 		uagb_blocks_info.unique_blocks.push(createBlockID);
 	}
 }
+
+// block lists
+// advanced-heading
+
 // export function initBlockId(props, initialAttr = false) {
 // 	const {
 // 		attributes: { block_id },

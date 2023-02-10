@@ -1,6 +1,6 @@
 /**
  * BLOCK: Forms - Edit
- */import React, { useEffect, useCallback, useLayoutEffect } from 'react';
+ */ import React, { useEffect, useCallback, useLayoutEffect } from 'react';
 import styling from './styling';
 import UAGB_Block_Icons from '@Controls/block-icons';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
@@ -24,11 +24,11 @@ import { __ } from '@wordpress/i18n';
 
 import apiFetch from '@wordpress/api-fetch';
 
-import {migrateBorderAttributes} from '@Controls/generateAttributes';
+import { migrateBorderAttributes } from '@Controls/generateAttributes';
 
 import styles from './editor.lazy.scss';
 
-const UAGBFormsEdit = ( props ) => {
+const UAGBFormsEdit = (props) => {
 	const deviceType = useDeviceType();
 
 	const {
@@ -37,47 +37,42 @@ const UAGBFormsEdit = ( props ) => {
 		variations,
 		hasInnerBlocks,
 		defaultVariation,
-	} = useSelect(
-		( select ) => {
-			const { getBlocks } = select( 'core/block-editor' );
-			const {
-				getBlockType,
-				getBlockVariations,
-				getDefaultBlockVariation,
-			} = select( 'core/blocks' );
+	} = useSelect((select) => {
+		const { getBlocks } = select('core/block-editor');
+		const { getBlockType, getBlockVariations, getDefaultBlockVariation } =
+			select('core/blocks');
 
-			return {
-				innerBlocks: getBlocks( props.clientId ),
-				hasInnerBlocks:
-					select( 'core/block-editor' ).getBlocks( props.clientId ).length >
-					0,
+		return {
+			innerBlocks: getBlocks(props.clientId),
+			hasInnerBlocks:
+				select('core/block-editor').getBlocks(props.clientId).length >
+				0,
 
-				blockType: getBlockType( props.name ),
-				defaultVariation:
-					typeof getDefaultBlockVariation === 'undefined'
-						? null
-						: getDefaultBlockVariation( props.name ),
-				variations:
-					typeof getBlockVariations === 'undefined'
-						? null
-						: getBlockVariations( props.name ),
-			};
-		},
-	);
-	const { replaceInnerBlocks } = useDispatch( 'core/block-editor' );
+			blockType: getBlockType(props.name),
+			defaultVariation:
+				typeof getDefaultBlockVariation === 'undefined'
+					? null
+					: getDefaultBlockVariation(props.name),
+			variations:
+				typeof getBlockVariations === 'undefined'
+					? null
+					: getBlockVariations(props.name),
+		};
+	});
+	const { replaceInnerBlocks } = useDispatch('core/block-editor');
 	// Add and remove the CSS on the drop and remove of the component.
-	useLayoutEffect( () => {
+	useLayoutEffect(() => {
 		styles.use();
 		return () => {
 			styles.unuse();
 		};
-	}, [] );
+	}, []);
 
-	useEffect( () => {
+	useEffect(() => {
 		const { setAttributes } = props;
 
 		// Assigning block_id in the attribute.
-		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes({ block_id: props.clientId.substr(0, 8) });
 		const {
 			vPaddingSubmit,
 			hPaddingSubmit,
@@ -97,80 +92,85 @@ const UAGBFormsEdit = ( props ) => {
 			reCaptchaSecretKeyV3,
 			reCaptchaEnable,
 			toggleColor,
-			bgColor
+			bgColor,
 		} = props.attributes;
 
-		if( bgColor ) {
-			if ( undefined === toggleColor ) {
-				setAttributes( { toggleColor: bgColor } );
+		if (bgColor) {
+			if (undefined === toggleColor) {
+				setAttributes({ toggleColor: bgColor });
 			}
 		}
 
-		if ( vPaddingSubmit ) {
-			if ( undefined === paddingBtnTop ) {
-				setAttributes( { paddingBtnTop: vPaddingSubmit } );
+		if (vPaddingSubmit) {
+			if (undefined === paddingBtnTop) {
+				setAttributes({ paddingBtnTop: vPaddingSubmit });
 			}
-			if ( undefined === paddingBtnBottom ) {
-				setAttributes( { paddingBtnBottom: vPaddingSubmit } );
-			}
-		}
-		if ( hPaddingSubmit ) {
-			if ( undefined === paddingBtnRight ) {
-				setAttributes( { paddingBtnRight: hPaddingSubmit } );
-			}
-			if ( undefined === paddingBtnLeft ) {
-				setAttributes( { paddingBtnLeft: hPaddingSubmit } );
+			if (undefined === paddingBtnBottom) {
+				setAttributes({ paddingBtnBottom: vPaddingSubmit });
 			}
 		}
-		if ( vPaddingField ) {
-			if ( undefined === paddingFieldTop ) {
-				setAttributes( { paddingFieldTop: vPaddingField } );
+		if (hPaddingSubmit) {
+			if (undefined === paddingBtnRight) {
+				setAttributes({ paddingBtnRight: hPaddingSubmit });
 			}
-			if ( undefined === paddingFieldBottom ) {
-				setAttributes( { paddingFieldBottom: vPaddingField } );
+			if (undefined === paddingBtnLeft) {
+				setAttributes({ paddingBtnLeft: hPaddingSubmit });
 			}
 		}
-		if ( hPaddingField ) {
-			if ( undefined === paddingFieldRight ) {
-				setAttributes( { paddingFieldRight: hPaddingField } );
+		if (vPaddingField) {
+			if (undefined === paddingFieldTop) {
+				setAttributes({ paddingFieldTop: vPaddingField });
 			}
-			if ( undefined === paddingFieldLeft ) {
-				setAttributes( { paddingFieldLeft: hPaddingField } );
+			if (undefined === paddingFieldBottom) {
+				setAttributes({ paddingFieldBottom: vPaddingField });
+			}
+		}
+		if (hPaddingField) {
+			if (undefined === paddingFieldRight) {
+				setAttributes({ paddingFieldRight: hPaddingField });
+			}
+			if (undefined === paddingFieldLeft) {
+				setAttributes({ paddingFieldLeft: hPaddingField });
 			}
 		}
 
 		const id = props.clientId;
 
-		window.addEventListener( 'load', renderReadyClasses( id ) );
+		window.addEventListener('load', renderReadyClasses(id));
 
-		if( reCaptchaEnable ) {
-
+		if (reCaptchaEnable) {
 			const keys = {};
-			if( '' === uagb_blocks_info.recaptcha_site_key_v2 && '' === uagb_blocks_info.recaptcha_secret_key_v2 && reCaptchaSiteKeyV2 && reCaptchaSecretKeyV2 ) {
-
+			if (
+				'' === uagb_blocks_info.recaptcha_site_key_v2 &&
+				'' === uagb_blocks_info.recaptcha_secret_key_v2 &&
+				reCaptchaSiteKeyV2 &&
+				reCaptchaSecretKeyV2
+			) {
 				keys.reCaptchaSiteKeyV2 = reCaptchaSiteKeyV2;
 				keys.reCaptchaSecretKeyV2 = reCaptchaSecretKeyV2;
 			}
-			if( '' === uagb_blocks_info.recaptcha_site_key_v3 && '' === uagb_blocks_info.recaptcha_secret_key_v3 && reCaptchaSiteKeyV3 && reCaptchaSecretKeyV3 ) {
-
+			if (
+				'' === uagb_blocks_info.recaptcha_site_key_v3 &&
+				'' === uagb_blocks_info.recaptcha_secret_key_v3 &&
+				reCaptchaSiteKeyV3 &&
+				reCaptchaSecretKeyV3
+			) {
 				keys.reCaptchaSiteKeyV3 = reCaptchaSiteKeyV3;
 				keys.reCaptchaSecretKeyV3 = reCaptchaSecretKeyV3;
 			}
 
 			const formData = new window.FormData();
 
-			formData.append( 'action', 'uagb_forms_recaptcha' );
-			formData.append( 'nonce', uagb_blocks_info.uagb_ajax_nonce );
-			formData.append( 'value', JSON.stringify( keys ) );
+			formData.append('action', 'uagb_forms_recaptcha');
+			formData.append('nonce', uagb_blocks_info.uagb_ajax_nonce);
+			formData.append('value', JSON.stringify(keys));
 
-			if ( Object.keys( keys ).length !== 0 ) {
-
-				apiFetch( {
+			if (Object.keys(keys).length !== 0) {
+				apiFetch({
 					url: uagb_blocks_info.ajax_url,
 					method: 'POST',
 					body: formData,
-				} ).then( () => {
-				} );
+				}).then(() => {});
 			}
 		}
 		const {
@@ -187,105 +187,135 @@ const UAGBFormsEdit = ( props ) => {
 		} = props.attributes;
 
 		// inputborder
-		if( inputborderWidth || inputborderRadius || inputborderColor || inputborderHoverColor || inputborderStyle ){
-			migrateBorderAttributes( 'field', {
-				label: 'inputborderWidth',
-				value: inputborderWidth,
-			}, {
-				label: 'inputborderRadius',
-				value: inputborderRadius
-			}, {
-				label: 'inputborderColor',
-				value: inputborderColor
-			}, {
-				label: 'inputborderHoverColor',
-				value: inputborderHoverColor
-			},{
-				label: 'inputborderStyle',
-				value: inputborderStyle
-			},
-			props.setAttributes,
-			props.attributes
+		if (
+			inputborderWidth ||
+			inputborderRadius ||
+			inputborderColor ||
+			inputborderHoverColor ||
+			inputborderStyle
+		) {
+			migrateBorderAttributes(
+				'field',
+				{
+					label: 'inputborderWidth',
+					value: inputborderWidth,
+				},
+				{
+					label: 'inputborderRadius',
+					value: inputborderRadius,
+				},
+				{
+					label: 'inputborderColor',
+					value: inputborderColor,
+				},
+				{
+					label: 'inputborderHoverColor',
+					value: inputborderHoverColor,
+				},
+				{
+					label: 'inputborderStyle',
+					value: inputborderStyle,
+				},
+				props.setAttributes,
+				props.attributes
 			);
-			migrateBorderAttributes( 'checkBoxToggle', {
-				label: 'inputborderWidth',
-				value: inputborderWidth,
-			}, {
-				label: 'inputborderRadius',
-				value: inputborderRadius
-			}, {
-				label: 'inputborderColor',
-				value: inputborderColor
-			}, {
-				label: 'inputborderHoverColor',
-				value: inputborderHoverColor
-			},{
-				label: 'inputborderStyle',
-				value: inputborderStyle
-			},
-			props.setAttributes,
-			props.attributes
-			);
-		}
-		if( submitborderWidth || submitborderRadius || submitborderColor || submitborderHoverColor || submitborderStyle ){
-			migrateBorderAttributes( 'btn', {
-				label: 'submitborderWidth',
-				value: submitborderWidth,
-			}, {
-				label: 'submitborderRadius',
-				value: submitborderRadius
-			}, {
-				label: 'submitborderColor',
-				value: submitborderColor
-			}, {
-				label: 'submitborderHoverColor',
-				value: submitborderHoverColor
-			},{
-				label: 'submitborderStyle',
-				value: submitborderStyle
-			},
-			props.setAttributes,
-			props.attributes
+			migrateBorderAttributes(
+				'checkBoxToggle',
+				{
+					label: 'inputborderWidth',
+					value: inputborderWidth,
+				},
+				{
+					label: 'inputborderRadius',
+					value: inputborderRadius,
+				},
+				{
+					label: 'inputborderColor',
+					value: inputborderColor,
+				},
+				{
+					label: 'inputborderHoverColor',
+					value: inputborderHoverColor,
+				},
+				{
+					label: 'inputborderStyle',
+					value: inputborderStyle,
+				},
+				props.setAttributes,
+				props.attributes
 			);
 		}
-		
-	}, [] );
+		if (
+			submitborderWidth ||
+			submitborderRadius ||
+			submitborderColor ||
+			submitborderHoverColor ||
+			submitborderStyle
+		) {
+			migrateBorderAttributes(
+				'btn',
+				{
+					label: 'submitborderWidth',
+					value: submitborderWidth,
+				},
+				{
+					label: 'submitborderRadius',
+					value: submitborderRadius,
+				},
+				{
+					label: 'submitborderColor',
+					value: submitborderColor,
+				},
+				{
+					label: 'submitborderHoverColor',
+					value: submitborderHoverColor,
+				},
+				{
+					label: 'submitborderStyle',
+					value: submitborderStyle,
+				},
+				props.setAttributes,
+				props.attributes
+			);
+		}
+	}, []);
 
-	useEffect( () => {
+	useEffect(() => {
+		const blockStyling = styling(props);
 
-		const blockStyling = styling( props );
+		addBlockEditorDynamicStyles(
+			'uagb-style-forms-' + props.clientId.substr(0, 8),
+			blockStyling
+		);
+	}, [props]);
 
-        addBlockEditorDynamicStyles( 'uagb-style-forms-' + props.clientId.substr( 0, 8 ), blockStyling );
-		
-	}, [ props ] );
-
-	useEffect( () => {
+	useEffect(() => {
 		// Replacement for componentDidUpdate.
-	    const blockStyling = styling( props );
+		const blockStyling = styling(props);
 
-        addBlockEditorDynamicStyles( 'uagb-style-forms-' + props.clientId.substr( 0, 8 ), blockStyling );
+		addBlockEditorDynamicStyles(
+			'uagb-style-forms-' + props.clientId.substr(0, 8),
+			blockStyling
+		);
 
 		scrollBlockToView();
 
-		const id = props.clientId
-		window.addEventListener( 'load', renderReadyClasses( id ) )
+		const id = props.clientId;
+		window.addEventListener('load', renderReadyClasses(id));
+	}, [deviceType]);
 
-	}, [deviceType] );
-
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
-	useEffect( () => {
-
-		responsiveConditionPreview( props );
-
-	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
+	const { UAGHideDesktop, UAGHideTab, UAGHideMob } = props.attributes;
+	useEffect(() => {
+		responsiveConditionPreview(props);
+	}, [UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType]);
 
 	const blockVariationPickerOnSelect = useCallback(
-		( nextVariation = defaultVariation ) => {
-			if ( nextVariation.attributes ) {
-				props.setAttributes( nextVariation.attributes );
+		(nextVariation = defaultVariation) => {
+			if (nextVariation.attributes) {
+				props.setAttributes(nextVariation.attributes);
 			}
 
-			if ( nextVariation.innerBlocks ) {
+			if (nextVariation.innerBlocks) {
 				replaceInnerBlocks(
 					props.clientId,
 					createBlocksFromInnerBlocksTemplate(
@@ -296,134 +326,134 @@ const UAGBFormsEdit = ( props ) => {
 		}
 	);
 	const createBlocksFromInnerBlocksTemplate = useCallback(
-		( innerBlocksTemplate ) => {
+		(innerBlocksTemplate) => {
 			return innerBlocksTemplate.map(
-				( [ name, attributes, innerBlocks = [] ] ) => // eslint-disable-line no-shadow
+				(
+					[name, attributes, innerBlocks = []] // eslint-disable-line no-shadow
+				) =>
 					createBlock(
 						name,
 						attributes,
-						createBlocksFromInnerBlocksTemplate( innerBlocks )
+						createBlocksFromInnerBlocksTemplate(innerBlocks)
 					)
 			);
 		}
 	);
 
-	const renderReadyClasses = useCallback( ( id ) => {
-		const iframeEl = document.querySelector( `iframe[name='editor-canvas']` );
+	const renderReadyClasses = useCallback((id) => {
+		const iframeEl = document.querySelector(`iframe[name='editor-canvas']`);
 		let mainDiv;
 		let formscope;
-		if( iframeEl ){
-			mainDiv = iframeEl.contentDocument.getElementById( 'block-' + id )
-			formscope = mainDiv.getElementsByClassName( 'uagb-forms__outer-wrap' )
+		if (iframeEl) {
+			mainDiv = iframeEl.contentDocument.getElementById('block-' + id);
+			formscope = mainDiv.getElementsByClassName(
+				'uagb-forms__outer-wrap'
+			);
 		} else {
-			mainDiv = document.getElementById( 'block-' + id )
-			formscope = mainDiv?.getElementsByClassName( 'uagb-forms__outer-wrap' )
+			mainDiv = document.getElementById('block-' + id);
+			formscope = mainDiv?.getElementsByClassName(
+				'uagb-forms__outer-wrap'
+			);
 		}
 
-		if ( formscope && formscope[ 0 ] ) {
-			const editorwrap = formscope[ 0 ].children;
-			const formInnerWrap = editorwrap[ 0 ].children;
-			const editorBlockWrap = formInnerWrap[ 0 ].getElementsByClassName(
+		if (formscope && formscope[0]) {
+			const editorwrap = formscope[0].children;
+			const formInnerWrap = editorwrap[0].children;
+			const editorBlockWrap = formInnerWrap[0].getElementsByClassName(
 				'block-editor-block-list__layout'
 			);
-			const sibling = editorBlockWrap[ 0 ].children;
+			const sibling = editorBlockWrap[0].children;
 
-			for ( let index = 0; index < sibling.length; index++ ) {
+			for (let index = 0; index < sibling.length; index++) {
 				if (
-					sibling[ index ].classList.contains( 'uag-col-2' ) &&
-					sibling[ index + 1 ].classList.contains( 'uag-col-2' )
+					sibling[index].classList.contains('uag-col-2') &&
+					sibling[index + 1].classList.contains('uag-col-2')
 				) {
-					const div = document.createElement( 'div' );
+					const div = document.createElement('div');
 					div.className = 'uag-col-2-wrap uag-col-wrap-' + index;
-					sibling[ index + 1 ].after( div );
-					const wrapper_div = formscope[ 0 ].getElementsByClassName(
+					sibling[index + 1].after(div);
+					const wrapper_div = formscope[0].getElementsByClassName(
 						'uag-col-wrap-' + index
 					);
-					wrapper_div[ 0 ].appendChild( sibling[ index ] );
-					wrapper_div[ 0 ].appendChild( sibling[ index ] );
+					wrapper_div[0].appendChild(sibling[index]);
+					wrapper_div[0].appendChild(sibling[index]);
 				} else if (
-					sibling[ index ].classList.contains( 'uag-col-3' ) &&
-					sibling[ index + 1 ].classList.contains( 'uag-col-3' ) &&
-					sibling[ index + 2 ].classList.contains( 'uag-col-3' )
+					sibling[index].classList.contains('uag-col-3') &&
+					sibling[index + 1].classList.contains('uag-col-3') &&
+					sibling[index + 2].classList.contains('uag-col-3')
 				) {
-					const div = document.createElement( 'div' );
+					const div = document.createElement('div');
 					div.className = 'uag-col-3-wrap uag-col-wrap-' + index;
-					sibling[ index + 2 ].after( div );
-					const wrapper_div = formscope[ 0 ].getElementsByClassName(
+					sibling[index + 2].after(div);
+					const wrapper_div = formscope[0].getElementsByClassName(
 						'uag-col-wrap-' + index
 					);
-					wrapper_div[ 0 ].appendChild( sibling[ index ] );
-					wrapper_div[ 0 ].appendChild( sibling[ index ] );
-					wrapper_div[ 0 ].appendChild( sibling[ index ] );
+					wrapper_div[0].appendChild(sibling[index]);
+					wrapper_div[0].appendChild(sibling[index]);
+					wrapper_div[0].appendChild(sibling[index]);
 				} else if (
-					sibling[ index ].classList.contains( 'uag-col-4' ) &&
-					sibling[ index + 1 ].classList.contains( 'uag-col-4' ) &&
-					sibling[ index + 2 ].classList.contains( 'uag-col-4' ) &&
-					sibling[ index + 3 ].classList.contains( 'uag-col-4' )
+					sibling[index].classList.contains('uag-col-4') &&
+					sibling[index + 1].classList.contains('uag-col-4') &&
+					sibling[index + 2].classList.contains('uag-col-4') &&
+					sibling[index + 3].classList.contains('uag-col-4')
 				) {
-					const div = document.createElement( 'div' );
+					const div = document.createElement('div');
 					div.className = 'uag-col-4-wrap uag-col-wrap-' + index;
-					sibling[ index + 3 ].after( div );
-					const wrapper_div = formscope[ 0 ].getElementsByClassName(
+					sibling[index + 3].after(div);
+					const wrapper_div = formscope[0].getElementsByClassName(
 						'uag-col-wrap-' + index
 					);
-					wrapper_div[ 0 ].appendChild( sibling[ index ] );
-					wrapper_div[ 0 ].appendChild( sibling[ index ] );
-					wrapper_div[ 0 ].appendChild( sibling[ index ] );
-					wrapper_div[ 0 ].appendChild( sibling[ index ] );
+					wrapper_div[0].appendChild(sibling[index]);
+					wrapper_div[0].appendChild(sibling[index]);
+					wrapper_div[0].appendChild(sibling[index]);
+					wrapper_div[0].appendChild(sibling[index]);
 				}
 			}
 		}
-	} );
+	});
 
-	if ( ! props.attributes.isPreview && ! hasInnerBlocks ) {
-		return (
-			props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-				<div className='uagb-forms-variations'>
-					<__experimentalBlockVariationPicker
-						icon={ UAGB_Block_Icons.forms }
-						label={ __( 'Forms', 'ultimate-addons-for-gutenberg' ) }
-						instructions={ __(
-							'Select a variation to start with.',
-							'ultimate-addons-for-gutenberg'
-						) }
-						variations={ variations }
-						allowSkip
-						onSelect={ ( nextVariation ) =>
-							blockVariationPickerOnSelect( nextVariation )
-						}
-					/>
-				</div>
-			)
+	if (!props.attributes.isPreview && !hasInnerBlocks) {
+		return props.attributes.isPreview ? (
+			<img width="100%" src={previewImageData} alt="" />
+		) : (
+			<div className="uagb-forms-variations">
+				<__experimentalBlockVariationPicker
+					icon={UAGB_Block_Icons.forms}
+					label={__('Forms', 'ultimate-addons-for-gutenberg')}
+					instructions={__(
+						'Select a variation to start with.',
+						'ultimate-addons-for-gutenberg'
+					)}
+					variations={variations}
+					allowSkip
+					onSelect={(nextVariation) =>
+						blockVariationPickerOnSelect(nextVariation)
+					}
+				/>
+			</div>
 		);
 	}
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/form.svg`;
+	const previewImageData = `${uagb_blocks_info.uagb_url}/assets/images/block-previews/form.svg`;
 
-	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
-				<Settings parentProps={ props } />
-				<Render parentProps={ props } />
-			</>
-		)
+	return props.attributes.isPreview ? (
+		<img width="100%" src={previewImageData} alt="" />
+	) : (
+		<>
+			<Settings parentProps={props} />
+			<Render parentProps={props} />
+		</>
 	);
 };
 
-const addAdvancedClasses = createHigherOrderComponent( ( BlockListBlock ) => {
-	return ( props ) => {
+const addAdvancedClasses = createHigherOrderComponent((BlockListBlock) => {
+	return (props) => {
 		return (
-			<BlockListBlock
-				{ ...props }
-				className={ props.attributes.className }
-			/>
+			<BlockListBlock {...props} className={props.attributes.className} />
 		);
 	};
-}, 'addAdvancedClasses' );
+}, 'addAdvancedClasses');
 
-wp.hooks.addFilter( 'editor.BlockListBlock', 'uagb/forms', addAdvancedClasses );
+wp.hooks.addFilter('editor.BlockListBlock', 'uagb/forms', addAdvancedClasses);
 
-export default compose(
-	withNotices,
-	addAdvancedClasses
-)( UAGBFormsEdit );
+export default compose(withNotices, addAdvancedClasses)(UAGBFormsEdit);

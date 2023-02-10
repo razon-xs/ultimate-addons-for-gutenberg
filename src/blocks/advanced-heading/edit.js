@@ -14,6 +14,7 @@ import { initBlockId } from '@Utils/Helpers';
 import './style.scss';
 
 const UAGBAdvancedHeading = (props) => {
+	console.log('propsdd', props);
 	const deviceType = useDeviceType();
 	// console.log('props without again one line', props);
 	const {
@@ -23,14 +24,12 @@ const UAGBAdvancedHeading = (props) => {
 		responsiveConditionPreview(props);
 	}, [UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType]);
 
-	// useEffect( () => {
-
+	// useEffect(() => {
 	// 	const { setAttributes } = props;
 	// 	// Assigning block_id in the attribute.
-	// 	setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
-	// 	setAttributes( { classMigrate: true } )
-
-	// }, [] );
+	// 	// setAttributes({ block_id: props.clientId.substr(0, 8) });
+	// 	// setAttributes({ classMigrate: true });
+	// }, []);
 
 	useEffect(() => {
 		initBlockId(props, { classMigrate: true });
