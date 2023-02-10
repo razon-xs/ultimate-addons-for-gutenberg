@@ -547,7 +547,7 @@ const ImageGallery = ( { attributes, setAttributes, name } ) => {
 		>
 			{ renderThumbnail( mediaObject ) }
 			{ ( 'tiled' === feedLayout ) && renderFocusControl( mediaObject ) }
-			{ applyFilters( 'spectra.image-gallery.render.customLinks', '', mediaObject.id, attributes, setAttributes ) }
+			{ applyFilters( 'spectra.image-gallery.render.customLinks', '', mediaObject, attributes, setAttributes ) }
 		</div>
 	);
 
