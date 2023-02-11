@@ -84,7 +84,7 @@ class UAGB_Init_Blocks {
 	 */
 	public function render_block( $block_content, $block ) {
 
-		if ( !empty($block['attrs']['UAGDisplayConditions']) ) {
+		if ( ! empty( $block['attrs']['UAGDisplayConditions'] ) ) {
 			switch ( $block['attrs']['UAGDisplayConditions'] ) {
 				case 'userstate':
 					$block_content = $this->user_state_visibility( $block['attrs'], $block_content );
@@ -120,12 +120,12 @@ class UAGB_Init_Blocks {
 	 * @return mixed Returns the new block content.
 	 */
 	public function user_role_visibility( $block_attributes, $block_content ) {
-		if(empty($block_attributes['UAGUserRole'])){
+		if ( empty( $block_attributes['UAGUserRole'] ) ) {
 			return $block_content;
 		}
 
 		$user = wp_get_current_user();
-		return is_user_logged_in() && in_array($block_attributes['UAGUserRole'], $user->roles, true) ? '' : $block_content;
+		return is_user_logged_in() && in_array( $block_attributes['UAGUserRole'], $user->roles, true ) ? '' : $block_content;
 	}
 
 	/**
@@ -138,7 +138,7 @@ class UAGB_Init_Blocks {
 	 */
 	public function os_visibility( $block_attributes, $block_content ) {
 
-		if ( empty($block_attributes['UAGSystem']) ) {
+		if ( empty( $block_attributes['UAGSystem'] ) ) {
 			return $block_content;
 		}
 
@@ -154,7 +154,7 @@ class UAGB_Init_Blocks {
 
 		$user_agent = isset( $_SERVER['HTTP_USER_AGENT'] ) ? sanitize_text_field( $_SERVER['HTTP_USER_AGENT'] ) : '';
 
-		return preg_match( '@' . $os[ $block_attributes['UAGSystem'] ] . '@', $user_agent ) ? "" :$block_content;
+		return preg_match( '@' . $os[ $block_attributes['UAGSystem'] ] . '@', $user_agent ) ? '' : $block_content;
 	}
 
 	/**
@@ -168,7 +168,7 @@ class UAGB_Init_Blocks {
 	 */
 	public function browser_visibility( $block_attributes, $block_content ) {
 
-		if ( empty($block_attributes['UAGBrowser']) ) {
+		if ( empty( $block_attributes['UAGBrowser'] ) ) {
 			return $block_content;
 		}
 
@@ -188,11 +188,11 @@ class UAGB_Init_Blocks {
 	 */
 	public function user_state_visibility( $block_attributes, $block_content ) {
 
-		if ( !empty( $block_attributes['UAGLoggedIn'] ) && is_user_logged_in() ) {
+		if ( ! empty( $block_attributes['UAGLoggedIn'] ) && is_user_logged_in() ) {
 			return '';
 		}
 
-		if ( !empty( $block_attributes['UAGLoggedOut'] ) && ! is_user_logged_in() ) {
+		if ( ! empty( $block_attributes['UAGLoggedOut'] ) && ! is_user_logged_in() ) {
 			return '';
 		}
 
