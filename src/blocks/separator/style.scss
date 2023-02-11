@@ -57,3 +57,19 @@
 	}
 
 }
+
+.container-warp {
+    width: 529px;
+    height: 177px;
+    border: 1px solid #000;
+}
+
+.wp-block-uagb-separator__inner .xx {
+    height: 29px;
+    width: 100%;
+    background-color: #6b0d0d;
+    -webkit-mask-image: 'url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNiAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTS0xIDFMOCAxNEwxNyAxIiBzdHJva2U9ImJsYWNrIi8+Cjwvc3ZnPgo=")';
+    mask-image: 'url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNiAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTS0xIDFMOCAxNEwxNyAxIiBzdHJva2U9ImJsYWNrIi8+Cjwvc3ZnPgo=")';
+    -webkit-mask-repeat: repeat;
+    -webkit-mask-size: 38px 100%;
+}

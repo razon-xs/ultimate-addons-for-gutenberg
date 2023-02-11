@@ -47,8 +47,14 @@ const Render = ( props ) => {
 				}`
 			) }
 		>
+			<div
+        className="container-warp"
+      >
+        <div className="xx">
+          <div className="tab-x"></div>
+        </div>
+      </div>
 			<div className="wp-block-uagb-separator__inner">
-				{renderSvg}
 				{ elementType !== 'none' && (
 					<div className="wp-block-uagb-separator-element">
 						{ elementType === 'icon' ? (
@@ -58,7 +64,6 @@ const Render = ( props ) => {
 						) }
 					</div>
 				) }
-				{renderSvg}
 			</div>
 		</div>
 	);
