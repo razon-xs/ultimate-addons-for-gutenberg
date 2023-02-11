@@ -8,7 +8,6 @@ const ModalContainer = ( props ) => {
 	const defaultIconsWithKeys = { ...uagb_blocks_info.uagb_svg_icons };
 
 	const [ searchIconInputValue, setSearchIconInputValue ] = useState( '' );
-	const [ searchIconList, setSearchIconList ] = useState( [] );
 	const [ iconList, setIconList ] = useState( defaultIcons );
 	const [ cateListName, setCateListName ] = useState( 'all' );
 	const [ iconListByCate, setIconListByCate ] = useState( defaultIcons );
@@ -20,7 +19,7 @@ const ModalContainer = ( props ) => {
 	}, [] );
 
 	// Click on category list.
-	const clickToCate = ( cate, setCate = true ) => {
+	const clickToCate = ( cate ) => {
 		let findIconsByCate = [];
 		if ( 'all' === cate ) {
 			findIconsByCate = defaultIcons;
@@ -44,36 +43,27 @@ const ModalContainer = ( props ) => {
 				}
 			}
 		}
-
-		if ( setCate ) {
-			setCateListName( cate );
-			setIconListByCate( findIconsByCate );
-		}
-
-		if ( 0 === searchIconList.length || ! setCate ) {
-			setIconList( findIconsByCate );
-		}
+		setCateListName( cate );
+		setIconListByCate( findIconsByCate );
+		setIconList( findIconsByCate );
+		setSearchIconInputValue( '' );
 	};
 
 	// Search from input icon.
 	const searchIcon = ( e ) => {
 		const inputValue = e.target.value.toLowerCase();
 		if ( '' !== inputValue ) {
-			const filterIcons = ( icons ) => {
-				if ( defaultIconsWithKeys[ icons ]?.label ) {
-					return (
-						-1 !==
-						defaultIconsWithKeys[ icons ].label
+			const filterIcons = ( icons ) =>
+				defaultIconsWithKeys[ icons ]?.label
+					? -1 !==
+					  defaultIconsWithKeys[ icons ].label
 							.toLowerCase()
 							.indexOf( inputValue )
-					);
-				}
-			};
+					: false;
+
 			const resultIcons = [ ...iconListByCate ].filter( filterIcons );
-			setSearchIconList( resultIcons );
 			setIconList( resultIcons );
 		} else {
-			setSearchIconList( [] );
 			clickToCate( cateListName, false );
 		}
 		setSearchIconInputValue( inputValue );
@@ -107,26 +97,24 @@ const ModalContainer = ( props ) => {
 		return (
 			<div className="uagb-ip-icons">
 				<div>
-					{ iconList.map( ( currentIcon, key ) => {
-						return (
-							<div
-								key={ key }
-								className={ `uagb-icon-item ${
-									value === currentIcon ? 'default' : ''
-								}  ${
-									currentIcon === insertIcon ? 'selected' : ''
-								}` }
-								onClick={ () => {
-									if ( value !== currentIcon ) {
-										setInsertIcon( currentIcon );
-									}
-								} }
-							>
-								{ renderSVG( currentIcon ) }
-								<span>{ iconTitle( currentIcon ) }</span>
-							</div>
-						);
-					} ) }
+					{ iconList.map( ( currentIcon, key ) => (
+						<div
+							key={ key }
+							className={ `uagb-icon-item ${
+								value === currentIcon ? 'default' : ''
+							}  ${
+								currentIcon === insertIcon ? 'selected' : ''
+							}` }
+							onClick={ () => {
+								if ( value !== currentIcon ) {
+									setInsertIcon( currentIcon );
+								}
+							} }
+						>
+							{ renderSVG( currentIcon ) }
+							<span>{ iconTitle( currentIcon ) }</span>
+						</div>
+					) ) }
 				</div>
 			</div>
 		);
@@ -138,7 +126,6 @@ const ModalContainer = ( props ) => {
 		) : (
 			<span
 				onClick={ () => {
-					setSearchIconList( [] );
 					clickToCate( cateListName, false );
 					setSearchIconInputValue( '' );
 				} }
@@ -167,46 +154,35 @@ const ModalContainer = ( props ) => {
 	);
 
 	// List of cate.
-	const listOfCate = () => {
-		return (
-			<div className="uagb-ip-categories-list">
-				<div
-					key="all"
-					className={ 'all' === cateListName ? 'selected' : null }
-					onClick={ () => clickToCate( 'all' ) }
-				>
-					{ __( 'All Icons', 'ultimate-addons-for-gutenberg' ) }
-				</div>
-				{ iconCateList.map( ( cateValue, key ) => {
-					return (
-						<div
-							key={ key }
-							className={
-								cateValue.slug === cateListName
-									? 'selected'
-									: null
-							}
-							onClick={ () => clickToCate( cateValue.slug ) }
-						>
-							{ cateValue.title }
-						</div>
-					);
-				} ) }
-				<div
-					key="no-category"
-					className={
-						'no-category' === cateListName ? 'selected' : null
-					}
-					onClick={ () => clickToCate( 'no-category' ) }
-				>
-					{ __(
-						'Miscellaneous/Other',
-						'ultimate-addons-for-gutenberg'
-					) }
-				</div>
+	const listOfCate = () => (
+		<div className="uagb-ip-categories-list">
+			<div
+				key="all"
+				className={ 'all' === cateListName ? 'selected' : null }
+				onClick={ () => clickToCate( 'all' ) }
+			>
+				{ __( 'All Icons', 'ultimate-addons-for-gutenberg' ) }
 			</div>
-		);
-	};
+			{ iconCateList.map( ( cateValue, key ) => (
+				<div
+					key={ key }
+					className={
+						cateValue.slug === cateListName ? 'selected' : null
+					}
+					onClick={ () => clickToCate( cateValue.slug ) }
+				>
+					{ cateValue.title }
+				</div>
+			) ) }
+			<div
+				key="no-category"
+				className={ 'no-category' === cateListName ? 'selected' : null }
+				onClick={ () => clickToCate( 'no-category' ) }
+			>
+				{ __( 'Other', 'ultimate-addons-for-gutenberg' ) }
+			</div>
+		</div>
+	);
 
 	// Modal component.
 	return (
