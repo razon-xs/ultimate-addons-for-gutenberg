@@ -101,7 +101,8 @@ console.log(styleAttrs);
             formData.append( 'security', uagb_blocks_info.uagb_ajax_nonce );
             formData.append( 'attributes', JSON.stringify(styleAttrs) );     
             formData.append( 'blockName', name );
-
+            formData.append( 'postId', select( 'core/editor' ).getCurrentPostId() );
+            
 
             apiFetch( {
                 url: uagb_blocks_info.ajax_url,
@@ -256,7 +257,7 @@ console.log(styleAttrs);
                                             globalBlockStyleName: label 
                                         } 
                                     );
-
+                                    setSaveToDatabase(true);
                                 }
                             }
                             layout="stack"
@@ -339,6 +340,7 @@ console.log(styleAttrs);
                                             globalBlockStyleName: label 
                                         } 
                                     );
+                                    setSaveToDatabase(true);
                                 }
                             }
 							options={ spectraGlobalStyles }

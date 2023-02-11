@@ -208,7 +208,7 @@ class UAGB_Post_Assets {
 	 * @param int $post_id Post ID.
 	 */
 	public function __construct( $post_id ) {
-		// delete_option('spectra_gbs_google_fonts');
+		// delete_option('spectra_global_block_styles');
 		$this->post_id = intval( $post_id );
 
 		$this->preview = isset( $_GET['preview'] ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -579,7 +579,9 @@ class UAGB_Post_Assets {
 		
 		foreach( $spectra_global_block_styles as $style_id => $style ) {
 			
-			echo '<style id="uagb-global-block-styles-' . $style_id . '">' . $style . '</style>'; //phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+			if ( in_array($this->post_id, $style['post_ids']) ) {
+				echo '<style id="uagb-global-block-styles-' . $style_id . '">' . $style['css'] . '</style>'; //phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+			}
 		}
 	}
 

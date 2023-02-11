@@ -123,8 +123,19 @@ class UAGB_Init_Blocks {
 		}
 		$_block_css = $desktop . $tab_styling_css . $mob_styling_css;
 		$spectra_global_block_styles = get_option('spectra_global_block_styles', array());
-		$spectra_global_block_styles[$blockattr['globalBlockStyleId']] = $_block_css;
+		$spectra_global_block_styles[$blockattr['globalBlockStyleId']]['css'] = $_block_css;
+		
+		if ( empty($spectra_global_block_styles[$blockattr['globalBlockStyleId']]['post_ids']) ) {
+			$spectra_global_block_styles[$blockattr['globalBlockStyleId']]['post_ids'] = array(
+				$_POST['postId']
+			);
+		} else {
 
+			$spectra_global_block_styles[$blockattr['globalBlockStyleId']]['post_ids'][] = $_POST['postId'];
+		}
+		
+		$spectra_global_block_styles[$blockattr['globalBlockStyleId']]['post_ids'] = array_unique($spectra_global_block_styles[$blockattr['globalBlockStyleId']]['post_ids']);
+		
 		update_option('spectra_global_block_styles', $spectra_global_block_styles);
 		$spectra_gbs_google_fonts = get_option('spectra_gbs_google_fonts', array());
 		
