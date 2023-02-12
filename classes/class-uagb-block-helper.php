@@ -1603,11 +1603,11 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				$gen_border_css['border-right-width']  = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderTopWidth' . $device ], 'px' );
 				$gen_border_css['border-bottom-width'] = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderTopWidth' . $device ], 'px' );
 			}
-			$gen_border_unit                                  = isset( $attr[ $prefix . 'BorderRadiusUnit' . $device ] ) ? $attr[ "{$prefix}BorderRadiusUnit{$device}" ] : 'px';
-				$gen_border_css['border-top-left-radius']     = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderRadiusUnit' . $device ], $gen_border_unit );
-				$gen_border_css['border-top-right-radius']    = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderRadiusUnit' . $device ], $gen_border_unit );
-				$gen_border_css['border-bottom-left-radius']  = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderRadiusUnit' . $device ], $gen_border_unit );
-				$gen_border_css['border-bottom-right-radius'] = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderRadiusUnit' . $device ], $gen_border_unit );
+			$gen_border_unit                                  = isset( $attr[ $prefix . 'BorderRadiusUnit' . $device ] ) ? $attr[ $prefix . 'BorderRadiusUnit' . $device ] : 'px';
+				$gen_border_css['border-top-left-radius']     = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderTopLeftRadius' . $device ], $gen_border_unit );
+				$gen_border_css['border-top-right-radius']    = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderTopRightRadius' . $device ], $gen_border_unit );
+				$gen_border_css['border-bottom-left-radius']  = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderBottomLeftRadius' . $device ], $gen_border_unit );
+				$gen_border_css['border-bottom-right-radius'] = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderBottomRightRadius' . $device ], $gen_border_unit );
 
 			$borderStyle                    = $attr[ $prefix . 'BorderStyle' ];
 			$borderColor                    = $attr[ $prefix . 'BorderColor' ];
