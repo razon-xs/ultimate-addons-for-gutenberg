@@ -1599,9 +1599,9 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			$device = 'desktop' === $device ? '' : ucfirst( $device );
 			if ( 'none' !== $attr[ $prefix . 'BorderStyle' ] && ! empty( $attr[ $prefix . 'BorderStyle' ] ) ) {
 				$gen_border_css['border-top-width']    = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderTopWidth' . $device ], 'px' );
-				$gen_border_css['border-left-width']   = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderTopWidth' . $device ], 'px' );
-				$gen_border_css['border-right-width']  = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderTopWidth' . $device ], 'px' );
-				$gen_border_css['border-bottom-width'] = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderTopWidth' . $device ], 'px' );
+				$gen_border_css['border-left-width']   = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderLeftWidth' . $device ], 'px' );
+				$gen_border_css['border-right-width']  = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderRightWidth' . $device ], 'px' );
+				$gen_border_css['border-bottom-width'] = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderBottomWidth' . $device ], 'px' );
 			}
 			$gen_border_unit                                  = isset( $attr[ $prefix . 'BorderRadiusUnit' . $device ] ) ? $attr[ $prefix . 'BorderRadiusUnit' . $device ] : 'px';
 				$gen_border_css['border-top-left-radius']     = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderTopLeftRadius' . $device ], $gen_border_unit );
