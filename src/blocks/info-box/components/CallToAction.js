@@ -54,7 +54,7 @@ const InfoBoxCta = ( props ) => {
 						className={ classnames(
 							'uagb-ifb-button-wrapper',
 							attributes.inheritFromTheme
-								? 'wp-block-button__link'
+								? 'wp-block-button'
 								: null
 						) }
 					>
