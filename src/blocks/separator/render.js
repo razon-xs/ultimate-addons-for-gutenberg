@@ -3,6 +3,7 @@ import React, { useLayoutEffect } from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
 import renderSVG from '@Controls/renderIcon';
 import renderCustomSVG from './separator-svg';
+import renderCustomURL from './separator-urls';
 import styles from './editor.lazy.scss';
 
 const Render = ( props ) => {
@@ -31,7 +32,7 @@ const Render = ( props ) => {
 	const deviceType = useDeviceType();
 	const CustomTag = `${ separatorTextTag }`;
 
-	const renderSvg = renderCustomSVG( separatorStyle, separatorColor );
+	const renderURL = renderCustomURL( separatorStyle );
 
 	return (
 		<div
@@ -47,14 +48,11 @@ const Render = ( props ) => {
 				}`
 			) }
 		>
-			<div
-        className="container-warp"
-      >
-        <div className="xx">
-          <div className="tab-x"></div>
+		<div className="wp-block-uagb-separator__inner"  style={{
+          '--my-background-image': `url(${renderURL})`,
+        }}>
+			<div className="xx">
         </div>
-      </div>
-			<div className="wp-block-uagb-separator__inner">
 				{ elementType !== 'none' && (
 					<div className="wp-block-uagb-separator-element">
 						{ elementType === 'icon' ? (

@@ -5458,6 +5458,7 @@ img.uagb-icon-list__source-image {
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  position: absolute;
 }
 .wp-block-uagb-separator--text .wp-block-uagb-separator__inner::before, .wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before {
   display: block;
@@ -5482,22 +5483,7 @@ img.uagb-icon-list__source-image {
   width: 30px;
   height: 30px;
   line-height: 30px;
-}
-
-.container-warp {
-  width: 529px;
-  height: 177px;
-  border: 1px solid #000;
-}
-
-.wp-block-uagb-separator__inner .xx {
-  height: 29px;
-  width: 100%;
-  background-color: #6b0d0d;
-  -webkit-mask-image: 'url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNiAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTS0xIDFMOCAxNEwxNyAxIiBzdHJva2U9ImJsYWNrIi8+Cjwvc3ZnPgo=")';
-  mask-image: 'url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNiAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTS0xIDFMOCAxNEwxNyAxIiBzdHJva2U9ImJsYWNrIi8+Cjwvc3ZnPgo=")';
-  -webkit-mask-repeat: repeat;
-  -webkit-mask-size: 38px 100%;
+  position: absolute;
 }
 /**
  * #.# Styles
