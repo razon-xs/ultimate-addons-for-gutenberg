@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useEffect } from 'react';
+import { useEffect, useLayoutEffect, memo } from '@wordpress/element';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import renderSVG from '@Controls/renderIcon';
@@ -246,4 +246,4 @@ const Render = ( props ) => {
 		</>
 	);
 };
-export default React.memo( Render );
+export default memo( Render );

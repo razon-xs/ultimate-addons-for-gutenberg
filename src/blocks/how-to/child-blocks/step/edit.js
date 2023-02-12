@@ -2,7 +2,7 @@
  * BLOCK: How-to Step - Edit
  */
 
-import React, {   useEffect,  } from 'react';
+import { useEffect } from '@wordpress/element';
 
 import styling from './styling';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';

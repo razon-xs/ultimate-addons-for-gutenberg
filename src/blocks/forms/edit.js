@@ -1,6 +1,8 @@
 /**
  * BLOCK: Forms - Edit
- */import React, { useEffect, useCallback, useLayoutEffect } from 'react';
+ */
+import { useLayoutEffect,useEffect, useCallback} from '@wordpress/element';
+
 import styling from './styling';
 import UAGB_Block_Icons from '@Controls/block-icons';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';

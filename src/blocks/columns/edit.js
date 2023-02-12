@@ -7,7 +7,7 @@ import { __ } from '@wordpress/i18n';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import { useDeviceType } from '@Controls/getPreviewType';
-import React, { useEffect,    useLayoutEffect } from 'react';
+import { useEffect,useLayoutEffect } from '@wordpress/element';
 import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 import { migrateBorderAttributes } from '@Controls/generateAttributes';

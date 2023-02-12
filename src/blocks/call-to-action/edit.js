@@ -3,8 +3,7 @@
  */
 
 import CtaStyle from './inline-styles';
-import React, { useEffect,    } from 'react';
-
+import { useEffect } from '@wordpress/element';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';

@@ -2,10 +2,8 @@
  * BLOCK: Content Timeline child.
  */
 
-import React, { useEffect,    } from 'react';
-
+import { useEffect } from '@wordpress/element';
 import { useDeviceType } from '@Controls/getPreviewType';
-
 import Settings from './settings';
 import Render from './render';
 

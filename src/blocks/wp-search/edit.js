@@ -3,7 +3,7 @@
  */
 
 import styling from './styling';
-import React, { useState, useEffect,    } from 'react';
+import { useEffect,useState } from '@wordpress/element';
 
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';

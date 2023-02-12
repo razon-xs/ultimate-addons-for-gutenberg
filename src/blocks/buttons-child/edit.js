@@ -4,8 +4,7 @@
 
 // Import classes
 import styling from './styling';
-
-import React, { useEffect, useState,    } from 'react';
+import { useEffect, useState, } from '@wordpress/element';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';

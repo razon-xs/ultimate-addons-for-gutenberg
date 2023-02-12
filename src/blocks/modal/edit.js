@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from '@wordpress/element';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import styling from './styling';
 import Settings from './settings';

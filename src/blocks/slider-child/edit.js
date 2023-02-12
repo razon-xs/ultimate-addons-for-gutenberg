@@ -5,7 +5,7 @@
 import Settings from './settings';
 import Render from './render';
 import styling from './styling';
-import React, { useEffect } from 'react';
+import { useEffect } from '@wordpress/element';
 
 import { withSelect, useDispatch } from '@wordpress/data';
 import { compose } from '@wordpress/compose';

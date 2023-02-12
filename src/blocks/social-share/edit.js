@@ -3,7 +3,7 @@
  */
 import styling from './styling';
 
-import React, { useEffect,    } from 'react';
+import { useEffect } from '@wordpress/element';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import { useDeviceType } from '@Controls/getPreviewType';

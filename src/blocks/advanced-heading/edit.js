@@ -2,7 +2,7 @@
  * BLOCK: Advanced Heading
  */
 import styling from './styling';
-import React, {    useEffect } from 'react';
+import { useEffect } from '@wordpress/element';
 import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';

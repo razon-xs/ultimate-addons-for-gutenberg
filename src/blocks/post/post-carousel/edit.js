@@ -4,8 +4,7 @@
 
 import styling from '.././styling';
 import { __ } from '@wordpress/i18n';
-import React, { useState, useEffect,   } from 'react';
-
+import { useState, useEffect } from '@wordpress/element';
 import TypographyControl from '@Components/typography';
 import { decodeEntities } from '@wordpress/html-entities';
 import ResponsiveBorder from '@Components/responsive-border';

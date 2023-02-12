@@ -3,8 +3,7 @@
  */
 
 import contentTimelineStyle from './styling';
-import React, { useEffect,    } from 'react';
-
+import { useEffect } from '@wordpress/element';
 import { dispatch, select } from '@wordpress/data';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';

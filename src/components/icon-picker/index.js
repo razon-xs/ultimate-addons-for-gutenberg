@@ -1,5 +1,5 @@
 import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
-import React, { useLayoutEffect, useEffect, useState, useRef } from 'react';
+import { useLayoutEffect, useEffect, useState, useRef } from '@wordpress/element';
 import styles from './editor.lazy.scss';
 import renderSVG from '@Controls/renderIcon';
 import { select } from '@wordpress/data';

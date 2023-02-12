@@ -1,15 +1,15 @@
 /**
  * External dependencies
  */
-import React, {useEffect, useState, useRef } from 'react';
+import { useEffect, useState,useRef } from '@wordpress/element';
 import { getPanelIdFromRef } from '@Utils/Helpers';
- import { useDeviceType } from '@Controls/getPreviewType';
- import ResponsiveToggle from '../responsive-toggle';
- import UAGMediaPicker from '@Components/image';
- import { select } from '@wordpress/data';
- import { __ } from '@wordpress/i18n';
+import { useDeviceType } from '@Controls/getPreviewType';
+import ResponsiveToggle from '../responsive-toggle';
+import UAGMediaPicker from '@Components/image';
+import { select } from '@wordpress/data';
+import { __ } from '@wordpress/i18n';
 
- const ResponsiveUAGImage = ( props ) => {
+const ResponsiveUAGImage = ( props ) => {
 	const [panelNameForHook, setPanelNameForHook] = useState( null );
 	const panelRef = useRef( null );
 	const { backgroundImage, setAttributes } = props;

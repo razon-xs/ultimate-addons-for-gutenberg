@@ -2,7 +2,7 @@
  * BLOCK: Forms - Toggle - Edit
  */
 
-import React, {    useEffect } from 'react';
+import { useEffect } from '@wordpress/element';
 
 import Settings from './settings';
 import Render from './render';

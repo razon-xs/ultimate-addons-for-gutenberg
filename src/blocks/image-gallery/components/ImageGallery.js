@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import UAGB_Block_Icons from '@Controls/block-icons';
 import getMatrixAlignment from '@Controls/getMatrixAlignment';

@@ -7,7 +7,6 @@ import styling from './styling';
 import './style.scss';
 import { useSelect } from '@wordpress/data';
 
-import React from 'react';
 import { useState, useEffect } from '@wordpress/element';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';

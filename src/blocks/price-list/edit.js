@@ -4,7 +4,7 @@
 
 import RestMenuStyle from './inline-styles';
 import { select, dispatch } from '@wordpress/data';
-import React, {    useEffect } from 'react';
+import { useEffect } from '@wordpress/element';
 
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';

@@ -2,7 +2,7 @@
  * BLOCK: Tabs Child Block
  */
 
-import React, { useEffect } from 'react';
+import { useEffect } from '@wordpress/element';
 
 import Render from './render';
 import { select } from '@wordpress/data';

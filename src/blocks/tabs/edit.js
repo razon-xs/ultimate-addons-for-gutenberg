@@ -2,7 +2,7 @@
  * BLOCK: Tabs Block
  */
 import styling from './styling';
-import React, { useEffect,    } from 'react';
+import { useEffect } from '@wordpress/element';
 
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';

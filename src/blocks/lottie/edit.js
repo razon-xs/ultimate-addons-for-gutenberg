@@ -3,8 +3,7 @@
  */
 
 import styling from './styling';
-import React, { useState, useEffect,    } from 'react';
-
+import { useEffect,useState,useRef } from '@wordpress/element';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
@@ -14,7 +13,7 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 const UAGBLottie = ( props ) => {
 	const deviceType = useDeviceType();
-	const lottieplayer = React.createRef();
+	const lottieplayer = useRef();
 	const [ state, setState ] = useState( { direction: 1, loopState: true } );
 
 	useEffect( () => {

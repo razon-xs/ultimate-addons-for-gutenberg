@@ -2,7 +2,7 @@
  * BLOCK: Testimonial
  */
 import TestimonialStyle from './inline-styles';
-import React, {    useEffect } from 'react';
+import { useEffect } from '@wordpress/element';
 
 
 import { migrateBorderAttributes } from '@Controls/generateAttributes';

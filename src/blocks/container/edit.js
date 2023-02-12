@@ -2,7 +2,7 @@
  * BLOCK: Container
  */
 import styling from './styling';
-import React, {    useEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect } from '@wordpress/element';
 
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';

@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import { __ } from '@wordpress/i18n';
 import renderSVG from '@Controls/renderIcon';
-import React, { useEffect } from 'react';
+import { useEffect,memo } from '@wordpress/element';
 import getMatrixAlignment from '@Controls/getMatrixAlignment';
 import { useDeviceType } from '@Controls/getPreviewType';
 import TypographyControl from '@Components/typography';
@@ -2006,4 +2006,4 @@ const Settings = ( props ) => {
 	);
 };
 
-export default React.memo( Settings );
+export default memo( Settings );

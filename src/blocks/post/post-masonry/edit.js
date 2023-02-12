@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import React, { useState, useEffect,    } from 'react';
+import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import styling from '.././styling';

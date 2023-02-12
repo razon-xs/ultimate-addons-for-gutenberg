@@ -2,7 +2,7 @@
  * External dependencies
  */
 
-import React, { useEffect,  useState  } from 'react';
+import { useEffect, useState } from '@wordpress/element';
 
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';

@@ -3,7 +3,7 @@
  */
 
 import styling from './styling';
-import React, {    useEffect } from 'react';
+import { useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
 import { useDeviceType } from '@Controls/getPreviewType';

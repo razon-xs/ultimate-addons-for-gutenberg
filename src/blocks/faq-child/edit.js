@@ -2,7 +2,7 @@
  * BLOCK: FAQ - Child
  */
 
-import React, { useEffect,    useState } from 'react';
+import { useEffect, useState} from '@wordpress/element';
 
 
 import Settings from './settings';

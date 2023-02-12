@@ -2,7 +2,7 @@
  * BLOCK: Forms - URL - Edit
  */
 
-import React, {    useEffect } from 'react';
+import { useEffect } from '@wordpress/element';
 
 
 import Settings from './settings';

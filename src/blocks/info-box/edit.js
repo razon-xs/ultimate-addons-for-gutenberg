@@ -1,7 +1,7 @@
 /**
  * BLOCK: Info Box - Edit Class
  */
-import React, {    useEffect } from 'react';
+import { useEffect } from '@wordpress/element';
 
 import styling from './styling';
 import { useDeviceType } from '@Controls/getPreviewType';
