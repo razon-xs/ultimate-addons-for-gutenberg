@@ -351,6 +351,7 @@ console.log(styleAttrs);
                             <Button
                                 className="spectra-save-block-styles-button components-base-control"
                                 onClick={ () => {
+                                    setAttributesChanged(false);
                                     getBlockStyles();
                                 } }
                                 variant="primary"
