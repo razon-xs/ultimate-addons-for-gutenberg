@@ -11,23 +11,25 @@ import Render from './render';
 const UAGBBlockQuote = ( props ) => {
 
 	const deviceType = useDeviceType();
+	const {
+		attributes: { UAGHideDesktop, UAGHideTab, UAGHideMob, authorImageWidthUnit, authorImgBorderRadiusUnit },
+		isSelected,
+		setAttributes,
+		clientId
+	} = props;
 
 	useEffect( () => {
 		// Assigning block_id in the attribute.
-		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
 
 		// Assigning block_id in the attribute.
-		props.setAttributes( { classMigrate: true } );
-		const {
-			authorImageWidthUnit,
-			authorImgBorderRadiusUnit,
-		} = props.attributes;
+		setAttributes( { classMigrate: true } );
 
 		if( undefined ===  authorImageWidthUnit ){
-			props.setAttributes( { authorImageWidthUnit: 'px' } );
+			setAttributes( { authorImageWidthUnit: 'px' } );
 		}
 		if( undefined ===  authorImgBorderRadiusUnit ){
-			props.setAttributes( { authorImgBorderRadiusUnit: '%' } );
+			setAttributes( { authorImgBorderRadiusUnit: '%' } );
 		}
 
 	}, [] );
@@ -37,7 +39,7 @@ const UAGBBlockQuote = ( props ) => {
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
 
-		addBlockEditorDynamicStyles( 'uagb-blockquote-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+		addBlockEditorDynamicStyles( 'uagb-blockquote-style-' + clientId.substr( 0, 8 ), blockStyling );
 
 	}, [ props ] );
 
@@ -45,27 +47,22 @@ const UAGBBlockQuote = ( props ) => {
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
 
-		addBlockEditorDynamicStyles( 'uagb-blockquote-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+		addBlockEditorDynamicStyles( 'uagb-blockquote-style-' + clientId.substr( 0, 8 ), blockStyling );
 
 		scrollBlockToView();
 	}, [ deviceType ] );
 
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
 	useEffect( () => {
 
 		responsiveConditionPreview( props );
 
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/blockquote.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-				<>
-				<Settings parentProps={ props } />
+			<>
+			{ isSelected && <Settings parentProps={ props } /> }
 				<Render parentProps={ props } />
 			</>
-		)
 	);
 };
 

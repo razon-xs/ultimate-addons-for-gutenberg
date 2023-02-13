@@ -4,7 +4,7 @@
 
 import UAGB_Block_Icons from '@Controls/block-icons';
 import attributes from './attributes';
-import edit from './edit';
+import Edit from './edit';
 import save from './save';
 import deprecated from './deprecated';
 import './style.scss';
@@ -35,7 +35,15 @@ registerBlockType( 'uagb/advanced-heading', {
 	},
 	category: uagb_blocks_info.category,
 	attributes,
-	edit,
+	edit: ( props ) =>
+		props.attributes.isPreview ? (
+			<img
+				width="100%"
+				src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/advanced-heading.svg` }
+			/>
+		) : (
+			<Edit { ...props } />
+		),
 	save,
 	deprecated,
 	transforms: {
