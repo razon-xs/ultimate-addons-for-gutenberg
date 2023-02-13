@@ -32,6 +32,7 @@ import styles from './editor.lazy.scss';
 
 const UAGBFormsEdit = ( props ) => {
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
 
 	const {
 		innerBlocks, // eslint-disable-line no-unused-vars
@@ -333,37 +334,31 @@ const UAGBFormsEdit = ( props ) => {
 		}
 	} );
 
-	if ( ! props.attributes.isPreview && ! hasInnerBlocks ) {
+	if ( ! hasInnerBlocks ) {
 		return (
-			props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-				<div className='uagb-forms-variations'>
-					<__experimentalBlockVariationPicker
-						icon={ UAGB_Block_Icons.forms }
-						label={ __( 'Forms', 'ultimate-addons-for-gutenberg' ) }
-						instructions={ __(
-							'Select a variation to start with.',
-							'ultimate-addons-for-gutenberg'
-						) }
-						variations={ variations }
-						allowSkip
-						onSelect={ ( nextVariation ) =>
-							blockVariationPickerOnSelect( nextVariation )
-						}
-					/>
-				</div>
-			)
+			<div className='uagb-forms-variations'>
+				<__experimentalBlockVariationPicker
+					icon={ UAGB_Block_Icons.forms }
+					label={ __( 'Forms', 'ultimate-addons-for-gutenberg' ) }
+					instructions={ __(
+						'Select a variation to start with.',
+						'ultimate-addons-for-gutenberg'
+					) }
+					variations={ variations }
+					allowSkip
+					onSelect={ ( nextVariation ) =>
+						blockVariationPickerOnSelect( nextVariation )
+					}
+				/>
+			</div>
 		);
 	}
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/form.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
 			<>
-				<Settings parentProps={ props } />
+			{ isSelected && <Settings parentProps={ props } /> }
 				<Render parentProps={ props } />
 			</>
-		)
 	);
 };
 

@@ -35,6 +35,7 @@ import styles from './editor.lazy.scss';
 
 const ColumnsComponent = ( props ) => {
 	const deviceType = useDeviceType();
+	const { attributes, setAttributes, isSelected } = props;
 
 	const {
 		innerBlocks, // eslint-disable-line no-unused-vars
@@ -80,9 +81,6 @@ const ColumnsComponent = ( props ) => {
 	}, [] );
 
 	useEffect( () => {
-
-		const { attributes, setAttributes } = props;
-
 		const {
 			topMargin,
 			bottomMargin,
@@ -266,11 +264,12 @@ const ColumnsComponent = ( props ) => {
 	}
 
 	return (
-			<>
-			<Settings parentProps={ props } deviceType = { deviceType } />
+		<>
+			{ isSelected && (
+				<Settings parentProps={ props } deviceType={ deviceType } />
+			) }
 			<Render parentProps={ props } />
-			</>
-
+		</>
 	);
 };
 

@@ -3,7 +3,7 @@
  */
 
 // Import block dependencies and components
-import edit from './edit';
+import Edit from './edit';
 import UAGB_Block_Icons from '@Controls/block-icons';
 
 //  Import CSS.
@@ -26,7 +26,15 @@ registerBlockType( 'uagb/post-carousel', {
 		__( 'carousel', 'ultimate-addons-for-gutenberg' ),
 		__( 'uag', 'ultimate-addons-for-gutenberg' ),
 	],
-	edit,
+	edit: ( props ) =>
+			props.attributes.isPreview ? (
+				<img
+					width="100%"
+					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/post-carousel.svg` }
+				/>
+			) : (
+				<Edit { ...props } />
+			),
 	example: {
 		attributes: {
 			isPreview: true,

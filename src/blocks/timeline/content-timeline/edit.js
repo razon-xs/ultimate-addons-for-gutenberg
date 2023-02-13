@@ -14,8 +14,9 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 const ContentTimelineComponent = ( props ) => {
     const deviceType = useDeviceType();
+    const { setAttributes, clientId, attributes, isSelected } = props;
+
     useEffect( () => {
-        const { setAttributes, clientId, attributes } = props;
 
         // Replacement for componentDidMount.
         //Store client id.
@@ -57,7 +58,6 @@ const ContentTimelineComponent = ( props ) => {
     useEffect( () => {
         // Replacement for componentDidUpdate.
         const blockStyling = contentTimelineStyle( props );
-        const { attributes } = props;
 
         addBlockEditorDynamicStyles( 'uagb-content-timeline-style-' + props.clientId.substr( 0, 8 ), blockStyling );
         if (
@@ -150,16 +150,12 @@ const ContentTimelineComponent = ( props ) => {
 		scrollBlockToView();
 	}, [deviceType] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/content-timeline.svg`;
-
     return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
-				<Settings parentProps = { props }/>
-				<Render parentProps = { props }/>
-			</>
-		)
-    );
+		<>
+			{ isSelected && <Settings parentProps={ props } /> }
+			<Render parentProps={ props } />
+		</>
+	);
 };
 
 export default ContentTimelineComponent;

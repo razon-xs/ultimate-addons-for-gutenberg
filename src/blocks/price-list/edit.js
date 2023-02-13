@@ -15,6 +15,8 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 const UAGBRestaurantMenu = ( props ) => {
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
+	
 	useEffect( () => {
 		// Assigning block_id in the attribute.
 		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
@@ -99,15 +101,11 @@ const UAGBRestaurantMenu = ( props ) => {
             } );
 	}, [ props.attributes.showImage ] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/price-list.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
 			<>
-				<Settings parentProps={ props } />
+			{ isSelected && <Settings parentProps={ props } /> }
 				<Render parentProps={ props } />
 			</>
-		)
 	);
 };
 export default UAGBRestaurantMenu;

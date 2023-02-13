@@ -20,6 +20,7 @@ import { useSelect } from '@wordpress/data';
 
 const PostTimelineComponent = ( props ) => {
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
 	const [ isTaxonomyLoading, setIsTaxonomyLoading] = useState( false );
 
 	useEffect( () => {
@@ -166,15 +167,17 @@ const PostTimelineComponent = ( props ) => {
 		},
 	);
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/post-timeline.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
-				<Settings parentProps={ props } taxonomyList={ taxonomyList } categoriesList={ categoriesList } />
-				<Render parentProps={ props } latestPosts={ latestPosts } />
-			</>
-		)
+		<>
+			{ isSelected && (
+				<Settings
+					parentProps={ props }
+					taxonomyList={ taxonomyList }
+					categoriesList={ categoriesList }
+				/>
+			) }
+			<Render parentProps={ props } latestPosts={ latestPosts } />
+		</>
 	);
 };
 export default PostTimelineComponent

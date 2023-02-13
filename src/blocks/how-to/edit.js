@@ -18,6 +18,8 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 const HowToComponent = ( props ) => {
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
+
 	const [ prevState, setPrevState ] = useState( '' );
 
 	const {
@@ -200,34 +202,30 @@ const HowToComponent = ( props ) => {
 	} = props;
 	const minsValue = timeInMins ? timeInMins : time;
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/how-to.svg`;
-
 	return (
-		isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
-				<SchemaNotices
-					headingTitle={ headingTitle }
-					headingDesc={ headingDesc }
-					mainimage={ mainimage }
-					showTotaltime={ showTotaltime }
-					timeNeeded={ timeNeeded }
-					minsValue={ minsValue }
-					timeInHours={ timeInHours }
-					timeInDays={ timeInDays }
-					timeInMonths={ timeInMonths }
-					timeInYears={ timeInYears }
-					showEstcost={ showEstcost }
-					estCost={ estCost }
-					cost={ cost }
-					currencyType={ currencyType }
-					tools={ tools }
-					materials={ materials }
-					clientId={ props.clientId }
-				/>
-				<Settings parentProps={ props } />
-				<Render parentProps={ props } />
-			</>
-		)
+		<>
+			<SchemaNotices
+				headingTitle={ headingTitle }
+				headingDesc={ headingDesc }
+				mainimage={ mainimage }
+				showTotaltime={ showTotaltime }
+				timeNeeded={ timeNeeded }
+				minsValue={ minsValue }
+				timeInHours={ timeInHours }
+				timeInDays={ timeInDays }
+				timeInMonths={ timeInMonths }
+				timeInYears={ timeInYears }
+				showEstcost={ showEstcost }
+				estCost={ estCost }
+				cost={ cost }
+				currencyType={ currencyType }
+				tools={ tools }
+				materials={ materials }
+				clientId={ props.clientId }
+			/>
+			{ isSelected && <Settings parentProps={ props } /> }
+			<Render parentProps={ props } />
+		</>
 	);
 };
 

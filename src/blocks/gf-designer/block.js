@@ -4,7 +4,7 @@
 
 // Import block dependencies and components.
 import { renderLegacyBlockEditorIcon } from '@Controls/block-icons';
-import edit from './edit';
+import Edit from './edit';
 import './style.scss';
 import { __ } from '@wordpress/i18n';
 
@@ -24,7 +24,15 @@ if ( uagb_blocks_info.gf_is_active && ( 'yes' === uagb_blocks_info.uagb_old_user
 			anchor: true,
 		},
 		category: uagb_blocks_info.category,
-		edit,
+		edit: ( props ) =>
+			props.attributes.isPreview ? (
+				<img
+					width="100%"
+					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/gravity-form-styler.svg` }
+				/>
+			) : (
+				<Edit { ...props } />
+			),
 		example: {
 			attributes: {
 				isPreview: true,

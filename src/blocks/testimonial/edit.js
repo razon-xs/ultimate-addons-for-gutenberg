@@ -19,10 +19,9 @@ import maybeGetColorForVariable from '@Controls/maybeGetColorForVariable';
 
 const UAGBtestimonial = ( props ) => {
 	const deviceType = useDeviceType();
-	useEffect( () => {
+		const { setAttributes, attributes, isSelected } = props;
 
-		const { setAttributes, attributes } = props;
-
+		useEffect( () => {
 		// Assigning block_id in the attribute.
 		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 
@@ -117,15 +116,11 @@ const UAGBtestimonial = ( props ) => {
 		scrollBlockToView();
 	}, [deviceType] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/testimonial.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
-				<Settings parentProps={ props } />
-				<Render parentProps={ props } />
-			</>
-		)
+		<>
+		{ isSelected && <Settings parentProps={ props } /> }
+			<Render parentProps={ props } />
+		</>
 	);
 };
 

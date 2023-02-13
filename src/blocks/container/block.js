@@ -4,7 +4,7 @@
 
 import UAGB_Block_Icons from '@Controls/block-icons';
 import attributes from './attributes';
-import edit from './edit';
+import Edit from './edit';
 import save from './save';
 import './style.scss';
 import { __ } from '@wordpress/i18n';
@@ -36,7 +36,15 @@ registerBlockType( 'uagb/container', {
 		}
 	},
 	variations,
-	edit,
+	edit: ( props ) =>
+		props.attributes.isPreview ? (
+			<img
+				width="100%"
+				src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/container.svg` }
+			/>
+		) : (
+			<Edit { ...props } />
+		),
 	save,
 	transforms,
 } );

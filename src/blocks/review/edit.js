@@ -15,6 +15,7 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 const ReviewComponent = ( props ) => {
 
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
 
 	const updatePageSchema = () => {
 
@@ -323,46 +324,42 @@ const ReviewComponent = ( props ) => {
 		} );
 	}
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/review.svg`;
-
 	return (
-		isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
-				<SchemaNotices
-					enableSchema={ enableSchema }
-					itemType={ itemType }
-					rTitle={ rTitle }
-					enableDescription={ enableDescription }
-					rContent={ rContent }
-					enableImage={ enableImage }
-					mainimage={ mainimage }
-					sku={ sku }
-					brand={ brand }
-					starCount={ starCount }
-					showAuthor={ showAuthor }
-					rAuthor={ rAuthor }
-					showfeature={ showFeature }
-					aggregateType={ aggregateType }
-					offerType={ offerType }
-					datepublish={ datepublish }
-					offerCurrency={ offerCurrency }
-					offerPrice={ offerPrice }
-					ctaLink={ ctaLink }
-					offerExpiry={ offerExpiry }
-					identifier={ identifier }
-					isbn={ isbn }
-					bookAuthorName={ bookAuthorName }
-					directorname={ directorname }
-					datecreated={ datecreated }
-					provider={ provider }
-					appCategory={ appCategory }
-					operatingSystem={ operatingSystem }
-					reviewPublisher={ reviewPublisher }
-				/>
-				<Settings parentProps={ props } />
-				<Render parentProps={ props } />
-			</>
-		)
+		<>
+			<SchemaNotices
+				enableSchema={ enableSchema }
+				itemType={ itemType }
+				rTitle={ rTitle }
+				enableDescription={ enableDescription }
+				rContent={ rContent }
+				enableImage={ enableImage }
+				mainimage={ mainimage }
+				sku={ sku }
+				brand={ brand }
+				starCount={ starCount }
+				showAuthor={ showAuthor }
+				rAuthor={ rAuthor }
+				showfeature={ showFeature }
+				aggregateType={ aggregateType }
+				offerType={ offerType }
+				datepublish={ datepublish }
+				offerCurrency={ offerCurrency }
+				offerPrice={ offerPrice }
+				ctaLink={ ctaLink }
+				offerExpiry={ offerExpiry }
+				identifier={ identifier }
+				isbn={ isbn }
+				bookAuthorName={ bookAuthorName }
+				directorname={ directorname }
+				datecreated={ datecreated }
+				provider={ provider }
+				appCategory={ appCategory }
+				operatingSystem={ operatingSystem }
+				reviewPublisher={ reviewPublisher }
+			/>
+			{ isSelected && <Settings parentProps={ props } /> }
+			<Render parentProps={ props } />
+		</>
 	);
 };
 

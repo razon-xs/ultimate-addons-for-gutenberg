@@ -17,6 +17,8 @@ import Render from './render';
 
 const SocialShareChildComponent = ( props ) => {
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
+	
 	useEffect( () => {
 		// Replacement for componentDidMount.
 
@@ -47,15 +49,11 @@ const SocialShareChildComponent = ( props ) => {
 		scrollBlockToView();
 	}, [deviceType] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/children/social-share-child.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
-				<Settings parentProps={ props } />
-				<Render parentProps={ props } />
-			</>
-		)
+		<>
+			{ isSelected && <Settings parentProps={ props } /> }
+			<Render parentProps={ props } />
+		</>
 	);
 };
 

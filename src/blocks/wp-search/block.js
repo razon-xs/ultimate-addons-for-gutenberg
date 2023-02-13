@@ -4,7 +4,7 @@
 
 import './style.scss';
 import save from './save';
-import edit from './edit';
+import Edit from './edit';
 import attributes from './attributes';
 import { renderLegacyBlockEditorIcon } from '@Controls/block-icons';
 import deprecated from './deprecated';
@@ -27,7 +27,15 @@ if ( 'yes' === uagb_blocks_info.uagb_old_user_less_than_2 || 'yes' === uagb_bloc
 		},
 		category: uagb_blocks_info.category,
 		attributes,
-		edit,
+		edit: ( props ) =>
+			props.attributes.isPreview ? (
+				<img
+					width="100%"
+					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/wp-search.svg` }
+				/>
+			) : (
+				<Edit { ...props } />
+			),
 		save,
 		example: {
 			attributes: {

@@ -9,9 +9,9 @@ import Settings from './settings';
 import Render from './render';
 
 const UAGBFormsUploadEdit = ( props ) => {
-	useEffect( () => {
-		const { setAttributes } = props;
+		const { setAttributes,isSelected } = props;
 
+		useEffect( () => {
 		// Assigning block_id in the attribute.
 		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 
@@ -26,12 +26,8 @@ const UAGBFormsUploadEdit = ( props ) => {
 
 	return (
 		<>
-
-						<>
-			<Settings parentProps={ props } />
-				<Render parentProps={ props } />
-			</>
-
+			{ isSelected && <Settings parentProps={ props } /> }
+			<Render parentProps={ props } />
 		</>
 	);
 };

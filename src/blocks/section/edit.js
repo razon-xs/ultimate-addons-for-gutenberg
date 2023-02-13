@@ -19,6 +19,8 @@ import maybeGetColorForVariable from '@Controls/maybeGetColorForVariable';
 
 const UAGBSectionEdit = ( props ) => {
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
+	
 	useEffect( () => {
 		const { borderStyle,borderWidth,borderRadius,borderColor,borderHoverColor } = props.attributes;
 		// Backward Border Migration
@@ -124,15 +126,11 @@ const UAGBSectionEdit = ( props ) => {
 
 	}, [] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/advanced-row.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
 			<>
-				<Settings parentProps={ props } /> 
+			{ isSelected && <Settings parentProps={ props } /> }
 				<Render parentProps={ props } />
 			</>
-		)
 	);
 };
 

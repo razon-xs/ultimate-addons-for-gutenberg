@@ -13,6 +13,7 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 const UAGBLottie = ( props ) => {
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
 	const lottieplayer = useRef();
 	const [ state, setState ] = useState( { direction: 1, loopState: true } );
 
@@ -64,19 +65,17 @@ const UAGBLottie = ( props ) => {
 		setState( { direction: direction * -1 } );
 	};
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/lottie.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
-				<Render lottieplayer={ lottieplayer } parentProps={ props } />
+		<>
+			<Render lottieplayer={ lottieplayer } parentProps={ props } />
+			{ isSelected && (
 				<Settings
 					parentProps={ props }
 					loopLottie={ loopLottie }
 					reverseDirection={ reverseDirection }
 				/>
-			</>
-		)
+			) }
+		</>
 	);
 };
 

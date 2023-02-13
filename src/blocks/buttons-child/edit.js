@@ -15,6 +15,7 @@ import Render from './render';
 
 const ButtonsChildComponent = ( props ) => {
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
 	const initialState = {
 		isURLPickerOpen: false,
 	};
@@ -69,20 +70,18 @@ const ButtonsChildComponent = ( props ) => {
 		scrollBlockToView();
 	}, [deviceType] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/children/buttons-child.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
+		<>
+			{ isSelected && (
 				<Settings
 					parentProps={ props }
 					state={ state }
 					setStateValue={ setStateValue }
-					deviceType = { deviceType }
+					deviceType={ deviceType }
 				/>
-				<Render parentProps={ props } />
-			</>
-		)
+			) }
+			<Render parentProps={ props } />
+		</>
 	);
 };
 export default ButtonsChildComponent;

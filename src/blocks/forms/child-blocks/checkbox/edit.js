@@ -11,6 +11,7 @@ import Render from './render';
 
 const UAGBFormsCheckboxEdit = ( props ) => {
 
+	const { isSelected } = props;
     const [ state, setState ] = useState( { optionsstate: [ // eslint-disable-line no-unused-vars
 		{
 			optiontitle: __(
@@ -35,15 +36,11 @@ const UAGBFormsCheckboxEdit = ( props ) => {
 		document.head.appendChild( $style );
 	}, [] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/children/form-checkbox.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
 			<>
-				<Settings parentProps={ props } />
+				{ isSelected && <Settings parentProps={ props } /> }
 				<Render parentProps={ props } setState={ setState } />
 			</>
-		)
 	);
 };
 

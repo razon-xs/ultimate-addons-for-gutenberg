@@ -9,6 +9,7 @@ import Render from './render';
 
 const ContentTimelineChildComponent = ( props ) => {
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
 
 	useEffect( () => {
 		// Replacement for componentDidMount.
@@ -23,15 +24,11 @@ const ContentTimelineChildComponent = ( props ) => {
 		document.dispatchEvent( loadContentTimelineEditor );
 	}, [ props, deviceType ] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/children/content-timeline-child.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
-				<Settings parentProps={ props } />
-				<Render parentProps={ props } />
-			</>
-		)
+		<>
+			{ isSelected && <Settings parentProps={ props } /> }
+			<Render parentProps={ props } />
+		</>
 	);
 };
 

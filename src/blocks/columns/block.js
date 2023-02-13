@@ -4,7 +4,7 @@
 
 import { renderLegacyBlockEditorIcon } from '@Controls/block-icons';
 import attributes from './attributes';
-import edit from './edit';
+import Edit from './edit';
 import deprecated from './deprecated';
 import variations from './variations';
 import './style.scss';
@@ -27,7 +27,15 @@ if ( 'yes' === uagb_blocks_info.uagb_old_user_less_than_2 || 'yes' === uagb_bloc
 		],
 		attributes,
 		variations,
-		edit,
+		edit: ( props ) =>
+		props.attributes.isPreview ? (
+			<img
+				width="100%"
+				src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/advanced-heading.svg` }
+			/>
+		) : (
+			<Edit { ...props } />
+		),
 		getEditWrapperProps( attribute ) {
 			return {
 				'data-align': attribute.align,

@@ -12,6 +12,7 @@ import Render from './render';
 const UAGBGoogleMap = ( props ) => {
 
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
 
 	useEffect( () => {
 		// Assigning block_id in the attribute.
@@ -40,15 +41,11 @@ const UAGBGoogleMap = ( props ) => {
 
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/google-maps.svg`;
-
 	return (
-		props.attributes.isPreview  ? <img width='100%' src={ previewImageData } alt=''/> : (
 			<>
-				<Settings parentProps={ props } />
+			{ isSelected && <Settings parentProps={ props } /> }
 				<Render parentProps={ props } />
 			</>
-		)
 	);
 };
 

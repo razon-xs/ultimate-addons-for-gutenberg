@@ -9,6 +9,8 @@ import Settings from './settings';
 import Render from './render';
 
 const UAGBFormsDateEdit = ( props ) => {
+	const { isSelected } = props;
+	
 	useEffect( () => {
 		const { setAttributes } = props;
 
@@ -24,15 +26,11 @@ const UAGBFormsDateEdit = ( props ) => {
 		document.head.appendChild( $style );
 	}, [] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/children/form-field.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
 			<>
-				<Settings parentProps={ props } />
+			{ isSelected && <Settings parentProps={ props } /> }
 				<Render parentProps={ props } />
 			</>
-		)
 	);
 };
 

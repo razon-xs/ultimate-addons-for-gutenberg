@@ -8,7 +8,8 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 const UAGBModalEdit = ( props ) => {
 	const deviceType = useDeviceType();
-
+	const { isSelected } = props;
+	
 	useEffect( () => {
 
 		const { setAttributes } = props;
@@ -44,15 +45,11 @@ const UAGBModalEdit = ( props ) => {
 
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/modal.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
 			<>
-				<Settings parentProps={ props } />
+			{ isSelected && <Settings parentProps={ props } /> }
 				<Render parentProps={ props } />
 			</>
-		)
 	);
 }
 

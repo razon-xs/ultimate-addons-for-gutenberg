@@ -6,7 +6,7 @@ import UAGB_Block_Icons from '@Controls/block-icons';
 import './style.scss';
 import transform from './transform';
 import attributes from './attributes';
-import edit from './edit';
+import Edit from './edit';
 import save from './save';
 import deprecated from './deprecated';
 import { __ } from '@wordpress/i18n';
@@ -31,7 +31,15 @@ registerBlockType( 'uagb/social-share', {
 		}
 	},
 	attributes,
-	edit,
+	edit: ( props ) =>
+			props.attributes.isPreview ? (
+				<img
+					width="100%"
+					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/social-share.svg` }
+				/>
+			) : (
+				<Edit { ...props } />
+			),
 	save,
 	transform,
 	deprecated,

@@ -2,7 +2,7 @@
  * BLOCK: Lottie
  */
 
-import edit from './edit';
+import Edit from './edit';
 import UAGB_Block_Icons from '@Controls/block-icons';
 
 import { __ } from '@wordpress/i18n';
@@ -24,9 +24,15 @@ registerBlockType( 'uagb/lottie', {
 		}
 	},
 	category: uagb_blocks_info.category,
-	edit,
+	edit: ( props ) =>
+			props.attributes.isPreview ? (
+				<img
+					width="100%"
+					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/lottie.svg` }
+				/>
+			) : (
+				<Edit { ...props } />
+			),
 	// Render via PHP
-	save() {
-		return null;
-	},
+	save: ()=> null,
 } );

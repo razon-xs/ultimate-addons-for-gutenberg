@@ -15,6 +15,8 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 const UAGBGF = ( props ) => {
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
+
 	useSelect(
 		( select ) => { // eslint-disable-line  no-unused-vars
 			const { setAttributes } = props;
@@ -159,7 +161,7 @@ const UAGBGF = ( props ) => {
 		scrollBlockToView();
 	}, [deviceType] );
 
-	const { formId, isPreview } = props.attributes;
+	const { formId } = props.attributes;
 	/*
 	 * Event to set Image as while adding.
 	 */
@@ -193,15 +195,11 @@ const UAGBGF = ( props ) => {
 		);
 	}
 	
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/gravity-form-styler.svg`;
-
 	return (
-		isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
 			<>
-				<Settings parentProps={ props } />
-				<Render parentProps={ props } />
+			{ isSelected && <Settings parentProps={ props } /> }
+			<Render parentProps={ props } />
 			</>
-		)
 	);
 };
 

@@ -15,6 +15,8 @@ import { useSelect } from '@wordpress/data';
 const UAGBCF7 = ( props ) => {
 
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
+
 	useSelect(
 		( select ) => { // eslint-disable-line  no-unused-vars
 			const { setAttributes } = props;
@@ -297,15 +299,13 @@ const UAGBCF7 = ( props ) => {
 
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/contact-form-7-styler.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
-				<Settings parentProps={ props } deviceType = { deviceType }/>
-				<Render parentProps={ props } />
-			</>
-		)
+		<>
+			{ isSelected && (
+				<Settings parentProps={ props } deviceType={ deviceType } />
+			) }
+			<Render parentProps={ props } />
+		</>
 	);
 };
 export default UAGBCF7;

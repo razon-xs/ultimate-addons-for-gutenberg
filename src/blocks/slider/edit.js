@@ -17,6 +17,7 @@ import { SwiperSlide } from 'swiper/react';
 
 const UAGBSlider = ( props ) => {
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
 
 	// Add and remove the CSS on the drop and remove of the component.
 	useLayoutEffect( () => {
@@ -48,15 +49,11 @@ const UAGBSlider = ( props ) => {
 
 	}, [deviceType] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/slider.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
-				<Settings parentProps={ props } />
-				<Render parentProps={ props } />
-			</>
-		)
+		<>
+			{ isSelected && <Settings parentProps={ props } /> }
+			<Render parentProps={ props } />
+		</>
 	);
 };
 

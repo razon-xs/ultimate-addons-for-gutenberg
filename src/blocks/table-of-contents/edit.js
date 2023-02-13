@@ -19,7 +19,7 @@ import { useSelect } from '@wordpress/data';
 const UAGBTableOfContentsEdit = ( props ) => {
 
 	const deviceType = useDeviceType();
-
+	const { isSelected } = props;
 	useEffect( () => {
 
 		// Assigning block_id in the attribute.
@@ -213,15 +213,11 @@ const UAGBTableOfContentsEdit = ( props ) => {
 	}
 	/* eslint-enable no-undef */
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/table-of-content.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
-				<Settings parentProps={ props } />
-				<Render parentProps={ props } headers={ headers } />
-			</>
-		)
+		<>
+			{ isSelected && <Settings parentProps={ props } /> }
+			<Render parentProps={ props } headers={ headers } />
+		</>
 	);
 };
 

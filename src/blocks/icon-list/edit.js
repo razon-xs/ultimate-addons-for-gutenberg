@@ -17,6 +17,7 @@ import Render from './render';
 const UAGBIconList = ( props ) => {
 
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
 
 	useEffect( () => {
 		// Assigning block_id in the attribute.
@@ -69,15 +70,11 @@ const UAGBIconList = ( props ) => {
 
 	}, [ props.attributes.parentIcon, props.attributes.hideLabel, props.attributes.size ] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/icon-list.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
 			<>
-				<Settings parentProps={ props } />
+			{ isSelected && <Settings parentProps={ props } /> }
 				<Render parentProps={ props } />
 			</>
-		)
 	);
 };
 

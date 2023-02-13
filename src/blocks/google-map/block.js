@@ -4,7 +4,7 @@
 
 import UAGB_Block_Icons from '@Controls/block-icons';
 import './style.scss';
-import edit from './edit';
+import Edit from './edit';
 import save from './save';
 import deprecated from './deprecated';
 import attributes from './attributes';
@@ -33,7 +33,15 @@ registerBlockType( 'uagb/google-map', {
 			isPreview: true,
 		}
 	},
-	edit,
+	edit: ( props ) =>
+			props.attributes.isPreview ? (
+				<img
+					width="100%"
+					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/google-maps.svg` }
+				/>
+			) : (
+				<Edit { ...props } />
+			),
 	save,
 	deprecated,
 } );

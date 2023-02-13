@@ -20,10 +20,9 @@ import maybeGetColorForVariable from '@Controls/maybeGetColorForVariable';
 
 const ColumnComponent = ( props ) => {
 	const deviceType = useDeviceType();
+	const { setAttributes, attributes, isSelected } = props;
+	
 	useEffect( () => {
-
-		const { setAttributes, attributes } = props;
-
 		const {
 			backgroundOpacity,
 			backgroundImageColor,
@@ -108,15 +107,13 @@ const ColumnComponent = ( props ) => {
 		scrollBlockToView();
 	}, [deviceType] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/children/advanced-columns-child.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
-				<Settings parentProps={ props } deviceType = { deviceType }/>
-				<Render parentProps={ props } />
-			</>
-		)
+		<>
+			{ isSelected && (
+				<Settings parentProps={ props } deviceType={ deviceType } />
+			) }
+			<Render parentProps={ props } />
+		</>
 	);
 };
 

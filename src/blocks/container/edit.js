@@ -30,7 +30,7 @@ import styles from './editor.lazy.scss';
 const UAGBContainer = ( props ) => {
 
 	const deviceType = useDeviceType();
-
+	const { isSelected } = props;
 	const {
 		innerBlocks, // eslint-disable-line no-unused-vars
 		blockType, // eslint-disable-line no-unused-vars
@@ -212,11 +212,9 @@ const UAGBContainer = ( props ) => {
 		);
 	};
 
-	const { variationSelected, isPreview } = props.attributes;
+	const { variationSelected } = props.attributes;
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/container.svg`;
-
-	if ( ! isPreview && ( ! variationSelected && 0 === select( 'core/block-editor' ).getBlockParents( props.clientId ).length ) ) {
+	if ( ! variationSelected && 0 === select( 'core/block-editor' ).getBlockParents( props.clientId ).length ) {
 		return (
 			<div className='uagb-container-variation-picker'>
 				<BlockVariationPicker
@@ -236,12 +234,10 @@ const UAGBContainer = ( props ) => {
 	}
 
 	return (
-		isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
-				<Settings parentProps={ props } />
-				<Render parentProps={ props } />
-			</>
-		)
+		<>
+		{ isSelected && <Settings parentProps={ props } /> }
+			<Render parentProps={ props } />
+		</>
 	);
 };
 

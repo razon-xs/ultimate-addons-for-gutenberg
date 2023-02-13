@@ -49,7 +49,7 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { useSelect, useDispatch } from '@wordpress/data';
 
 const UAGBPostMasonry = ( props ) => {
-
+	const { isSelected } = props;
 	const [ state, setState ] = useState( {
 		isEditing: false,
 		innerBlocks: [],
@@ -2699,11 +2699,9 @@ const UAGBPostMasonry = ( props ) => {
 		);
 	}
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/post-masonry.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
+		<>
+			{ isSelected && (
 				<Settings
 					parentProps={ props }
 					state={ state }
@@ -2712,18 +2710,18 @@ const UAGBPostMasonry = ( props ) => {
 					taxonomyList={ taxonomyList }
 					categoriesList={ categoriesList }
 				/>
-				<Render
-					parentProps={ props }
-					state={ state }
-					setState={ setState }
-					togglePreview={ togglePreview }
-					latestPosts={ latestPosts }
-					categoriesList={ categoriesList }
-					replaceInnerBlocks={ replaceInnerBlocks }
-					block={ block }
-				/>
-			</>
-		)
+			) }
+			<Render
+				parentProps={ props }
+				state={ state }
+				setState={ setState }
+				togglePreview={ togglePreview }
+				latestPosts={ latestPosts }
+				categoriesList={ categoriesList }
+				replaceInnerBlocks={ replaceInnerBlocks }
+				block={ block }
+			/>
+		</>
 	);
 };
 

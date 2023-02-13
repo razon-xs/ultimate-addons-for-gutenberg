@@ -48,7 +48,7 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { useSelect, useDispatch } from '@wordpress/data';
 
 const UAGBPostCarousel = ( props ) => {
-
+	const { isSelected } = props;
 	const [ state, setState ] = useState( {
 		isEditing: false,
 		innerBlocks: [],
@@ -2506,29 +2506,27 @@ let categoriesList = [];
 		);
 	}
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/post-carousel.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
+		<>
+			{ isSelected && (
 				<Settings
 					state={ state }
 					togglePreview={ togglePreview }
 					inspectorControls={ inspectorControls }
 					parentProps={ props }
 				/>
-				<Render
-					parentProps={ props }
-					state={ state }
-					setState={ setState }
-					togglePreview={ togglePreview }
-					latestPosts={ latestPosts }
-					categoriesList={ categoriesList }
-					replaceInnerBlocks={ replaceInnerBlocks }
-					block={ block }
-				/>
-			</>
-		)
+			) }
+			<Render
+				parentProps={ props }
+				state={ state }
+				setState={ setState }
+				togglePreview={ togglePreview }
+				latestPosts={ latestPosts }
+				categoriesList={ categoriesList }
+				replaceInnerBlocks={ replaceInnerBlocks }
+				block={ block }
+			/>
+		</>
 	);
 };
 

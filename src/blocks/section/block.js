@@ -5,7 +5,7 @@
 import { renderLegacyBlockEditorIcon } from '@Controls/block-icons';
 import './style.scss';
 import attributes from './attributes';
-import edit from './edit';
+import Edit from './edit';
 import save from './save';
 import deprecated from './deprecated';
 import { __ } from '@wordpress/i18n';
@@ -27,7 +27,15 @@ if ( 'yes' === uagb_blocks_info.uagb_old_user_less_than_2 || 'yes' === uagb_bloc
 			anchor: true,
 		},
 		attributes,
-		edit,
+		edit: ( props ) =>
+			props.attributes.isPreview ? (
+				<img
+					width="100%"
+					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/advanced-row.svg` }
+				/>
+			) : (
+				<Edit { ...props } />
+			),
 		getEditWrapperProps( attribute ) {
 			const { align, contentWidth } = attribute;
 			if (

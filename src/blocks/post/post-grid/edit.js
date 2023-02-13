@@ -23,6 +23,7 @@ import { Placeholder, Spinner } from '@wordpress/components';
 const PostGridComponent = ( props ) => {
 
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
 
 	const initialState = {
 		isEditing: false,
@@ -280,10 +281,9 @@ const PostGridComponent = ( props ) => {
 		);
 	}
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/post-grid.svg`;
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
+		<>
+			{ isSelected && (
 				<Settings
 					parentProps={ props }
 					state={ state }
@@ -293,18 +293,18 @@ const PostGridComponent = ( props ) => {
 					taxonomyList={ taxonomyList }
 					categoriesList={ categoriesList }
 				/>
-				<Render
-					parentProps={ props }
-					state={ state }
-					setStateValue={ setStateValue }
-					togglePreview={ togglePreview }
-					latestPosts={ latestPosts }
-					categoriesList={ categoriesList }
-					replaceInnerBlocks={ replaceInnerBlocks }
-					block={ block }
-				/>
-			</>
-		)
+			) }
+			<Render
+				parentProps={ props }
+				state={ state }
+				setStateValue={ setStateValue }
+				togglePreview={ togglePreview }
+				latestPosts={ latestPosts }
+				categoriesList={ categoriesList }
+				replaceInnerBlocks={ replaceInnerBlocks }
+				block={ block }
+			/>
+		</>
 	);
 };
 

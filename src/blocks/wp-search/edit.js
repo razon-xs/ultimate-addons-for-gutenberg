@@ -17,6 +17,7 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 const UAGBWpSearchEdit = ( props ) => {
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
 	const initState = {
 		isFocused: 'false',
 	};
@@ -98,15 +99,11 @@ const UAGBWpSearchEdit = ( props ) => {
 		scrollBlockToView();
 	}, [deviceType] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/wp-search.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
-				<Settings parentProps={ props } />
-				<Render parentProps={ props } />
-			</>
-		)
+		<>
+		{ isSelected && <Settings parentProps={ props } /> }
+			<Render parentProps={ props } />
+		</>
 	);
 };
 

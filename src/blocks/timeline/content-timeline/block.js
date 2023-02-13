@@ -4,7 +4,7 @@ import '.././style.scss';
 import deprecated from './deprecated';
 import save from './save';
 import attributes from './attributes';
-import edit from './edit';
+import Edit from './edit';
 
 // Components
 import { __ } from '@wordpress/i18n';
@@ -57,7 +57,15 @@ registerBlockType( 'uagb/content-timeline', {
 		anchor: true,
 	},
 	attributes,
-	edit,
+	edit: ( props ) =>
+			props.attributes.isPreview ? (
+				<img
+					width="100%"
+					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/content-timeline.svg` }
+				/>
+			) : (
+				<Edit { ...props } />
+			),
 	save,
 	example: {
 		attributes: {

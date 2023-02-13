@@ -16,6 +16,7 @@ let prevState;
 const ButtonsComponent = ( props ) => {
 
 	const deviceType = useDeviceType();
+	const { isSelected } = props;
 
 	const initialState = {
 		isFocused: 'false',
@@ -70,15 +71,11 @@ const ButtonsComponent = ( props ) => {
 
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/buttons.svg`;
-
 	return (
-		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
-				<Settings parentProps={ props } />
-				<Render parentProps={ props } />
-			</>
-		)
+		<>
+			{ isSelected && <Settings parentProps={ props } /> }
+			<Render parentProps={ props } />
+		</>
 	);
 };
 
