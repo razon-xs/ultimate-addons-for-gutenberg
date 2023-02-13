@@ -57,6 +57,7 @@ class Spectra_Block_Prioritization {
 		'tabs',
 		'taxonomy-list',
 		'team',
+		'test-profile-block',
 		'testimonial',
 		// Legacy Blocks.
 		'columns',

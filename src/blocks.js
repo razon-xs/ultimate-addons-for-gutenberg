@@ -84,7 +84,10 @@ import './blocks/tabs/block.js';
 import './blocks/tabs-child/block.js'; // Child Block.
 import './blocks/taxonomy-list/block.js';
 import './blocks/team/block.js';
+import  './blocks/test-profile-block/block.js';
+
 import './blocks/testimonial/block.js';
+
 // Extensions.
 import './blocks/extensions/attributes.js';
 import './blocks/extensions/block.js';
