@@ -32,7 +32,7 @@ const Render = ( props ) => {
 	const deviceType = useDeviceType();
 	const CustomTag = `${ separatorTextTag }`;
 
-	const renderURL = renderCustomURL( separatorStyle );
+	// const renderURL = renderCustomURL( separatorStyle );
 
 	return (
 		<div
@@ -48,11 +48,7 @@ const Render = ( props ) => {
 				}`
 			) }
 		>
-		<div className="wp-block-uagb-separator__inner"  style={{
-          '--my-background-image': `url(${renderURL})`,
-        }}>
-			<div className="xx">
-        </div>
+		    <div className="wp-block-uagb-separator__inner">
 				{ elementType !== 'none' && (
 					<div className="wp-block-uagb-separator-element">
 						{ elementType === 'icon' ? (
