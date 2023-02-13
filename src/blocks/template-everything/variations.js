@@ -73,9 +73,7 @@ const variations = [
 			[ 'uagb/container', { directionDesktop: 'row' }, [
 				[ 'uagb/container', {}, [
 					[ 'uagb/image', { 
-						url:`${ uagb_blocks_info.uagb_url }/admin/assets/images/image.jpg`,
-						width: 500,
-						height: 400
+						url:`${ uagb_blocks_info.uagb_url }/admin/assets/images/uag-placeholder.svg`,
 					}],
 				]],
 				[ 'uagb/container', { alignItemsDesktop: 'left' }, [
@@ -141,9 +139,7 @@ const variations = [
 			[ 'uagb/container', { directionDesktop: 'row' }, [
 				[ 'uagb/container', {}, [
 					[ 'uagb/image', { 
-						url:`${ uagb_blocks_info.uagb_url }/admin/assets/images/image.jpg`,
-						width: 500,
-						height: 400
+						url:`${ uagb_blocks_info.uagb_url }/admin/assets/images/uag-placeholder.svg`,
 					}],
 				]],
 				[ 'uagb/container', { alignItemsDesktop: 'left' }, [
