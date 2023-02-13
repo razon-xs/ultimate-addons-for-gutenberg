@@ -32,7 +32,7 @@ const Render = ( props ) => {
 	const deviceType = useDeviceType();
 	const CustomTag = `${ separatorTextTag }`;
 
-	// const renderURL = renderCustomURL( separatorStyle );
+	const renderURL = renderCustomURL( separatorStyle );
 
 	return (
 		<div
@@ -41,23 +41,26 @@ const Render = ( props ) => {
 				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 				`uagb-block-${ block_id }`,
 				'wp-block-uagb-separator',
-				`${
-					elementType !== 'none'
-						? 'wp-block-uagb-separator--' + elementType
-						: ''
-				}`
+				`${elementType !== 'none' ? 'wp-block-uagb-separator--' + elementType : ''}`
 			) }
 		>
-		    <div className="wp-block-uagb-separator__inner">
-				{ elementType !== 'none' && (
-					<div className="wp-block-uagb-separator-element">
-						{ elementType === 'icon' ? (
-							renderSVG( separatorIcon )
-						) : (
-							<CustomTag> { separatorText } </CustomTag>
-						) }
-					</div>
-				) }
+			<div
+        className="container-warp"
+        style={{
+          '--my-background-image': `url(${renderURL})`, 
+        }}
+      >
+      </div>
+			<div className='wp-block-uagb-separator__inner'>
+				{
+					elementType !== 'none' && (
+						<div className='wp-block-uagb-separator-element'>
+							{
+								elementType === 'icon' ? renderSVG( separatorIcon ) : <CustomTag>{separatorText}</CustomTag>
+							}
+						</div>
+					)
+				}
 			</div>
 		</div>
 	);
