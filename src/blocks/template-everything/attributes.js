@@ -567,6 +567,10 @@ const attributes = {
 			styleType: 'link-hover-color'
 		}
 	},
+	isPreview: {
+		type: 'boolean',
+		default: false,
+	},
 	...borderAttributes
 };
 

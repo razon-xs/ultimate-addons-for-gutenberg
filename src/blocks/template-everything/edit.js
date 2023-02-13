@@ -115,35 +115,34 @@ const UAGBTemplateEverything = ( props ) => {
 		
 	);
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/template-everything.svg`;
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/template-everything.svg`;	
 
 	if ( ( ! props.attributes.isPreview && ! hasInnerBlocks ) || props.attributes.variationChange && hasInnerBlocks ) {
 		return (
-			props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-				<div className='uagb-template-everything_variations'>
-					<__experimentalBlockVariationPicker
-						label={ __( 'Template Everything!', 'ultimate-addons-for-gutenberg' ) }
-						instructions={ __(
-							'Select a variation to start with.',
-							'ultimate-addons-for-gutenberg'
-						) }
-						variations={ variations }
-						allowSkip
-						onSelect={ ( nextVariation ) =>
-							blockVariationPickerOnSelect( nextVariation )
-						}
-					/>
-				</div>
-			)
+			<div className='uagb-template-everything_variations'>
+				<__experimentalBlockVariationPicker
+					label={ __( 'Template Everything!', 'ultimate-addons-for-gutenberg' ) }
+					instructions={ __(
+						'Select a variation to start with.',
+						'ultimate-addons-for-gutenberg'
+					) }
+					variations={ variations }
+					allowSkip
+					onSelect={ ( nextVariation ) =>
+						blockVariationPickerOnSelect( nextVariation )
+					}
+				/>
+			</div>
 		);
 	}
 
 	return (
+		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
 			<>
 				<Settings parentProps={ props } />
 				<Render parentProps={ props } />
 			</>
-		
+		)
 	);
 };
 const addAdvancedClasses = createHigherOrderComponent( ( BlockListBlock ) => {

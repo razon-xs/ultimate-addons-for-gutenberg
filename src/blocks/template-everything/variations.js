@@ -35,7 +35,7 @@ const variations = [
 		},
 		isDefault: true,
 		innerBlocks: [
-			[ 'uagb/image', { align:'', width: 330, height: 300, url:`${ uagb_blocks_info.uagb_url }/admin/assets/images/image.jpg`}],
+			[ 'uagb/image', { align:'', url:`${ uagb_blocks_info.uagb_url }/admin/assets/images/uag-placeholder.svg`,}],
 			[ 'uagb/advanced-heading', { headingAlign: 'left', headingTitleToggle: true, headingDescToggle: true, headingDesc: 'Design', headingTag: 'h3',headingTitle: 'UX Review Presentation' , headingDescPosition: 'above-heading', headSpace: 5, subHeadSpace: 12, blockTopPadding: 15, blockBottomPadding: 0 }],
 			[ 'uagb/advanced-heading', { headingAlign: 'left', headingTitleToggle: false, headingDescToggle: true, blockTopPadding: 0, blockBottomPadding: 0, headingDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' } ],
 			[ 'uagb/advanced-heading', { headingAlign: 'left', headingTitleToggle: true, headingDescToggle: true, headingTag: 'h6', headingTitle: 'Olivia Rhye', blockTopPadding: 0, blockBottomPadding: 0, headingDesc: '20 Jan 2022', headSpace: 5 } ],
