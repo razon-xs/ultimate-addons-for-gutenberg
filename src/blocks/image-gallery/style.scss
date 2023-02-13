@@ -619,6 +619,7 @@
 			-moz-transition-property: opacity;
 			-o-transition-property: opacity;
 			transition-property: opacity;
+			z-index: 999999999 !important;
 
 			@include transitionSpeeds();
 

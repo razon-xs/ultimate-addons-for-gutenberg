@@ -1024,7 +1024,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 									<?php endif; ?>									
 								</div>
 							<?php endif; ?>
-							<?php if ( $attributes['lightboxDisplayCount'] ) : ?>
+							<?php if ( $attributes['lightboxCloseIcon'] ) : ?>
 								<button class='spectra-image-gallery__control-lightbox--close'>
 									<?php UAGB_Helper::render_svg_html( $attributes['lightboxCloseIcon'] ); ?>
 								</button>
