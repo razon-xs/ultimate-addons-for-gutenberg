@@ -1024,7 +1024,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 									<?php endif; ?>									
 								</div>
 							<?php endif; ?>
-							<?php if ( $attributes['lightboxDisplayCount'] ) : ?>
+							<?php if ( $attributes['lightboxCloseIcon'] ) : ?>
 								<button class='spectra-image-gallery__control-lightbox--close'>
 									<?php UAGB_Helper::render_svg_html( $attributes['lightboxCloseIcon'] ); ?>
 								</button>
@@ -1561,8 +1561,6 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 					if ( ! blockScope ) {
 						return;
 					}
-					<?php // Check if the adminbar is present. ?>
-					const adminBar = document.getElementById( 'wpadminbar' );
 					<?php // Get all the images and assign them click events. ?>
 					const images = blockScope.querySelectorAll( '.spectra-image-gallery__media-wrapper' );
 					for ( let i = 0; i < images.length; i++ ) {
@@ -1623,18 +1621,12 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 										lightbox.style.display = 'none';
 									}, 250 );
 								} );
-								if ( adminBar && screen.width > 600 ) {
-									closeButton.style.marginTop = '32px';
-								}
 							}
 						<?php endif; ?>
 						<?php // Finally set the Total if needed. ?>
 						<?php if ( $attr['lightboxDisplayCount'] ) : ?>
 							const lightboxTotal = lightbox.querySelector( '.spectra-image-gallery__control-lightbox--count-total' );
 							lightboxTotal.innerHTML = '<?= count( (array) $attr['mediaGallery'] ) ?>';
-							if ( adminBar && screen.width > 600 ) {
-								lightboxTotal.parentElement.style.marginTop = '32px';
-							}
 						<?php endif; ?>
 					}
 				} );
