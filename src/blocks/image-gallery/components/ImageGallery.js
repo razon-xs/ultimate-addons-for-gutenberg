@@ -22,7 +22,6 @@ const ImageGallery = ( { attributes, setAttributes, name } ) => {
 		mediaGallery,
 		feedLayout,
 		imageDisplayCaption,
-		imageClickEvent,
 
 		feedMarginTop,
 		feedMarginRight,
