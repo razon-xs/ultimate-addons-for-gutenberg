@@ -4,25 +4,22 @@
  * CSS for both Frontend+Backend.
  */
 
- 
- .uagb-social-media-list{
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.uagb-social-media-list {
+	display: flex;
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 
-.uagb-user__social-icon{
-    display: block;
-    width: 20px;
-    height: 20px;
-    
-    font-size: 20px;
+.uagb-user__social-icon {
+	display: block;
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
 }
 
 .uagb-user__social-icon svg {
-    fill: #333;
-    width: 20px;
-    height: 20px;
+	fill: #333;
+	width: 20px;
+	height: 20px;
 }
-
