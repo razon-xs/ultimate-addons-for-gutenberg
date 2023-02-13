@@ -15,11 +15,11 @@ $slick_options = apply_filters(
 	array(
 		'slidesToShow'   => intval( $attr['columns'] ),
 		'slidesToScroll' => 1,
-		'autoplaySpeed'  => esc_html( UAGB_Block_Helper::get_fallback_number( $attr['autoplaySpeed'], 'autoplaySpeed', $block_name ) ),
+		'autoplaySpeed'  => esc_html( $attr['autoplaySpeed'] ),
 		'autoplay'       => (bool) $attr['autoplay'],
 		'infinite'       => (bool) $attr['infiniteLoop'],
 		'pauseOnHover'   => (bool) $attr['pauseOnHover'],
-		'speed'          => esc_html( UAGB_Block_Helper::get_fallback_number( $attr['transitionSpeed'], 'transitionSpeed', $block_name ) ),
+		'speed'          => esc_html( $attr['transitionSpeed'] ),
 		'arrows'         => $arrows,
 		'dots'           => $dots,
 		'rtl'            => is_rtl(),
