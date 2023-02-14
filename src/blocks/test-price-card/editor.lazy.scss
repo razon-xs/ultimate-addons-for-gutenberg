@@ -1,0 +1,20 @@
+.uagb-block-price-card-container {
+	display: flex;
+
+	.uagb-block-price-card-title {
+		margin: 0;
+		padding: 0;
+	}
+	.uagb-block-price-card-desc {
+		margin: 0;
+		padding: 0;
+	}
+	.uagb-block-price-card-title__price {
+		display: flex;
+		gap: 20rem;
+	}
+	.uagb-block-price-card-price {
+		line-height: 1rem;
+		color: #333;
+	}
+}
