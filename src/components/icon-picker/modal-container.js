@@ -187,7 +187,7 @@ const ModalContainer = ( props ) => {
 	// Modal component.
 	return (
 		<Modal
-			title={ __( 'Icon Library', 'ultimate-addons-for-gutenberg' ) }
+			role={ __( 'Popup', 'ultimate-addons-for-gutenberg' ) }
 			className="uagb-ip-modal-wrapper"
 			onRequestClose={ closeModal }
 			overlayClassName="uagb-ip-modal-wrapper-overlay"
