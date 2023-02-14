@@ -51,7 +51,7 @@ window.UAGBModal = {
 					const bodyWrap = document_element.querySelector( 'body' );
 					modalTrigger.addEventListener(
 						'click',
-						function (e) {
+						function ( e ) {
 							e.preventDefault();
 							if ( typeof innerModal !== 'undefined' && ! innerModal.classList.contains( 'active' ) ) {
 								innerModal.classList.add( 'active' );
