@@ -106,9 +106,9 @@ function styling( props ) {
 
 	} = attributes;
 
-	const borderCSS = generateBorderCSS( props.attributes, 'block' );
-	const borderCSSTablet = generateBorderCSS( props.attributes, 'block', 'tablet' );
-	const borderCSSMobile = generateBorderCSS( props.attributes, 'block', 'mobile' );
+	const borderCSS = generateBorderCSS( attributes, 'block' );
+	const borderCSSTablet = generateBorderCSS( attributes, 'block', 'tablet' );
+	const borderCSSMobile = generateBorderCSS( attributes, 'block', 'mobile' );
 
 	topPaddingTablet = 'undefined' !== typeof topPaddingTablet ? topPaddingTablet : topPaddingDesktop;
 	topPaddingMobile = 'undefined' !== typeof topPaddingMobile ? topPaddingMobile : topPaddingTablet;

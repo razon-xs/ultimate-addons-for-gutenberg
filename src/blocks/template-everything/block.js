@@ -21,7 +21,7 @@ registerBlockType( 'uagb/template-everything', {
 		__( 'Template Everything!', 'ultimate-addons-for-gutenberg' ),
 		__( 'info box', 'ultimate-addons-for-gutenberg' ),
 		__( 'template', 'ultimate-addons-for-gutenberg' ),
-		__( 'block', 'ultimate-addons-for-gutenberg' ),
+		__( 'block designs', 'ultimate-addons-for-gutenberg' ),
 	],
 	supports: {
 		anchor: true,

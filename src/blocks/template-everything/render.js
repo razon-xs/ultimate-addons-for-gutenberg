@@ -21,11 +21,7 @@ const Render = ( props ) => {
 
 	const deviceType = useDeviceType();
 
-	const { attributes } = props;
-	const {
-		block_id,
-		lockTemplate
-	} = attributes;
+	const { attributes: { block_id, lockTemplate } } = props;
 
 	return (
 		<>

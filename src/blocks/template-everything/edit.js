@@ -1,5 +1,5 @@
 /**
- * BLOCK: Info-Box 2.0
+ * BLOCK: Template Everything.
  */
 import styling from './styling';
 import React, { useEffect, useCallback } from 'react';
@@ -14,28 +14,31 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 import { withNotices } from '@wordpress/components';
 import { compose, createHigherOrderComponent } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
-//  Import CSS.
 import './style.scss';
 
 const UAGBTemplateEverything = ( props ) => {
 	const deviceType = useDeviceType();
 
+	const {
+		attributes: { UAGHideDesktop, UAGHideTab, UAGHideMob },
+		isSelected,
+		setAttributes,
+		clientId
+	} = props;
+
 	useEffect( () => {
 
-		const { setAttributes } = props;
 		// Assigning block_id in the attribute.
-		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
 
 	}, [] );
 
 	useEffect( () => {
 		const blockStyling = styling( props );
 
-		addBlockEditorDynamicStyles( 'uagb-template-everything-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+		addBlockEditorDynamicStyles( 'uagb-template-everything-style-' + clientId.substr( 0, 8 ), blockStyling );
 		
 	}, [ props ] );
-
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
 
 	useEffect( () => {
 
@@ -46,7 +49,7 @@ const UAGBTemplateEverything = ( props ) => {
 	useEffect( () => {
 	    const blockStyling = styling( props );
 
-        addBlockEditorDynamicStyles( 'uagb-template-everything-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+        addBlockEditorDynamicStyles( 'uagb-template-everything-style-' + clientId.substr( 0, 8 ), blockStyling );
 
 	}, [deviceType] );
 
@@ -66,9 +69,9 @@ const UAGBTemplateEverything = ( props ) => {
 			} = select( 'core/blocks' );
 
 			return {
-				innerBlocks: getBlocks( props.clientId ),
+				innerBlocks: getBlocks( clientId ),
 				hasInnerBlocks:
-					select( 'core/block-editor' ).getBlocks( props.clientId ).length >
+					select( 'core/block-editor' ).getBlocks( clientId ).length >
 					0,
 
 				blockType: getBlockType( props.name ),
@@ -104,7 +107,7 @@ const UAGBTemplateEverything = ( props ) => {
 
 			if ( nextVariation.innerBlocks ) {
 				replaceInnerBlocks(
-					props.clientId,
+					clientId,
 					createBlocksFromInnerBlocksTemplate(
 						nextVariation.innerBlocks
 					)
@@ -139,7 +142,7 @@ const UAGBTemplateEverything = ( props ) => {
 	return (
 		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
 			<>
-				<Settings parentProps={ props } />
+				{ isSelected && <Settings parentProps={ props } /> }
 				<Render parentProps={ props } />
 			</>
 		)

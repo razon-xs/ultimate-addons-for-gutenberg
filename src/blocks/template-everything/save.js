@@ -7,11 +7,8 @@ import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';
 
 export default function save( props ) {
-	const { attributes } = props;
+	const { attributes: { block_id } } = props;
 
-	const {
-		block_id,
-	} = attributes;
 
 	return (
 		<div
