@@ -28,7 +28,7 @@ $content_border_attributes = UAGB_Block_Helper::uag_generate_border_attribute(
 );
 
 $additional_attributes = apply_filters(
-	'spectra/uagb/modal/attributes',
+	'spectra_uagb_modal_attributes',
 	array()
 );
 

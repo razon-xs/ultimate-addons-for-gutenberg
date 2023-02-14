@@ -380,10 +380,17 @@ if ( 'full' !== $attr['modalAlignTablet'] ) {
 	);
 }
 
-$combined_selectors = array(
-	'desktop' => apply_filters( 'spectra.' . $block_name . '.styling', $selectors, $attr ),
-	'tablet'  => apply_filters( 'spectra.' . $block_name . '.tablet_styling', $t_selectors, $attr ),
-	'mobile'  => apply_filters( 'spectra.' . $block_name . '.mobile_styling', $m_selectors, $attr ),
+/**
+ * Get Combined selectors with filters.
+ */
+$combined_selectors = UAGB_Helper::get_combined_selectors(
+	'advanced-heading', 
+	array(
+		'desktop' => $selectors,
+		'tablet'  => $t_selectors,
+		'mobile'  => $m_selectors,
+	),
+	$attr
 );
 
 $base_selector = '.uagb-block-';
