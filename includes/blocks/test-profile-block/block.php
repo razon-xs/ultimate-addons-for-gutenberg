@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Block Information & Attributes File.
@@ -7,6 +6,7 @@
  *
  * @package uagb
  */
+
 $block_slug = 'uagb/test-profile-block';
 
 $block_data = array(

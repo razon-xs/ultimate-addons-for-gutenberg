@@ -7,26 +7,26 @@
  * @package uagb
  */
 
-$selectors = array(
-    ' .uagb-user__title'=> array(
-        'color'=> $attr['titleColor'],
-    ),
+$selectors    = array(
+	' .uagb-user__title' => array(
+		'color' => $attr['titleColor'],
+	),
 );
-$Mobselectors = array(
-    ' .uagb-user__title'=> array(
-        'color'=> $attr['titleColor'],
-    ),
+$mobselectors = array(
+	' .uagb-user__title' => array(
+		'color' => $attr['titleColor'],
+	),
 );
 
-$Tabselectors = array(
-    ' .uagb-user__title'=> array(
-        'color'=> $attr['titleColor'],
-    ),
+$tabselectors       = array(
+	' .uagb-user__title' => array(
+		'color' => $attr['titleColor'],
+	),
 );
-$combined_selectors   = array(
+$combined_selectors = array(
 	'desktop' => $selectors,
-	'tablet'  => $Tabselectors,
-	'mobile'  => $Mobselectors,
+	'tablet'  => $tabselectors,
+	'mobile'  => $mobselectors,
 );
-$base_selector= '.uagb-block-';
-return UAGB_Helper::generate_all_css( $combined_selectors , $base_selector . $id );
+$base_selector      = '.uagb-block-';
+return UAGB_Helper::generate_all_css( $combined_selectors, $base_selector . $id );
