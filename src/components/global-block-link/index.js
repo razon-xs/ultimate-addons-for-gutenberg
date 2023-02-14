@@ -1,18 +1,17 @@
-import React, { useLayoutEffect, useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useEffect } from 'react';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import styles from './editor.lazy.scss';
 const { getSelectedBlock } = select( 'core/block-editor' );
 import { blocksAttributes } from '@Attributes/getBlocksDefaultAttributes';
-import { select, useDispatch } from '@wordpress/data';
-import { ButtonGroup, Button, Tooltip, Modal  } from '@wordpress/components';
+import { select, dispatch, useSelect, useDispatch } from '@wordpress/data';
+import { Button, Modal  } from '@wordpress/components';
 import UAGTextControl from '@Components/text-control';
 import getUAGEditorStateLocalStorage from '@Controls/getUAGEditorStateLocalStorage';
 import UAGSelectControl from '@Components/select-control';
-import generateCSS from '@Controls/generateCSS';
-import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import apiFetch from '@wordpress/api-fetch';
+import { store as spectraStore } from '@Store';
 
 const GlobalBlockStyles = (props) => {
    // Add and remove the CSS on the drop and remove of the component.
@@ -34,7 +33,10 @@ const GlobalBlockStyles = (props) => {
         setAttributes
     } = props;
 
-    const [ isOpen, setOpen ] = useState( false );
+    const isOpen = useSelect( ( select ) => {
+        return select( 'spectra' ).globalBlockStylesPopupState();
+    });
+    
     const [ uniqueID, setUniqueID ] = useState( false );
     const [ saveToDatabase, setSaveToDatabase ] = useState( false );
     const [ gbsPanel, setGbsPanel ] = useState( false );
@@ -43,8 +45,8 @@ const GlobalBlockStyles = (props) => {
 
 
 
-	const openModal = () => setOpen( true );
-	const closeModal = () => setOpen( false );
+	const openModal = () => dispatch( spectraStore ).toggleGlobalBlockStylesPopup( 'open' );
+	const closeModal = () => dispatch( spectraStore ).toggleGlobalBlockStylesPopup( 'close' );
 	
     const {
         globalBlockStyleName,
@@ -82,48 +84,50 @@ const GlobalBlockStyles = (props) => {
 	}, [attributes] );
 
     useEffect( () => {
-		
-		
         if ( saveToDatabase ) {
-
-            let spectraGlobalStylesStoreObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
-
-            let styleAttrs = {};
-
-            spectraGlobalStylesStoreObject.map( ( style ) => {
-                if ( (style?.value === uniqueID) || (style?.value === globalBlockStyleId) ) {
-                    styleAttrs = style?.props?.attributes;
-                }
-            });
-            const formData = new window.FormData();
-console.log(styleAttrs);
-            formData.append( 'action', 'uag_global_block_styles' );
-            formData.append( 'security', uagb_blocks_info.uagb_ajax_nonce );
-            formData.append( 'attributes', JSON.stringify(styleAttrs) );     
-            formData.append( 'blockName', name );
-            formData.append( 'postId', select( 'core/editor' ).getCurrentPostId() );
-            
-
-            apiFetch( {
-                url: uagb_blocks_info.ajax_url,
-                method: 'POST',
-                body: formData,
-            } ).then( () => {
-                
-                Object.keys( currentBlockDefaultAttributes ).map( ( attribute ) => {
-
-					if ( currentBlockDefaultAttributes[attribute]?.UAGCopyPaste ) {
-                        setAttributes({
-                            [attribute] : currentBlockDefaultAttributes[attribute]?.default || undefined
-                        });
-                        
-					}
-					return attribute;
-				} );
-                setSaveToDatabase(false);
-            } );
+            saveStylesToDatabase();
         }
 	}, [saveToDatabase] );
+
+    const saveStylesToDatabase = () => {
+
+        let spectraGlobalStylesStoreObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
+
+        let styleAttrs = {};
+
+        spectraGlobalStylesStoreObject.map( ( style ) => {
+            if ( (style?.value === uniqueID) || (style?.value === globalBlockStyleId) ) {
+                styleAttrs = style?.props?.attributes;
+            }
+        });
+        const formData = new window.FormData();
+
+        formData.append( 'action', 'uag_global_block_styles' );
+        formData.append( 'security', uagb_blocks_info.uagb_ajax_nonce );
+        formData.append( 'attributes', JSON.stringify(styleAttrs) );     
+        formData.append( 'blockName', name );
+        formData.append( 'postId', select( 'core/editor' ).getCurrentPostId() );
+        
+
+        apiFetch( {
+            url: uagb_blocks_info.ajax_url,
+            method: 'POST',
+            body: formData,
+        } ).then( () => {
+            
+            Object.keys( currentBlockDefaultAttributes ).map( ( attribute ) => {
+
+                if ( currentBlockDefaultAttributes[attribute]?.UAGCopyPaste ) {
+                    setAttributes({
+                        [attribute] : currentBlockDefaultAttributes[attribute]?.default || undefined
+                    });
+                    
+                }
+                return attribute;
+            } );
+            setSaveToDatabase(false);
+        } );
+    };
 
     let blockNameClass = name?.split( '/' )?.pop();
 
@@ -266,7 +270,7 @@ console.log(styleAttrs);
                     </>
                 )
             }
-            { isOpen && (
+            { 'open' === isOpen && (
                     <Modal 
                         title={ __( 'Save as a Global Block Style', 'ultimate-addons-for-gutenberg' ) } onRequestClose={ closeModal }
                         className="spectra-global-block-style-name-modal"
