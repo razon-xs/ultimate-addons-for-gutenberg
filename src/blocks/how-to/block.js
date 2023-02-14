@@ -10,6 +10,7 @@ import './style.scss';
 import deprecated from './deprecated';
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/how-to', {
 	title: __( 'How To', 'ultimate-addons-for-gutenberg' ),
@@ -32,10 +33,7 @@ registerBlockType( 'uagb/how-to', {
 	attributes,
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/how-to.svg` }
-				/>
+				<PreviewImage image="how-to" />
 			) : (
 				<Edit { ...props } />
 			),

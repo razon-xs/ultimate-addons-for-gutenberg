@@ -9,6 +9,7 @@ import save from './save';
 import './style.scss';
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 
 registerBlockType( 'uagb/counter', {
@@ -29,10 +30,7 @@ registerBlockType( 'uagb/counter', {
 	attributes,
 	edit: ( props ) =>
 		props.attributes.isPreview ? (
-			<img
-				width="100%"
-				src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/counter.svg` }
-			/>
+			<PreviewImage image="counter" />
 		) : (
 			<Edit { ...props } />
 		),

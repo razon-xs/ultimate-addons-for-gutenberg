@@ -302,7 +302,6 @@ const ReviewComponent = ( props ) => {
 		operatingSystem,
 		datecreated,
 		directorname,
-		isPreview,
 	} = attributes;
 
 	if ( block_id === '' ) {

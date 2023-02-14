@@ -12,6 +12,7 @@ import { __ } from '@wordpress/i18n';
 import { registerBlockType, createBlock } from '@wordpress/blocks';
 import './format';
 import colourNameToHex from '@Controls/changeColorNameToHex';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/advanced-heading', {
 	title: __( 'Heading', 'ultimate-addons-for-gutenberg' ),
@@ -37,10 +38,7 @@ registerBlockType( 'uagb/advanced-heading', {
 	attributes,
 	edit: ( props ) =>
 		props.attributes.isPreview ? (
-			<img
-				width="100%"
-				src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/advanced-heading.svg` }
-			/>
+			<PreviewImage image="advanced-heading" />
 		) : (
 			<Edit { ...props } />
 		),

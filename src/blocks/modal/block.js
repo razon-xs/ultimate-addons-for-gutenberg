@@ -9,6 +9,7 @@ import save from './save';
 import './style.scss';
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 
 registerBlockType( 'uagb/modal', {
@@ -29,10 +30,7 @@ registerBlockType( 'uagb/modal', {
 	attributes,
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/modal.svg` }
-				/>
+				<PreviewImage image="modal" />
 			) : (
 				<Edit { ...props } />
 			),

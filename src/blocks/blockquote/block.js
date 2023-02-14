@@ -11,6 +11,7 @@ import attributes from './attributes';
 import { __ } from '@wordpress/i18n';
 import colourNameToHex from '@Controls/changeColorNameToHex';
 import { registerBlockType, createBlock } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/blockquote', {
 	title: __( 'Blockquote', 'ultimate-addons-for-gutenberg' ),
@@ -31,10 +32,7 @@ registerBlockType( 'uagb/blockquote', {
 	attributes,
 	edit: ( props ) =>
 		props.attributes.isPreview ? (
-			<img
-				width="100%"
-				src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/blockquote.svg` }
-			/>
+			<PreviewImage image="blockquote" />
 		) : (
 			<Edit { ...props } />
 		),

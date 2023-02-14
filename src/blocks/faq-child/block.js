@@ -10,6 +10,7 @@ import './style.scss';
 import deprecated from './deprecated';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/faq-child', {
 	title: __( 'FAQ Child', 'ultimate-addons-for-gutenberg' ),
@@ -20,10 +21,7 @@ registerBlockType( 'uagb/faq-child', {
 	attributes,
 	edit: ( props ) =>
 		props.attributes.isPreview ? (
-			<img
-				width="100%"
-				src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/children/faq-child.svg` }
-			/>
+			<PreviewImage image="faq-child" isChildren={ true } />
 		) : (
 			<Edit { ...props } />
 		),

@@ -10,6 +10,7 @@ import deprecated from './deprecated';
 import { __ } from '@wordpress/i18n';
 
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/inline-notice', {
 	title: __( 'Inline Notice', 'ultimate-addons-for-gutenberg' ),
@@ -33,10 +34,7 @@ registerBlockType( 'uagb/inline-notice', {
 	deprecated,
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/inline-notice.svg` }
-				/>
+				<PreviewImage image="inline-notice" />
 			) : (
 				<Edit { ...props } />
 			),

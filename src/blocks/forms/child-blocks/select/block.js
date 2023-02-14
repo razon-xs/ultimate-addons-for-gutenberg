@@ -9,6 +9,7 @@ import save from './save';
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 import deprecated from './deprecated'
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/forms-select', {
 	title: __( 'Select', 'ultimate-addons-for-gutenberg' ),
@@ -19,10 +20,7 @@ registerBlockType( 'uagb/forms-select', {
 	attributes,
 	edit: ( props ) =>
 		props.attributes.isPreview ? (
-			<img
-				width="100%"
-				src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/children/form-field.svg` }
-			/>
+			<PreviewImage image="form-field" isChildren={ true } />
 		) : (
 			<Edit { ...props } />
 		),

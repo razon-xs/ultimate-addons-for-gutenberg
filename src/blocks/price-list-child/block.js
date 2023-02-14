@@ -10,6 +10,7 @@ import attributes from './attributes';
 import { __ } from '@wordpress/i18n';
 
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/restaurant-menu-child', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
@@ -26,10 +27,7 @@ registerBlockType( 'uagb/restaurant-menu-child', {
 	attributes,
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/children/price-list-child.svg` }
-				/>
+				<PreviewImage image="price-list-child" isChildren={ true } />
 			) : (
 				<Edit { ...props } />
 			),

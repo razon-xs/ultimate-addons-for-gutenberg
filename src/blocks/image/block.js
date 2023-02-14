@@ -10,6 +10,7 @@ import { __ } from '@wordpress/i18n';
 import './style.scss';
 import { registerBlockType, createBlock } from '@wordpress/blocks';
 import deprecated from './deprecated';
+import PreviewImage from '@Controls/PreviewImage';
 
 
 registerBlockType( 'uagb/image', {
@@ -40,10 +41,7 @@ registerBlockType( 'uagb/image', {
 	attributes,
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/image.svg` }
-				/>
+				<PreviewImage image="image" />
 			) : (
 				<Edit { ...props } />
 			),

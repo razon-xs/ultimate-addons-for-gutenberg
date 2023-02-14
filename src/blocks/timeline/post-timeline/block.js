@@ -12,6 +12,7 @@ import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 
 export const name = 'core/latest-posts';
+import PreviewImage from '@Controls/PreviewImage';
 
 // Register the block.
 registerBlockType( 'uagb/post-timeline', {
@@ -31,10 +32,7 @@ registerBlockType( 'uagb/post-timeline', {
 	},
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/post-timeline.svg` }
-				/>
+				<PreviewImage image="post-timeline" />
 			) : (
 				<Edit { ...props } />
 			),

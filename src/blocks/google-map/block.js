@@ -11,6 +11,7 @@ import attributes from './attributes';
 import { __ } from '@wordpress/i18n';
 
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 wp.uagb_google_api_key = 'AIzaSyAsd_d46higiozY-zNqtr7zdA81Soswje4';
 
@@ -35,10 +36,7 @@ registerBlockType( 'uagb/google-map', {
 	},
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/google-maps.svg` }
-				/>
+				<PreviewImage image="google-maps" />
 			) : (
 				<Edit { ...props } />
 			),

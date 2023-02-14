@@ -197,7 +197,6 @@ const HowToComponent = ( props ) => {
 			timeInDays,
 			timeInMonths,
 			timeInYears,
-			isPreview,
 		},
 	} = props;
 	const minsValue = timeInMins ? timeInMins : time;

@@ -11,6 +11,7 @@ import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 import variations from './variations';
 import transforms from './transforms';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/container', {
 	apiVersion: 2,
@@ -38,10 +39,7 @@ registerBlockType( 'uagb/container', {
 	variations,
 	edit: ( props ) =>
 		props.attributes.isPreview ? (
-			<img
-				width="100%"
-				src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/container.svg` }
-			/>
+			<PreviewImage image="container" />
 		) : (
 			<Edit { ...props } />
 		),

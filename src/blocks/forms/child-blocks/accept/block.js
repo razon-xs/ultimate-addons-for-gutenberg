@@ -9,6 +9,7 @@ import save from './save';
 
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/forms-accept', {
 	title: __( 'Accept', 'ultimate-addons-for-gutenberg' ),
@@ -19,10 +20,7 @@ registerBlockType( 'uagb/forms-accept', {
 	attributes,
 	edit: ( props ) =>
 		props.attributes.isPreview ? (
-			<img
-				width="100%"
-				src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/children/form-accept.svg` }
-			/>
+			<PreviewImage image="form-accept" isChildren={ true } />
 		) : (
 			<Edit { ...props } />
 		),

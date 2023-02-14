@@ -9,6 +9,7 @@ import save from './save';
 import { __ } from '@wordpress/i18n';
 import deprecated from './deprecated';
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/forms-hidden', {
 	title: __( 'Hidden', 'ultimate-addons-for-gutenberg' ),
@@ -19,10 +20,7 @@ registerBlockType( 'uagb/forms-hidden', {
 	attributes,
 	edit: ( props ) =>
 		props.attributes.isPreview ? (
-			<img
-				width="100%"
-				src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/children/form-hidden.svg` }
-			/>
+			<PreviewImage image="form-hidden" isChildren={ true } />
 		) : (
 			<Edit { ...props } />
 		),

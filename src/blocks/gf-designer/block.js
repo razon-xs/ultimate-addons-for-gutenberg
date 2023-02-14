@@ -9,6 +9,7 @@ import './style.scss';
 import { __ } from '@wordpress/i18n';
 
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 if ( uagb_blocks_info.gf_is_active && ( 'yes' === uagb_blocks_info.uagb_old_user_less_than_2 || 'yes' === uagb_blocks_info.enable_legacy_blocks ) ) {
 	registerBlockType( 'uagb/gf-styler', {
@@ -26,10 +27,7 @@ if ( uagb_blocks_info.gf_is_active && ( 'yes' === uagb_blocks_info.uagb_old_user
 		category: uagb_blocks_info.category,
 		edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/gravity-form-styler.svg` }
-				/>
+				<PreviewImage image="gravity-form-styler" />
 			) : (
 				<Edit { ...props } />
 			),

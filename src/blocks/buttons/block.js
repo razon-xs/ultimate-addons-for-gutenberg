@@ -10,6 +10,7 @@ import save from './save';
 import './style.scss';
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/buttons', {
 	title: __( 'Buttons', 'ultimate-addons-for-gutenberg' ),
@@ -34,10 +35,7 @@ registerBlockType( 'uagb/buttons', {
 	attributes,
 	edit: ( props ) =>
 		props.attributes.isPreview ? (
-			<img
-				width="100%"
-				src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/buttons.svg` }
-			/>
+			<PreviewImage image="buttons" />
 		) : (
 			<Edit { ...props } />
 		),

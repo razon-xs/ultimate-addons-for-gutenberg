@@ -13,6 +13,7 @@ import { addFilter } from '@wordpress/hooks';
 import { withSelect } from '@wordpress/data';
 import { compose, createHigherOrderComponent } from '@wordpress/compose';
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 /**
  * Override the default block element to add	wrapper props.
@@ -60,10 +61,7 @@ registerBlockType( 'uagb/faq', {
 	deprecated,
 	edit: ( props ) =>
 		props.attributes.isPreview ? (
-			<img
-				width="100%"
-				src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/faq.svg` }
-			/>
+			<PreviewImage image="faq" />
 		) : (
 			<Edit { ...props } />
 		),

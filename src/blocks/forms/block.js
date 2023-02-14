@@ -12,6 +12,7 @@ import deprecated from './deprecated';
 import { __ } from '@wordpress/i18n';
 
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/forms', {
 	title: __( 'Form', 'ultimate-addons-for-gutenberg' ),
@@ -31,10 +32,7 @@ registerBlockType( 'uagb/forms', {
 	variations,
 	edit: ( props ) =>
 		props.attributes.isPreview ? (
-			<img
-				width="100%"
-				src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/form.svg` }
-			/>
+			<PreviewImage image="form" />
 		) : (
 			<Edit { ...props } />
 		),

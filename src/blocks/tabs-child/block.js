@@ -12,6 +12,7 @@ import save from './save';
 import { __ } from '@wordpress/i18n';
 
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/tabs-child', {
 	title: __( 'Tabs child', 'ultimate-addons-for-gutenberg' ),
@@ -29,10 +30,7 @@ registerBlockType( 'uagb/tabs-child', {
 	attributes,
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/children/tabs-child.svg` }
-				/>
+				<PreviewImage image="tabs-child" isChildren={ true } />
 			) : (
 				<Edit { ...props } />
 			),

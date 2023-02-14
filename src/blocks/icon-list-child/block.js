@@ -10,6 +10,7 @@ import './style.scss';
 import deprecated from './deprecated';
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/icon-list-child', {
 	title: __( 'Icon', 'ultimate-addons-for-gutenberg' ),
@@ -20,10 +21,7 @@ registerBlockType( 'uagb/icon-list-child', {
 	attributes,
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/children/icon-list-child.svg` }
-				/>
+				<PreviewImage image="icon-list-child" isChildren={ true } />
 			) : (
 				<Edit { ...props } />
 			),

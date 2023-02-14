@@ -9,6 +9,7 @@ import save from './save';
 import deprecated from './deprecated';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
+import PreviewImage from '@Controls/PreviewImage';
 registerBlockType( 'uagb/how-to-step', {
 	title: __( 'Step', 'ultimate-addons-for-gutenberg' ),
 	description: __( 'Add relevant content for this step.', 'ultimate-addons-for-gutenberg' ),
@@ -18,10 +19,7 @@ registerBlockType( 'uagb/how-to-step', {
 	attributes,
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/children/how-to-step.svg` }
-				/>
+				<PreviewImage image="how-to-step" isChildren={ true } />
 			) : (
 				<Edit { ...props } />
 			),

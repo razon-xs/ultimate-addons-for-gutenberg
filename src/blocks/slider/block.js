@@ -9,6 +9,7 @@
  import './style.scss';
  import { __ } from '@wordpress/i18n';
  import { registerBlockType } from '@wordpress/blocks';
+ import PreviewImage from '@Controls/PreviewImage';
 
  registerBlockType( 'uagb/slider', {
      apiVersion: 2,
@@ -35,10 +36,7 @@
      },
      edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/slider.svg` }
-				/>
+				<PreviewImage image="slider" />
 			) : (
 				<Edit { ...props } />
 			),

@@ -11,6 +11,7 @@ import './style.scss';
 import { __ } from '@wordpress/i18n';
 
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/table-of-contents', {
 	title: __( 'Table Of Contents', 'ultimate-addons-for-gutenberg' ),
@@ -28,10 +29,7 @@ registerBlockType( 'uagb/table-of-contents', {
 	attributes,
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/table-of-content.svg` }
-				/>
+				<PreviewImage image="table-of-content" />
 			) : (
 				<Edit { ...props } />
 			),

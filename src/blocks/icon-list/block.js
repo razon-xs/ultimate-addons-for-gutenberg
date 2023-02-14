@@ -12,6 +12,7 @@ import './style.scss';
 import { __ } from '@wordpress/i18n';
 
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/icon-list', {
 	title: __( 'Icon List', 'ultimate-addons-for-gutenberg' ),
@@ -34,10 +35,7 @@ registerBlockType( 'uagb/icon-list', {
 	attributes,
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/icon-list.svg` }
-				/>
+				<PreviewImage image="icon-list" />
 			) : (
 				<Edit { ...props } />
 			),

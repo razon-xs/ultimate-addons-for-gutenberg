@@ -10,11 +10,15 @@ import attributes from './attributes';
 import './style.scss';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/column', {
 	title: __( 'Column', 'ultimate-addons-for-gutenberg' ),
-	description: __( 'Immediate child of Advanced Columns', 'ultimate-addons-for-gutenberg' ),
-	icon: renderLegacyBlockEditorIcon ( 'column' ),
+	description: __(
+		'Immediate child of Advanced Columns',
+		'ultimate-addons-for-gutenberg'
+	),
+	icon: renderLegacyBlockEditorIcon( 'column' ),
 	category: uagb_blocks_info.category,
 	parent: [ 'uagb/columns' ],
 	supports: {
@@ -25,10 +29,7 @@ registerBlockType( 'uagb/column', {
 	attributes,
 	edit: ( props ) =>
 		props.attributes.isPreview ? (
-			<img
-				width="100%"
-				src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/children/advanced-columns-child.svg` }
-			/>
+			<PreviewImage image="advanced-columns-child" isChildren={ true } />
 		) : (
 			<Edit { ...props } />
 		),
@@ -37,7 +38,6 @@ registerBlockType( 'uagb/column', {
 	example: {
 		attributes: {
 			isPreview: true,
-		}
+		},
 	},
 } );
-

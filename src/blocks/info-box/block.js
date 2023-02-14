@@ -12,6 +12,7 @@ import './style.scss';
 import { __ } from '@wordpress/i18n';
 
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/info-box', {
 	title: __( 'Info Box', 'ultimate-addons-for-gutenberg' ),
@@ -28,10 +29,7 @@ registerBlockType( 'uagb/info-box', {
 	attributes,
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/info-box.svg` }
-				/>
+				<PreviewImage image="info-box" />
 			) : (
 				<Edit { ...props } />
 			),

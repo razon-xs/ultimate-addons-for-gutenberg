@@ -240,26 +240,25 @@ const ColumnsComponent = ( props ) => {
 		);
 	};
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/advanced-columns.svg`;
 	if ( ! hasInnerBlocks ) {
-
 		return (
-			props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-				<div className='uagb-columns-variation-picker'>
-					<BlockVariationPicker
-						icon={ '' }
-						label={ __( 'Advanced Columns', 'ultimate-addons-for-gutenberg' ) }
-						instructions={ __(
-							'Select a variation to start with.',
-							'ultimate-addons-for-gutenberg'
-						) }
-						variations={ variations }
-						onSelect={ ( nextVariation ) =>
-							blockVariationPickerOnSelect( nextVariation )
-						}
-					/>
-				</div>
-			)
+			<div className="uagb-columns-variation-picker">
+				<BlockVariationPicker
+					icon={ '' }
+					label={ __(
+						'Advanced Columns',
+						'ultimate-addons-for-gutenberg'
+					) }
+					instructions={ __(
+						'Select a variation to start with.',
+						'ultimate-addons-for-gutenberg'
+					) }
+					variations={ variations }
+					onSelect={ ( nextVariation ) =>
+						blockVariationPickerOnSelect( nextVariation )
+					}
+				/>
+			</div>
 		);
 	}
 

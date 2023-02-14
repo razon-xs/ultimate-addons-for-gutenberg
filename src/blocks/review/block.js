@@ -9,6 +9,7 @@ import './style.scss';
 import { __ } from '@wordpress/i18n';
 import deprecated from './deprecated';
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/review', {
 	title: __( 'Review', 'ultimate-addons-for-gutenberg' ),
@@ -32,10 +33,7 @@ registerBlockType( 'uagb/review', {
 	attributes,
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/review.svg` }
-				/>
+				<PreviewImage image="review" />
 			) : (
 				<Edit { ...props } />
 			),

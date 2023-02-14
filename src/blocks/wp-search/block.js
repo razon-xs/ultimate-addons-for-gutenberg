@@ -11,6 +11,7 @@ import deprecated from './deprecated';
 import { __ } from '@wordpress/i18n';
 
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 if ( 'yes' === uagb_blocks_info.uagb_old_user_less_than_2 || 'yes' === uagb_blocks_info.enable_legacy_blocks ) {
 	registerBlockType( 'uagb/wp-search', {
@@ -29,10 +30,7 @@ if ( 'yes' === uagb_blocks_info.uagb_old_user_less_than_2 || 'yes' === uagb_bloc
 		attributes,
 		edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/wp-search.svg` }
-				/>
+				<PreviewImage image="wp-search" />
 			) : (
 				<Edit { ...props } />
 			),

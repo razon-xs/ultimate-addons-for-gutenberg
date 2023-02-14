@@ -10,6 +10,7 @@ import './style.scss';
 import { __ } from '@wordpress/i18n';
 import deprecated from './deprecated';
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/star-rating', {
 	title: __( 'Star Ratings', 'ultimate-addons-for-gutenberg' ),
@@ -35,10 +36,7 @@ registerBlockType( 'uagb/star-rating', {
 	attributes,
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/star-rating.svg` }
-				/>
+				<PreviewImage image="star-rating" />
 			) : (
 				<Edit { ...props } />
 			),

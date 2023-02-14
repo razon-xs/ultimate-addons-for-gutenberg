@@ -8,6 +8,7 @@ import UAGB_Block_Icons from '@Controls/block-icons';
 import { __ } from '@wordpress/i18n';
 
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/lottie', {
 	title: __( 'Lottie Animation', 'ultimate-addons-for-gutenberg' ),
@@ -26,10 +27,7 @@ registerBlockType( 'uagb/lottie', {
 	category: uagb_blocks_info.category,
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/lottie.svg` }
-				/>
+				<PreviewImage image="lottie" />
 			) : (
 				<Edit { ...props } />
 			),

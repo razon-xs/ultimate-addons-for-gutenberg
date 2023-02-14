@@ -15,6 +15,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { addFilter } from '@wordpress/hooks';
 import { withSelect } from '@wordpress/data';
 import { compose, createHigherOrderComponent } from '@wordpress/compose';
+import PreviewImage from '@Controls/PreviewImage';
 
 /**
  * Override the default block element to add	wrapper props.
@@ -59,10 +60,7 @@ registerBlockType( 'uagb/content-timeline', {
 	attributes,
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/content-timeline.svg` }
-				/>
+				<PreviewImage image="content-timeline" />
 			) : (
 				<Edit { ...props } />
 			),

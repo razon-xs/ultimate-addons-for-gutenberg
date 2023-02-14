@@ -13,6 +13,7 @@ import save from './save';
 import { __ } from '@wordpress/i18n';
 
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 if ( 'yes' === uagb_blocks_info.uagb_old_user_less_than_2 || 'yes' === uagb_blocks_info.enable_legacy_blocks ) {
 	registerBlockType( 'uagb/columns', {
@@ -29,10 +30,7 @@ if ( 'yes' === uagb_blocks_info.uagb_old_user_less_than_2 || 'yes' === uagb_bloc
 		variations,
 		edit: ( props ) =>
 		props.attributes.isPreview ? (
-			<img
-				width="100%"
-				src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/advanced-heading.svg` }
-			/>
+			<PreviewImage image="advanced-columns" />
 		) : (
 			<Edit { ...props } />
 		),

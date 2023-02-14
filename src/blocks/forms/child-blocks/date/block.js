@@ -10,6 +10,8 @@ import deprecated from './deprecated';
 
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
+import PreviewImage from '@Controls/PreviewImage';
+
 registerBlockType( 'uagb/forms-date', {
 	title: __( 'Datepicker', 'ultimate-addons-for-gutenberg' ),
 	description: __( 'Add a calendar based date picker in your form.', 'ultimate-addons-for-gutenberg' ),
@@ -19,10 +21,7 @@ registerBlockType( 'uagb/forms-date', {
 	attributes,
 	edit: ( props ) =>
 		props.attributes.isPreview ? (
-			<img
-				width="100%"
-				src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/children/form-field.svg` }
-			/>
+			<PreviewImage image="form-field" isChildren={ true } />
 		) : (
 			<Edit { ...props } />
 		),

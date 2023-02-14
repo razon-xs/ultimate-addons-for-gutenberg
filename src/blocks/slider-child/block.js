@@ -10,6 +10,7 @@ import Edit from './edit';
 import { __ } from '@wordpress/i18n';
 
 import { registerBlockType } from '@wordpress/blocks';
+import PreviewImage from '@Controls/PreviewImage';
 
 registerBlockType( 'uagb/slider-child', {
 	title: __( 'Slider Child', 'ultimate-addons-for-gutenberg' ),
@@ -24,10 +25,7 @@ registerBlockType( 'uagb/slider-child', {
 	attributes,
 	edit: ( props ) =>
 			props.attributes.isPreview ? (
-				<img
-					width="100%"
-					src={ `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/children/slider-child.svg` }
-				/>
+				<PreviewImage image="slider-child" isChildren={ true } />
 			) : (
 				<Edit { ...props } />
 			),
