@@ -953,7 +953,7 @@ const Settings = ( props ) => {
 			) }
 			{ lightboxDisplayCaptions && (
 				<ResponsiveSlider
-					label={ __( 'Caption Height', 'ultimate-addons-for-gutenberg' ) }
+					label={ __( 'Caption Min Height', 'ultimate-addons-for-gutenberg' ) }
 					data={ {
 						desktop: {
 							value: lightboxCaptionHeight,

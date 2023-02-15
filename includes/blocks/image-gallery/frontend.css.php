@@ -331,7 +331,7 @@ $selectors = array(
 	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--caption' => array(
 		'color'           => $attr['lightboxCaptionColor'],
 		'background'      => 'linear-gradient(rgba(0,0,0,0), ' . $attr['lightboxCaptionBackgroundColor'] . ')',
-		'height'          => UAGB_Helper::get_css_value( $attr['lightboxCaptionHeight'], 'px' ),
+		'min-height'      => UAGB_Helper::get_css_value( $attr['lightboxCaptionHeight'], 'px' ),
 		'font-family'     => ( 'Default' === $attr['lightboxFontFamily'] ) ? '' : $attr['lightboxFontFamily'],
 		'font-weight'     => $attr['lightboxFontWeight'],
 		'font-style'      => $attr['lightboxFontStyle'],
@@ -463,7 +463,7 @@ $t_selectors = array(
 	' .spectra-image-gallery__media-thumbnail-caption--bar-inside' => $main_title_border_css_tablet,
 	' .spectra-image-gallery__media-thumbnail-caption--bar-outside' => $main_title_border_css_tablet,
 	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--caption' => array(
-		'height'      => UAGB_Helper::get_css_value( $attr['lightboxCaptionHeightTablet'], 'px' ),
+		'min-height'  => UAGB_Helper::get_css_value( $attr['lightboxCaptionHeightTablet'], 'px' ),
 		'font-size'   => UAGB_Helper::get_css_value( $attr['lightboxFontSizeTab'], $attr['lightboxFontSizeType'] ),
 		'line-height' => UAGB_Helper::get_css_value( $attr['lightboxLineHeightTab'], $attr['lightboxLineHeightType'] ),
 	),
@@ -581,7 +581,7 @@ $m_selectors = array(
 	' .spectra-image-gallery__media-thumbnail-caption--bar-inside' => $main_title_border_css_mobile,
 	' .spectra-image-gallery__media-thumbnail-caption--bar-outside' => $main_title_border_css_mobile,
 	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--caption' => array(
-		'height'      => UAGB_Helper::get_css_value( $attr['lightboxCaptionHeightMobile'], 'px' ),
+		'min-height'  => UAGB_Helper::get_css_value( $attr['lightboxCaptionHeightMobile'], 'px' ),
 		'font-size'   => UAGB_Helper::get_css_value( $attr['lightboxFontSizeMob'], $attr['lightboxFontSizeType'] ),
 		'line-height' => UAGB_Helper::get_css_value( $attr['lightboxLineHeightMob'], $attr['lightboxLineHeightType'] ),
 	),
@@ -614,6 +614,13 @@ $m_selectors = array(
 	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main.swiper-rtl .swiper-button-next' => array(
 		'left'  => UAGB_Helper::get_css_value( $attr['lightboxEdgeDistanceMobile'], 'px' ),
 		'right' => 'auto',
+	),
+	// Arrow Size can be implemented for all other screen sizes if needed.
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main .swiper-button-prev::after' => array(
+		'font-size' => '24px',
+	),
+	'+.spectra-image-gallery__control-lightbox .spectra-image-gallery__control-lightbox--main .swiper-button-next::after' => array(
+		'font-size' => '24px',
 	),
 );
 

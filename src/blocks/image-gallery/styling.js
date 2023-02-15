@@ -600,7 +600,7 @@ function styling( props ) {
 		' .spectra-image-gallery__control-lightbox--caption': {
 			'color': lightboxCaptionColor,
 			'background': `linear-gradient(rgba(0,0,0,0), ${ lightboxCaptionBackgroundColor })`,
-			'height': generateCSSUnit( lightboxCaptionHeightFallback, 'px' ),
+			'min-height': generateCSSUnit( lightboxCaptionHeightFallback, 'px' ),
 			'font-family': ( 'Default' === lightboxFontFamily ) ? '' : lightboxFontFamily,
 			'font-weight': lightboxFontWeight,
 			'font-style': lightboxFontStyle,
@@ -725,7 +725,7 @@ function styling( props ) {
 			...mainTitleBorderCSSTablet,
 		},
 		' .spectra-image-gallery__control-lightbox--caption': {
-			'height': generateCSSUnit( lightboxCaptionHeightTabFallback, 'px' ),
+			'min-height': generateCSSUnit( lightboxCaptionHeightTabFallback, 'px' ),
 			'font-size': generateCSSUnit( lightboxFontSizeTab, lightboxFontSizeType ),
 			'line-height': generateCSSUnit( lightboxLineHeightTab, lightboxLineHeightType ),
 		},
@@ -837,7 +837,7 @@ function styling( props ) {
 			...mainTitleBorderCSSMobile,
 		},
 		' .spectra-image-gallery__control-lightbox--caption': {
-			'height': generateCSSUnit( lightboxCaptionHeightMobFallback, 'px' ),
+			'min-height': generateCSSUnit( lightboxCaptionHeightMobFallback, 'px' ),
 			'font-size': generateCSSUnit( lightboxFontSizeMob, lightboxFontSizeType ),
 			'line-height': generateCSSUnit( lightboxLineHeightMob, lightboxLineHeightType ),
 		},
