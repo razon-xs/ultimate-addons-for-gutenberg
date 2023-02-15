@@ -24,7 +24,6 @@ registerBlockType( 'uagb/inline-notice', { title: __( 'Inline Notice', 'ultimate
 registerBlockType( 'uagb/lottie', { title: __( 'Lottie Animation', 'ultimate-addons-for-gutenberg' ) } );
 registerBlockType( 'uagb/marketing-button', { title: __( 'Marketing Button', 'ultimate-addons-for-gutenberg' ) } );
 registerBlockType( 'uagb/modal', { title: __( 'Modal', 'ultimate-addons-for-gutenberg' ) } );
-registerBlockType( 'uagb/new-block', { title: __( 'Template Everything!', 'ultimate-addons-for-gutenberg' ) } );
 registerBlockType( 'uagb/post-carousel', { title: __( 'Post Carousel', 'ultimate-addons-for-gutenberg' ) } );
 registerBlockType( 'uagb/post-grid', { title: __( 'Post Grid', 'ultimate-addons-for-gutenberg' ) } );
 registerBlockType( 'uagb/restaurant-menu', { title: __( 'Price List', 'ultimate-addons-for-gutenberg' ) } );
@@ -36,6 +35,7 @@ registerBlockType( 'uagb/table-of-contents', { title: __( 'Table Of Contents', '
 registerBlockType( 'uagb/tabs', { title: __( 'Tabs', 'ultimate-addons-for-gutenberg' ) } );
 registerBlockType( 'uagb/taxonomy-list', { title: __( 'Taxonomy List', 'ultimate-addons-for-gutenberg' ) } );
 registerBlockType( 'uagb/team', { title: __( 'Team', 'ultimate-addons-for-gutenberg' ) } );
+registerBlockType( 'uagb/template-everything', { title: __( 'Template Everything!', 'ultimate-addons-for-gutenberg' ) } );
 registerBlockType( 'uagb/testimonial', { title: __( 'Testimonials', 'ultimate-addons-for-gutenberg' ) } );
 registerBlockType( 'uagb/content-timeline', { title: __( 'Content Timeline', 'ultimate-addons-for-gutenberg' ) } );
 registerBlockType( 'uagb/post-timeline', { title: __( 'Post Timeline', 'ultimate-addons-for-gutenberg' ) } );

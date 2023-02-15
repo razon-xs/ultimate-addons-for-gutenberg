@@ -28,7 +28,6 @@ class Spectra_Block_Prioritization {
 		'image',
 		'buttons',
 		'info-box',
-		'new-block',
 		'call-to-action',
 		// Alphabetically Ordered Blocks.
 		'blockquote',
@@ -58,6 +57,7 @@ class Spectra_Block_Prioritization {
 		'tabs',
 		'taxonomy-list',
 		'team',
+		'template-everything',
 		'testimonial',
 		// Legacy Blocks.
 		'columns',
