@@ -384,7 +384,7 @@ if ( 'full' !== $attr['modalAlignTablet'] ) {
  * Get Combined selectors with filters.
  */
 $combined_selectors = UAGB_Helper::get_combined_selectors(
-	'advanced-heading', 
+	'modal', 
 	array(
 		'desktop' => $selectors,
 		'tablet'  => $t_selectors,
