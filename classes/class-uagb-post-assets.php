@@ -208,17 +208,16 @@ class UAGB_Post_Assets {
 	 * @param int $post_id Post ID.
 	 */
 	public function __construct( $post_id ) {
-		// delete_option('spectra_global_block_styles');
 		$this->post_id = intval( $post_id );
 
-		$this->preview = isset( $_GET['preview'] ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$spectra_gbs_google_fonts = get_option('spectra_gbs_google_fonts', array());
-		$families = array();
-		foreach( $spectra_gbs_google_fonts as $style ) {
-			if (is_array($style)) {
-				foreach( $style as $family ) {
+		$this->preview            = isset( $_GET['preview'] ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$spectra_gbs_google_fonts = get_option( 'spectra_gbs_google_fonts', array() );
+		$families                 = array();
+		foreach ( $spectra_gbs_google_fonts as $style ) {
+			if ( is_array( $style ) ) {
+				foreach ( $style as $family ) {
 					if ( ! in_array( $family, $families ) ) {
-						UAGB_Helper::blocks_google_font( true , $family, false );
+						UAGB_Helper::blocks_google_font( true, $family, false );
 						$families[] = $family;
 					}
 				}
@@ -575,11 +574,11 @@ class UAGB_Post_Assets {
 		
 		echo '<style id="uagb-style-frontend-' . esc_attr( $this->post_id ) . '">' . $this->stylesheet . '</style>'; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
-		$spectra_global_block_styles = get_option('spectra_global_block_styles', array());
+		$spectra_global_block_styles = get_option( 'spectra_global_block_styles', array() );
 		
-		foreach( $spectra_global_block_styles as $style_id => $style ) {
+		foreach ( $spectra_global_block_styles as $style_id => $style ) {
 			
-			if ( in_array($this->post_id, $style['post_ids']) ) {
+			if ( in_array( $this->post_id, $style['post_ids'] ) ) {
 				echo '<style id="uagb-global-block-styles-' . $style_id . '">' . $style['css'] . '</style>'; //phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
 			}
 		}
@@ -817,7 +816,7 @@ class UAGB_Post_Assets {
 			$_block_css  = UAGB_Block_Module::get_frontend_css( $_block_slug, $blockattr, $block_id );
 			$_block_js   = UAGB_Block_Module::get_frontend_js( $_block_slug, $blockattr, $block_id, 'js' );
 
-			$css         = array_merge( $css, $_block_css );
+			$css = array_merge( $css, $_block_css );
 			if ( ! empty( $_block_js ) ) {
 				$js .= $_block_js;
 			}

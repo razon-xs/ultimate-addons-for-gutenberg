@@ -31,7 +31,6 @@ const Render = ( props ) => {
 		},
 		setAttributes,
 		className,
-		attributes
 	} = props;
 
 	const deviceType = useDeviceType();
@@ -80,8 +79,8 @@ const Render = ( props ) => {
 		</>
 	);
 	
-	let blockNameClass = spectraBlockName?.split( '/' )?.pop();
-	let htmlAttributes = {
+	const blockNameClass = spectraBlockName?.split( '/' )?.pop();
+	const htmlAttributes = {
 		className: classnames( {
 			[className]: true,
 			[`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`] : true,

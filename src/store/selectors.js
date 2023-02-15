@@ -2,8 +2,6 @@
  * Returns true if the viewport matches the given query, or false otherwise.
  *
  * @param {Object} state Viewport state object.
- * @param {string} query Query string. Includes operator and breakpoint name,
- *                       space separated. Operator defaults to >=.
  *
  * @example
  *

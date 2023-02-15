@@ -4,10 +4,8 @@ import getUAGEditorStateLocalStorage from '@Controls/getUAGEditorStateLocalStora
 const SpectraLoadGlobaGoogleFonts = () => {
     const uagLocalStorage = getUAGEditorStateLocalStorage();
 
-    let spectraGlobalStylesFontFamilies = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStylesFontFamilies' )) || [];
-    let renderFonts = spectraGlobalStylesFontFamilies.map((family) => {
-        
-        let loadGoogleFonts;
+    const spectraGlobalStylesFontFamilies = JSON.parse( uagLocalStorage.getItem( 'spectraGlobalStylesFontFamilies' ) ) || [];
+    const renderFonts = spectraGlobalStylesFontFamilies.map( ( family ) => {
         const hconfig = {
             google: {
                 families: [
@@ -16,17 +14,15 @@ const SpectraLoadGlobaGoogleFonts = () => {
             },
         };
     
-        loadGoogleFonts = (
-            <WebfontLoader config={ hconfig }></WebfontLoader>
+        return (
+            <WebfontLoader key={family} config={ hconfig }></WebfontLoader>
         );
-
-        return loadGoogleFonts;
-    });
+    } );
 
 
 
 	return (
-        <div className='hello-moto'>
+        <div className='spectra-gbs-fonts'>
         {renderFonts}
         </div>
     );

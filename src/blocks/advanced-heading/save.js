@@ -5,7 +5,6 @@
 import classnames from 'classnames';
 
 import { RichText } from '@wordpress/block-editor';
-import { applyFilters } from '@wordpress/hooks';
 
 export default function save( props ) {
 
@@ -59,8 +58,8 @@ export default function save( props ) {
 		);
 	}
 
-	let blockNameClass = spectraBlockName?.split( '/' )?.pop();
-	let htmlAttributes = {
+	const blockNameClass = spectraBlockName?.split( '/' )?.pop();
+	const htmlAttributes = {
 		className: classnames( {
 			[props.className]: true,
 			[`uagb-block-${ block_id }`] : true,

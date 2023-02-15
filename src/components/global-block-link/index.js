@@ -5,7 +5,7 @@ import { useState } from '@wordpress/element';
 import styles from './editor.lazy.scss';
 const { getSelectedBlock } = select( 'core/block-editor' );
 import { blocksAttributes } from '@Attributes/getBlocksDefaultAttributes';
-import { select, dispatch, useSelect, useDispatch } from '@wordpress/data';
+import { select, dispatch, useSelect } from '@wordpress/data';
 import { Button, Modal  } from '@wordpress/components';
 import UAGTextControl from '@Components/text-control';
 import getUAGEditorStateLocalStorage from '@Controls/getUAGEditorStateLocalStorage';
@@ -13,7 +13,7 @@ import UAGSelectControl from '@Components/select-control';
 import apiFetch from '@wordpress/api-fetch';
 import { store as spectraStore } from '@Store';
 
-const GlobalBlockStyles = (props) => {
+const GlobalBlockStyles = ( props ) => {
    // Add and remove the CSS on the drop and remove of the component.
 	useLayoutEffect( () => {
 		styles.use();
@@ -33,13 +33,12 @@ const GlobalBlockStyles = (props) => {
         setAttributes
     } = props;
 
-    const isOpen = useSelect( ( select ) => {
-        return select( 'spectra' ).globalBlockStylesPopupState();
-    });
+    const isOpen = useSelect( ( spectraStoreSelect ) => {
+        return spectraStoreSelect( 'spectra' ).globalBlockStylesPopupState();
+    } );
     
     const [ uniqueID, setUniqueID ] = useState( false );
     const [ saveToDatabase, setSaveToDatabase ] = useState( false );
-    const [ gbsPanel, setGbsPanel ] = useState( false );
     const [currentAttributesState, setCurrentAttributesState] = useState( attributes );
     const [ attributesChanged, setAttributesChanged ] = useState( false );
 
@@ -56,8 +55,6 @@ const GlobalBlockStyles = (props) => {
     const selectedBlockData = getSelectedBlock();
     const {
         name,
-        clientId,
-        innerBlocks
     } = selectedBlockData;
 
     const blockName = name.replace( 'uagb/', '' );
@@ -72,11 +69,11 @@ const GlobalBlockStyles = (props) => {
 
     useEffect( () => {
         if ( currentAttributesState !== attributes ) {
-            setCurrentAttributesState(attributes);
-            setAttributesChanged(true);
+            setCurrentAttributesState( attributes );
+            setAttributesChanged( true );
             
         } else {
-            setAttributesChanged(false);
+            setAttributesChanged( false );
             
 
         }
@@ -91,20 +88,21 @@ const GlobalBlockStyles = (props) => {
 
     const saveStylesToDatabase = () => {
 
-        let spectraGlobalStylesStoreObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
+        const spectraGlobalStylesStoreObject = JSON.parse( uagLocalStorage.getItem( 'spectraGlobalStyles' ) ) || [];
 
         let styleAttrs = {};
 
         spectraGlobalStylesStoreObject.map( ( style ) => {
-            if ( (style?.value === uniqueID) || (style?.value === globalBlockStyleId) ) {
+            if ( ( style?.value === uniqueID ) || ( style?.value === globalBlockStyleId ) ) {
                 styleAttrs = style?.props?.attributes;
             }
-        });
+            return style;
+        } );
         const formData = new window.FormData();
 
         formData.append( 'action', 'uag_global_block_styles' );
         formData.append( 'security', uagb_blocks_info.uagb_ajax_nonce );
-        formData.append( 'attributes', JSON.stringify(styleAttrs) );     
+        formData.append( 'attributes', JSON.stringify( styleAttrs ) );     
         formData.append( 'blockName', name );
         formData.append( 'postId', select( 'core/editor' ).getCurrentPostId() );
         
@@ -118,18 +116,18 @@ const GlobalBlockStyles = (props) => {
             Object.keys( currentBlockDefaultAttributes ).map( ( attribute ) => {
 
                 if ( currentBlockDefaultAttributes[attribute]?.UAGCopyPaste ) {
-                    setAttributes({
+                    setAttributes( {
                         [attribute] : currentBlockDefaultAttributes[attribute]?.default || undefined
-                    });
+                    } );
                     
                 }
                 return attribute;
             } );
-            setSaveToDatabase(false);
+            setSaveToDatabase( false );
         } );
     };
 
-    let blockNameClass = name?.split( '/' )?.pop();
+    const blockNameClass = name?.split( '/' )?.pop();
 
     let spectraGlobalStyles = [
         {
@@ -140,7 +138,7 @@ const GlobalBlockStyles = (props) => {
     const uagLocalStorage = getUAGEditorStateLocalStorage();
 
     if ( uagLocalStorage ) {
-        const spectraGlobalStylesObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
+        const spectraGlobalStylesObject = JSON.parse( uagLocalStorage.getItem( 'spectraGlobalStyles' ) ) || [];
         if ( spectraGlobalStylesObject.length === 0 ) {
 
             spectraGlobalStyles = [
@@ -157,22 +155,22 @@ const GlobalBlockStyles = (props) => {
     const getBlockStyles = () => {
         
 
-        let spectraGlobalStylesStoreObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
+        const spectraGlobalStylesStoreObject = JSON.parse( uagLocalStorage.getItem( 'spectraGlobalStyles' ) ) || [];
 
-        updateGoogleFontData(attributes);
+        updateGoogleFontData( attributes );
 
         
         spectraGlobalStylesStoreObject.map( ( style ) => {
-            if ( (style?.value === uniqueID) || (style?.value === globalBlockStyleId) ) {
+            if ( ( style?.value === uniqueID ) || ( style?.value === globalBlockStyleId ) ) {
                 
                 const baseSelector = `.spectra-gbs-${blockNameClass}-${style?.label}`;
-                const asArray = Object.entries(props.attributes);
-                const filtered = asArray.filter(([key, value]) => {
+                const asArray = Object.entries( props.attributes );
+                const filtered = asArray.filter( ( [key, value] ) => {
                     return currentBlockDefaultAttributes[key]?.default !== value;
                 } );
 
-                const justStrings = Object.fromEntries(filtered);
-                let newProps = {...props};
+                const justStrings = Object.fromEntries( filtered );
+                const newProps = {...props};
                 if ( style?.props ) {
                     newProps.attributes = {
                         ...style?.props.attributes,
@@ -180,8 +178,8 @@ const GlobalBlockStyles = (props) => {
                     }
                 }
                 const blockStyling = styling( newProps, baseSelector );
-                style['styles'] = blockStyling;
-                style['props'] = newProps;
+                style.styles = blockStyling;
+                style.props = newProps;
             }
             return style
 
@@ -189,40 +187,37 @@ const GlobalBlockStyles = (props) => {
 
         uagLocalStorage.setItem(
             'spectraGlobalStyles',
-            JSON.stringify(spectraGlobalStylesStoreObject)
+            JSON.stringify( spectraGlobalStylesStoreObject )
         )
-        setRefreshEditorGlobal(!refreshEditorGlobal);
-        setSaveToDatabase(true);
+        setRefreshEditorGlobal( !refreshEditorGlobal );
+        setSaveToDatabase( true );
     };
-    const updateGoogleFontData = (attributes) => {
-        let spectraGlobalStylesFontFamilies = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStylesFontFamilies' )) || [];
+    const updateGoogleFontData = ( attrs ) => {
+        const spectraGlobalStylesFontFamilies = JSON.parse( uagLocalStorage.getItem( 'spectraGlobalStylesFontFamilies' ) ) || [];
 
-        Object.keys(attributes).map((attribute) => {
+        Object.keys( attrs ).map( ( attribute ) => {
             
-            if ( attribute.includes('Family') && '' !== attributes[attribute] ) {
-                spectraGlobalStylesFontFamilies.push(attributes[attribute]);
+            if ( attribute.includes( 'Family' ) && '' !== attrs[attribute] ) {
+                spectraGlobalStylesFontFamilies.push( attrs[attribute] );
             }
-        });
-        let output = [];
-        for( let item of spectraGlobalStylesFontFamilies){
+            return attribute;
+        } );
+        const output = [];
+        for( const item of spectraGlobalStylesFontFamilies ){
     
-            if( !output.includes(item) )
-              output.push(item)
+            if( !output.includes( item ) )
+              output.push( item )
         }
         uagLocalStorage.setItem(
             'spectraGlobalStylesFontFamilies',
-            JSON.stringify(output)
+            JSON.stringify( output )
         )
     };
-    const getRef = (ref) => {
-        
-        setGbsPanel(ref)
-    }
+
     return (
         <UAGAdvancedPanelBody
             title={ __( 'Global Block Styles', 'ultimate-addons-for-gutenberg' ) }
             initialOpen={ true }
-            getRef={getRef}
         >
             {
                 ( ! globalBlockStyleName || '' === globalBlockStyleName ) && (
@@ -231,7 +226,7 @@ const GlobalBlockStyles = (props) => {
                             className="spectra-save-block-styles-button components-base-control"
                             onClick={ () => {
                                 openModal();
-                                setUniqueID(new Date().getTime().toString());
+                                setUniqueID( new Date().getTime().toString() );
                             } }
                             variant="primary"
                         >
@@ -247,10 +242,10 @@ const GlobalBlockStyles = (props) => {
                                 label: 'globalBlockStyleId',
                             } }
                             onChange = {
-                                (value) => {
+                                ( value ) => {
                                     let label = '';
-                                    for (var i = 0; i < spectraGlobalStyles.length; i++) {
-                                        if ( spectraGlobalStyles[i]?.value == value ) {
+                                    for ( let i = 0; i < spectraGlobalStyles.length; i++ ) {
+                                        if ( spectraGlobalStyles[i]?.value === value ) {
                                             label = spectraGlobalStyles[i]?.label;
                                             break;
                                         }
@@ -261,7 +256,7 @@ const GlobalBlockStyles = (props) => {
                                             globalBlockStyleName: label 
                                         } 
                                     );
-                                    setSaveToDatabase(true);
+                                    setSaveToDatabase( true );
                                 }
                             }
                             layout="stack"
@@ -300,12 +295,12 @@ const GlobalBlockStyles = (props) => {
                                     {
                                         value: uniqueID,
                                         label: globalBlockStyleName,
-                                        props: props
+                                        props
                                     }
                                 ]
                                 uagLocalStorage.setItem(
                                     'spectraGlobalStyles',
-                                    JSON.stringify(spectraGlobalStyles)
+                                    JSON.stringify( spectraGlobalStyles )
                                 )
                                 closeModal();
                                 getBlockStyles();
@@ -318,7 +313,7 @@ const GlobalBlockStyles = (props) => {
 				</Modal>
 			) }
             {
-                (globalBlockStyleName && '' !== globalBlockStyleName ) && (
+                ( globalBlockStyleName && '' !== globalBlockStyleName ) && (
                     <>
                         <UAGSelectControl
 							label={ __(
@@ -330,10 +325,10 @@ const GlobalBlockStyles = (props) => {
 								label: 'globalBlockStyleId',
 							} }
                             onChange = {
-                                (value) => {
+                                ( value ) => {
                                     let label = '';
-                                    for (var i = 0; i < spectraGlobalStyles.length; i++) {
-                                        if ( spectraGlobalStyles[i]?.value == value ) {
+                                    for ( let i = 0; i < spectraGlobalStyles.length; i++ ) {
+                                        if ( spectraGlobalStyles[i]?.value === value ) {
                                             label = spectraGlobalStyles[i]?.label;
                                             break;
                                         }
@@ -344,7 +339,7 @@ const GlobalBlockStyles = (props) => {
                                             globalBlockStyleName: label 
                                         } 
                                     );
-                                    setSaveToDatabase(true);
+                                    setSaveToDatabase( true );
                                 }
                             }
 							options={ spectraGlobalStyles }
@@ -355,7 +350,7 @@ const GlobalBlockStyles = (props) => {
                             <Button
                                 className="spectra-save-block-styles-button components-base-control"
                                 onClick={ () => {
-                                    setAttributesChanged(false);
+                                    setAttributesChanged( false );
                                     getBlockStyles();
                                 } }
                                 variant="primary"

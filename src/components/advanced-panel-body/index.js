@@ -12,8 +12,8 @@ const UAGAdvancedPanelBody = ( props ) => {
     } = props;
 
     const panelRef = useRef( null );
-	if (getRef) {
-		getRef(panelRef);
+	if ( getRef ) {
+		getRef( panelRef );
 	}
 	// Below code is to set the setting state of Tab for each block.
 	const { getSelectedBlock } = select( 'core/block-editor' );

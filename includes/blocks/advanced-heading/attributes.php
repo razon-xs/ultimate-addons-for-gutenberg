@@ -164,7 +164,7 @@ return array_merge(
 		'subHeadSpaceMobile'           => '',
 		'subHeadSpaceTablet'           => '',
 		'subHeadSpaceType'             => 'px',
-		'globalBlockStyleName' => '',
-		'globalBlockStyleId' => ''
+		'globalBlockStyleName'         => '',
+		'globalBlockStyleId'           => '',
 	)
 );

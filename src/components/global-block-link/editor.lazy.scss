@@ -1,16 +1,21 @@
 .spectra-global-block-style-name-modal {
+
 	.components-modal__header {
+
 		button {
 			color: #a4afb7;
+
 			svg {
 				width: 25px;
 				height: 25px;
 			}
 		}
 	}
+
 	.button-input-wrap {
 		display: flex;
 		align-items: flex-end;
+
 		button {
 			padding: 10px 30px;
 			border: none;
@@ -18,10 +23,12 @@
 			background: #39b54a;
 			color: #fff;
 			font-weight: 500;
+
 			p {
 				margin: 0;
 			}
 		}
+
 		input {
 			padding: 12px;
 			box-shadow: 0 0 5pt 0.5pt #d3d3d3d9;

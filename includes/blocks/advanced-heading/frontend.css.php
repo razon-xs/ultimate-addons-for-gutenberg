@@ -10,7 +10,7 @@
 // Add fonts.
 UAGB_Block_JS::blocks_advanced_heading_gfont( $attr );
 
-$block_name = 'advanced-heading';
+$block_name      = 'advanced-heading';
 $is_global_style = false;
 
 $m_selectors = array();
@@ -290,6 +290,6 @@ $base_selector = $base_selector . $id;
 
 if ( '' !== $attr['globalBlockStyleName'] && '' !== $attr['globalBlockStyleId'] ) {
 	$is_global_style = true;
-	$base_selector = '.spectra-gbs-' . $block_name . '-' . $attr['globalBlockStyleName'];
+	$base_selector   = '.spectra-gbs-' . $block_name . '-' . $attr['globalBlockStyleName'];
 }
 return UAGB_Helper::generate_all_css( $combined_selectors, $base_selector );

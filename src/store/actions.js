@@ -4,11 +4,7 @@
  * value represents whether query matches.
  * Ignored from documentation as it is for internal use only.
  *
- * @ignore
- *
- * @param {Object} values Breakpoint query matches.
- *
- * @return {Object} Action object.
+ * @param {string} value Value to update.
  */
 export function toggleGlobalBlockStylesPopup( value ) {
 	return {

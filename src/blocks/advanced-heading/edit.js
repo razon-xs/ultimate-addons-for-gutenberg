@@ -62,11 +62,11 @@ const UAGBAdvancedHeading = ( props ) => {
 	useEffect( () => {
 		const uagLocalStorage = getUAGEditorStateLocalStorage();
 
-		let spectraGlobalStylesStoreObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
+		const spectraGlobalStylesStoreObject = JSON.parse( uagLocalStorage.getItem( 'spectraGlobalStyles' ) ) || [];
 
 		spectraGlobalStylesStoreObject.map( ( style ) => {
 
-			if ( style?.value == globalBlockStyleId && style?.label === globalBlockStyleName ) {
+			if ( style?.value === globalBlockStyleId && style?.label === globalBlockStyleName ) {
 				addBlockEditorDynamicStyles( 'uagb-global-block-style-' + globalBlockStyleId, style?.styles );
 				
 			}
