@@ -397,7 +397,7 @@ const Settings = ( props ) => {
 						label: 'separatorThickness',
 					} }
 					min={ 0 }
-					max={ 10 }
+					max={ 50 }
 					unit={ {
 						value: thicknessUnit,
 						label: 'thicknessUnit',
