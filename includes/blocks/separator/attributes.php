@@ -20,6 +20,7 @@ return array(
 	'separatorWidthTablet'         => 30,
 	'separatorWidthMobile'         => 30,
 	'separatorWidthType'           => '%',
+	'separatorStrokeWeight'        => 1,
 	'separatorColor' => '',
 	// padding.
 	'separatorTopPadding'              => '',

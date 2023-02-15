@@ -86,7 +86,8 @@ const Settings = ( props ) => {
 		elementIconWidth,
 		elementIconWidthTablet,
 		elementIconWidthMobile,
-		elementIconWidthType
+		elementIconWidthType,
+		separatorStrokeWeight,
 	} = attributes;
 
 	// Separator settings.
@@ -385,6 +386,29 @@ const Settings = ( props ) => {
 					] }
 					setAttributes={ setAttributes }
 				/>
+				<ResponsiveSlider
+					label={ __(
+						'Weight',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						desktop: {
+							value: separatorStrokeWeight,
+							label: 'separatorStrokeWeight',
+						},
+						tablet: {
+							value: separatorStrokeWeight,
+							label: 'separatorStrokeWeight',
+						},
+						mobile: {
+							value: separatorStrokeWeight,
+							label: 'separatorStrokeWeight',
+						},
+					} }
+					min={ 1 }
+					max={ 50 }
+					setAttributes={ setAttributes }
+				/>
 				<Range
 					label={ __(
 						'Thickness',
@@ -397,7 +421,7 @@ const Settings = ( props ) => {
 						label: 'separatorThickness',
 					} }
 					min={ 0 }
-					max={ 50 }
+					max={ 100 }
 					unit={ {
 						value: thicknessUnit,
 						label: 'thicknessUnit',

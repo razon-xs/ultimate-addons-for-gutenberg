@@ -1,14 +1,10 @@
 .wp-block-uagb-separator__inner {
+    width: 100%;
     -webkit-mask-image: var(--my-background-image);
     -webkit-mask-repeat: repeat-x;
-    -webkit-mask-size: 38px 100%;
+    -webkit-mask-size: 39px 100%;
+    -webkit-text-stroke-width: 2px;
+    z-index: -1;
+    
     
 }
-
-.wp-block-uagb-separator-element {
-    background-image: none;
-}
-
-
-
-

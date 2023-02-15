@@ -66,7 +66,8 @@ function styling( props ) {
 		elementIconWidth,
 		elementIconWidthTablet,
 		elementIconWidthMobile,
-		elementIconWidthType
+		elementIconWidthType,
+		separatorStrokeWeight,
 	} = props.attributes;
 
 	// Responsive Slider
@@ -82,6 +83,7 @@ function styling( props ) {
 			separatorThicknessFallback,
 			thicknessUnit
 		),
+		'border-top-weight': separatorStrokeWeight,
 		'border-top-color': separatorColor,
 		'border-top-style': separatorStyle,
 	}

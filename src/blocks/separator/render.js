@@ -2,7 +2,6 @@ import classnames from 'classnames';
 import React, { useLayoutEffect } from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
 import renderSVG from '@Controls/renderIcon';
-import separatorStyles from './sample-border';
 import renderCustomSVG from './separator-svg';
 import styles from './editor.lazy.scss';
 

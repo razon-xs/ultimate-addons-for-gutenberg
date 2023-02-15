@@ -399,6 +399,13 @@ const attributes = {
 		type: 'string',
 		default: 'px',
 	},
+	separatorStrokeWeight: {
+		type: 'number',
+		default: 1,
+		UAGCopyPaste: {
+			styleType: 'separator-stroke-weight'
+		}
+	}
 };
 
 export default attributes;
