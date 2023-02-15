@@ -96,7 +96,7 @@ class UAGB_Init_Blocks {
 			wp_send_json_error( $response_data );
 		}
 		
-		$post_id   = sanitize_text_field( $_POST['postId'] );
+		$post_id = sanitize_text_field( $_POST['postId'] );
 		// Not sanitizing this array because $_POST['attributes'] is a very large array of different types of attributes.
 		$blockattr = json_decode( stripslashes( $_POST['attributes'] ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
