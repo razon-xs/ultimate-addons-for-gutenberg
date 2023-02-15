@@ -62,7 +62,7 @@ if ( ! class_exists( 'UAGB_Block_Module' ) ) {
 		 *
 		 * @since 2.0.0
 		 *
-		 * @param string $block_assets Block Assets.
+		 * @param array $block_assets Block Assets.
 		 * @return array
 		 */
 		public static function uag_register_block_static_dependencies( $block_assets ) {
@@ -70,19 +70,21 @@ if ( ! class_exists( 'UAGB_Block_Module' ) ) {
 			$blocks = self::get_blocks_info();
 
 			foreach ( $blocks as $block ) {
-				if ( isset( $block['static_dependencies'] ) ) {
+				if ( ! isset( $block['static_dependencies'] ) ) {
+					continue;
+				}
 
-					foreach ( $block['static_dependencies'] as $key => $static_dependencies ) {
-						if ( isset( $static_dependencies ) && is_array( $static_dependencies ) && isset( $static_dependencies['src'] ) ) {
-							$block_assets[ $key ] = $static_dependencies;
-						}
+				foreach ( $block['static_dependencies'] as $key => $static_dependencies ) {
+					if ( ! isset( $static_dependencies['src'] ) ) {
+						continue;
 					}
+					$block_assets[ $key ] = $static_dependencies;
 				}
 			}
 
 			return $block_assets;
 		}
-
+		
 		/**
 		 * Get frontend CSS.
 		 *
@@ -259,7 +261,7 @@ if ( ! class_exists( 'UAGB_Block_Module' ) ) {
 		 * @param array $default_attr default attribute value array from attributes.php.
 		 * @param array $attr saved attributes data from database.
 		 * @return array
-		 * @since X.X.X
+		 * @since 2.3.2
 		 */
 		public static function get_fallback_values( $default_attr, $attr ) {
 			foreach ( $default_attr as $key => $value ) {
