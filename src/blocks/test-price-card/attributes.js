@@ -40,6 +40,9 @@ const attributes = {
 	titleColor: {
 		type: 'string',
 	},
+	desColor: {
+		type: 'string',
+	},
 	headLoadGoogleFonts: {
 		type: 'boolean',
 		default: false,

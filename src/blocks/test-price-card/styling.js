@@ -17,6 +17,7 @@ function styling( props ) {
 		highLightLineHeightType,
 		highLightLetterSpacing,
 		highLightLetterSpacingType,
+		desColor
 	} = props.attributes;
 
 	const selectors = {
@@ -37,6 +38,9 @@ function styling( props ) {
 				highLightLetterSpacingType
 			),
 		},
+		' .uagb-block-price-card-desc': {
+            'color': desColor,
+		},
 	};
 	const Mobselectors = {
 		' .uagb-block-price-card-title': {
@@ -56,6 +60,9 @@ function styling( props ) {
 				highLightLetterSpacingType
 			),
 		},
+		' .uagb-block-price-card-desc': {
+            'color': desColor,
+		},
 	};
 	const Tabselectors = {
 		' .uagb-block-price-card-title': {
@@ -74,6 +81,9 @@ function styling( props ) {
 				highLightLetterSpacing,
 				highLightLetterSpacingType
 			),
+		},
+		' .uagb-block-price-card-desc': {
+            'color': desColor,
 		},
 	};
 

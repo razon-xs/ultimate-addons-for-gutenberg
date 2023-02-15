@@ -17,6 +17,7 @@ const Settings = ( props ) => {
 	const {
 		titleTag,
 		titleColor,
+		desColor,
 		headLoadGoogleFonts,
 		headFontFamily,
 		headFontWeight,
@@ -86,7 +87,7 @@ const Settings = ( props ) => {
 		);
 	};
 
-	const getTitleColorSettings = () => {
+	const getTitleStyleSettings = () => {
 		return (
 			<UAGAdvancedPanelBody
 				title={ __( 'Title', 'ultimate-addons-for-gutenberg' ) }
@@ -184,7 +185,24 @@ const Settings = ( props ) => {
 			</UAGAdvancedPanelBody>
 		);
 	};
-
+	const getDesStyleSettings = () => {
+		return (
+			<UAGAdvancedPanelBody
+				title={ __( 'Description', 'ultimate-addons-for-gutenberg' ) }
+				initialOpen={ true }
+			>
+				<AdvancedPopColorControl
+					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
+					colorValue={ desColor ? desColor : '' }
+					data={ {
+						value: desColor,
+						label: 'desColor',
+					} }
+					setAttributes={ setAttributes }
+				/>
+			</UAGAdvancedPanelBody>
+		);
+	};
 	return (
 		<>
 			<InspectorControls style={ { marginBottom: '40px' } }>
@@ -193,7 +211,8 @@ const Settings = ( props ) => {
 						{ getTitlePanelBody() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
-						{ getTitleColorSettings() }
+						{ getTitleStyleSettings() }
+						{ getDesStyleSettings() }
 					</InspectorTab>
 					<InspectorTab
 						{ ...UAGTabs.advance }
