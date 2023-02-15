@@ -92,7 +92,7 @@ if ( ! class_exists( 'UAGB_Update' ) ) :
 						'image',
 						'buttons',
 						'info-box',
-						'new-block',
+						'template-everything',
 						'call-to-action',
 					);
 

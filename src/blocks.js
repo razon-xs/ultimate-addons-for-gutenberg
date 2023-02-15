@@ -38,7 +38,7 @@ import './blocks/image/block.js';
 import './blocks/buttons/block.js';
 import './blocks/buttons-child/block.js'; // Child Block.
 import './blocks/info-box/block.js';
-import './blocks/new-block/block.js';
+import './blocks/template-everything/block.js';
 import './blocks/call-to-action/block.js';
 // Alphabetically Ordered Blocks.
 import './blocks/blockquote/block.js';
