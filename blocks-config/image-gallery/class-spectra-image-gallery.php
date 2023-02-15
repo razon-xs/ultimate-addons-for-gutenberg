@@ -99,6 +99,8 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 				);
 			}
 
+			$pro_attributes = apply_filters( 'uagb_image_gallery_dynamic_attributes', array() );
+
 			register_block_type(
 				'uagb/image-gallery',
 				array(
@@ -849,6 +851,8 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 								'default' => 'outset',
 							),
 						),
+						// Pro Attributes.
+						$pro_attributes,
 						// Responsive Borders.
 						$arrow_border_attributes,
 						$btn_border_attributes,
@@ -1281,7 +1285,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 				$focusedClass = ' spectra-image-gallery__media-wrapper--focus';
 			}
 			?>
-			<div class='spectra-image-gallery__media-wrapper<?php echo esc_attr( $focusedClass ); ?>' >
+			<div class='spectra-image-gallery__media-wrapper<?= esc_attr( $focusedClass ); ?>' data-spectra-gallery-image-id='<?= esc_attr( $mediaArray['id'] ) ?>' >
 				<?php
 					$this->render_media_thumbnail( $mediaArray, $atts );
 				?>
