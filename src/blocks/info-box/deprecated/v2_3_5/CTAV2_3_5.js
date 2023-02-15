@@ -16,7 +16,7 @@ const InfoBoxCta = ( props ) => {
 
 	let ctaIconOutput = '';
 	if ( attributes.showCtaIcon && attributes.ctaIcon !== '' ) {
-		ctaIconOutput = renderSVG( attributes.ctaIcon );
+		ctaIconOutput = renderSVG( attributes.ctaIcon, setAttributes );
 	}
 
 	if ( setAttributes !== 'not_set' ) {
@@ -41,6 +41,7 @@ const InfoBoxCta = ( props ) => {
 								onChange={ ( value ) => {
 									setAttributes( { ctaText: value } );
 								} }
+								allowedFormats={ [] } // Removed the WP default link/bold/italic from the toolbar for button.
 							/>
 						{ attributes.ctaIconPosition === 'after' && ctaIconOutput }
 					</a>
@@ -72,6 +73,7 @@ const InfoBoxCta = ( props ) => {
 								onChange={ ( value ) => {
 									setAttributes( { ctaText: value } );
 								} }
+								allowedFormats={ [] } // Removed the WP default link/bold/italic from the toolbar for button.
 							/>
 							{ attributes.ctaIconPosition === 'after' && ctaIconOutput }
 						</a>
@@ -82,7 +84,7 @@ const InfoBoxCta = ( props ) => {
 	}
 	return (
 			<>
-				<div className= 'uagb-ifb-button-wrapper uagb-ifb-cta-button wp-block-button' >
+				<div className= 'uagb-ifb-button-wrapper wp-block-button' >
 					{ attributes.ctaType === 'text' && (
 						<a
 							href={ attributes.ctaLink }
