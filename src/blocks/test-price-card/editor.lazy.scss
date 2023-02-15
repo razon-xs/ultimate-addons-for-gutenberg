@@ -5,16 +5,19 @@
 		margin: 0;
 		padding: 0;
 	}
+
 	.uagb-block-price-card-desc {
 		margin: 0;
 		padding: 0;
 	}
+
 	.uagb-block-price-card-title__price {
 		display: flex;
-		gap: 20rem;
+		gap: 20px;
 	}
+
 	.uagb-block-price-card-price {
-		line-height: 1rem;
+		line-height: 4px;
 		color: #333;
 	}
 }

@@ -5,7 +5,7 @@
  * @package uagb
  */
 
- return array(
+return array(
 	'block_id'                   => '',
 	'classMigrate'               => false,
 	'imgURL'                     => null,
@@ -28,4 +28,4 @@
 	'highLightLineHeight'        => '',
 	'highLightLetterSpacing'     => '',
 	'highLightLetterSpacingType' => 'px',
- );
+);
