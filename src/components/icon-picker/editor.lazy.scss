@@ -1,9 +1,7 @@
 // Custom icon picker
-@import "../../styles/variables";
-
+@import '../../styles/variables';
 
 .uag-custom-ip {
-
 	.uag-control-label {
 		padding-bottom: 4px;
 		display: block;
@@ -21,9 +19,8 @@
 		overflow: hidden;
 		// On wrapper hover functionality.
 		&:hover {
-
 			.uag-ip-actions {
-				transform: translate(0, 0);
+				transform: translate( 0, 0 );
 			}
 		}
 
@@ -89,7 +86,7 @@
 			width: 100%;
 			display: flex;
 			z-index: 2;
-			transform: translate(0, 24px);
+			transform: translate( 0, 24px );
 			transition: 0.2s all ease-in-out;
 
 			> span {
@@ -108,7 +105,7 @@
 
 // Modal popup style.
 .components-modal__screen-overlay.uagb-ip-modal-wrapper-overlay {
-	background-color: rgba(0, 0, 0, 0.7);
+	background-color: rgba( 0, 0, 0, 0.7 );
 }
 
 .components-modal__frame.uagb-ip-modal-wrapper {
@@ -157,7 +154,7 @@
 				margin: 0;
 				font-size: 20px;
 				font-weight: 400;
-				color:#1E1E1E;
+				color: #1e1e1e;
 			}
 		}
 
@@ -189,7 +186,7 @@
 	.uagb-ip-lr-container {
 		display: flex;
 		// Height 100% - height of footer and header
-		height: calc(100% - 134px);
+		height: calc( 100% - 134px );
 		grid-gap: 24px;
 
 		.uagb-ip-left {
@@ -198,30 +195,36 @@
 
 		.uagb-ip-right {
 			flex: 1;
-			padding: 24px;
-			overflow: auto;
-			height: 100%;
+			padding: 14px;
+			padding-right: 0;
 			border: 1px solid #e6e7e9;
 			border-radius: $spectra-control-popup-border-radius;
+			.uagb-ip-modal-container {
+				height: 100%;
+				// &::-webkit-scrollbar-track {
+				// 	background-color: #fff0;
+				// }
+				// &::-webkit-scrollbar {
+				// 	width: 4px;
+				// }
 
-			&::-webkit-scrollbar-track {
-				background-color: #fff0;
-			}
-
-			&::-webkit-scrollbar {
-				width: 4px;
-			}
-
-			&::-webkit-scrollbar-thumb {
-				height: 280px;
-				background: #1c222666;
-				border-radius: 2px;
+				// &::-webkit-scrollbar-thumb {
+				// 	// height: 280px;
+				// 	background: #1c222666;
+				// 	border-radius: 2px;
+				// }
+				.ReactVirtualized__Grid__innerScrollContainer {
+					> div {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+					}
+				}
 			}
 		}
 	}
 
 	.uagb-ip-categories-list {
-
 		> div {
 			padding: 10px;
 			cursor: pointer;
@@ -251,10 +254,10 @@
 				width: 14px;
 				height: 14px;
 				position: absolute;
-				top: calc(18px - 7px);
+				top: calc( 18px - 7px );
 				color: #555d66;
 				fill: #555d66;
-				transform: rotateZ(90deg);
+				transform: rotateZ( 90deg );
 				left: 12px;
 			}
 
@@ -266,7 +269,7 @@
 			input {
 				height: 36px;
 				width: 100%;
-				padding: 7px 12px 7px calc(12px * 2 + 14px);
+				padding: 7px 12px 7px calc( 12px * 2 + 14px );
 				border: 1px solid $spectra-color-border;
 				margin: 0;
 				border-radius: $spectra-control-popup-border-radius;
@@ -284,19 +287,11 @@
 	}
 	// Icons container
 	.uagb-ip-icons {
-
 		&.icon-not-found {
 			display: flex;
 			align-items: center;
 			justify-content: center;
 		}
-
-		> div {
-			display: flex;
-			flex-wrap: wrap;
-			grid-gap: 22.5px;
-		}
-
 		.uagb-icon-item {
 			width: 80px;
 			height: 80px;

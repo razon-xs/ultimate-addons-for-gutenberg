@@ -1,21 +1,55 @@
-import { Modal } from '@wordpress/components';
+import { Modal, Tooltip } from '@wordpress/components';
 import { useState, useRef, useEffect } from '@wordpress/element';
 import renderSVG from '@Controls/renderIcon';
 import { __ } from '@wordpress/i18n';
+import { Grid } from 'react-virtualized';
+import { uagbClassNames } from '@Utils/Helpers';
+
+import chunk from './chunks';
+import HeaderContainer from './header-container';
 
 const ModalContainer = ( props ) => {
 	const { value, onChange, closeModal, defaultIcons, iconCateList } = props;
 	const defaultIconsWithKeys = { ...uagb_blocks_info.uagb_svg_icons };
 
+	const setIconListWithChunks = ( icons ) => chunk( icons, 8 );
+
 	const [ searchIconInputValue, setSearchIconInputValue ] = useState( '' );
-	const [ iconList, setIconList ] = useState( defaultIcons );
+	const [ iconList, setIconList ] = useState(
+		setIconListWithChunks( defaultIcons )
+	);
 	const [ cateListName, setCateListName ] = useState( 'all' );
 	const [ iconListByCate, setIconListByCate ] = useState( defaultIcons );
 	const [ insertIcon, setInsertIcon ] = useState( '' );
 	const inputElement = useRef();
 
+	// Container states
+	const iconContainerRef = useRef();
+	const [ iconContainerHeight, setIconContainerHeight ] = useState( null );
+	const [ iconContainerWidth, setIconContainerWidth ] = useState( null );
+	/**
+	 * This is value when modal mount then we will show selected icon rest of time this will set to null.
+	 */
+	const [ rowIndexForFirstTime, setRowIndexForFirstTime ] = useState( null );
+
+	const getContainerHeight = ( property ) => {
+		let element = iconContainerRef?.current;
+		if ( ! element ) {
+			return null;
+		}
+		let getHeightOrWidth =
+			'w' === property ? element.offsetWidth : element.offsetHeight;
+		return getHeightOrWidth;
+	};
+
 	useEffect( () => {
 		inputElement.current.focus();
+		setIconContainerHeight( getContainerHeight( 'h' ) );
+		setIconContainerWidth( getContainerHeight( 'w' ) );
+		const selectedIconRowIndex = iconList.findIndex( ( row_value ) =>
+			row_value.includes( value )
+		);
+		setRowIndexForFirstTime( selectedIconRowIndex );
 	}, [] );
 
 	// Click on category list.
@@ -45,7 +79,8 @@ const ModalContainer = ( props ) => {
 		}
 		setCateListName( cate );
 		setIconListByCate( findIconsByCate );
-		setIconList( findIconsByCate );
+		setRowIndexForFirstTime( null );
+		setIconList( setIconListWithChunks( findIconsByCate ) );
 		setSearchIconInputValue( '' );
 	};
 
@@ -62,9 +97,9 @@ const ModalContainer = ( props ) => {
 					: false;
 
 			const resultIcons = [ ...iconListByCate ].filter( filterIcons );
-			setIconList( resultIcons );
+			setIconList( setIconListWithChunks( resultIcons ) );
 		} else {
-			clickToCate( cateListName, false );
+			clickToCate( cateListName );
 		}
 		setSearchIconInputValue( inputValue );
 	};
@@ -85,73 +120,69 @@ const ModalContainer = ( props ) => {
 				</div>
 			);
 		}
-		const iconTitle = ( slug ) => {
-			if ( ! defaultIconsWithKeys[ slug ]?.label ) {
+		const iconTitle = ( actualTitle ) => {
+			if ( ! actualTitle ) {
 				return '';
 			}
-
-			return defaultIconsWithKeys[ slug ].label.length < 11
-				? defaultIconsWithKeys[ slug ].label
-				: defaultIconsWithKeys[ slug ].label.slice( 0, 10 ) + '..';
+			return actualTitle.length < 11
+				? actualTitle
+				: actualTitle.slice( 0, 10 ) + '..';
 		};
+		// renderer.
+		function cellRenderer( renderer ) {
+			const { columnIndex, key, rowIndex, style } = renderer;
+			const currentIcon = iconList[ rowIndex ][ columnIndex ];
+			const iconClass = uagbClassNames( [
+				'uagb-icon-item',
+				value === currentIcon && 'default',
+				currentIcon === insertIcon && 'selected',
+			] );
+
+			if ( ! currentIcon ) {
+				return null;
+			}
+
+			const actualTitle = defaultIconsWithKeys[ currentIcon ]?.label
+				? defaultIconsWithKeys[ currentIcon ].label
+				: '';
+			return (
+				<div key={ key } style={ style }>
+					<div
+						className={ iconClass }
+						onClick={ () => {
+							if ( value !== currentIcon ) {
+								setInsertIcon( currentIcon );
+							}
+						} }
+					>
+						{ renderSVG( currentIcon ) }
+						<Tooltip text={ actualTitle }>
+							<span>{ iconTitle( actualTitle ) }</span>
+						</Tooltip>
+					</div>
+				</div>
+			);
+		}
+		const heightAndWidth =
+			iconList[ 0 ].length === 8
+				? iconContainerWidth / iconList[ 0 ].length
+				: 100;
+
 		return (
 			<div className="uagb-ip-icons">
-				<div>
-					{ iconList.map( ( currentIcon, key ) => (
-						<div
-							key={ key }
-							className={ `uagb-icon-item ${
-								value === currentIcon ? 'default' : ''
-							}  ${
-								currentIcon === insertIcon ? 'selected' : ''
-							}` }
-							onClick={ () => {
-								if ( value !== currentIcon ) {
-									setInsertIcon( currentIcon );
-								}
-							} }
-						>
-							{ renderSVG( currentIcon ) }
-							<span>{ iconTitle( currentIcon ) }</span>
-						</div>
-					) ) }
-				</div>
-			</div>
-		);
-	};
-
-	const removeTextIcon = () => {
-		return '' === searchIconInputValue ? (
-			renderSVG( 'sistrix' )
-		) : (
-			<span
-				onClick={ () => {
-					clickToCate( cateListName, false );
-					setSearchIconInputValue( '' );
-				} }
-				className="dashicons dashicons-no-alt"
-			></span>
-		);
-	};
-
-	// Search input container.
-	const searchContainer = (
-		<div className="uagb-ip-search-container">
-			<div className="uagb-ip-search-bar">
-				{ removeTextIcon() }
-				<input
-					type="text"
-					placeholder={ __(
-						'Search',
-						'ultimate-addons-for-gutenberg'
-					) }
-					value={ searchIconInputValue }
-					onChange={ searchIcon }
-					ref={ inputElement }
+				<Grid
+					cellRenderer={ cellRenderer }
+					columnCount={ iconList[ 0 ].length }
+					columnWidth={ heightAndWidth - 2 }
+					height={ iconContainerHeight }
+					rowCount={ iconList.length }
+					rowHeight={ heightAndWidth }
+					width={ iconContainerWidth }
+					scrollToRow={ rowIndexForFirstTime }
 				/>
 			</div>
-		</div>
-	);
+		);
+	};
 
 	// List of cate.
 	const listOfCate = () => (
@@ -194,17 +225,23 @@ const ModalContainer = ( props ) => {
 			shouldCloseOnClickOutside={ false }
 		>
 			{ /* Header  */ }
-			<div className="uagb-ip-header">
-				<h2>
-					{ __( 'Icon Library', 'ultimate-addons-for-gutenberg' ) }
-				</h2>
-				{ searchContainer }
-			</div>
+			<HeaderContainer
+				searchIconInputValue={ searchIconInputValue }
+				onClickRemoveSearch={ () => {
+					clickToCate( cateListName, false );
+					setSearchIconInputValue( '' );
+				} }
+				searchIcon={ searchIcon }
+				inputElement={ inputElement }
+			/>
 			{ /* middle  */ }
 			<div className="uagb-ip-lr-container">
 				<div className="uagb-ip-left">{ listOfCate() }</div>
 				<div className="uagb-ip-right">
-					<div className="uagb-ip-modal-container">
+					<div
+						className="uagb-ip-modal-container"
+						ref={ iconContainerRef }
+					>
 						{ renderIconList() }
 					</div>
 				</div>

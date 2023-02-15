@@ -36,6 +36,7 @@
     "react-select": "^2.2.0",
     "react-slick": "^0.24.0",
     "react-transition-group": "^2.4.0",
+    "react-virtualized": "^9.22.3",
     "striptags": "^3.2.0",
     "swiper": "^8.4.5"
   },
