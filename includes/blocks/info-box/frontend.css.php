@@ -653,7 +653,7 @@ if ( 'button' === $attr['ctaType'] ) {
 		'fill' => $attr['ctaBtnLinkColor'],
 	);
 
-	$selectors['.wp-block-uagb-info-box.uagb-infobox__content-wrap .wp-block-button.uagb-ifb-button-wrapper:hover .uagb-infobox-cta-link.wp-block-button__link'] = array(
+	$selectors['.wp-block-uagb-info-box.uagb-infobox__content-wrap .wp-block-button.uagb-ifb-button-wrapper .uagb-infobox-cta-link.wp-block-button__link:hover'] = array(
 		'color'            => $attr['ctaLinkHoverColor'],
 		'background-color' => ( 'color' === $attr['ctaBgHoverType'] ) ? $attr['ctaBgHoverColor'] : 'transparent',
 		'border-color'     => ! empty( $attr['btnBorderHColor'] ) ? $attr['btnBorderHColor'] : $attr['ctaBorderhoverColor'],

@@ -84,7 +84,7 @@ const InfoBoxCta = ( props ) => {
 	}
 	return (
 			<>
-				<div className= 'uagb-ifb-button-wrapper uagb-ifb-cta-button wp-block-button' >
+				<div className= 'uagb-ifb-button-wrapper wp-block-button' >
 					{ attributes.ctaType === 'text' && (
 						<a
 							href={ attributes.ctaLink }
