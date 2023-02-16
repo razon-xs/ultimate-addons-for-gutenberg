@@ -1,4 +1,8 @@
 {
+	"brands": {
+		"title": "Brands",
+		"original_cate": [ "brands" ]
+	},
 	"business": {
 		"title": "Business",
 		"original_cate": [
