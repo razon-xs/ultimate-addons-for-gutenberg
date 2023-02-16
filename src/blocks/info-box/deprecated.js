@@ -17,7 +17,9 @@ import InfoBoxIconImage from './components/InfoBoxIconImage';
 import IconImage from './components/IconImage';
 import { getBorderAttributes } from '@Controls/generateAttributes';
 import newAttributesV2_0_13 from './deprecated/v2_0_13/attributes';
+import newAttributesV2_3_5 from './deprecated/v2_3_5/attributes';
 import newSaveV2_0_13 from './deprecated/v2_0_13/save';
+import newSaveV2_3_5 from './deprecated/v2_3_5/save';
 
 import InfoBoxIconImageNewVer from './components/DeprecatedIconImagesV_2_0_13';
 import AttributesNewVer from './attributes';
@@ -2203,6 +2205,10 @@ const deprecated = [
 		attributes: newAttributesV2_0_13,
 		save : newSaveV2_0_13,
 	},
+	{
+		attributes: newAttributesV2_3_5,
+		save : newSaveV2_3_5,
+	}
 ];
 
 export default deprecated;
