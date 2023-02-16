@@ -21,6 +21,8 @@ function styling( props ) {
 		separatorWidthType,
 		separatorColor,
 		separatorThickness,
+		separatorThicknessMobile,
+        separatorThicknessTablet,
 		thicknessUnit,
 		separatorTopPadding,
 		separatorRightPadding,
@@ -66,8 +68,7 @@ function styling( props ) {
 		elementIconWidth,
 		elementIconWidthTablet,
 		elementIconWidthMobile,
-		elementIconWidthType,
-		separatorStrokeWeight,
+		elementIconWidthType
 	} = props.attributes;
 
 	// Responsive Slider
@@ -76,14 +77,14 @@ function styling( props ) {
 	const separatorWidthFallbackMobile = getFallbackNumber( separatorWidthMobile, 'separatorWidthMobile', blockName );
 	// Thikness
 	const separatorThicknessFallback = getFallbackNumber( separatorThickness, 'separatorThickness', blockName );
+	const separatorThicknessMobileFallback = getFallbackNumber( separatorThicknessMobile, 'separatorThicknessMobile', blockName );
+	const separatorThicknessTabletFallback = getFallbackNumber( separatorThicknessTablet, 'separatorThicknessTablet', blockName );
+
+	
 
 
 	const borderCSS = {
-		'border-top-width': generateCSSUnit(
-			separatorThicknessFallback,
-			thicknessUnit
-		),
-		'border-top-weight': separatorStrokeWeight,
+		'border-top-width': generateCSSUnit( separatorThicknessFallback, thicknessUnit),
 		'border-top-color': separatorColor,
 		'border-top-style': separatorStyle,
 	}
@@ -93,6 +94,7 @@ function styling( props ) {
 		borderStyle = {
 			'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
 				'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
+				'border-top-width': generateCSSUnit( separatorThicknessFallback, thicknessUnit ),
 				...borderCSS
 			}
 		}
@@ -111,6 +113,7 @@ function styling( props ) {
 		borderStyle = {
 			'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
 				'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
+				'border-top-width': generateCSSUnit( separatorThicknessFallback, thicknessUnit ),
 				...alignCSS
 			},
 			'.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::before': borderCSS,
@@ -236,6 +239,7 @@ function styling( props ) {
 		},
 		'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
 			'width': generateCSSUnit( separatorWidthFallbackTablet, separatorWidthType ),
+			'border-top-width-tablet': generateCSSUnit( separatorThicknessTabletFallback, thicknessUnit ),
 		},
 		...borderStyleTablet,
 		...iconSpacingStyleTablet,
@@ -306,6 +310,7 @@ function styling( props ) {
 		},
 		'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
 			'width': generateCSSUnit( separatorWidthFallbackMobile, separatorWidthType ),
+			'border-top-width-mobile': generateCSSUnit( separatorThicknessMobileFallback, thicknessUnit ),
 		},
 		...borderStyleMobile,
 		...iconSpacingStyleMobile,

@@ -36,6 +36,8 @@ const Settings = ( props ) => {
 		separatorWidthType,
 		separatorColor,
 		separatorThickness,
+		separatorThicknessMobile,
+		separatorThicknessTablet,
 		thicknessUnit,
 		separatorTopPadding,
 		separatorRightPadding,
@@ -86,8 +88,7 @@ const Settings = ( props ) => {
 		elementIconWidth,
 		elementIconWidthTablet,
 		elementIconWidthMobile,
-		elementIconWidthType,
-		separatorStrokeWeight,
+		elementIconWidthType
 	} = attributes;
 
 	// Separator settings.
@@ -145,13 +146,34 @@ const Settings = ( props ) => {
 						label: __( 'Square', 'ultimate-addons-for-gutenberg' ),
 					},
 					{
+						value: 'wavy',
+						label: __( 'Wavy',
+						'ultimate-addons-for-gutenberg' ),
+					},
+					{
 						value: 'leaves',
 						label: __( 'Leaves', 'ultimate-addons-for-gutenberg' ),
 					},
 					{
-						value: 'slash',
-						label: __( 'Slash', 'ultimate-addons-for-gutenberg' ),
+						value: 'arrows',
+						label: __( 'Arrows',
+						'ultimate-addons-for-gutenberg' ),
 					},
+					{
+						value: 'rectangles',
+						label: __( 'Rectangles',
+						'ultimate-addons-for-gutenberg' ),
+					},
+					{
+						value: 'parallelogram',
+						label: __( 'Parallelogram',
+						'ultimate-addons-for-gutenberg' ),
+					},
+					{
+						value: 'fir_trees',
+						label: __( 'Fir Trees',
+						'ultimate-addons-for-gutenberg' ),
+					},					
 				] } 
 				/>
 				<MultiButtonsControl
@@ -386,39 +408,25 @@ const Settings = ( props ) => {
 					] }
 					setAttributes={ setAttributes }
 				/>
-				<ResponsiveSlider
-					label={ __(
-						'Weight',
-						'ultimate-addons-for-gutenberg'
-					) }
-					data={ {
-						desktop: {
-							value: separatorStrokeWeight,
-							label: 'separatorStrokeWeight',
-						},
-						tablet: {
-							value: separatorStrokeWeight,
-							label: 'separatorStrokeWeight',
-						},
-						mobile: {
-							value: separatorStrokeWeight,
-							label: 'separatorStrokeWeight',
-						},
-					} }
-					min={ 1 }
-					max={ 50 }
-					setAttributes={ setAttributes }
-				/>
 				<Range
 					label={ __(
 						'Thickness',
 						'ultimate-addons-for-gutenberg'
 					) }
-					setAttributes={ setAttributes }
-					value={ separatorThickness }
+					responsive={ true }
 					data={ {
-						value: separatorThickness,
-						label: 'separatorThickness',
+						desktop: {
+							value: separatorThickness,
+						    label: 'separatorThickness',
+						},
+						mobile: {
+							value: separatorThicknessMobile,
+						    label: 'separatorThicknessMobile',
+						},
+						Tablet: {
+							value: separatorThicknessTablet,
+						    label: 'separatorThicknessTablet',
+						},	
 					} }
 					min={ 0 }
 					max={ 100 }
@@ -426,6 +434,24 @@ const Settings = ( props ) => {
 						value: thicknessUnit,
 						label: 'thicknessUnit',
 					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
+					] }
+					setAttributes={ setAttributes }
+					value = { separatorThickness }
 				/>
 				<AdvancedPopColorControl
 					label={ __(

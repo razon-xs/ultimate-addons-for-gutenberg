@@ -46,18 +46,18 @@ const attributes = {
 		UAGCopyPaste: {
 			styleType: 'separator-width'
 		},
-		default: 30,
+		default: 100,
 	},
 	separatorWidthTablet: {
 		type: 'number',
-		default: 30,
+		default: 100,
 		UAGCopyPaste: {
 			styleType: 'separator-width-tablet'
 		},
 	},
 	separatorWidthMobile: {
 		type: 'number',
-		default: 30,
+		default: 100,
 		UAGCopyPaste: {
 			styleType: 'separator-width-mobile'
 		},
@@ -71,11 +71,23 @@ const attributes = {
 	},
 	separatorThickness: {
 		type: 'number',
-		default: 4,
+		default: 30,
+		UAGCopyPaste: {
+			styleType: 'separator-thickness'
+		}	
+	},
+	separatorThicknessMobile: {
+		type: 'number',
 		UAGCopyPaste: {
 			styleType: 'separator-thickness'
 		}
 	},
+	separatorThicknessTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'separator-thickness'
+		}
+	},	
 	thicknessUnit: {
 		type: 'string',
 		default: 'px',

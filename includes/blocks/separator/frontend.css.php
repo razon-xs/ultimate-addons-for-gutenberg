@@ -14,7 +14,6 @@ $t_selectors = array();
 
 $borderCSS = array(
 	'border-top-width' => UAGB_Helper::get_css_value( $attr['separatorThickness'], $attr['thicknessUnit'] ),
-	'border-top-weight' => $attr['separatorStrokeWeight'],
 	'border-top-color' => $attr['separatorColor'],
 	'border-top-style' => $attr['separatorStyle'],
 );
