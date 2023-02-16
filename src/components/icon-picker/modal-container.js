@@ -27,7 +27,7 @@ const ModalContainer = ( props ) => {
 	const iconContainerRef = useRef();
 	const [ iconContainerHeight, setIconContainerHeight ] = useState( null );
 	const [ iconContainerWidth, setIconContainerWidth ] = useState( null );
-	
+
 	/**
 	 * This is value when modal mount then we will show selected icon rest of time this will set to null.
 	 */
@@ -146,7 +146,7 @@ const ModalContainer = ( props ) => {
 				? defaultIconsWithKeys[ currentIcon ].label
 				: '';
 			return (
-				<div key={ key } style={ style }>
+				<div key={ key } style={ style } icon-slug={ currentIcon }>
 					<div
 						className={ iconClass }
 						onClick={ () => {
