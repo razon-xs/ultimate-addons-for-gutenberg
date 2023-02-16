@@ -7,14 +7,10 @@ import { select } from '@wordpress/data';
 const UAGAdvancedPanelBody = ( props ) => {
 
     const {
-        children,
-		getRef
+        children
     } = props;
 
     const panelRef = useRef( null );
-	if ( getRef ) {
-		getRef( panelRef );
-	}
 	// Below code is to set the setting state of Tab for each block.
 	const { getSelectedBlock } = select( 'core/block-editor' );
 	const blockName = getSelectedBlock()?.name;

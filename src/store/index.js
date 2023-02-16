@@ -1,29 +1,26 @@
 /**
  * WordPress dependencies
  */
- import { createReduxStore, register } from '@wordpress/data';
+import { createReduxStore, register } from '@wordpress/data';
 
- /**
-  * Internal dependencies
-  */
- import reducer from './reducer';
- import * as actions from './actions';
- import * as selectors from './selectors';
- 
- const STORE_NAME = 'spectra';
- 
- /**
-  * Store definition for the viewport namespace.
-  *
-  * @see https://github.com/WordPress/gutenberg/blob/HEAD/packages/data/README.md#createReduxStore
-  *
-  * @type {Object}
-  */
- export const store = createReduxStore( STORE_NAME, {
-     reducer,
-     actions,
-     selectors,
- } );
- 
- register( store );
- 
+/**
+ * Internal dependencies
+ */
+import reducer from './reducer';
+import * as actions from './actions';
+import * as selectors from './selectors';
+import { STORE_NAME as storeName } from './constants';
+/**
+ * Store definition for the viewport namespace.
+ *
+ * @see https://github.com/WordPress/gutenberg/blob/HEAD/packages/data/README.md#createReduxStore
+ *
+ * @type {Object}
+ */
+export const store = createReduxStore( storeName, {
+    reducer,
+    actions,
+    selectors,
+} );
+
+register( store );

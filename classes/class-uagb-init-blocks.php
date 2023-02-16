@@ -91,17 +91,24 @@ class UAGB_Init_Blocks {
 			wp_send_json_error();
 		}
 		
-		if ( empty( $_POST ) || empty( $_POST['attributes'] ) || empty( $_POST['blockName'] ) || empty( $_POST['postId'] ) ) {
+		if ( empty( $_POST ) || empty( $_POST['props'] ) || empty( $_POST['blockName'] ) || empty( $_POST['postId'] ) ) {
 			$response_data = array( 'messsage' => __( 'No post data found!', 'ultimate-addons-for-gutenberg' ) );
 			wp_send_json_error( $response_data );
 		}
 		
 		$post_id = sanitize_text_field( $_POST['postId'] );
 		// Not sanitizing this array because $_POST['attributes'] is a very large array of different types of attributes.
-		$blockattr = json_decode( stripslashes( $_POST['attributes'] ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$block_props = json_decode( stripslashes( $_POST['props'] ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+
+		if ( $block_props['attributes'] ) {
+			$response_data = array( 'messsage' => __( 'No post data found!', 'ultimate-addons-for-gutenberg' ) );
+			wp_send_json_error( $response_data );
+		}
+
+		$block_attr = $block_props['attributes'];
 
 		$_block_slug = str_replace( 'uagb/', '', sanitize_text_field( $_POST['blockName'] ) );
-		$_block_css  = UAGB_Block_Module::get_frontend_css( $_block_slug, $blockattr, $blockattr['block_id'] );
+		$_block_css  = UAGB_Block_Module::get_frontend_css( $_block_slug, $block_attr, $block_attr['block_id'] );
 
 		$desktop = '';
 		$tablet  = '';
@@ -125,33 +132,36 @@ class UAGB_Init_Blocks {
 		}
 		$_block_css                  = $desktop . $tab_styling_css . $mob_styling_css;
 		$spectra_global_block_styles = get_option( 'spectra_global_block_styles', array() );
-		$spectra_global_block_styles[ $blockattr['globalBlockStyleId'] ]['css'] = $_block_css;
-		
-		if ( empty( $spectra_global_block_styles[ $blockattr['globalBlockStyleId'] ]['post_ids'] ) ) {
-			$spectra_global_block_styles[ $blockattr['globalBlockStyleId'] ]['post_ids'] = array(
+		$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['css'] = $_block_css;
+		$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['value'] = $block_attr['globalBlockStyleId'];
+		$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['label'] = $block_attr['globalBlockStyleName'];
+		$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['props'] = $block_props;
+
+		if ( empty( $spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'] ) ) {
+			$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'] = array(
 				$post_id,
 			);
 		} else {
 
-			$spectra_global_block_styles[ $blockattr['globalBlockStyleId'] ]['post_ids'][] = $post_id;
+			$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'][] = $post_id;
 		}
 		
-		$spectra_global_block_styles[ $blockattr['globalBlockStyleId'] ]['post_ids'] = array_unique( $spectra_global_block_styles[ $blockattr['globalBlockStyleId'] ]['post_ids'] );
+		$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'] = array_unique( $spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'] );
 		
 		update_option( 'spectra_global_block_styles', $spectra_global_block_styles );
 		$spectra_gbs_google_fonts = get_option( 'spectra_gbs_google_fonts', array() );
 		
 		// Global Font Families.
 		$font_families = array();
-		foreach ( $blockattr as $name => $attribute ) {
+		foreach ( $block_attr as $name => $attribute ) {
 			if ( false !== strpos( $name, 'Family' ) && '' !== $attribute ) {
 				
 				$font_families[] = $attribute;
 			}
 		}
-		$spectra_gbs_google_fonts[ $blockattr['globalBlockStyleId'] ] = $font_families;
-		if ( isset( $spectra_gbs_google_fonts[ $blockattr['globalBlockStyleId'] ] ) && is_array( $spectra_gbs_google_fonts[ $blockattr['globalBlockStyleId'] ] ) ) {
-			$spectra_gbs_google_fonts[ $blockattr['globalBlockStyleId'] ] = array_unique( $spectra_gbs_google_fonts[ $blockattr['globalBlockStyleId'] ] );
+		$spectra_gbs_google_fonts[ $block_attr['globalBlockStyleId'] ] = $font_families;
+		if ( isset( $spectra_gbs_google_fonts[ $block_attr['globalBlockStyleId'] ] ) && is_array( $spectra_gbs_google_fonts[ $block_attr['globalBlockStyleId'] ] ) ) {
+			$spectra_gbs_google_fonts[ $block_attr['globalBlockStyleId'] ] = array_unique( $spectra_gbs_google_fonts[ $block_attr['globalBlockStyleId'] ] );
 		}
 		update_option( 'spectra_gbs_google_fonts', $spectra_gbs_google_fonts );
 		wp_send_json_success();

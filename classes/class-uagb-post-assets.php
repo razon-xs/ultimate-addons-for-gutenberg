@@ -208,6 +208,7 @@ class UAGB_Post_Assets {
 	 * @param int $post_id Post ID.
 	 */
 	public function __construct( $post_id ) {
+		// delete_option('spectra_global_block_styles');
 		$this->post_id = intval( $post_id );
 
 		$this->preview            = isset( $_GET['preview'] ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -575,7 +576,7 @@ class UAGB_Post_Assets {
 		echo '<style id="uagb-style-frontend-' . esc_attr( $this->post_id ) . '">' . $this->stylesheet . '</style>'; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		$spectra_global_block_styles = get_option( 'spectra_global_block_styles', array() );
-		
+		var_dump($spectra_global_block_styles);
 		foreach ( $spectra_global_block_styles as $style_id => $style ) {
 			
 			if ( in_array( $this->post_id, $style['post_ids'] ) ) {

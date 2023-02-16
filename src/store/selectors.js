@@ -25,6 +25,14 @@
  *
  * @return {boolean} Whether viewport matches query.
  */
-export function globalBlockStylesPopupState( state ) {
+export function getGlobalBlockStylesPopupState( state ) {
 	return state.globalBlockStylesPopupState;
+}
+
+export function getGlobalBlockStyles( state ) {
+	return state.globalBlockStyles;
+}
+
+export function getGlobalBlockStylesFontFamilies( state ) {
+	return state.globalBlockStylesFontFamilies;
 }

@@ -8,10 +8,10 @@ import { blocksAttributes } from '@Attributes/getBlocksDefaultAttributes';
 import { select, dispatch, useSelect } from '@wordpress/data';
 import { Button, Modal  } from '@wordpress/components';
 import UAGTextControl from '@Components/text-control';
-import getUAGEditorStateLocalStorage from '@Controls/getUAGEditorStateLocalStorage';
 import UAGSelectControl from '@Components/select-control';
 import apiFetch from '@wordpress/api-fetch';
 import { store as spectraStore } from '@Store';
+import { STORE_NAME as storeName } from '@Store/constants';
 
 const GlobalBlockStyles = ( props ) => {
    // Add and remove the CSS on the drop and remove of the component.
@@ -34,9 +34,16 @@ const GlobalBlockStyles = ( props ) => {
     } = props;
 
     const isOpen = useSelect( ( spectraStoreSelect ) => {
-        return spectraStoreSelect( 'spectra' ).globalBlockStylesPopupState();
+        return spectraStoreSelect( storeName ).getGlobalBlockStylesPopupState();
     } );
     
+    const globalBlockStyles = useSelect( ( spectraStoreSelect ) => {
+        return spectraStoreSelect( storeName ).getGlobalBlockStyles();
+    } );
+
+    const globalBlockStylesFontFamilies = useSelect( ( spectraStoreSelect ) => {
+        return spectraStoreSelect( storeName ).getGlobalBlockStylesFontFamilies();
+    } );
     const [ uniqueID, setUniqueID ] = useState( false );
     const [ saveToDatabase, setSaveToDatabase ] = useState( false );
     const [currentAttributesState, setCurrentAttributesState] = useState( attributes );
@@ -46,7 +53,9 @@ const GlobalBlockStyles = ( props ) => {
 
 	const openModal = () => dispatch( spectraStore ).toggleGlobalBlockStylesPopup( 'open' );
 	const closeModal = () => dispatch( spectraStore ).toggleGlobalBlockStylesPopup( 'close' );
-	
+	const updateGlobalBlockStyles = (value) => dispatch( spectraStore ).updateGlobalBlockStyles( value );
+    const updateGlobalBlockStylesFontFamilies = (value) => dispatch( spectraStore ).updateGlobalBlockStylesFontFamilies( value );
+
     const {
         globalBlockStyleName,
         globalBlockStyleId
@@ -88,13 +97,11 @@ const GlobalBlockStyles = ( props ) => {
 
     const saveStylesToDatabase = () => {
 
-        const spectraGlobalStylesStoreObject = JSON.parse( uagLocalStorage.getItem( 'spectraGlobalStyles' ) ) || [];
+        let styleProps = {};
 
-        let styleAttrs = {};
-
-        spectraGlobalStylesStoreObject.map( ( style ) => {
+        globalBlockStyles.map( ( style ) => {
             if ( ( style?.value === uniqueID ) || ( style?.value === globalBlockStyleId ) ) {
-                styleAttrs = style?.props?.attributes;
+                styleProps = style?.props;
             }
             return style;
         } );
@@ -102,7 +109,7 @@ const GlobalBlockStyles = ( props ) => {
 
         formData.append( 'action', 'uag_global_block_styles' );
         formData.append( 'security', uagb_blocks_info.uagb_ajax_nonce );
-        formData.append( 'attributes', JSON.stringify( styleAttrs ) );     
+        formData.append( 'props', JSON.stringify( styleProps ) );     
         formData.append( 'blockName', name );
         formData.append( 'postId', select( 'core/editor' ).getCurrentPostId() );
         
@@ -129,38 +136,11 @@ const GlobalBlockStyles = ( props ) => {
 
     const blockNameClass = name?.split( '/' )?.pop();
 
-    let spectraGlobalStyles = [
-        {
-            value: '',
-            label: 'None'
-        }
-    ]
-    const uagLocalStorage = getUAGEditorStateLocalStorage();
-
-    if ( uagLocalStorage ) {
-        const spectraGlobalStylesObject = JSON.parse( uagLocalStorage.getItem( 'spectraGlobalStyles' ) ) || [];
-        if ( spectraGlobalStylesObject.length === 0 ) {
-
-            spectraGlobalStyles = [
-                ...spectraGlobalStyles,
-                ...spectraGlobalStylesObject
-            ]
-        } else {
-            spectraGlobalStyles = [
-                ...spectraGlobalStylesObject
-            ]
-        }
-    }
-
-    const getBlockStyles = () => {
-        
-
-        const spectraGlobalStylesStoreObject = JSON.parse( uagLocalStorage.getItem( 'spectraGlobalStyles' ) ) || [];
+    const getBlockStyles = ( spectraGlobalStyles = globalBlockStyles) => {
 
         updateGoogleFontData( attributes );
 
-        
-        spectraGlobalStylesStoreObject.map( ( style ) => {
+        spectraGlobalStyles.map( ( style ) => {
             if ( ( style?.value === uniqueID ) || ( style?.value === globalBlockStyleId ) ) {
                 
                 const baseSelector = `.spectra-gbs-${blockNameClass}-${style?.label}`;
@@ -178,41 +158,37 @@ const GlobalBlockStyles = ( props ) => {
                     }
                 }
                 const blockStyling = styling( newProps, baseSelector );
-                style.styles = blockStyling;
+                style.editorStyles = blockStyling;
                 style.props = newProps;
             }
             return style
 
         } );
 
-        uagLocalStorage.setItem(
-            'spectraGlobalStyles',
-            JSON.stringify( spectraGlobalStylesStoreObject )
-        )
+        updateGlobalBlockStyles(spectraGlobalStyles);
         setRefreshEditorGlobal( !refreshEditorGlobal );
         setSaveToDatabase( true );
     };
     const updateGoogleFontData = ( attrs ) => {
-        const spectraGlobalStylesFontFamilies = JSON.parse( uagLocalStorage.getItem( 'spectraGlobalStylesFontFamilies' ) ) || [];
-
+       
         Object.keys( attrs ).map( ( attribute ) => {
             
             if ( attribute.includes( 'Family' ) && '' !== attrs[attribute] ) {
-                spectraGlobalStylesFontFamilies.push( attrs[attribute] );
+                globalBlockStylesFontFamilies.push( attrs[attribute] );
             }
             return attribute;
         } );
+
         const output = [];
-        for( const item of spectraGlobalStylesFontFamilies ){
+        for( const item of globalBlockStylesFontFamilies ){
     
             if( !output.includes( item ) )
               output.push( item )
         }
-        uagLocalStorage.setItem(
-            'spectraGlobalStylesFontFamilies',
-            JSON.stringify( output )
-        )
+        updateGlobalBlockStylesFontFamilies(output);
     };
+
+    console.log(globalBlockStyles);
 
     return (
         <UAGAdvancedPanelBody
@@ -244,9 +220,9 @@ const GlobalBlockStyles = ( props ) => {
                             onChange = {
                                 ( value ) => {
                                     let label = '';
-                                    for ( let i = 0; i < spectraGlobalStyles.length; i++ ) {
-                                        if ( spectraGlobalStyles[i]?.value === value ) {
-                                            label = spectraGlobalStyles[i]?.label;
+                                    for ( let i = 0; i < globalBlockStyles.length; i++ ) {
+                                        if ( globalBlockStyles[i]?.value === value ) {
+                                            label = globalBlockStyles[i]?.label;
                                             break;
                                         }
                                     }
@@ -260,7 +236,7 @@ const GlobalBlockStyles = ( props ) => {
                                 }
                             }
                             layout="stack"
-                            options={ spectraGlobalStyles }
+                            options={ globalBlockStyles }
                         />
                     </>
                 )
@@ -290,20 +266,17 @@ const GlobalBlockStyles = ( props ) => {
                         />
                         <button 
                             onClick={ () => {
-                                spectraGlobalStyles = [
-                                    ...spectraGlobalStyles,
+                                let spectraGlobalStyles = [
+                                    ...globalBlockStyles,
                                     {
                                         value: uniqueID,
                                         label: globalBlockStyleName,
                                         props
                                     }
                                 ]
-                                uagLocalStorage.setItem(
-                                    'spectraGlobalStyles',
-                                    JSON.stringify( spectraGlobalStyles )
-                                )
+                                dispatch( spectraStore ).updateGlobalBlockStyles( spectraGlobalStyles )
                                 closeModal();
-                                getBlockStyles();
+                                getBlockStyles(spectraGlobalStyles);
 
                             } }
                         >
@@ -327,9 +300,9 @@ const GlobalBlockStyles = ( props ) => {
                             onChange = {
                                 ( value ) => {
                                     let label = '';
-                                    for ( let i = 0; i < spectraGlobalStyles.length; i++ ) {
-                                        if ( spectraGlobalStyles[i]?.value === value ) {
-                                            label = spectraGlobalStyles[i]?.label;
+                                    for ( let i = 0; i < globalBlockStyles.length; i++ ) {
+                                        if ( globalBlockStyles[i]?.value === value ) {
+                                            label = globalBlockStyles[i]?.label;
                                             break;
                                         }
                                     }
@@ -342,7 +315,7 @@ const GlobalBlockStyles = ( props ) => {
                                     setSaveToDatabase( true );
                                 }
                             }
-							options={ spectraGlobalStyles }
+							options={ globalBlockStyles }
                             layout="stack"
 						/>
                         {

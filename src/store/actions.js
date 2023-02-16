@@ -12,3 +12,18 @@ export function toggleGlobalBlockStylesPopup( value ) {
 		value,
 	};
 }
+
+export function updateGlobalBlockStyles( value ) {
+	console.log(value);
+	return {
+		type: 'UPDATE_GLOBAL_BLOCK_STYLES',
+		value,
+	};
+}
+
+export function updateGlobalBlockStylesFontFamilies( value ) {
+	return {
+		type: 'UPDATE_GLOBAL_BLOCK_STYLES_FONT_FAMILIES',
+		value,
+	};
+}

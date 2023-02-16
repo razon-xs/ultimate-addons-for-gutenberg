@@ -10,6 +10,13 @@
 
  const DEFAULT_STATE = {
     globalBlockStylesPopupState: 'close',
+	globalBlockStyles: [
+        {
+            value: '',
+            label: 'None'
+        }
+    ],
+	globalBlockStylesFontFamilies: []
 };
 function reducer( state = DEFAULT_STATE, action ) {
 	switch ( action.type ) {
@@ -18,6 +25,17 @@ function reducer( state = DEFAULT_STATE, action ) {
 				...state,
 				globalBlockStylesPopupState: action.value,
 			};
+		case 'UPDATE_GLOBAL_BLOCK_STYLES':
+			return {
+				...state,
+				globalBlockStyles: action.value,
+			};
+		case 'UPDATE_GLOBAL_BLOCK_STYLES_FONT_FAMILIES':
+			return {
+				...state,
+				globalBlockStylesFontFamilies: action.value,
+			};
+			
 	}
 
 	return state;

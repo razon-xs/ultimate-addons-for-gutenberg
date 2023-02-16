@@ -9,7 +9,8 @@ import scrollBlockToView from '@Controls/scrollBlockToView';
 import { useDeviceType } from '@Controls/getPreviewType';
 import Settings from './settings';
 import Render from './render';
-import getUAGEditorStateLocalStorage from '@Controls/getUAGEditorStateLocalStorage';
+import { STORE_NAME as storeName } from '@Store/constants';
+import { useSelect } from '@wordpress/data';
 
 //  Import CSS.
 import './style.scss';
@@ -26,7 +27,9 @@ const UAGBAdvancedHeading = ( props ) => {
 	} = props.attributes;
 
     const [ refreshEditorGlobal, setRefreshEditorGlobal ] = useState( false );
-
+	const globalBlockStyles = useSelect( ( spectraStoreSelect ) => {
+        return spectraStoreSelect( storeName ).getGlobalBlockStyles();
+    } );
 
 	useEffect( () => {
 
@@ -60,14 +63,10 @@ const UAGBAdvancedHeading = ( props ) => {
 	}, [deviceType] );
 
 	useEffect( () => {
-		const uagLocalStorage = getUAGEditorStateLocalStorage();
-
-		const spectraGlobalStylesStoreObject = JSON.parse( uagLocalStorage.getItem( 'spectraGlobalStyles' ) ) || [];
-
-		spectraGlobalStylesStoreObject.map( ( style ) => {
+		globalBlockStyles.map( ( style ) => {
 
 			if ( style?.value === globalBlockStyleId && style?.label === globalBlockStyleName ) {
-				addBlockEditorDynamicStyles( 'uagb-global-block-style-' + globalBlockStyleId, style?.styles );
+				addBlockEditorDynamicStyles( 'uagb-global-block-style-' + globalBlockStyleId, style?.editorStyles );
 				
 			}
 

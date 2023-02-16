@@ -1,11 +1,14 @@
 import WebfontLoader from '@Components/typography/fontloader';
-import getUAGEditorStateLocalStorage from '@Controls/getUAGEditorStateLocalStorage';
+import { STORE_NAME as storeName } from '@Store/constants';
+import { useSelect } from '@wordpress/data';
 
 const SpectraLoadGlobaGoogleFonts = () => {
-    const uagLocalStorage = getUAGEditorStateLocalStorage();
 
-    const spectraGlobalStylesFontFamilies = JSON.parse( uagLocalStorage.getItem( 'spectraGlobalStylesFontFamilies' ) ) || [];
-    const renderFonts = spectraGlobalStylesFontFamilies.map( ( family ) => {
+    const globalBlockStylesFontFamilies = useSelect( ( spectraStoreSelect ) => {
+        return spectraStoreSelect( storeName ).getGlobalBlockStylesFontFamilies();
+    } );
+
+    const renderFonts = globalBlockStylesFontFamilies.map( ( family ) => {
         const hconfig = {
             google: {
                 families: [
