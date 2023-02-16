@@ -10,6 +10,10 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
+	isPreview: {
+		type: 'boolean',
+		default: false,
+	},
 	imgURL: {
 		type: 'string',
 		default: null,
