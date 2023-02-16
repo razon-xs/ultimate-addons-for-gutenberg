@@ -58,6 +58,9 @@ $lightbox_options = apply_filters(
 			'nextEl' => $selector . '+.spectra-image-gallery__control-lightbox .swiper-button-next',
 			'prevEl' => $selector . '+.spectra-image-gallery__control-lightbox .swiper-button-prev',
 		),
+		'keyboard'      => array(
+			'enabled'   => true,
+		),
 	),
 	$id
 );
