@@ -51,7 +51,9 @@ const UAGIconPicker = ( props ) => {
 			</div>
 			<div className="uag-ip-actions">
 				<span onClick={ openModal }>
-					{ __( 'Change Icon', 'ultimate-addons-for-gutenberg' ) }
+					{ isIconAvailable
+						? __( 'Change Icon', 'ultimate-addons-for-gutenberg' )
+						: __( 'Choose Icon', 'ultimate-addons-for-gutenberg' ) }
 				</span>
 			</div>
 		</div>
