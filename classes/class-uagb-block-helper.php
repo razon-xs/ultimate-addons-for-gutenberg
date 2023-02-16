@@ -1632,10 +1632,13 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				$gen_border_css['border-bottom-left-radius']  = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderBottomLeftRadius' ], $gen_border_unit );
 				$gen_border_css['border-bottom-right-radius'] = UAGB_Helper::get_css_value( $attr[ $prefix . 'BorderBottomRightRadius' ], $gen_border_unit );
 			}
-			$borderStyle                    = $attr[ $prefix . 'BorderStyle' ];
-			$borderColor                    = $attr[ $prefix . 'BorderColor' ];
-			$gen_border_css['border-style'] = $borderStyle;
-			$gen_border_css['border-color'] = $borderColor;
+
+			$gen_border_css['border-style'] = $attr[ $prefix . 'BorderStyle' ];
+			$gen_border_css['border-color'] = $attr[ $prefix . 'BorderColor' ];
+
+			if ( 'default' === $attr[ $prefix . 'BorderStyle' ] ) {
+				return array();
+			}
 			return $gen_border_css;
 		}
 
