@@ -33,13 +33,11 @@ const ModalContainer = ( props ) => {
 	const [ rowIndexForFirstTime, setRowIndexForFirstTime ] = useState( null );
 
 	const getContainerHeight = ( property ) => {
-		let element = iconContainerRef?.current;
+		const element = iconContainerRef?.current;
 		if ( ! element ) {
 			return null;
 		}
-		let getHeightOrWidth =
-			'w' === property ? element.offsetWidth : element.offsetHeight;
-		return getHeightOrWidth;
+		return 'w' === property ? element.offsetWidth : element.offsetHeight;
 	};
 
 	useEffect( () => {
@@ -132,15 +130,16 @@ const ModalContainer = ( props ) => {
 		function cellRenderer( renderer ) {
 			const { columnIndex, key, rowIndex, style } = renderer;
 			const currentIcon = iconList[ rowIndex ][ columnIndex ];
+
+			if ( ! currentIcon ) {
+				return null;
+			}
+
 			const iconClass = uagbClassNames( [
 				'uagb-icon-item',
 				value === currentIcon && 'default',
 				currentIcon === insertIcon && 'selected',
 			] );
-
-			if ( ! currentIcon ) {
-				return null;
-			}
 
 			const actualTitle = defaultIconsWithKeys[ currentIcon ]?.label
 				? defaultIconsWithKeys[ currentIcon ].label
