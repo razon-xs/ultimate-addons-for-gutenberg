@@ -27,6 +27,7 @@ const ModalContainer = ( props ) => {
 	const iconContainerRef = useRef();
 	const [ iconContainerHeight, setIconContainerHeight ] = useState( null );
 	const [ iconContainerWidth, setIconContainerWidth ] = useState( null );
+	
 	/**
 	 * This is value when modal mount then we will show selected icon rest of time this will set to null.
 	 */
@@ -217,11 +218,11 @@ const ModalContainer = ( props ) => {
 	// Modal component.
 	return (
 		<Modal
-			role={ __( 'Popup', 'ultimate-addons-for-gutenberg' ) }
 			className="uagb-ip-modal-wrapper"
 			onRequestClose={ closeModal }
 			overlayClassName="uagb-ip-modal-wrapper-overlay"
 			shouldCloseOnClickOutside={ false }
+			closeButtonLabel={ __( 'Close', 'ultimate-addons-for-gutenberg' ) }
 		>
 			{ /* Header  */ }
 			<HeaderContainer
