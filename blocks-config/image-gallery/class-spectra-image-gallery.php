@@ -1057,7 +1057,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 								<img class="swiper-lazy" data-src="<?= esc_url( $attributes['mediaGallery'][ $i ]['url'] ); ?>" alt="<?= esc_attr( $attributes['mediaGallery'][ $i ]['alt'] ) ?>"/>
 								<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
 								<?php if ( $attributes['lightboxDisplayCaptions'] ) : ?>
-									<div class="spectra-image-gallery__control-lightbox--caption">
+									<div class="spectra-image-gallery__control-lightbox--caption" data-spectra-gallery-image-id='<?= esc_attr( $attributes['mediaGallery'][ $i ]['id'] ) ?>'>
 										<?= $attributes['mediaGallery'][ $i ]['caption'] ? wp_kses_post( $attributes['mediaGallery'][ $i ]['caption'] ) : wp_kses_post( $attributes['imageDefaultCaption'] ) ?>
 									</div>
 								<?php endif; ?>
@@ -1529,6 +1529,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 		 * @since x.x.x
 		 */
 		public static function render_frontend_lightbox( $id, $attr, $lightbox_settings, $thumbnail_settings, $selector ) {
+			$pro_clicker = apply_filters( 'uagb_image_gallery_pro_lightbox_js', '', $id, $attr['customLinks'] );
 			ob_start();
 			?>
 				const theBody = document.querySelector( 'body' );
@@ -1602,6 +1603,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 							lightboxSwiper.slideTo( swiperInstance.activeIndex );
 						} );
 					<?php endif; ?>
+					<?= $pro_clicker; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					if ( blockScope.nextElementSibling.classList.contains( 'spectra-image-gallery__control-lightbox' ) ) {
 						<?php // Then set the Close Button if needed. ?>
 						const lightbox = blockScope.nextElementSibling;
