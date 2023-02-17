@@ -3,6 +3,7 @@ import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import styling from './styling';
 import Settings from './settings';
 import Render from './render';
+import { getSettings as getDateSettings } from '@wordpress/date';
 
 //  Import CSS.
 import './style.scss';
@@ -20,11 +21,26 @@ const UAGBCountdownEdit = ( props ) => {
 		// on drag and drop of a new instance of the block. 
 		if( ! props.attributes.timeModified ) {  // check if time has been modified dynamically using the flag attribute.
 
-			const d = new Date();
-			const year = d.getUTCFullYear();
+			// Get WordPress' timezone offset from settings.
+			const { timezone } = getDateSettings();
+
+			// For countdown calculations.
+			const actualTime = new Date();
+
+			// For setting the time in input fields as per selected timezone offset in WordPress settings.
+			const displayTime = new Date();
+
+			// Set the default end time to 7 days later (one for displaying in input fields, and another with actual timezone offset calculations).
+			actualTime.setMilliseconds( actualTime.getMilliseconds() + ( 7 * 24 * 60 * 60 * 1000 ) );
+
+			displayTime.setMilliseconds( displayTime.getMilliseconds() + ( 7 * 24 * 60 * 60 * 1000 ) );
+
+			// For display time, we consider local and WP timezone offset.
+			displayTime.setMilliseconds( displayTime.getMilliseconds() + ( ( displayTime.getTimezoneOffset() * 60 * 1000 ) + ( timezone.offset * 60 * 60 * 1000 ) ) );
 	
 			setAttributes( {
-				endDateTime: ( year + 1 ) + '-01-01T00:00:00Z',
+				endDateTime: actualTime,
+				displayEndDateTime: displayTime,
 				timeModified: true,
 			} );
 		}
@@ -55,7 +71,12 @@ const UAGBCountdownEdit = ( props ) => {
 		    UAGBCountdown.changeEndTime( '.uagb-block-' + props.attributes.block_id, props.attributes, countdownRef.current ) // eslint-disable-line no-undef
         }
 		setTimeChanged( 1 );
-	}, [ props.attributes.endDateTime ] )
+	}, [
+		props.attributes.endDateTime,
+		props.attributes.showDays,
+		props.attributes.showHours,
+		props.attributes.showMinutes,
+	] )
 
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/countdown.svg`;
 

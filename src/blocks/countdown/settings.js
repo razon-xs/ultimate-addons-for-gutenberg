@@ -14,7 +14,7 @@ import renderCustomIcon from '@Controls/renderCustomIcon';
 import UAGPresets from '@Components/presets';
 import UAGTabsControl from '@Components/tabs';
 import BoxShadowControl from '@Components/box-shadow';
-import { boxShadowPresets, boxShadowHoverPresets } from './presets';
+import { countdownPresets, boxShadowPresets, boxShadowHoverPresets } from './presets';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import InspectorTab, {
 	UAGTabs,
@@ -23,11 +23,11 @@ import {
 	Icon,
     ToggleControl,
 	DateTimePicker,
-	Notice,
 } from '@wordpress/components';
 import {
     InspectorControls
 } from '@wordpress/block-editor';
+import { getSettings as getDateSettings } from '@wordpress/date';
 
 export default function Settings( props ) {
 
@@ -39,7 +39,10 @@ export default function Settings( props ) {
     const {
 		block_id,
         timerType,
-        endDateTime,
+        displayEndDateTime,
+		showDays,
+		showHours,
+		showMinutes,
         showLabels,
         labelDays,
         labelHours,
@@ -165,6 +168,12 @@ export default function Settings( props ) {
 		boxAlign,
 		boxAlignTablet,
 		boxAlignMobile,
+		// Square Box.
+		isSquareBox,
+		// Label Vertical Alignment.
+		labelVerticalAlignment,
+		labelVerticalAlignmentTablet,
+		labelVerticalAlignmentMobile,
 		// Box Width.
 		boxWidth,
 		boxWidthTablet,
@@ -348,33 +357,34 @@ export default function Settings( props ) {
 	}
 
 	// This is to fetch the local system's offset from UTC and helps the user know their offset from 00:00UTC.
-	const timezone = new Date().toLocaleTimeString( 'en-us',{timeZoneName:'short'} ).split( ' ' )[2].slice( 3 );
+
+	const { timezone } = getDateSettings();
 
     // <------------------ GENERAL TAB ------------------>
     const generalPanel = (
         <UAGAdvancedPanelBody
 			title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
-			initialOpen={ true }
+			initialOpen={ false }
 		>
             { timerType && 
                 <div className='uagb-countdown__datetime-picker'>
-                    <div><h2>{ __( 'Timer End Date & Time (UTC)', 'ultimate-addons-for-gutenberg' ) }</h2></div>
-					<Notice
-						className='uagb-countdown-settings_utc-notice'
-						status='info'
-						isDismissible={false}
-					>
-						<em>
-							<p>{ __( 'The time entered should be in UTC which is the same. ', 'ultimate-addons-for-gutenberg' ) }<a href='https://www.worldtimeserver.com/time-zones/utc/'>{ __( 'Click here to know more about UTC.', 'ultimate-addons-for-gutenberg' ) }</a></p>
-							<p><strong>{ __( 'Your offset from UTC: ', 'ultimate-addons-for-gutenberg' ) }</strong>{timezone}</p>
-						</em>
-					</Notice>
+                    <div><h2>{ __( 'Timer End Date & Time', 'ultimate-addons-for-gutenberg' ) }</h2></div>
                     <DateTimePicker
 						className="uagb-date-picker"
-						currentDate={ endDateTime.slice( 0, -1 ) }
+						currentDate={ displayEndDateTime }
 						onChange={ ( value ) => {
+
+								// Make sure the time is set in UTC, so that we can easily remove the timezone offset from WP Settings.
                                 const UTCValue = value + 'Z';
-                                setAttributes( { endDateTime: UTCValue } )
+								const d = new Date( UTCValue );
+
+								// Remove the timezone offset received from WP Settings.
+								d.setMilliseconds( d.getMilliseconds() - ( timezone.offset * 60 * 60 * 1000 ) );
+
+                                setAttributes( { 
+									endDateTime: d,
+									displayEndDateTime: value,
+								} )
                             }
 						}
 						is12Hour={ true }
@@ -382,8 +392,48 @@ export default function Settings( props ) {
 					/>
                 </div>
             }
+			<br />
+			<ToggleControl
+				label={ __( 'Show Days', 'ultimate-addons-for-gutenberg' ) }
+				checked={ showDays }
+				onChange={ () =>
+					setAttributes( { showDays: ! showDays } )
+				}
+			/>
+			{ !showDays &&
+				<ToggleControl
+					label={ __( 'Show Hours', 'ultimate-addons-for-gutenberg' ) }
+					checked={ showHours }
+					onChange={ () =>
+						setAttributes( { showHours: ! showHours } )
+					}
+				/>
+			}
+			{ !showDays && !showHours &&
+				<ToggleControl
+					label={ __( 'Show Minutes', 'ultimate-addons-for-gutenberg' ) }
+					checked={ showMinutes }
+					onChange={ () =>
+						setAttributes( { showMinutes: ! showMinutes } )
+					}
+				/>
+			}
         </UAGAdvancedPanelBody>
     );
+
+	// <------------------ PRESETS TAB ------------------>
+	const presetsPanel = (
+		<UAGAdvancedPanelBody
+			title={ __( 'Presets', 'ultimate-addons-for-gutenberg' ) }
+			initialOpen={ true }
+		>
+			<UAGPresets
+				setAttributes = { setAttributes }
+				presets = { countdownPresets }
+				presetInputType = 'radioImage'
+			/>
+		</UAGAdvancedPanelBody>
+	);
 
     const labelGeneralPanel = (
         <UAGAdvancedPanelBody
@@ -399,36 +449,42 @@ export default function Settings( props ) {
             />
             { showLabels &&
                 <>
-                    <UAGTextControl
-                        label={ __( 'Days', 'ultimate-addons-for-gutenberg' ) }
-                        variant='full-width'
-                        value={ labelDays }
-                        data={{
-                            value: labelDays,
-                            label: 'labelDays',
-                        }}
-                        setAttributes={ setAttributes }
-                    />
-                    <UAGTextControl
-                        label={ __( 'Hours', 'ultimate-addons-for-gutenberg' ) }
-                        variant='full-width'
-                        value={ labelHours }
-                        data={{
-                            value: labelHours,
-                            label: 'labelHours',
-                        }}
-                        setAttributes={ setAttributes }
-                    />
-                    <UAGTextControl
-                        label={ __( 'Minutes', 'ultimate-addons-for-gutenberg' ) }
-                        variant='full-width'
-                        value={ labelMinutes }
-                        data={{
-                            value: labelMinutes,
-                            label: 'labelMinutes',
-                        }}
-                        setAttributes={ setAttributes }
-                    />
+				{ showDays &&
+					<UAGTextControl
+						label={ __( 'Days', 'ultimate-addons-for-gutenberg' ) }
+						variant='full-width'
+						value={ labelDays }
+						data={{
+							value: labelDays,
+							label: 'labelDays',
+						}}
+						setAttributes={ setAttributes }
+					/>
+				}
+				{ ( showDays || showHours ) &&
+					<UAGTextControl
+						label={ __( 'Hours', 'ultimate-addons-for-gutenberg' ) }
+						variant='full-width'
+						value={ labelHours }
+						data={{
+							value: labelHours,
+							label: 'labelHours',
+						}}
+						setAttributes={ setAttributes }
+					/>
+				}
+				{ ( showDays || showHours || showMinutes ) &&
+					<UAGTextControl
+						label={ __( 'Minutes', 'ultimate-addons-for-gutenberg' ) }
+						variant='full-width'
+						value={ labelMinutes }
+						data={{
+							value: labelMinutes,
+							label: 'labelMinutes',
+						}}
+						setAttributes={ setAttributes }
+					/>
+				}
                     <UAGTextControl
                         label={ __( 'Seconds', 'ultimate-addons-for-gutenberg' ) }
                         variant='full-width'
@@ -467,12 +523,16 @@ export default function Settings( props ) {
                         } }
                         options={ [
                             {
-                                value: 'colon',
+                                value: ':',
                                 label: __( 'Colon', 'ultimate-addons-for-gutenberg' ),
                             },
                             {
-                                value: 'line',
+                                value: '|',
                                 label: __( 'Line', 'ultimate-addons-for-gutenberg' ),
+                            },
+							{
+                                value: '/',
+                                label: __( 'Slash', 'ultimate-addons-for-gutenberg' ),
                             },
                         ] }
                     />
@@ -487,6 +547,13 @@ export default function Settings( props ) {
 			title={ __( 'Box', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ true }
 		>
+			<ToggleControl
+                label={ __( 'Square Shaped Box', 'ultimate-addons-for-gutenberg' ) }
+                checked={ isSquareBox }
+                onChange={ () =>
+                    setAttributes( { isSquareBox: ! isSquareBox } )
+                }
+            />
 			<MultiButtonsControl
 				setAttributes={ setAttributes }
 				label={ __(
@@ -539,7 +606,7 @@ export default function Settings( props ) {
 			/>
 			<MultiButtonsControl
 				setAttributes={ setAttributes }
-				label={ __( 'Flex Direction', 'ultimate-addons-for-gutenberg' ) }
+				label={ __( 'Label Position', 'ultimate-addons-for-gutenberg' ) }
 				responsive={ true }
 				data={ {
 						desktop: {
@@ -578,6 +645,49 @@ export default function Settings( props ) {
 				] }
 				showIcons={ true }
 			/>
+			{ ( !isSquareBox && ( ( deviceType === 'Desktop' && boxFlex === 'row' ) || ( deviceType === 'Tablet' && boxFlexTablet === 'row' ) || ( deviceType === 'Mobile' && boxFlexMobile === 'row' ) ) ) &&
+				<>
+					<MultiButtonsControl
+						setAttributes={ setAttributes }
+						label={ __( 'Label Vertical Alignment', 'ultimate-addons-for-gutenberg' ) }
+						responsive={ true }
+						data={ {
+								desktop: {
+									value: labelVerticalAlignment,
+									label: 'labelVerticalAlignment',
+								},
+								tablet: {
+									value: labelVerticalAlignmentTablet,
+									label: 'labelVerticalAlignmentTablet',
+								},
+								mobile: {
+									value: labelVerticalAlignmentMobile,
+									label: 'labelVerticalAlignmentMobile',
+								},
+						} }
+						className="uagb-multi-button-alignment-control"
+						options={ [
+							{
+								value: 'start',
+								label: __( 'Top', 'ultimate-addons-for-gutenberg' ),
+								// tooltip: __( 'Top', 'ultimate-addons-for-gutenberg' ),
+							},
+							{
+								value: 'center',
+								label: __( 'Center', 'ultimate-addons-for-gutenberg' ),
+								// tooltip: __( 'Center', 'ultimate-addons-for-gutenberg' ),
+							},
+							{
+								value: 'end',
+								label: __( 'Bottom', 'ultimate-addons-for-gutenberg' ),
+								// tooltip: __( 'Bottom', 'ultimate-addons-for-gutenberg' ),
+							},
+						] }
+						showIcons={ false }
+						help={ __( 'This feature works best after adding line-height to the label.', 'ultimate-addons-for-gutenberg' ) }
+					/>		
+				</>
+			}
 			<MultiButtonsControl
 				setAttributes={ setAttributes }
 				label={ __( 'Background Type', 'ultimate-addons-for-gutenberg' ) }
@@ -1368,6 +1478,7 @@ export default function Settings( props ) {
             <InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
+						{ presetsPanel }
                         { generalPanel }
                         { labelGeneralPanel }
                         { separatorGeneralPanel }

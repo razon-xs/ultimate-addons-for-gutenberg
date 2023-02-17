@@ -16,6 +16,9 @@ $countdown_options = apply_filters(
 	array(
 		'block_id'    => $attr['block_id'],
 		'endDateTime' => $attr['endDateTime'],
+		'showDays'    => $attr['showDays'],
+		'showHours'   => $attr['showHours'],
+		'showMinutes' => $attr['showMinutes'],
 		'isFrontend'  => true,
 	),
 	$id
