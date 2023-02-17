@@ -231,6 +231,41 @@ if ( ! class_exists( 'UAGB_Rest_API' ) ) {
 					),
 				)
 			);
+
+			register_rest_route(
+				'spectra/v1',
+				'editor',
+				array(
+					array(
+						'methods'             => 'GET',
+						'callback'            => array( $this, 'get_editor_store_initial_state' ),
+						'permission_callback' => array( $this, 'get_items_permissions_check' ),
+						'args'                => array(),
+					),
+				)
+			);
+		}
+
+		/**
+		 * Get Editor Store Initial STate from DB.
+		 *
+		 * @since x.x.x
+		 * @access public
+		 */
+		public function get_editor_store_initial_state() {
+
+			$spectra_global_block_styles = get_option( 'spectra_global_block_styles', array(
+				array(
+					'value' => '',
+					'label' => 'None'
+				)
+			) );
+			
+			$inital_state = array(
+				'spectra_global_block_styles' => $spectra_global_block_styles
+			);
+
+			return $inital_state;
 		}
 
 		/**

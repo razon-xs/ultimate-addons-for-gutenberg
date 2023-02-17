@@ -91,64 +91,69 @@ class UAGB_Init_Blocks {
 			wp_send_json_error();
 		}
 		
-		if ( empty( $_POST ) || empty( $_POST['props'] ) || empty( $_POST['blockName'] ) || empty( $_POST['postId'] ) ) {
-			$response_data = array( 'messsage' => __( 'No post data found!', 'ultimate-addons-for-gutenberg' ) );
+		if ( empty( $_POST ) || empty( $_POST['props'] ) || empty( $_POST['blockName'] ) || empty( $_POST['postId'] ) || empty( $_POST['spectraGlobalStyles'] ) ) {
+			$response_data = array( 'messsage' => __( 'Noo post data found!', 'ultimate-addons-for-gutenberg' ) );
 			wp_send_json_error( $response_data );
 		}
 		
 		$post_id = sanitize_text_field( $_POST['postId'] );
 		// Not sanitizing this array because $_POST['attributes'] is a very large array of different types of attributes.
-		$block_props = json_decode( stripslashes( $_POST['props'] ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-
-		if ( $block_props['attributes'] ) {
-			$response_data = array( 'messsage' => __( 'No post data found!', 'ultimate-addons-for-gutenberg' ) );
-			wp_send_json_error( $response_data );
-		}
-
-		$block_attr = $block_props['attributes'];
-
-		$_block_slug = str_replace( 'uagb/', '', sanitize_text_field( $_POST['blockName'] ) );
-		$_block_css  = UAGB_Block_Module::get_frontend_css( $_block_slug, $block_attr, $block_attr['block_id'] );
-
-		$desktop = '';
-		$tablet  = '';
-		$mobile  = '';
-
-		$tab_styling_css = '';
-		$mob_styling_css = '';
-		$desktop        .= $_block_css['desktop'];
-		$tablet         .= $_block_css['tablet'];
-		$mobile         .= $_block_css['mobile'];
-		if ( ! empty( $tablet ) ) {
-			$tab_styling_css .= '@media only screen and (max-width: ' . UAGB_TABLET_BREAKPOINT . 'px) {';
-			$tab_styling_css .= $tablet;
-			$tab_styling_css .= '}';
-		}
-
-		if ( ! empty( $mobile ) ) {
-			$mob_styling_css .= '@media only screen and (max-width: ' . UAGB_MOBILE_BREAKPOINT . 'px) {';
-			$mob_styling_css .= $mobile;
-			$mob_styling_css .= '}';
-		}
-		$_block_css                  = $desktop . $tab_styling_css . $mob_styling_css;
-		$spectra_global_block_styles = get_option( 'spectra_global_block_styles', array() );
-		$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['css'] = $_block_css;
-		$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['value'] = $block_attr['globalBlockStyleId'];
-		$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['label'] = $block_attr['globalBlockStyleName'];
-		$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['props'] = $block_props;
-
-		if ( empty( $spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'] ) ) {
-			$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'] = array(
-				$post_id,
-			);
-		} else {
-
-			$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'][] = $post_id;
-		}
+		$global_block_styles = json_decode( stripslashes( $_POST['spectraGlobalStyles'] ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		
-		$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'] = array_unique( $spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'] );
-		
-		update_option( 'spectra_global_block_styles', $spectra_global_block_styles );
+		foreach( $global_block_styles as $key => $style ) {
+			if ($style['value'] === $_POST['globalBlockStyleId']) {
+				var_dump($style);
+				$block_props = $style['props'];
+				if ( ! $block_props['attributes'] ) {
+					$response_data = array( 'messsage' => __( 'No post dataa found!', 'ultimate-addons-for-gutenberg' ) );
+					wp_send_json_error( $response_data );
+				}
+
+				$block_attr = $block_props['attributes'];
+
+				$_block_slug = str_replace( 'uagb/', '', sanitize_text_field( $_POST['blockName'] ) );
+				$_block_css  = UAGB_Block_Module::get_frontend_css( $_block_slug, $block_attr, $block_attr['block_id'] );
+
+				$desktop = '';
+				$tablet  = '';
+				$mobile  = '';
+
+				$tab_styling_css = '';
+				$mob_styling_css = '';
+				$desktop        .= $_block_css['desktop'];
+				$tablet         .= $_block_css['tablet'];
+				$mobile         .= $_block_css['mobile'];
+				if ( ! empty( $tablet ) ) {
+					$tab_styling_css .= '@media only screen and (max-width: ' . UAGB_TABLET_BREAKPOINT . 'px) {';
+					$tab_styling_css .= $tablet;
+					$tab_styling_css .= '}';
+				}
+
+				if ( ! empty( $mobile ) ) {
+					$mob_styling_css .= '@media only screen and (max-width: ' . UAGB_MOBILE_BREAKPOINT . 'px) {';
+					$mob_styling_css .= $mobile;
+					$mob_styling_css .= '}';
+				}
+				var_dump($block_props);
+				$_block_css                  = $desktop . $tab_styling_css . $mob_styling_css;
+				// $spectra_global_block_styles = get_option( 'spectra_global_block_styles', array() );
+				// $spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['frontendStyles'] = $_block_css;
+				$global_block_styles[$key]['frontendStyles'] = $_block_css;
+				// if ( empty( $spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'] ) ) {
+				// 	$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'] = array(
+				// 		$post_id,
+				// 	);
+				// } else {
+
+				// 	$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'][] = $post_id;
+				// }
+				
+				// $spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'] = array_unique( $spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'] );
+				
+				update_option( 'spectra_global_block_styles', $global_block_styles );
+				wp_send_json_success();
+			}
+		}
 		$spectra_gbs_google_fonts = get_option( 'spectra_gbs_google_fonts', array() );
 		
 		// Global Font Families.

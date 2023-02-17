@@ -106,12 +106,15 @@ const GlobalBlockStyles = ( props ) => {
             return style;
         } );
         const formData = new window.FormData();
-
+console.log(globalBlockStyles);
         formData.append( 'action', 'uag_global_block_styles' );
         formData.append( 'security', uagb_blocks_info.uagb_ajax_nonce );
-        formData.append( 'props', JSON.stringify( styleProps ) );     
+        formData.append( 'props', JSON.stringify( styleProps ) );
+        formData.append( 'spectraGlobalStyles', JSON.stringify( globalBlockStyles ) ); 
         formData.append( 'blockName', name );
         formData.append( 'postId', select( 'core/editor' ).getCurrentPostId() );
+        formData.append( 'globalBlockStyleId', globalBlockStyleId );
+
         
 
         apiFetch( {
@@ -160,6 +163,12 @@ const GlobalBlockStyles = ( props ) => {
                 const blockStyling = styling( newProps, baseSelector );
                 style.editorStyles = blockStyling;
                 style.props = newProps;
+                let currentPostID = select( 'core/editor' ).getCurrentPostId()
+                if (style?.post_ids) {
+                    style.post_ids.push(currentPostID);
+                } else {
+                    style.post_ids = [currentPostID];
+                }
             }
             return style
 

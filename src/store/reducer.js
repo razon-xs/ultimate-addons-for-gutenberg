@@ -9,6 +9,7 @@
  */
 
  const DEFAULT_STATE = {
+	initialStateSetFlag: false,
     globalBlockStylesPopupState: 'close',
 	globalBlockStyles: [
         {
@@ -20,6 +21,15 @@
 };
 function reducer( state = DEFAULT_STATE, action ) {
 	switch ( action.type ) {
+		case 'UPDATE_INITIAL_STATE':
+            return {
+                ...action.value,
+            };
+        case 'UPDATE_INITIAL_STATE_FLAG':
+            return {
+                ...state,
+                initialStateSetFlag: action.value,
+            };
 		case 'TOGGLE_GLOBAL_BLOCK_STYLES_POPUP':
 			return {
 				...state,

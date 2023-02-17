@@ -36,3 +36,6 @@ export function getGlobalBlockStyles( state ) {
 export function getGlobalBlockStylesFontFamilies( state ) {
 	return state.globalBlockStylesFontFamilies;
 }
+export function getState( state ) {
+	return state;
+}

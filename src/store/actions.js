@@ -27,3 +27,9 @@ export function updateGlobalBlockStylesFontFamilies( value ) {
 		value,
 	};
 }
+export function updateInitialState( value ) {
+	return {
+		type: 'UPDATE_INITIAL_STATE',
+		value,
+	};
+}
