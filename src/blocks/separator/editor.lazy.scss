@@ -1,6 +1,14 @@
 .wp-block-uagb-separator__inner {
     -webkit-mask-image: var(--my-background-image);
     -webkit-mask-repeat: repeat;
-    -webkit-mask-size: 38px 100%;
     
+}
+
+.wp-block-uagb-separator__inner::before{
+    content: '';
+    position: absolute;
+}
+.wp-block-uagb-separator__inner::after{
+    content: '';
+    position: absolute;
 }

@@ -14,9 +14,11 @@ export default function save( props ) {
 		separatorTextTag,
 		separatorIcon,
 		separatorStyle,
+		separatorWeight
 	} = props.attributes;
 	const CustomTag = `${ separatorTextTag }`;
-	const renderSvg = renderCustomSVG( separatorStyle );
+	const weight=`${separatorWeight}`;
+	const customSVG = renderCustomSVG( separatorStyle, weight );
 	return (
 		<div
 			className={ classnames(
@@ -30,8 +32,10 @@ export default function save( props ) {
 				}`
 			) }
 		>
-			<div className="wp-block-uagb-separator__inner">
-				{ renderSvg }
+			<div className="wp-block-uagb-separator__inner"
+			 style={{
+				'--my-background-image': `${customSVG}`,
+			  }}>
 				{ elementType !== 'none' && (
 					<div className="wp-block-uagb-separator-element">
 						{ elementType === 'icon' ? (
@@ -41,7 +45,6 @@ export default function save( props ) {
 						) }
 					</div>
 				) }
-				{ renderSvg }
 			</div>
 		</div>
 	);

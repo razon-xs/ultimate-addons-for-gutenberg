@@ -26,6 +26,8 @@ if ( $attr['elementType'] === 'none' ) {
 		'.wp-block-uagb-separator .wp-block-uagb-separator__inner' => array_merge(
 			array(
 				'width' => UAGB_Helper::get_css_value( $attr['separatorWidth'], $attr['separatorWidthType'] ),
+				'-webkit-mask-size' => UAGB_Helper::get_css_value( $attr['separatorSize'], $attr['separatorSizeType'] ),
+				'-webkit-mask-height' => UAGB_Helper::get_css_value( $attr['separatorHeight'], $attr['seperatorHeightType']),
 			),
 			$borderCSS
 		),
@@ -46,6 +48,8 @@ if ( $attr['elementType'] === 'none' ) {
 		'.wp-block-uagb-separator .wp-block-uagb-separator__inner' => array_merge(
 			array(
 				'width' => UAGB_Helper::get_css_value( $attr['separatorWidth'], $attr['separatorWidthType'] ),
+				'-webkit-mask-size' => UAGB_Helper::get_css_value( $attr['separatorSize'], $attr['separatorSizeType'] ),
+				'-webkit-mask-height' => UAGB_Helper::get_css_value( $attr['separatorHeight'], $attr['seperatorHeightType']),
 			),
 			$alignCSS
 		),
@@ -180,6 +184,14 @@ $t_selectors['.wp-block-uagb-separator .wp-block-uagb-separator__inner'] = array
 		UAGB_Block_Helper::get_fallback_number( $attr['separatorWidthTablet'], 'separatorWidthTablet', $block_name ),
 		$attr['separatorWidthType']
 	),
+	'-webkit-mask-size' => UAGB_Helper::get_css_value(
+		UAGB_Block_Helper::get_fallback_number( $attr['separatorSizeTablet'], 'separatorSizeTablet', $block_name ),
+		$attr['separatorSizeType']
+	),
+	'-webkit-mask-height' => UAGB_Helper::get_css_value(
+		UAGB_Block_Helper::get_fallback_number( $attr['separatorHeightTablet'], 'separatorHeightTablet', $block_name ),
+		$attr['separatorHeightType']
+	),
 );
 
 $t_selectors['.wp-block-uagb-separator--text .wp-block-uagb-separator-element'] = array(
@@ -256,6 +268,14 @@ $m_selectors['.wp-block-uagb-separator .wp-block-uagb-separator__inner'] = array
 	'width' => UAGB_Helper::get_css_value(
 		UAGB_Block_Helper::get_fallback_number( $attr['separatorWidthMobile'], 'separatorWidthMobile', $block_name ),
 		$attr['separatorWidthType']
+	),
+	'-webkit-mask-size' => UAGB_Helper::get_css_value(
+		UAGB_Block_Helper::get_fallback_number( $attr['separatorSizeMobile'], 'separatorSizeMobile', $block_name ),
+		$attr['separatorSizeType']
+	),
+	'-webkit-mask-height' => UAGB_Helper::get_css_value(
+		UAGB_Block_Helper::get_fallback_number( $attr['separatorHeightMobile'], 'separatorHeightMobile', $block_name ),
+		$attr['separatorHeightType']
 	),
 );
 

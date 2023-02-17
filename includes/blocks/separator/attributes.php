@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Block Information & Attributes File.
  *
@@ -10,18 +11,26 @@
 
 return array(
 	'classMigrate'                 => false,
-	'separatorAlign'                 => 'center',
-	'separatorAlignTablet'             => 'center',
-	'separatorAlignMobile'                 => 'center',
+	'separatorAlign'               => 'center',
+	'separatorAlignTablet'         => 'center',
+	'separatorAlignMobile'         => 'center',
 	'separatorStyle'               => 'solid',
-	'separatorThickness'              => 4,
-	'thicknessUnit'              	=> 'px',
-	'separatorWidth'               => 30,
-	'separatorWidthTablet'         => 30,
-	'separatorWidthMobile'         => 30,
+	'separatorThickness'           => 20,
+	'thicknessUnit'                => 'px',
+	'separatorWidth'               => 100,
+	'separatorWidthTablet'         => 100,
+	'separatorWidthMobile'         => 100,
 	'separatorWidthType'           => '%',
-	'separatorStrokeWeight'        => 1,
-	'separatorColor' => '',
+	'separatorWeight'              => 1,
+	'separatorSize'                => 20,
+	'separatorSizeTablet'          => 20,
+	'separatorSizeMobile'          => 20,
+	'separatorSizeType'            => 'px',
+	'separatorHeight'              => 100,
+	'separatorHeightTablet'        => 100,
+	'separatorHeightMobile'        => 100,
+	'separatorHeightType'          => 'px',
+	'separatorColor'               => '#333',
 	// padding.
 	'separatorTopPadding'              => '',
 	'separatorRightPadding'            => '',

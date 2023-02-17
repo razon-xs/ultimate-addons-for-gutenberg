@@ -58,3 +58,9 @@
 	}
 
 }
+.wp-block-uagb-separator__inner {
+    -webkit-mask-image: var(--my-background-image);
+    -webkit-mask-repeat: repeat;
+    -webkit-mask-size: 38px 100%;
+    
+}

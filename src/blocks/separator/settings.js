@@ -36,9 +36,15 @@ const Settings = ( props ) => {
 		separatorWidthType,
 		separatorColor,
 		separatorThickness,
-		separatorThicknessMobile,
-		separatorThicknessTablet,
 		thicknessUnit,
+		separatorSize,
+		separatorSizeMobile,
+		separatorSizeTablet,
+		separatorSizeType,
+		separatorHeight,
+		separatorHeightTablet,
+		separatorHeightMobile,
+		separatorHeightType,
 		separatorTopPadding,
 		separatorRightPadding,
 		separatorBottomPadding,
@@ -412,25 +418,100 @@ const Settings = ( props ) => {
 					] }
 					setAttributes={ setAttributes }
 				/>
+				<ResponsiveSlider
+					label={ __(
+						'Size',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						desktop: {
+							value: separatorSize,
+							label: 'separatorSize',
+						},
+						tablet: {
+							value: separatorSizeTablet,
+							label: 'separatorSizeTablet',
+						},
+						mobile: {
+							value: separatorSizeMobile,
+							label: 'separatorSizeMobile',
+						},
+					} }
+					min={ 0 }
+					max={ '%' === separatorSizeType ? 100 : 500 }
+					unit={ {
+						value: separatorSizeType,
+						label: 'separatorSizeType',
+					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'%',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: '%',
+						},
+					] }
+					setAttributes={ setAttributes }
+				/>
+				<ResponsiveSlider
+					label={ __(
+						'Height',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						desktop: {
+							value: separatorHeight,
+							label: 'separatorHeight',
+						},
+						tablet: {
+							value: separatorHeightTablet,
+							label: 'separatorHeightTablet',
+						},
+						mobile: {
+							value: separatorHeightMobile,
+							label: 'separatorHeightMobile',
+						},
+					} }
+					min={ 0 }
+					max={ '%' === separatorHeightType ? 100 : 500 }
+					unit={ {
+						value: separatorHeightType,
+						label: 'separatorHeightType',
+					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'%',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: '%',
+						},
+					] }
+					setAttributes={ setAttributes }
+				/>
 				<Range
 					label={ __(
 						'Thickness',
 						'ultimate-addons-for-gutenberg'
 					) }
-					responsive={ true }
 					data={ {
-						desktop: {
 							value: separatorThickness,
 						    label: 'separatorThickness',
-						},
-						mobile: {
-							value: separatorThicknessMobile,
-						    label: 'separatorThicknessMobile',
-						},
-						Tablet: {
-							value: separatorThicknessTablet,
-						    label: 'separatorThicknessTablet',
-						},	
 					} }
 					min={ 0 }
 					max={ 100 }
@@ -447,15 +528,11 @@ const Settings = ( props ) => {
 							unitValue: 'px',
 						},
 						{
-							name: __(
-								'EM',
-								'ultimate-addons-for-gutenberg'
-							),
+							name: __( 'Em', 'ultimate-addons-for-gutenberg' ),
 							unitValue: 'em',
 						},
 					] }
 					setAttributes={ setAttributes }
-					value = { separatorThickness }
 				/>
 				<ResponsiveSlider
 					label={ __(
@@ -476,8 +553,8 @@ const Settings = ( props ) => {
 							label: 'separatorWeightMobile',
 						},
 					} }
-					min={ 0 }
-					max={ '%' === separatorWeightType ? 100 : 500 }
+					min={ 1 }
+					max={ '%' === separatorWeightType ? 10 : 50 }
 					unit={ {
 						value: separatorWeightType,
 						label: 'separatorWeightType',

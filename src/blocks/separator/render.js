@@ -24,8 +24,6 @@ const Render = ( props ) => {
 			separatorIcon,
 			separatorStyle,
 			separatorWeight,
-			SeparatorWeightMobile,
-			separatorWeightTablet,
 		},
 		className,
 	} = props;

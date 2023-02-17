@@ -43,10 +43,10 @@ const attributes = {
 	},
 	separatorWidth: {
 		type: 'number',
+		default: 100,
 		UAGCopyPaste: {
 			styleType: 'separator-width'
 		},
-		default: 100,
 	},
 	separatorWidthTablet: {
 		type: 'number',
@@ -71,55 +71,83 @@ const attributes = {
 	},
 	separatorThickness: {
 		type: 'number',
-		default: 20,
+		default: 15,
 		UAGCopyPaste: {
 			styleType: 'separator-thickness'
 		}	
 	},
-	separatorThicknessMobile: {
-		type: 'number',
-		UAGCopyPaste: {
-			styleType: 'separator-thickness'
-		}
-	},
-	separatorThicknessTablet: {
-		type: 'number',
-		UAGCopyPaste: {
-			styleType: 'separator-thickness'
-		}
-	},	
 	thicknessUnit: {
 		type: 'string',
-		default: '%',
+		default: 'px',
 		UAGCopyPaste: {
 			styleType: 'separator-thickness-unit'
 		}
 	},
 	separatorWeight: {
 		type:'number',
-		default: 2,
+		default: 1,
 		UAGCopyPaste: {
 			styleType: 'separator-weight'
-		}
-	},
-	separatorWeightMobile: {
-        type: 'number',
-		default: 1,
-		UAGCopyPaste: {
-			styleType: 'separator-weight-mobile'
-		}
-	},
-	separatorWeightTablet: {
-        type: 'number',
-		default: 1,
-		UAGCopyPaste: {
-			styleType: 'separator-weight-tablet'
 		}
 	},
 	separatorWeightType: {
 		default: '%',
 		UAGCopyPaste: {
 			styleType: 'separator-weight-unit'
+		}
+	},
+	separatorSize: {
+		type: 'number',
+		default: 20,
+		UAGCopyPaste: {
+			styleType: 'separator-size'
+		}
+	},
+	separatorSizeMobile: {
+		type: 'number',
+		default: 20,
+		UAGCopyPaste: {
+			styleType: 'separator-size-Mobile'
+		}
+	},
+	separatorSizeTablet: {
+		type: 'number',
+		default: 20,
+		UAGCopyPaste: {
+			styleType: 'separator-size-Tablet'
+		}
+	},
+	separatorSizeType: {
+		default: 'px',
+		UAGCopyPaste: {
+			styleType: 'separator-size-type'
+		}
+	},
+	separatorHeight:{
+		type: 'number',
+		default: 100,
+		UAGCopyPaste: {
+			styleType: 'separator-height'
+		}
+	},
+	separatorHeightTablet:{
+		type: 'number',
+		default: 100,
+		UAGCopyPaste: {
+			styleType: 'separator-height-tablet'
+		}
+	},
+	separatorHeightMobile:{
+		type: 'number',
+		default: 100,
+		UAGCopyPaste: {
+			styleType: 'separator-height-mobile'
+		}
+	},
+	separatorHeightType: {
+		default: 'px',
+		UAGCopyPaste: {
+			styleType: 'separator-height-type'
 		}
 	},
 	separatorColor: {
@@ -438,13 +466,6 @@ const attributes = {
 		type: 'string',
 		default: 'px',
 	},
-	separatorStrokeWeight: {
-		type: 'number',
-		default: 1,
-		UAGCopyPaste: {
-			styleType: 'separator-stroke-weight'
-		}
-	}
 };
 
 export default attributes;
