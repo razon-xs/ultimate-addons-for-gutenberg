@@ -169,6 +169,7 @@ console.log(globalBlockStyles);
                 } else {
                     style.post_ids = [currentPostID];
                 }
+                style.post_ids = [...new Set(style.post_ids)]
             }
             return style
 
@@ -258,7 +259,7 @@ console.log(globalBlockStyles);
                     <p> { __( 'You\'ll be able to add this global style to multiple areas on your site.', 'ultimate-addons-for-gutenberg' ) }</p>
                     <div className="button-input-wrap">
                         <UAGTextControl
-                            label={ __(
+                            placeholder={ __(
                                 'Style Name',
                                 'ultimate-addons-for-gutenberg'
                             ) }

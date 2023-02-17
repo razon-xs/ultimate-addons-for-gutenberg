@@ -102,7 +102,6 @@ class UAGB_Init_Blocks {
 		
 		foreach( $global_block_styles as $key => $style ) {
 			if ($style['value'] === $_POST['globalBlockStyleId']) {
-				var_dump($style);
 				$block_props = $style['props'];
 				if ( ! $block_props['attributes'] ) {
 					$response_data = array( 'messsage' => __( 'No post dataa found!', 'ultimate-addons-for-gutenberg' ) );
@@ -134,22 +133,8 @@ class UAGB_Init_Blocks {
 					$mob_styling_css .= $mobile;
 					$mob_styling_css .= '}';
 				}
-				var_dump($block_props);
 				$_block_css                  = $desktop . $tab_styling_css . $mob_styling_css;
-				// $spectra_global_block_styles = get_option( 'spectra_global_block_styles', array() );
-				// $spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['frontendStyles'] = $_block_css;
 				$global_block_styles[$key]['frontendStyles'] = $_block_css;
-				// if ( empty( $spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'] ) ) {
-				// 	$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'] = array(
-				// 		$post_id,
-				// 	);
-				// } else {
-
-				// 	$spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'][] = $post_id;
-				// }
-				
-				// $spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'] = array_unique( $spectra_global_block_styles[ $block_attr['globalBlockStyleId'] ]['post_ids'] );
-				
 				update_option( 'spectra_global_block_styles', $global_block_styles );
 				wp_send_json_success();
 			}

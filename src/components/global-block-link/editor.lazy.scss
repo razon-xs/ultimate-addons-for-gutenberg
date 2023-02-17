@@ -20,19 +20,24 @@
 			padding: 10px 30px;
 			border: none;
 			box-shadow: 0 0 5pt 0.5pt #d3d3d3d9;
-			background: #39b54a;
+			background: #007CBA;
 			color: #fff;
 			font-weight: 500;
+			height: 36px;
 
 			p {
 				margin: 0;
 			}
 		}
 
-		input {
-			padding: 12px;
-			box-shadow: 0 0 5pt 0.5pt #d3d3d3d9;
-			border: none;
+		.components-text-control__input {
+			padding: 10px 14px;
+			width: 450px;
+			height: 36px;
+			background: #FFFFFF;
+			border: 1px solid #E6E7E9;
+			box-shadow: 0px 1px 2px #1018280d;
+			border-radius: 4px;
 		}
 	}
 }
