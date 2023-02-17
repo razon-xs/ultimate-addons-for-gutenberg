@@ -84,7 +84,7 @@ function styling( props ) {
 
 
 	const borderCSS = {
-		'border-top-width': generateCSSUnit( separatorThicknessFallback, thicknessUnit),
+		'border-top-width': generateCSSUnit( separatorThicknessFallback, thicknessUnit ),
 		'border-top-color': separatorColor,
 		'border-top-style': separatorStyle,
 	}

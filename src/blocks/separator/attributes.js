@@ -71,7 +71,7 @@ const attributes = {
 	},
 	separatorThickness: {
 		type: 'number',
-		default: 30,
+		default: 20,
 		UAGCopyPaste: {
 			styleType: 'separator-thickness'
 		}	
@@ -90,9 +90,36 @@ const attributes = {
 	},	
 	thicknessUnit: {
 		type: 'string',
-		default: 'px',
+		default: '%',
 		UAGCopyPaste: {
 			styleType: 'separator-thickness-unit'
+		}
+	},
+	separatorWeight: {
+		type:'number',
+		default: 2,
+		UAGCopyPaste: {
+			styleType: 'separator-weight'
+		}
+	},
+	separatorWeightMobile: {
+        type: 'number',
+		default: 1,
+		UAGCopyPaste: {
+			styleType: 'separator-weight-mobile'
+		}
+	},
+	separatorWeightTablet: {
+        type: 'number',
+		default: 1,
+		UAGCopyPaste: {
+			styleType: 'separator-weight-tablet'
+		}
+	},
+	separatorWeightType: {
+		default: '%',
+		UAGCopyPaste: {
+			styleType: 'separator-weight-unit'
 		}
 	},
 	separatorColor: {

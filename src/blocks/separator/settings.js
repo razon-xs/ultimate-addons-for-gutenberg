@@ -88,7 +88,11 @@ const Settings = ( props ) => {
 		elementIconWidth,
 		elementIconWidthTablet,
 		elementIconWidthMobile,
-		elementIconWidthType
+		elementIconWidthType,
+		separatorWeight,
+		separatorWeightMobile,
+		separatorWeightTablet,
+		separatorWeightType,
 	} = attributes;
 
 	// Separator settings.
@@ -453,6 +457,33 @@ const Settings = ( props ) => {
 					setAttributes={ setAttributes }
 					value = { separatorThickness }
 				/>
+				<ResponsiveSlider
+					label={ __(
+						'Weight',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						desktop: {
+							value: separatorWeight,
+							label: 'separatorWeight',
+						},
+						tablet: {
+							value: separatorWeightTablet,
+							label: 'separatorWeightTablet',
+						},
+						mobile: {
+							value: separatorWeightMobile,
+							label: 'separatorWeightMobile',
+						},
+					} }
+					min={ 0 }
+					max={ '%' === separatorWeightType ? 100 : 500 }
+					unit={ {
+						value: separatorWeightType,
+						label: 'separatorWeightType',
+					} }
+					setAttributes={ setAttributes }
+				/>	
 				<AdvancedPopColorControl
 					label={ __(
 						'Color',

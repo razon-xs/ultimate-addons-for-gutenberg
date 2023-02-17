@@ -23,13 +23,16 @@ const Render = ( props ) => {
 			separatorTextTag,
 			separatorIcon,
 			separatorStyle,
+			separatorWeight,
+			SeparatorWeightMobile,
+			separatorWeightTablet,
 		},
 		className,
 	} = props;
 
 	const deviceType = useDeviceType();
 	const CustomTag = `${ separatorTextTag }`;
-	const weight=2;
+	const weight=`${separatorWeight}`;
 	const customSVG = renderCustomSVG( separatorStyle, weight );
 
 	return (

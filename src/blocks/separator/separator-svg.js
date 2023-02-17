@@ -1,11 +1,13 @@
 function renderCustomSVG( svg, weight ) {
-
+       const attr=[
+		`stroke-width = ${weight}`
+	   ];
 	const customSVG = {
 		zigzag: ( `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' overflow='visible' height='100%' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='`+ weight + `'  stroke-linecap='square' stroke-miterlimit='1'%3E%3Cpolyline points='0,18 12,6 24,18 '/%3E%3C/svg%3E")` ),
 		
 		curved:( `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' overflow='visible' height='100%' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='`+ weight + `' stroke-linecap='square' round='false' stroke-miterlimit='1'%3E%3Cpath d='M0,6c6,0,6,13,12,13S18,6,24,6'/%3E%3C/svg%3E")` ),
 		
-		curly: ( `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' overflow='visible' height='100%' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='`+ weight + `' stroke-linecap='square' round='false' stroke-miterlimit='1'%3E%3Cpath d='M0,21c3.3,0,8.3-0.9,15.7-7.1c6.6-5.4,4.4-9.3,2.4-10.3c-3.4-1.8-7.7,1.3-7.3,8.8C11.2,20,17.1,21,24,21'/%3E%3C/svg%3E")` ),
+		curly: ( `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' overflow='visible' height='100%' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='`+ weight + `' stroke-linecap='square' round='false' stroke-miterlimit='5'%3E%3Cpath d='M0,21c3.3,0,8.3-0.9,15.7-7.1c6.6-5.4,4.4-9.3,2.4-10.3c-3.4-1.8-7.7,1.3-7.3,8.8C11.2,20,17.1,21,24,21'/%3E%3C/svg%3E")` ),
 		
 		square: ( `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' overflow='visible' height='100%' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='`+ weight + `'  stroke-linecap='square' stroke-miterlimit='1'%3E%3Cpolyline points='0,6 6,6 6,18 18,18 18,6 24,6'/%3E%3C/svg%3E")` ),
 		
