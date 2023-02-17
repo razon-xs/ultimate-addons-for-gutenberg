@@ -8,10 +8,13 @@ UAGBCountdown = { // eslint-disable-line no-undef
 		// even though it's attribute has been set to 'true'.
 		// Hence, we need to ensure here that the dynamic defaults are followed. 
 		if( ! data.timeModified ) {
-			const d = new Date();
-			const year = d.getUTCFullYear();
 
-			data.endDateTime = ( year + 1 ) + '-01-01T00:00:00Z';
+			const d = new Date();
+
+			// Set the default end time to 7 days later.
+			d.setMilliseconds( d.getMilliseconds() + ( 7 * 24 * 60 * 60 * 1000 ) );
+
+			data.endDateTime = d;
 		}
 
         this.elements[mainSelector] = this.getDefaultElements( mainSelector );
@@ -78,6 +81,16 @@ UAGBCountdown = { // eslint-disable-line no-undef
 
     updateCountdown( mainSelector, data, isEditor = false, ref = null ) {
 
+		// If show days or show hours is true, set the further units to true ( hours, minutes ).
+		if ( data.showDays ) {
+			data.showHours = true;
+			data.showMinutes = true;
+		}
+
+		if( data.showHours ) {
+			data.showMinutes = true;
+		}
+
 		// Wrappers.
 		let daysWrap;
 		let hoursWrap;
@@ -85,15 +98,37 @@ UAGBCountdown = { // eslint-disable-line no-undef
 		let secondsWrap;
 
 		if( isEditor ) {
-			daysWrap = ref.querySelector( '.wp-block-uagb-countdown__time-days' );
-			hoursWrap = ref.querySelector( '.wp-block-uagb-countdown__time-hours' );
-			minutesWrap = ref.querySelector( '.wp-block-uagb-countdown__time-minutes' );
+
+			if ( data.showDays ) {
+				daysWrap = ref.querySelector( '.wp-block-uagb-countdown__time-days' );
+			}
+
+			if ( data.showHours ) {
+				hoursWrap = ref.querySelector( '.wp-block-uagb-countdown__time-hours' );
+			}
+
+			if ( data.showMinutes ) {
+				minutesWrap = ref.querySelector( '.wp-block-uagb-countdown__time-minutes' );
+			}
+
 			secondsWrap = ref.querySelector( '.wp-block-uagb-countdown__time-seconds' );
+
 		} else {
-			daysWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-days' );
-			hoursWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-hours' );
-			minutesWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-minutes' );
+
+			if ( data.showDays ) {
+				daysWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-days' );
+			}
+
+			if ( data.showHours ) {
+				hoursWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-hours' );
+			}
+
+			if( data.showMinutes ) {
+				minutesWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-minutes' );
+			}
+
 			secondsWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-seconds' );
+
 		}
 
         // Calculations.
@@ -104,15 +139,43 @@ UAGBCountdown = { // eslint-disable-line no-undef
 
         // Calculations for each unit.
         const days = Math.floor( diff / 1000 / 60 / 60 / 24 );
-        const hours = Math.floor( diff / 1000 / 60 / 60 ) % 24;
-        const minutes = Math.floor( diff / 1000 / 60 ) % 60;
-        const seconds = Math.floor( diff / 1000 ) % 60;
+        let hours = Math.floor( diff / 1000 / 60 / 60 ) % 24;
+        let minutes = Math.floor( diff / 1000 / 60 ) % 60;
+        let seconds = Math.floor( diff / 1000 ) % 60;
 
-        // Update the markup.
-        daysWrap.innerHTML = ( ! isOvertime ) ? days : 0;
-        hoursWrap.innerHTML = ( ! isOvertime ) ? hours : 0;
-        minutesWrap.innerHTML = ( ! isOvertime ) ? minutes : 0;
-        secondsWrap.innerHTML = ( ! isOvertime ) ? seconds : 0;
+		if( ! data.showDays ) {
+			hours = hours + ( days * 24 );
+		}
+
+		if( ! data.showHours ) {
+			minutes = minutes + ( hours * 60 );
+		}
+
+		if( ! data.showMinutes ) {
+			seconds = seconds + ( minutes * 60 );
+		}
+
+        // Update the markup - Also, we check if the wrappers exist to avoid potential console errors.
+		if( data.showDays && daysWrap ) {
+			daysWrap.innerHTML = ( ! isOvertime ) ? days : 0;
+		}
+
+		if( data.showHours && hoursWrap ) {
+			hoursWrap.innerHTML = ( ! isOvertime ) ? hours : 0;
+		}
+
+		if( data.showMinutes && minutesWrap ) {
+			minutesWrap.innerHTML = ( ! isOvertime ) ? minutes : 0;
+		}
+
+		if ( secondsWrap ) {
+			secondsWrap.innerHTML = ( ! isOvertime ) ? seconds : 0;
+		}
+
+		// If it's overtime, stop updating the markup and clear the interval.
+		if( isOvertime ) {
+			clearInterval( this.countdownInterval[ mainSelector ] );
+		}
 
 		if( isOvertime ) {
 

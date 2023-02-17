@@ -10,13 +10,24 @@
 		flex-direction: column;
 
 		width: 155px;
+		height: 155px;
 		aspect-ratio: 1;
 		justify-content: center;
+
+		@media (max-width: 976px) {
+			width: 100px;
+			height: 100px;
+		}
+
+		@media (max-width: 767px) {
+			width: 65px;
+			height: 65px;
+		}
 
 	}
 
 	&__time {
-		align-self: center;
+		// align-self: center;
 		font-size: 52px;
 
 		@media (max-width: 976px) {
@@ -25,7 +36,7 @@
 	}
 
 	&__label {
-		align-self: center;
+		// align-self: center;
 		font-size: 14px;
 
 		@media (max-width: 976px) {

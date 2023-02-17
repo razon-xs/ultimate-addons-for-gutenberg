@@ -23,10 +23,27 @@ const attributes = {
 		type: 'string',
 		default: '2023-01-01T00:00:00Z',
 	},
+	// The following is a copy-attribute to fetch and display the end-time that has been set.
+	displayEndDateTime: {
+		type: 'string',
+		default: '2023-01-01T00:00:00Z',
+	},
 	// This is a flag attribute which will dynamically help us set default for endDateTime.
 	timeModified: {
 		type: 'boolean',
 		default: false,
+	},
+	showDays: {
+		type: 'boolean',
+		default: true,
+	},
+	showHours: {
+		type: 'boolean',
+		default: true,
+	},
+	showMinutes: {
+		type: 'boolean',
+		default: true,
 	},
 	// Labels.
 	showLabels: {
@@ -62,7 +79,7 @@ const attributes = {
 	},
 	separatorType: {
 		type: 'string',
-		default: 'colon',  // colon, line
+		default: ':',  // colon, line, slash
 		UAGCopyPaste: {
 			styleType: 'countdown-separator-type'
 		},
@@ -869,12 +886,14 @@ const attributes = {
 	},
 	boxAlignTablet: {
 		type: 'string',
+		default: 'center',  // Default value is necessary here for flex-based dynamic styling.
 		UAGCopyPaste: {
-			styleType: 'countdown-box-alignmen-tablet'
+			styleType: 'countdown-box-alignment-tablet'
 		},
 	},
 	boxAlignMobile: {
 		type: 'string',
+		default: 'center',  // Default value is necessary here for flex-based dynamic styling.
 		UAGCopyPaste: {
 			styleType: 'countdown-box-alignment-mobile'
 		},
@@ -896,6 +915,14 @@ const attributes = {
 		type: 'number',
 		UAGCopyPaste: {
 			styleType: 'countdown-box-width-mobile'
+		},
+	},
+	// Square Boxes?
+	isSquareBox: {
+		type: 'boolean',
+		default: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-box-square'
 		},
 	},
 	// Box Spacing.
@@ -949,14 +976,36 @@ const attributes = {
 	},
 	boxFlexTablet: {
 		type: 'string',
+		default: 'column',  // Default value is necessary here for flex-based dynamic styling.
 		UAGCopyPaste: {
 			styleType: 'countdown-box-flex-direction-tablet'
 		},
 	},
 	boxFlexMobile: {
 		type: 'string',
+		default: 'column',  // Default value is necessary here for flex-based dynamic styling.
 		UAGCopyPaste: {
 			styleType: 'countdown-box-flex-direction-mobile'
+		},
+	},
+	// Label vertical alignment.
+	labelVerticalAlignment: {
+		type: 'string',
+		default: 'center',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-label-vertical-alignment'
+		},
+	}, 
+	labelVerticalAlignmentTablet: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-label-vertical-alignment-tablet'
+		},
+	},
+	labelVerticalAlignmentMobile: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-label-vertical-alignment-mobile'
 		},
 	},
 	// Box Background.
