@@ -131,7 +131,6 @@ $background_video_opacity_value = ( isset( $attr['backgroundVideoOpacity'] ) && 
 $selectors = array(
 	'.uagb-block-' . $id . '.wp-block-uagb-container' => array(
 		'color'        => $attr['textColor'],
-		'border-color' => $border['border-color'] ? $border['border-color'] : '#4B4F58',
 	),
 	'.uagb-block-' . $id . ' a'                       => array(
 		'color' => $attr['linkColor'],
