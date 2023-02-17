@@ -45,6 +45,7 @@ const GlobalBlockStyles = ( props ) => {
         return spectraStoreSelect( storeName ).getGlobalBlockStylesFontFamilies();
     } );
     const [ uniqueID, setUniqueID ] = useState( false );
+    const [ tempStyleName, setTempStyleName ] = useState( false );
     const [ saveToDatabase, setSaveToDatabase ] = useState( false );
     const [currentAttributesState, setCurrentAttributesState] = useState( attributes );
     const [ attributesChanged, setAttributesChanged ] = useState( false );
@@ -77,6 +78,9 @@ const GlobalBlockStyles = ( props ) => {
 	}, [] );
 
     useEffect( () => {
+        console.log(currentAttributesState);
+        console.log(attributes);
+
         if ( currentAttributesState !== attributes ) {
             setCurrentAttributesState( attributes );
             setAttributesChanged( true );
@@ -163,6 +167,7 @@ console.log(globalBlockStyles);
                 const blockStyling = styling( newProps, baseSelector );
                 style.editorStyles = blockStyling;
                 style.props = newProps;
+                setCurrentAttributesState(justStrings);
                 let currentPostID = select( 'core/editor' ).getCurrentPostId()
                 if (style?.post_ids) {
                     style.post_ids.push(currentPostID);
@@ -197,8 +202,6 @@ console.log(globalBlockStyles);
         }
         updateGlobalBlockStylesFontFamilies(output);
     };
-
-    console.log(globalBlockStyles);
 
     return (
         <UAGAdvancedPanelBody
@@ -242,6 +245,7 @@ console.log(globalBlockStyles);
                                             globalBlockStyleName: label 
                                         } 
                                     );
+                                    setCurrentAttributesState(attributes);
                                     setSaveToDatabase( true );
                                 }
                             }
@@ -263,25 +267,25 @@ console.log(globalBlockStyles);
                                 'Style Name',
                                 'ultimate-addons-for-gutenberg'
                             ) }
-                            value={ globalBlockStyleName }
+                            value={ tempStyleName }
                             onChange={ ( value ) => {
-                                setAttributes( 
-                                    { 
-                                        globalBlockStyleName: value,
-                                        globalBlockStyleId: uniqueID 
-                                    } 
-                                )
+                                setTempStyleName(value);
                             } }
                             showHeaderControls={false}
                         />
                         <button 
                             onClick={ () => {
+                                setAttributes( 
+                                    { 
+                                        globalBlockStyleName: tempStyleName,
+                                        globalBlockStyleId: uniqueID 
+                                    } 
+                                )
                                 let spectraGlobalStyles = [
                                     ...globalBlockStyles,
                                     {
                                         value: uniqueID,
-                                        label: globalBlockStyleName,
-                                        props
+                                        label: tempStyleName,
                                     }
                                 ]
                                 dispatch( spectraStore ).updateGlobalBlockStyles( spectraGlobalStyles )
@@ -322,6 +326,7 @@ console.log(globalBlockStyles);
                                             globalBlockStyleName: label 
                                         } 
                                     );
+                                    setCurrentAttributesState(attributes);
                                     setSaveToDatabase( true );
                                 }
                             }
