@@ -333,6 +333,38 @@ module.exports = function ( grunt ) {
 		return fonts;
 	}
 
+	
+	// Keep custom selected icon lists with self made category like brand.
+	function keep_custom_cate_in_list( fonts, getCustomCategoryTitle ) {
+		const customCategories = [];
+		for ( const category in getCustomCategoryTitle ) {
+			const put_cate_with_title = { slug: category };
+			put_cate_with_title.title = `%%translation_start%%${ getCustomCategoryTitle[ category ].title }%%translation_end%%`;
+			customCategories.push( put_cate_with_title );
+		}
+		fonts.uagb_category_list = [
+			...fonts.uagb_category_list,
+			...customCategories,
+		];
+		return fonts;
+	}
+
+	// keep custom category in icons.
+	function keep_custom_category_in_icons( fonts, getCustomCategoryTitle ) {
+		// const cloneFonts = { ...fonts };
+		for ( const font in fonts ) {
+			// check in custom icons.
+			for ( const customCate in getCustomCategoryTitle ) {
+				if ( getCustomCategoryTitle[ customCate ].icons.includes( font ) ) {
+					if ( fonts[ font ]?.custom_categories ) {
+						fonts[ font ].custom_categories.push( customCate );
+					}
+				}
+			}
+		}
+		return fonts;
+	}
+
 	// Update Font Awesome library.
 	grunt.registerTask( 'font-awesome', function () {
 		this.async();
@@ -415,6 +447,8 @@ module.exports = function ( grunt ) {
 		const request = require( 'request' );
 		const getCategories = grunt.file.readJSON( './fontawesome-category.json' );
 		const getCategoriesCustomTitle = grunt.file.readJSON( './fontawesome-custom-shorted-category.json' );
+		// This is custom category list like in our icon library brand category is not available so we put manually here.
+		const getCustomCategoryTitle = grunt.file.readJSON( './custom-icon-category.json' );
 		const fs = require( 'fs' );
 		
 		request(
@@ -445,7 +479,10 @@ module.exports = function ( grunt ) {
 						return key;
 					} );
 
-					// Put custom categories.
+					// keep custom category in icons 
+					fonts = keep_custom_category_in_icons( fonts, getCustomCategoryTitle ); 
+
+					// Put custom categories list.
 					fonts = keep_category_list( fonts, getCategoriesCustomTitle );
 
 					fs.writeFile(
