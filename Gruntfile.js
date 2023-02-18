@@ -333,22 +333,6 @@ module.exports = function ( grunt ) {
 		return fonts;
 	}
 
-	
-	// Keep custom selected icon lists with self made category like brand.
-	function keep_custom_cate_in_list( fonts, getCustomCategoryTitle ) {
-		const customCategories = [];
-		for ( const category in getCustomCategoryTitle ) {
-			const put_cate_with_title = { slug: category };
-			put_cate_with_title.title = `%%translation_start%%${ getCustomCategoryTitle[ category ].title }%%translation_end%%`;
-			customCategories.push( put_cate_with_title );
-		}
-		fonts.uagb_category_list = [
-			...fonts.uagb_category_list,
-			...customCategories,
-		];
-		return fonts;
-	}
-
 	// keep custom category in icons.
 	function keep_custom_category_in_icons( fonts, getCustomCategoryTitle ) {
 		// const cloneFonts = { ...fonts };
