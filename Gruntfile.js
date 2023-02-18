@@ -335,7 +335,6 @@ module.exports = function ( grunt ) {
 
 	// keep custom category in icons.
 	function keep_custom_category_in_icons( fonts, getCustomCategoryTitle ) {
-		// const cloneFonts = { ...fonts };
 		for ( const font in fonts ) {
 			// check in custom icons.
 			for ( const customCate in getCustomCategoryTitle ) {
