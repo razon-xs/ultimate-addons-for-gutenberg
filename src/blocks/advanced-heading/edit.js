@@ -15,6 +15,7 @@ import './style.scss';
 const UAGBAdvancedHeading = ( props ) => {
 	const deviceType = useDeviceType();
 	const {
+		attributes,
 		attributes: { UAGHideDesktop, UAGHideTab, UAGHideMob },
 		isSelected,
 		setAttributes,
@@ -37,18 +38,15 @@ const UAGBAdvancedHeading = ( props ) => {
 	useEffect( () => {
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
-
-        addBlockEditorDynamicStyles( 'uagb-adv-heading-style-' + clientId.substr( 0, 8 ), blockStyling );
-	}, [ props ] );
+		addBlockEditorDynamicStyles(
+			'uagb-adv-heading-style-' + clientId.substr( 0, 8 ),
+			blockStyling
+		);
+	}, [ attributes, deviceType ] );
 
 	useEffect( () => {
-		// Replacement for componentDidUpdate.
-	    const blockStyling = styling( props );
-
-        addBlockEditorDynamicStyles( 'uagb-adv-heading-style-' + clientId.substr( 0, 8 ), blockStyling );
-
 		scrollBlockToView();
-	}, [deviceType] );
+	}, [ deviceType ] );
 
 	return (
 			<>
