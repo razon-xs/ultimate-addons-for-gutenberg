@@ -101,7 +101,9 @@ class UAGB_Init_Blocks {
 				case 'os':
 					$block_content = $this->os_visibility( $block['attrs'], $block_content );
 					break;
-
+				case 'day':
+					$block_content = $this->day_visibility( $block['attrs'], $block_content );
+					break;
 				default:
 					// code...
 					break;
@@ -125,7 +127,7 @@ class UAGB_Init_Blocks {
 		}
 
 		$user = wp_get_current_user();
-		return is_user_logged_in() && in_array( $block_attributes['UAGUserRole'], $user->roles, true ) ? '' : $block_content;
+		return is_user_logged_in() && ! empty( $user->roles ) && in_array( $block_attributes['UAGUserRole'], $user->roles, true ) ? '' : $block_content;
 	}
 
 	/**
@@ -197,6 +199,28 @@ class UAGB_Init_Blocks {
 		}
 
 		return $block_content;
+
+	}
+
+	/**
+	 * Day Visibility.
+	 *
+	 * @param array $block_attributes The block data.
+	 * @param mixed $block_content The block content.
+	 *
+	 * @since 2.1.3
+	 * @return mixed Returns the new block content.
+	 */
+	public function day_visibility( $block_attributes, $block_content ) {
+
+		// If not set restriction. 
+		if ( empty( $block_attributes['UAGDay'] ) ) {
+			return $block_content;
+		}
+	
+		$current_day = strtolower( current_datetime()->format( 'l' ) );
+		// Check in restricted day.
+		return ! in_array( $current_day, $block_attributes['UAGDay'] ) ? $block_content : '';
 
 	}
 
