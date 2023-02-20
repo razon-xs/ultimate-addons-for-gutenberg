@@ -1530,7 +1530,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 		 * @since x.x.x
 		 */
 		public static function render_frontend_lightbox( $id, $attr, $lightbox_settings, $thumbnail_settings, $selector ) {
-			$pro_clicker = apply_filters( 'uagb_image_gallery_pro_lightbox_js', '', $id, $attr['customLinks'] );
+			$pro_clicker = apply_filters( 'uagb_image_gallery_pro_lightbox_js', '', $id, $attr );
 			ob_start();
 			?>
 				const theBody = document.querySelector( 'body' );
