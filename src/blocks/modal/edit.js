@@ -8,16 +8,18 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 const UAGBModalEdit = ( props ) => {
 	const deviceType = useDeviceType();
-	const { isSelected } = props;
-	
+	const {
+		isSelected,
+		setAttributes,
+		attributes,
+		attributes: { UAGHideDesktop, UAGHideTab, UAGHideMob },
+		clientId
+	} = props;
+
 	useEffect( () => {
-
-		const { setAttributes } = props;
-
 		setAttributes( { defaultTemplate:  true } );
-
 		// Assigning block_id in the attribute.
-		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
 
 	}, [] );
 
@@ -25,20 +27,19 @@ const UAGBModalEdit = ( props ) => {
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
 
-        addBlockEditorDynamicStyles( 'uagb-modal-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+        addBlockEditorDynamicStyles( 'uagb-modal-style-' + clientId.substr( 0, 8 ), blockStyling );
 
 		const loadModalBlockEditor = new CustomEvent( 'UAGModalEditor', { // eslint-disable-line no-undef
 			detail: {
-				block_id: props.clientId.substr( 0, 8 ),
+				block_id: clientId.substr( 0, 8 ),
 				device_type: deviceType
 			},
 		} );
 
 		document.dispatchEvent( loadModalBlockEditor );
 
-	}, [ props, deviceType ] );
+	}, [ attributes, deviceType ] );
 
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
 	useEffect( () => {
 
 		responsiveConditionPreview( props );

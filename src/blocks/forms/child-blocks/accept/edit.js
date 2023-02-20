@@ -9,17 +9,17 @@ import Settings from './settings';
 import Render from './render';
 
 const UAGBFormsAcceptEdit = ( props ) => {
-	const { setAttributes, isSelected } = props;
+	const { setAttributes, isSelected, clientId } = props;
 
 	useEffect( () => {
 		// Assigning block_id in the attribute.
-		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
 
 		// Pushing Style tag for this block css.
 		const $style = document.createElement( 'style' );
 		$style.setAttribute(
 			'id',
-			'uagb-style-forms-accept-' + props.clientId.substr( 0, 8 )
+			'uagb-style-forms-accept-' + clientId.substr( 0, 8 )
 		);
 		document.head.appendChild( $style );
 	}, [] );

@@ -2,7 +2,6 @@
  * BLOCK: Forms - Edit
  */
 import { useLayoutEffect,useEffect, useCallback} from '@wordpress/element';
-
 import styling from './styling';
 import UAGB_Block_Icons from '@Controls/block-icons';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
@@ -11,28 +10,46 @@ import { useDeviceType } from '@Controls/getPreviewType';
 import Settings from './settings';
 import Render from './render';
 import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
-
 import { useSelect, useDispatch } from '@wordpress/data';
-
 import { compose, createHigherOrderComponent } from '@wordpress/compose';
-
 import { createBlock } from '@wordpress/blocks';
-
 import { __experimentalBlockVariationPicker } from '@wordpress/block-editor';
-
 import { withNotices } from '@wordpress/components';
-
 import { __ } from '@wordpress/i18n';
-
 import apiFetch from '@wordpress/api-fetch';
-
 import {migrateBorderAttributes} from '@Controls/generateAttributes';
-
 import styles from './editor.lazy.scss';
 
 const UAGBFormsEdit = ( props ) => {
 	const deviceType = useDeviceType();
-	const { isSelected } = props;
+	const {
+		isSelected,
+		attributes,
+		attributes: {
+			reCaptchaSiteKeyV2,
+			reCaptchaSecretKeyV2,
+			reCaptchaSiteKeyV3,
+			reCaptchaSecretKeyV3,
+			reCaptchaEnable,
+			toggleColor,
+			bgColor,
+			inputborderStyle,
+			inputborderWidth,
+			inputborderColor,
+			inputborderHoverColor,
+			inputborderRadius,
+			submitborderWidth,
+			submitborderRadius,
+			submitborderColor,
+			submitborderHoverColor,
+			submitborderStyle,
+			UAGHideDesktop,
+			UAGHideTab,
+			UAGHideMob,
+		},
+		setAttributes,
+		clientId,
+	} = props;
 
 	const {
 		innerBlocks, // eslint-disable-line no-unused-vars
@@ -50,9 +67,9 @@ const UAGBFormsEdit = ( props ) => {
 			} = select( 'core/blocks' );
 
 			return {
-				innerBlocks: getBlocks( props.clientId ),
+				innerBlocks: getBlocks( clientId ),
 				hasInnerBlocks:
-					select( 'core/block-editor' ).getBlocks( props.clientId ).length >
+					select( 'core/block-editor' ).getBlocks( clientId ).length >
 					0,
 
 				blockType: getBlockType( props.name ),
@@ -77,19 +94,8 @@ const UAGBFormsEdit = ( props ) => {
 	}, [] );
 
 	useEffect( () => {
-		const { setAttributes } = props;
-
 		// Assigning block_id in the attribute.
-		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
-		const {
-			reCaptchaSiteKeyV2,
-			reCaptchaSecretKeyV2,
-			reCaptchaSiteKeyV3,
-			reCaptchaSecretKeyV3,
-			reCaptchaEnable,
-			toggleColor,
-			bgColor
-		} = props.attributes;
+		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
 
 		if( bgColor ) {
 			if ( undefined === toggleColor ) {
@@ -97,7 +103,7 @@ const UAGBFormsEdit = ( props ) => {
 			}
 		}
 		
-		const id = props.clientId;
+		const id = clientId;
 
 		window.addEventListener( 'load', renderReadyClasses( id ) );
 
@@ -131,18 +137,6 @@ const UAGBFormsEdit = ( props ) => {
 				} );
 			}
 		}
-		const {
-			inputborderStyle,
-			inputborderWidth,
-			inputborderColor,
-			inputborderHoverColor,
-			inputborderRadius,
-			submitborderWidth,
-			submitborderRadius,
-			submitborderColor,
-			submitborderHoverColor,
-			submitborderStyle,
-		} = props.attributes;
 
 		// inputborder
 		if( inputborderWidth || inputborderRadius || inputborderColor || inputborderHoverColor || inputborderStyle ){
@@ -162,8 +156,8 @@ const UAGBFormsEdit = ( props ) => {
 				label: 'inputborderStyle',
 				value: inputborderStyle
 			},
-			props.setAttributes,
-			props.attributes
+			setAttributes,
+			attributes
 			);
 			migrateBorderAttributes( 'checkBoxToggle', {
 				label: 'inputborderWidth',
@@ -181,8 +175,8 @@ const UAGBFormsEdit = ( props ) => {
 				label: 'inputborderStyle',
 				value: inputborderStyle
 			},
-			props.setAttributes,
-			props.attributes
+			setAttributes,
+			attributes
 			);
 		}
 		if( submitborderWidth || submitborderRadius || submitborderColor || submitborderHoverColor || submitborderStyle ){
@@ -202,8 +196,8 @@ const UAGBFormsEdit = ( props ) => {
 				label: 'submitborderStyle',
 				value: submitborderStyle
 			},
-			props.setAttributes,
-			props.attributes
+			setAttributes,
+			attributes
 			);
 		}
 		
@@ -213,24 +207,17 @@ const UAGBFormsEdit = ( props ) => {
 
 		const blockStyling = styling( props );
 
-        addBlockEditorDynamicStyles( 'uagb-style-forms-' + props.clientId.substr( 0, 8 ), blockStyling );
+        addBlockEditorDynamicStyles( 'uagb-style-forms-' + clientId.substr( 0, 8 ), blockStyling );
 		
-	}, [ props ] );
+	}, [ attributes, deviceType ] );
 
 	useEffect( () => {
-		// Replacement for componentDidUpdate.
-	    const blockStyling = styling( props );
-
-        addBlockEditorDynamicStyles( 'uagb-style-forms-' + props.clientId.substr( 0, 8 ), blockStyling );
-
 		scrollBlockToView();
-
-		const id = props.clientId
+		const id = clientId
 		window.addEventListener( 'load', renderReadyClasses( id ) )
 
 	}, [deviceType] );
 
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
 	useEffect( () => {
 
 		responsiveConditionPreview( props );
@@ -240,12 +227,12 @@ const UAGBFormsEdit = ( props ) => {
 	const blockVariationPickerOnSelect = useCallback(
 		( nextVariation = defaultVariation ) => {
 			if ( nextVariation.attributes ) {
-				props.setAttributes( nextVariation.attributes );
+				setAttributes( nextVariation.attributes );
 			}
 
 			if ( nextVariation.innerBlocks ) {
 				replaceInnerBlocks(
-					props.clientId,
+					clientId,
 					createBlocksFromInnerBlocksTemplate(
 						nextVariation.innerBlocks
 					)

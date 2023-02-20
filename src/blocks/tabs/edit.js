@@ -21,11 +21,27 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 const UAGBTabsEdit = ( props ) => {
 
 	const deviceType = useDeviceType();
-	const { isSelected } = props; 
+	const {
+		isSelected,
+		setAttributes,
+		attributes,
+		attributes: {
+			tabHeaders,
+			borderStyle,
+			borderWidth,
+			borderRadius,
+			borderColor,
+			borderHoverColor,
+			UAGHideDesktop,
+			UAGHideTab,
+			UAGHideMob,
+		},
+		clientId,
+	} = props;
+	
 	useEffect( () => {
-		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
 
-		const { borderStyle,borderWidth,borderRadius,borderColor,borderHoverColor } = props.attributes;
 		// Backward Border Migration
 		if( borderWidth || borderRadius || borderColor || borderHoverColor || borderStyle ){
 			migrateBorderAttributes( 'tab', {
@@ -44,16 +60,14 @@ const UAGBTabsEdit = ( props ) => {
 				label: 'borderStyle',
 				value: borderStyle
 			},
-			props.setAttributes,
-			props.attributes
+			setAttributes,
+			attributes
 			);
 		}
 		
 	}, [] );
 
 	const updateTabTitle = () => {
-		const { attributes, clientId } = props;
-		const { tabHeaders } = attributes;
 		const { updateBlockAttributes } = ! wp.blockEditor
 			? dispatch( 'core/editor' )
 			: dispatch( 'core/block-editor' );
@@ -67,29 +81,17 @@ const UAGBTabsEdit = ( props ) => {
 	};
 
 	useEffect( () => {
-
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
-
-		addBlockEditorDynamicStyles( 'uagb-style-tab-' + props.clientId.substr( 0, 8 ), blockStyling );
-
+		addBlockEditorDynamicStyles( 'uagb-style-tab-' + clientId.substr( 0, 8 ), blockStyling );
 		updateTabTitle();
 		props.resetTabOrder();
-		
-
-	}, [ props ] );
+	}, [ deviceType, attributes ] );
 
 	useEffect( () => {
-		// Replacement for componentDidUpdate.
-		const blockStyling = styling( props );
-
-		addBlockEditorDynamicStyles( 'uagb-style-tab-' + props.clientId.substr( 0, 8 ), blockStyling );
-
 		scrollBlockToView();
-
 	}, [ deviceType ] );
 
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
 	useEffect( () => {
 
 		responsiveConditionPreview( props );

@@ -9,17 +9,17 @@ import Settings from './settings';
 import Render from './render';
 
 const UAGBFormsTextareaEdit = ( props ) => {
-	const { setAttributes, isSelected } = props;
+	const { setAttributes, isSelected, clientId } = props;
 	
 	useEffect( () => {
 		// Assigning block_id in the attribute.
-		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
 
 		// Pushing Style tag for this block css.
 		const $style = document.createElement( 'style' );
 		$style.setAttribute(
 			'id',
-			'uagb-style-forms-textarea-' + props.clientId.substr( 0, 8 )
+			'uagb-style-forms-textarea-' + clientId.substr( 0, 8 )
 		);
 		document.head.appendChild( $style );
 	}, [] );

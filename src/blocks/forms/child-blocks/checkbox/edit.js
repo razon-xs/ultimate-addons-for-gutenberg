@@ -11,7 +11,7 @@ import Render from './render';
 
 const UAGBFormsCheckboxEdit = ( props ) => {
 
-	const { isSelected } = props;
+	const { isSelected, setAttributes, clientId } = props;
     const [ state, setState ] = useState( { optionsstate: [ // eslint-disable-line no-unused-vars
 		{
 			optiontitle: __(
@@ -22,16 +22,14 @@ const UAGBFormsCheckboxEdit = ( props ) => {
 	], } );
 
 	useEffect( () => {
-		const { setAttributes } = props;
-
 		// Assigning block_id in the attribute.
-		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
 
 		// Pushing Style tag for this block css.
 		const $style = document.createElement( 'style' );
 		$style.setAttribute(
 			'id',
-			'uagb-style-forms-checkbox-' + props.clientId.substr( 0, 8 )
+			'uagb-style-forms-checkbox-' + clientId.substr( 0, 8 )
 		);
 		document.head.appendChild( $style );
 	}, [] );

@@ -9,12 +9,12 @@ import Render from './render';
 
 const ContentTimelineChildComponent = ( props ) => {
 	const deviceType = useDeviceType();
-	const { isSelected } = props;
+	const { isSelected, setAttributes, attributes } = props;
 
 	useEffect( () => {
 		// Replacement for componentDidMount.
 		//Store client id.
-		props.setAttributes( { block_id: props.clientId } );
+		setAttributes( { block_id: props.clientId } );
 	}, [] );
 
 	useEffect( () => {
@@ -22,7 +22,7 @@ const ContentTimelineChildComponent = ( props ) => {
 			detail: {},
 		} );
 		document.dispatchEvent( loadContentTimelineEditor );
-	}, [ props, deviceType ] );
+	}, [ attributes, deviceType ] );
 
 	return (
 		<>

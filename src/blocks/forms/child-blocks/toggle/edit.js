@@ -8,11 +8,11 @@ import Settings from './settings';
 import Render from './render';
 
 const UAGBFormsToggleEdit = ( props ) => {
-	const { setAttributes, isSelected } = props;
+	const { setAttributes, isSelected, clientId } = props;
 
 	useEffect( () => {
 		// Assigning block_id in the attribute.
-		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
 	}, [] );
 
 	return (

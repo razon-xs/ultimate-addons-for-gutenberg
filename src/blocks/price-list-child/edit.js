@@ -3,15 +3,13 @@
  */
 
 import { useEffect } from '@wordpress/element';
-
-
 import Settings from './settings';
 import Render from './render';
 const UAGBRestaurantMenuChild = ( props ) => {
-	const { isSelected } = props;
+	const { isSelected, setAttributes, clientId } = props;
 	useEffect( () => {
 		// Assigning block_id in the attribute.
-		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
 	}, [] );
 
 	return (

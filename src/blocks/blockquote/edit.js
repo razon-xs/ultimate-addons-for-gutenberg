@@ -12,6 +12,7 @@ const UAGBBlockQuote = ( props ) => {
 
 	const deviceType = useDeviceType();
 	const {
+		attributes,
 		attributes: { UAGHideDesktop, UAGHideTab, UAGHideMob, authorImageWidthUnit, authorImgBorderRadiusUnit },
 		isSelected,
 		setAttributes,
@@ -41,14 +42,9 @@ const UAGBBlockQuote = ( props ) => {
 
 		addBlockEditorDynamicStyles( 'uagb-blockquote-style-' + clientId.substr( 0, 8 ), blockStyling );
 
-	}, [ props ] );
+	}, [ attributes, deviceType ] );
 
 	useEffect( () => {
-		// Replacement for componentDidUpdate.
-		const blockStyling = styling( props );
-
-		addBlockEditorDynamicStyles( 'uagb-blockquote-style-' + clientId.substr( 0, 8 ), blockStyling );
-
 		scrollBlockToView();
 	}, [ deviceType ] );
 

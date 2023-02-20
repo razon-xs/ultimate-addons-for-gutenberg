@@ -17,13 +17,19 @@ import Render from './render';
 const UAGBIconList = ( props ) => {
 
 	const deviceType = useDeviceType();
-	const { isSelected } = props;
-
+	const {
+		isSelected,
+		setAttributes,
+		attributes,
+		attributes: { UAGHideDesktop, UAGHideTab, UAGHideMob },
+		clientId,
+	} = props;
+	
 	useEffect( () => {
 		// Assigning block_id in the attribute.
-		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
-		props.setAttributes( { classMigrate: true } );
-		props.setAttributes( { childMigrate: true } );
+		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
+		setAttributes( { classMigrate: true } );
+		setAttributes( { childMigrate: true } );
 		
 	}, [] );
 
@@ -31,21 +37,15 @@ const UAGBIconList = ( props ) => {
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
 
-		addBlockEditorDynamicStyles( 'uagb-style-icon-list-' + props.clientId.substr( 0, 8 ), blockStyling );
+		addBlockEditorDynamicStyles( 'uagb-style-icon-list-' + clientId.substr( 0, 8 ), blockStyling );
 		
-	}, [ props ] );
+	}, [ attributes, deviceType ] );
 
 	useEffect( () => {
-		// Replacement for componentDidUpdate.
-		const blockStyling = styling( props );
-
-		addBlockEditorDynamicStyles( 'uagb-style-icon-list-' + props.clientId.substr( 0, 8 ), blockStyling );
-
 		scrollBlockToView();
 
 	}, [ deviceType ] );
 
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
 	useEffect( () => {
 
 		responsiveConditionPreview( props );
@@ -55,20 +55,20 @@ const UAGBIconList = ( props ) => {
 	useEffect( () => {
 
 		select( 'core/block-editor' )
-            .getBlocksByClientId( props.clientId )[0]
+            .getBlocksByClientId( clientId )[0]
             ?.innerBlocks.forEach( function( block ) {
 
                 dispatch( 'core/block-editor' ).updateBlockAttributes(
                     block.clientId, {
-                        fromParentIcon: props.attributes.parentIcon,
-						hideLabel: props.attributes.hideLabel,
-						imageSizeChild: props.attributes.size,
+                        fromParentIcon: attributes.parentIcon,
+						hideLabel: attributes.hideLabel,
+						imageSizeChild: attributes.size,
                     }
                 );
 
             } );
 
-	}, [ props.attributes.parentIcon, props.attributes.hideLabel, props.attributes.size ] );
+	}, [ attributes.parentIcon, attributes.hideLabel, attributes.size ] );
 
 	return (
 			<>

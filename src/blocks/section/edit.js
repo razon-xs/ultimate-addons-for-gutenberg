@@ -19,10 +19,36 @@ import maybeGetColorForVariable from '@Controls/maybeGetColorForVariable';
 
 const UAGBSectionEdit = ( props ) => {
 	const deviceType = useDeviceType();
-	const { isSelected } = props;
+	const {
+		isSelected,
+		attributes,
+		attributes: {
+			borderStyle,
+			borderWidth,
+			borderRadius,
+			borderColor,
+			borderHoverColor,
+			UAGHideDesktop,
+			UAGHideTab,
+			UAGHideMob,
+			backgroundOpacity,
+			backgroundImageColor,
+			gradientOverlayColor1,
+			gradientOverlayColor2,
+			backgroundType,
+			overlayType,
+			gradientOverlayAngle,
+			gradientOverlayLocation1,
+			gradientOverlayPosition,
+			gradientOverlayLocation2,
+			gradientOverlayType,
+			backgroundVideoOpacity,
+			backgroundVideoColor,
+		},
+		setAttributes,
+	} = props;
 	
 	useEffect( () => {
-		const { borderStyle,borderWidth,borderRadius,borderColor,borderHoverColor } = props.attributes;
 		// Backward Border Migration
 		if( borderWidth || borderRadius || borderColor || borderHoverColor || borderStyle ){
 			migrateBorderAttributes( 'overall', {
@@ -41,22 +67,20 @@ const UAGBSectionEdit = ( props ) => {
 				label: 'borderStyle',
 				value: borderStyle
 			},
-			props.setAttributes,
-			props.attributes
+			setAttributes,
+			attributes
 			);
-
 		}
-		
 	}, [ ] );
+
 	useEffect( () => {
 
 		const blockStyling = styling( props );
 
         addBlockEditorDynamicStyles( 'uagb-section-style-' + props.clientId.substr( 0, 8 ), blockStyling );
 		
-	}, [ props ] );
+	}, [ attributes,deviceType ] );
 
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
 	useEffect( () => {
 
 		responsiveConditionPreview( props );
@@ -64,34 +88,10 @@ const UAGBSectionEdit = ( props ) => {
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
 	useEffect( () => {
-		// Replacement for componentDidUpdate.
-	    const blockStyling = styling( props );
-
-        addBlockEditorDynamicStyles( 'uagb-section-style-' + props.clientId.substr( 0, 8 ), blockStyling );
-
 		scrollBlockToView();
 	}, [deviceType] );
 
 	useEffect( () => {
-
-		const { setAttributes, attributes } = props;
-
-		const {
-			 backgroundOpacity,
-			 backgroundImageColor,
-			 gradientOverlayColor1,
-			 gradientOverlayColor2,
-			 backgroundType,
-			 overlayType,
-			 gradientOverlayAngle,
-			 gradientOverlayLocation1,
-			 gradientOverlayPosition,
-			 gradientOverlayLocation2,
-			 gradientOverlayType,
-			 backgroundVideoOpacity,
-			 backgroundVideoColor
-			} = attributes;
-
 		if( 101 !== backgroundOpacity && 'image' === backgroundType && 'gradient' === overlayType ){
 			const color1 = hexToRGBA( maybeGetColorForVariable( gradientOverlayColor1 ), backgroundOpacity );
 			const color2 = hexToRGBA( maybeGetColorForVariable( gradientOverlayColor2 ), backgroundOpacity );

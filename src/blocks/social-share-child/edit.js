@@ -5,28 +5,26 @@
 // Import classes
 
 import styling from './styling';
-
 import { useEffect } from '@wordpress/element';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import { useDeviceType } from '@Controls/getPreviewType';
 import { select } from '@wordpress/data';
-
 import Settings from './settings';
 import Render from './render';
 
 const SocialShareChildComponent = ( props ) => {
 	const deviceType = useDeviceType();
-	const { isSelected } = props;
+	const { isSelected, setAttributes, attributes, clientId } = props;
 	
 	useEffect( () => {
 		// Replacement for componentDidMount.
 
 		// Assigning block_id in the attribute.
-		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
 
 		if ( select( 'core/editor' ) ) {
-			props.setAttributes( {
+			setAttributes( {
 				current_url: select( 'core/editor' ).getPermalink(),
 			} );
 		}
@@ -37,15 +35,10 @@ const SocialShareChildComponent = ( props ) => {
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
 
-        addBlockEditorDynamicStyles( 'uagb-style-social-share-child-' + props.clientId.substr( 0, 8 ), blockStyling );
-	}, [ props ] );
+        addBlockEditorDynamicStyles( 'uagb-style-social-share-child-' + clientId.substr( 0, 8 ), blockStyling );
+	}, [ attributes, deviceType ] );
 
 	useEffect( () => {
-		// Replacement for componentDidUpdate.
-	    const blockStyling = styling( props );
-
-        addBlockEditorDynamicStyles( 'uagb-style-social-share-child-' + props.clientId.substr( 0, 8 ), blockStyling );
-
 		scrollBlockToView();
 	}, [deviceType] );
 

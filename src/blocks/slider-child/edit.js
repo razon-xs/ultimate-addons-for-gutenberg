@@ -12,11 +12,11 @@ import { compose } from '@wordpress/compose';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 
 const UAGBSlide = ( props ) => {
-	const { isSelected } = props;
+	const { isSelected, setAttributes, attributes, deviceType } = props;
 	
 	useEffect( () => {
 		// Assigning block_id in the attribute.
-		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 	}, [] );
 
 	useEffect( () => {
@@ -25,7 +25,7 @@ const UAGBSlide = ( props ) => {
 
 		addBlockEditorDynamicStyles( 'uagb-slider-child-style-' + props.clientId.substr( 0, 8 ), blockStyling );
 
-	}, [ props ] );
+	}, [ attributes, deviceType ] );
 
 	return (
 		<>

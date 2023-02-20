@@ -15,12 +15,39 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 const UAGBGF = ( props ) => {
 	const deviceType = useDeviceType();
-	const { isSelected } = props;
+	const {
+		isSelected,
+		setAttributes,
+		attributes,
+		attributes: {
+			formId,
+			isHtml,
+			msgVrPadding,
+			msgHrPadding,
+			buttonVrPadding,
+			buttonHrPadding,
+			fieldVrPadding,
+			fieldHrPadding,
+			buttontopPadding,
+			buttonrightPadding,
+			buttonbottomPadding,
+			buttonleftPadding,
+			fieldtopPadding,
+			fieldrightPadding,
+			fieldbottomPadding,
+			fieldleftPadding,
+			msgtopPadding,
+			msgrightPadding,
+			msgbottomPadding,
+			msgleftPadding,
+			UAGHideDesktop,
+			UAGHideTab,
+			UAGHideMob,
+		},
+	} = props;
 
 	useSelect(
 		( select ) => { // eslint-disable-line  no-unused-vars
-			const { setAttributes } = props;
-			const { formId, isHtml } = props.attributes;
 			let jsonData = '';
 
 			if ( formId && -1 !== formId && 0 !== formId && ! isHtml ) {
@@ -52,86 +79,65 @@ const UAGBGF = ( props ) => {
 	);
 	useEffect( () => {
 		// Assigning block_id in the attribute.
-		props.setAttributes( { isHtml: false } );
-		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
-
-		const {
-			msgVrPadding,
-			msgHrPadding,
-			buttonVrPadding,
-			buttonHrPadding,
-			fieldVrPadding,
-			fieldHrPadding,
-			buttontopPadding,
-			buttonrightPadding,
-			buttonbottomPadding,
-			buttonleftPadding,
-			fieldtopPadding,
-			fieldrightPadding,
-			fieldbottomPadding,
-			fieldleftPadding,
-			msgtopPadding,
-			msgrightPadding,
-			msgbottomPadding,
-			msgleftPadding,
-		} = props.attributes;
+		setAttributes( { isHtml: false } );
+		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 
 		if ( buttonVrPadding ) {
 			if ( undefined === buttontopPadding ) {
-				props.setAttributes( { buttontopPadding: buttonVrPadding } );
+				setAttributes( { buttontopPadding: buttonVrPadding } );
 			}
 			if ( undefined === buttonbottomPadding ) {
-				props.setAttributes( { buttonbottomPadding: buttonVrPadding } );
+				setAttributes( { buttonbottomPadding: buttonVrPadding } );
 			}
 		}
 
 		if ( buttonHrPadding ) {
 			if ( undefined === buttonrightPadding ) {
-				props.setAttributes( { buttonrightPadding: buttonHrPadding } );
+				setAttributes( { buttonrightPadding: buttonHrPadding } );
 			}
 			if ( undefined === buttonleftPadding ) {
-				props.setAttributes( { buttonleftPadding: buttonHrPadding } );
+				setAttributes( { buttonleftPadding: buttonHrPadding } );
 			}
 		}
 
 		if ( msgVrPadding ) {
 			if ( ! msgtopPadding ) {
-				props.setAttributes( { msgtopPadding: msgVrPadding } );
+				setAttributes( { msgtopPadding: msgVrPadding } );
 			}
 			if ( ! msgbottomPadding ) {
-				props.setAttributes( { msgbottomPadding: msgVrPadding } );
+				setAttributes( { msgbottomPadding: msgVrPadding } );
 			}
 		}
 
 		if ( msgHrPadding ) {
 			if ( ! msgrightPadding ) {
-				props.setAttributes( { msgrightPadding: msgHrPadding } );
+				setAttributes( { msgrightPadding: msgHrPadding } );
 			}
 			if ( ! msgleftPadding ) {
-				props.setAttributes( { msgleftPadding: msgHrPadding } );
+				setAttributes( { msgleftPadding: msgHrPadding } );
 			}
 		}
 
 		if ( fieldVrPadding ) {
 			if ( undefined === fieldtopPadding ) {
-				props.setAttributes( { fieldtopPadding: fieldVrPadding } );
+				setAttributes( { fieldtopPadding: fieldVrPadding } );
 			}
 			if ( undefined === fieldbottomPadding ) {
-				props.setAttributes( { fieldbottomPadding: fieldVrPadding } );
+				setAttributes( { fieldbottomPadding: fieldVrPadding } );
 			}
 		}
 
 		if ( fieldHrPadding ) {
 			if ( undefined === fieldrightPadding ) {
-				props.setAttributes( { fieldrightPadding: fieldHrPadding } );
+				setAttributes( { fieldrightPadding: fieldHrPadding } );
 			}
 			if ( undefined === fieldleftPadding ) {
-				props.setAttributes( { fieldleftPadding: fieldHrPadding } );
+				setAttributes( { fieldleftPadding: fieldHrPadding } );
 			}
 		}
 
 	}, [] );
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
+
 	useEffect( () => {
 
 		responsiveConditionPreview( props );
@@ -150,7 +156,7 @@ const UAGBGF = ( props ) => {
 
 		addBlockEditorDynamicStyles( 'uagb-gf-styler-' + props.clientId.substr( 0, 8 ), blockStyling );
 
-	}, [ props ] );
+	}, [ attributes ] );
 
 	useEffect( () => {
 		// Replacement for componentDidUpdate.
@@ -159,15 +165,12 @@ const UAGBGF = ( props ) => {
 		addBlockEditorDynamicStyles( 'uagb-gf-styler-' + props.clientId.substr( 0, 8 ), blockStyling );
 
 		scrollBlockToView();
-	}, [deviceType] );
+	}, [ deviceType ] );
 
-	const { formId } = props.attributes;
 	/*
 	 * Event to set Image as while adding.
 	 */
 	const onSelectForm = ( id ) => {
-		const { setAttributes } = props;
-
 		if ( ! id ) {
 			setAttributes( { isHtml: false } );
 			setAttributes( { formId: null } );

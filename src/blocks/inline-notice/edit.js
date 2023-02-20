@@ -14,31 +14,29 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 const UAGBInlineNoticeEdit = ( props ) => {
 	const deviceType = useDeviceType();
-	const { isSelected } = props;
+	const {
+		isSelected,
+		setAttributes,
+		clientId,
+		attributes,
+		attributes: { UAGHideDesktop, UAGHideTab, UAGHideMob },
+	} = props;
+	
 	useEffect( () => {
-		const { setAttributes, clientId } = props;
 		// Assigning block_id in the attribute.
 		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
-		
 	}, [] );
 
 	useEffect( () => {
 		const blockStyling = styling( props );
-
-		addBlockEditorDynamicStyles( 'uagb-inline-notice-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+		addBlockEditorDynamicStyles( 'uagb-inline-notice-style-' + clientId.substr( 0, 8 ), blockStyling );
 		
-	}, [ props ] );
+	}, [ attributes, deviceType ] );
 
 	useEffect( () => {
-		// Replacement for componentDidUpdate.
-		const blockStyling = styling( props );
-
-		addBlockEditorDynamicStyles( 'uagb-inline-notice-style-' + props.clientId.substr( 0, 8 ), blockStyling );
-
 		scrollBlockToView();
 	}, [deviceType] );
 
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
 	useEffect( () => {
 
 		responsiveConditionPreview( props );

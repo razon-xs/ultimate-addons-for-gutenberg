@@ -14,17 +14,20 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 const SocialShareComponent = ( props ) => {
 	const deviceType = useDeviceType();
-	const { isSelected } = props;
+	const {
+		isSelected,
+		setAttributes,
+		clientId,
+		attributes,
+		attributes: { UAGHideDesktop, UAGHideTab, UAGHideMob },
+	} = props;
 
 	useEffect( () => {
-		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
-		props.setAttributes( { classMigrate: true } );
-		props.setAttributes( { childMigrate: true } );
-
-
+		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
+		setAttributes( { classMigrate: true } );
+		setAttributes( { childMigrate: true } );
 	}, [] );
 
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
 	useEffect( () => {
 
 		responsiveConditionPreview( props );
@@ -35,37 +38,32 @@ const SocialShareComponent = ( props ) => {
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
 
-        addBlockEditorDynamicStyles( 'uagb-style-social-share-' + props.clientId.substr( 0, 8 ), blockStyling );
+        addBlockEditorDynamicStyles( 'uagb-style-social-share-' + clientId.substr( 0, 8 ), blockStyling );
 
-	}, [ props ] );
+	}, [ attributes, deviceType ] );
 
 	useEffect( () => {
-		// Replacement for componentDidUpdate.
-	    const blockStyling = styling( props );
-
-        addBlockEditorDynamicStyles( 'uagb-style-social-share-' + props.clientId.substr( 0, 8 ), blockStyling );
-
 		scrollBlockToView();
 	}, [deviceType] );
 
 	useEffect( () => {
 
 		select( 'core/block-editor' )
-            .getBlocksByClientId( props.clientId )[0]
+            .getBlocksByClientId( clientId )[0]
             ?.innerBlocks.forEach( function( block ) {
 
                 dispatch( 'core/block-editor' ).updateBlockAttributes(
                     block.clientId, {
-                        parentSize: props.attributes.size,
-                        parentSizeMobile: props.attributes.sizeMobile,
-                        parentSizeTablet: props.attributes.sizeTablet,
+                        parentSize: attributes.size,
+                        parentSizeMobile: attributes.sizeMobile,
+                        parentSizeTablet: attributes.sizeTablet,
 
                     }
                 );
 
             } );
 
-	}, [ props.attributes.size, props.attributes.sizeMobile, props.attributes.sizeTablet ] );
+	}, [ attributes.size, attributes.sizeMobile, attributes.sizeTablet ] );
 
 	return (
 		<>

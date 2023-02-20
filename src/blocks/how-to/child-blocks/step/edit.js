@@ -13,11 +13,11 @@ import Render from './render';
 
 const UAGBHowToStepEdit = ( props ) => {
 	const deviceType = useDeviceType();
-	const { setAttributes, isSelected } = props;
+	const { setAttributes, isSelected, attributes, clientId } = props;
 	
 	useEffect( () => {
 		// Assigning block_id in the attribute.
-		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
 
 	}, [] );
 
@@ -25,15 +25,10 @@ const UAGBHowToStepEdit = ( props ) => {
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
 
-        addBlockEditorDynamicStyles( 'uagb-style-how-to-step-' + props.clientId.substr( 0, 8 ), blockStyling );
-	}, [ props ] );
+        addBlockEditorDynamicStyles( 'uagb-style-how-to-step-' + clientId.substr( 0, 8 ), blockStyling );
+	}, [ attributes, deviceType ] );
 
 	useEffect( () => {
-		// Replacement for componentDidUpdate.
-	    const blockStyling = styling( props );
-
-        addBlockEditorDynamicStyles( 'uagb-style-how-to-step-' + props.clientId.substr( 0, 8 ), blockStyling );
-
 		scrollBlockToView();
 	}, [deviceType] );
 

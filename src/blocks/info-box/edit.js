@@ -15,15 +15,11 @@ import Render from './render';
 
 const UAGBInfoBox = ( props ) => {
 	const deviceType = useDeviceType();
-	const { setAttributes, isSelected } = props;
-
-	useEffect( () => {
-		// Assigning block_id in the attribute.
-		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
-
-		setAttributes( { classMigrate: true } );
-
-		const {
+	const {
+		setAttributes,
+		isSelected,
+		attributes,
+		attributes: {
 			ctaBorderStyle,
 			ctaBorderWidth,
 			ctaBorderRadius,
@@ -32,18 +28,29 @@ const UAGBInfoBox = ( props ) => {
 			ctaBgType,
 			ctaBgHoverType,
 			showCtaIcon,
-		} = props.attributes;
+			UAGHideDesktop,
+			UAGHideTab,
+			UAGHideMob,
+		},
+		clientId,
+	} = props;
+
+	useEffect( () => {
+		// Assigning block_id in the attribute.
+		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
+
+		setAttributes( { classMigrate: true } );
 
 		if( ctaBgType === undefined ) {
-			props.setAttributes( { ctaBgType: 'color' } );
+			setAttributes( { ctaBgType: 'color' } );
 		}
 
 		if( ctaBgHoverType === undefined ) {
-			props.setAttributes( { ctaBgHoverType: 'color' } );
+			setAttributes( { ctaBgHoverType: 'color' } );
 		}
 
 		if( showCtaIcon === undefined ) {
-			props.setAttributes( { showCtaIcon: true } );
+			setAttributes( { showCtaIcon: true } );
 		}
 		
 		// Backward Border Migration
@@ -65,8 +72,8 @@ const UAGBInfoBox = ( props ) => {
 				label: 'ctaBorderStyle',
 				value: ctaBorderStyle
 			},
-			props.setAttributes,
-			props.attributes
+			setAttributes,
+			attributes
 		);
 		}
 
@@ -77,11 +84,10 @@ const UAGBInfoBox = ( props ) => {
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
 
-		addBlockEditorDynamicStyles( 'uagb-info-box-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+		addBlockEditorDynamicStyles( 'uagb-info-box-style-' + clientId.substr( 0, 8 ), blockStyling );
 		
-	}, [ props ] );
+	}, [ attributes, deviceType ] );
 
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
 	useEffect( () => {
 
 		responsiveConditionPreview( props );
@@ -89,14 +95,7 @@ const UAGBInfoBox = ( props ) => {
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
 	useEffect( () => {
-
-		// Replacement for componentDidUpdate.
-		const blockStyling = styling( props );
-
-		addBlockEditorDynamicStyles( 'uagb-info-box-style-' + props.clientId.substr( 0, 8 ), blockStyling );
-
 		scrollBlockToView();
-
 	}, [ deviceType ] );
 
 	return (

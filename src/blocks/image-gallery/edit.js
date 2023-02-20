@@ -12,21 +12,26 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 const UAGBImageGallery = ( props ) => {
 	const deviceType = useDeviceType();
-	const { setAttributes, isSelected } = props;
-
+	const {
+		setAttributes,
+		isSelected,
+		attributes,
+		attributes: { UAGHideDesktop, UAGHideTab, UAGHideMob },
+		clientId,
+	} = props;
+	
 	useEffect( () => {
 		// Assigning block_id in the attribute.
-		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
 		setAttributes( { classMigrate: true } );
 	}, [] );
 
 	useEffect( () => {
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
-        addBlockEditorDynamicStyles( 'uagb-image-gallery-style-' + props.clientId.substr( 0, 8 ), blockStyling );
-	}, [ props, deviceType ] );
+        addBlockEditorDynamicStyles( 'uagb-image-gallery-style-' + clientId.substr( 0, 8 ), blockStyling );
+	}, [ attributes, deviceType ] );
 
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
 
 	useEffect( () => {
 

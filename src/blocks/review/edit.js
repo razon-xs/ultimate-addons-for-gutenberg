@@ -15,12 +15,10 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 const ReviewComponent = ( props ) => {
 
 	const deviceType = useDeviceType();
-	const { isSelected } = props;
-
-	const updatePageSchema = () => {
-
-		const { setAttributes, attributes } = props;
-		const {
+	const {
+		isSelected,
+		attributes,
+		attributes: {
 			parts,
 			itemType,
 			summaryDescription,
@@ -49,7 +47,28 @@ const ReviewComponent = ( props ) => {
 			offerExpiry,
 			offerCurrency,
 			offerStatus,
-		} = attributes;
+			UAGHideDesktop,
+			UAGHideTab,
+			UAGHideMob,
+			contentVrPadding,
+			contentHrPadding,
+			topPadding,
+			bottomPadding,
+			rightPadding,
+			leftPadding,
+			block_id,
+			enableSchema,
+			items,
+			showFeature,
+			showAuthor,
+			enableDescription,
+			enableImage,
+			bookAuthorName,
+		},
+		setAttributes,
+	} = props;
+
+	const updatePageSchema = () => {
 
 		const newAverage =
 			parts
@@ -191,16 +210,6 @@ const ReviewComponent = ( props ) => {
 		// Assigning block_id in the attribute.
 		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 
-		const { attributes, setAttributes } = props;
-		const {
-			contentVrPadding,
-			contentHrPadding,
-			topPadding,
-			bottomPadding,
-			rightPadding,
-			leftPadding,
-		} = attributes;
-
 		if ( contentVrPadding ) {
 			if ( undefined === topPadding ) {
 				setAttributes( { topPadding: contentVrPadding } );
@@ -248,67 +257,17 @@ const ReviewComponent = ( props ) => {
 		}
 		
 
-	}, [ props ] );
+	}, [ attributes,deviceType ] );
 
 	useEffect( () => {
-		// Replacement for componentDidUpdate.
-		const blockStyling = styling( props );
-
-		addBlockEditorDynamicStyles( 'uagb-ratings-style-' + props.clientId.substr( 0, 8 ), blockStyling );
-
 		scrollBlockToView();
 	}, [deviceType] );
 
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
 	useEffect( () => {
 
 		responsiveConditionPreview( props );
 
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
-
-	// Setup the attributes
-	const { attributes, setAttributes } = props;
-
-	const {
-		block_id,
-		enableSchema,
-		itemType,
-		items,
-		parts,
-		starCount,
-		sku,
-		identifier,
-		aggregateType,
-		offerType,
-		offerCurrency,
-		offerPrice,
-		offerExpiry,
-		datepublish,
-		ctaLink,
-		brand,
-		rTitle,
-		rContent,
-		rAuthor,
-		mainimage,
-		showFeature,
-		showAuthor,
-		enableDescription,
-		enableImage,
-		isbn,
-		bookAuthorName,
-		reviewPublisher,
-		provider,
-		appCategory,
-		operatingSystem,
-		datecreated,
-		directorname,
-	} = attributes;
-
-	if ( block_id === '' ) {
-		setAttributes( {
-			block_id: props.clientId.substr( 0, 8 ),
-		} );
-	}
 
 	if (
 		items &&

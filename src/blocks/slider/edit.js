@@ -17,7 +17,7 @@ import { SwiperSlide } from 'swiper/react';
 
 const UAGBSlider = ( props ) => {
 	const deviceType = useDeviceType();
-	const { isSelected } = props;
+	const { isSelected, setAttributes, attributes } = props;
 
 	// Add and remove the CSS on the drop and remove of the component.
 	useLayoutEffect( () => {
@@ -30,7 +30,7 @@ const UAGBSlider = ( props ) => {
 	useEffect( () => {
 
 		// Assigning block_id in the attribute.
-		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 
 	}, [] );
 
@@ -39,15 +39,7 @@ const UAGBSlider = ( props ) => {
 		const blockStyling = styling( props );
 
         addBlockEditorDynamicStyles( 'uagb-slider-style-' + props.clientId.substr( 0, 8 ), blockStyling );
-	}, [ props ] );
-
-	useEffect( () => {
-		// Replacement for componentDidUpdate.
-	    const blockStyling = styling( props );
-
-        addBlockEditorDynamicStyles( 'uagb-slider-style-' + props.clientId.substr( 0, 8 ), blockStyling );
-
-	}, [deviceType] );
+	}, [ attributes, deviceType ] );
 
 	return (
 		<>

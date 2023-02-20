@@ -18,8 +18,34 @@ import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 const HowToComponent = ( props ) => {
 	const deviceType = useDeviceType();
-	const { isSelected } = props;
-
+	const {
+		isSelected,
+		attributes,
+		setAttributes,
+		attributes: {
+			currencyType,
+			showEstcost,
+			showTotaltime,
+			tools,
+			materials,
+			timeNeeded,
+			estCost,
+			mainimage,
+			headingTitle,
+			headingDesc,
+			time,
+			cost,
+			timeInMins,
+			timeInHours,
+			timeInDays,
+			timeInMonths,
+			timeInYears,
+			UAGHideDesktop,
+			UAGHideTab,
+			UAGHideMob,
+		},
+	} = props;
+	
 	const [ prevState, setPrevState ] = useState( '' );
 
 	const {
@@ -29,11 +55,11 @@ const HowToComponent = ( props ) => {
 			let urlChk = '';
 
 			if (
-				'undefined' !== props.attributes.mainimage &&
-				null !== props.attributes.mainimage &&
-				'' !== props.attributes.mainimage
+				'undefined' !== attributes.mainimage &&
+				null !== attributes.mainimage &&
+				'' !== attributes.mainimage
 			) {
-				urlChk = props.attributes.mainimage.url;
+				urlChk = attributes.mainimage.url;
 			}
 			let toolsData = {};
 			let materialsData = {};
@@ -41,8 +67,8 @@ const HowToComponent = ( props ) => {
 			const jsonData = {
 				'@context': 'https://schema.org',
 				'@type': 'HowTo',
-				'name': props.attributes.headingTitle,
-				'description': props.attributes.headingDesc,
+				'name': attributes.headingTitle,
+				'description': attributes.headingDesc,
 				'image': {
 					'@type': 'ImageObject',
 					'url': urlChk,
@@ -56,38 +82,38 @@ const HowToComponent = ( props ) => {
 				'step': [],
 			};
 
-			const y = props.attributes.timeInYears
-				? props.attributes.timeInYears
+			const y = attributes.timeInYears
+				? attributes.timeInYears
 				: 0;
-			const m = props.attributes.timeInMonths
-				? props.attributes.timeInMonths
+			const m = attributes.timeInMonths
+				? attributes.timeInMonths
 				: 0;
-			const d = props.attributes.timeInDays
-				? props.attributes.timeInDays
+			const d = attributes.timeInDays
+				? attributes.timeInDays
 				: 0;
-			const h = props.attributes.timeInHours
-				? props.attributes.timeInHours
+			const h = attributes.timeInHours
+				? attributes.timeInHours
 				: 0;
 
-			const minutes = props.attributes.timeInMins
-				? props.attributes.timeInMins
-				: props.attributes.time;
+			const minutes = attributes.timeInMins
+				? attributes.timeInMins
+				: attributes.time;
 
-			if ( props.attributes.showTotaltime ) {
+			if ( attributes.showTotaltime ) {
 				jsonData.totalTime =
 					'P' + y + 'Y' + m + 'M' + d + 'DT' + h + 'H' + minutes + 'M';
 			}
 
-			if ( props.attributes.showEstcost ) {
+			if ( attributes.showEstcost ) {
 				jsonData.estimatedCost = {
 					'@type': 'MonetaryAmount',
-					'currency': props.attributes.currencyType,
-					'value': props.attributes.cost,
+					'currency': attributes.currencyType,
+					'value': attributes.cost,
 				};
 			}
 
-			if ( props.attributes.showTools ) {
-				props.attributes.tools.forEach( ( tools, key ) => {
+			if ( attributes.showTools ) {
+				attributes.tools.forEach( ( tools, key ) => {
 					toolsData = {
 						'@type': 'HowToTool',
 						'name': tools.add_required_tools,
@@ -96,8 +122,8 @@ const HowToComponent = ( props ) => {
 				} );
 			}
 
-			if ( props.attributes.showMaterials ) {
-				props.attributes.materials.forEach( ( materials, key ) => {
+			if ( attributes.showMaterials ) {
+				attributes.materials.forEach( ( materials, key ) => {
 					materialsData = {
 						'@type': 'HowToSupply',
 						'name': materials.add_required_materials,
@@ -131,9 +157,9 @@ const HowToComponent = ( props ) => {
 		// Replacement for componentDidMount.
 
 		// Assigning block_id in the attribute.
-		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 
-		props.setAttributes( {
+		setAttributes( {
 			schema: JSON.stringify( schemaJsonData ),
 		} );
 
@@ -148,7 +174,7 @@ const HowToComponent = ( props ) => {
 			JSON.stringify( schemaJsonData ) !==
 			JSON.stringify( prevState )
 		) {
-			props.setAttributes( {
+			setAttributes( {
 				schema: JSON.stringify( schemaJsonData ),
 			} );
 
@@ -158,47 +184,20 @@ const HowToComponent = ( props ) => {
 
         addBlockEditorDynamicStyles( 'uagb-how-to-schema-style-' + props.clientId.substr( 0, 8 ), blockStyling );
 
-	}, [ props ] );
+	}, [ attributes, deviceType ] );
 
 
 	useEffect( () => {
-		// Replacement for componentDidUpdate.
-	    const blockStyling = styling( props );
-
-        addBlockEditorDynamicStyles( 'uagb-how-to-schema-style-' + props.clientId.substr( 0, 8 ), blockStyling );
-
 		scrollBlockToView();
 	}, [deviceType] );
 
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
 	useEffect( () => {
 
 		responsiveConditionPreview( props );
 
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
-	// Setup the attributes
-	const {
-		attributes: {
-			currencyType,
-			showEstcost,
-			showTotaltime,
-			tools,
-			materials,
-			timeNeeded,
-			estCost,
-			mainimage,
-			headingTitle,
-			headingDesc,
-			time,
-			cost,
-			timeInMins,
-			timeInHours,
-			timeInDays,
-			timeInMonths,
-			timeInYears,
-		},
-	} = props;
+	
 	const minsValue = timeInMins ? timeInMins : time;
 
 	return (

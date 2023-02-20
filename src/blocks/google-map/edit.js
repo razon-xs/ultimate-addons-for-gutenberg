@@ -12,11 +12,16 @@ import Render from './render';
 const UAGBGoogleMap = ( props ) => {
 
 	const deviceType = useDeviceType();
-	const { isSelected } = props;
-
+	const {
+		isSelected,
+		attributes,
+		setAttributes,
+		attributes: { UAGHideDesktop, UAGHideTab, UAGHideMob },
+	} = props;
+	
 	useEffect( () => {
 		// Assigning block_id in the attribute.
-		props.setAttributes( {
+		setAttributes( {
 			block_id: props.clientId.substr( 0, 8 ),
 		} );
 		
@@ -28,13 +33,12 @@ const UAGBGoogleMap = ( props ) => {
 
 		addBlockEditorDynamicStyles( 'uagb-google-map-style-' + props.clientId.substr( 0, 8 ), blockStyling );
 		
-	}, [ props, deviceType ] );
+	}, [ attributes, deviceType ] );
 
 	useEffect( () => {
 		scrollBlockToView();
 	}, [ deviceType ] );
 
-	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
 	useEffect( () => {
 
 		responsiveConditionPreview( props );
