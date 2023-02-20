@@ -17,7 +17,7 @@ UAGBCountdown = { // eslint-disable-line no-undef
 			data.endDateTime = d;
 		}
 
-        this.elements[mainSelector] = this.getDefaultElements( mainSelector );
+        this.elements[mainSelector] = this.getElement( mainSelector );
 
 		this.countdownInterval[ mainSelector ] = setInterval( () => {
 			this.updateCountdown( mainSelector, data, true, countdownRef );
@@ -26,7 +26,7 @@ UAGBCountdown = { // eslint-disable-line no-undef
 
 	init( mainSelector, data = {} ) {
 
-        this.elements[mainSelector] = this.getDefaultElements( mainSelector );
+        this.elements[mainSelector] = this.getElement( mainSelector );
 
         if( typeof this.elements[ mainSelector ] !== 'undefined' ){
             this.countdownInterval[ mainSelector ] = setInterval( () => {
@@ -48,34 +48,20 @@ UAGBCountdown = { // eslint-disable-line no-undef
 		}
 	},
 
-	getDefaultElements( mainSelector ) {
-		const countdownWrapper = this.getElement( mainSelector );
-		return {
-			countdownWrapper
-		};
-	},
+	getElement( selector ) {
 
-	getElement( selector, childSelector = null ) {
 		let domElement = document.querySelector( selector );
-		if ( domElement ) {
-			if ( childSelector ) {
-				return domElement.querySelector( childSelector );
-			}
-		} else {
-			const editorCanvas = document.querySelector(
-				'iframe[name="editor-canvas"]'
+
+		const editorCanvas = document.querySelector(
+			'iframe[name="editor-canvas"]'
+		);
+
+		if ( editorCanvas && editorCanvas.contentDocument ) {
+			domElement = editorCanvas.contentDocument.querySelector(
+				selector
 			);
-			if ( editorCanvas && editorCanvas.contentDocument ) {
-				domElement = editorCanvas.contentDocument.querySelector(
-					selector
-				);
-				if ( childSelector ) {
-					return ( domElement = domElement.querySelector(
-						childSelector
-					) );
-				}
-			}
 		}
+
 		return domElement;
 	},
 
@@ -116,18 +102,18 @@ UAGBCountdown = { // eslint-disable-line no-undef
 		} else {
 
 			if ( data.showDays ) {
-				daysWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-days' );
+				daysWrap = this.elements[ mainSelector ]?.querySelector( '.wp-block-uagb-countdown__time-days' );
 			}
 
 			if ( data.showHours ) {
-				hoursWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-hours' );
+				hoursWrap = this.elements[ mainSelector ]?.querySelector( '.wp-block-uagb-countdown__time-hours' );
 			}
 
 			if( data.showMinutes ) {
-				minutesWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-minutes' );
+				minutesWrap = this.elements[ mainSelector ]?.querySelector( '.wp-block-uagb-countdown__time-minutes' );
 			}
 
-			secondsWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-seconds' );
+			secondsWrap = this.elements[ mainSelector ]?.querySelector( '.wp-block-uagb-countdown__time-seconds' );
 
 		}
 
