@@ -19,7 +19,6 @@ const ContentTimelineComponent = ( props ) => {
 		clientId,
 		attributes,
 		attributes: {
-			timelinAlignment,
 			timelinAlignmentTablet,
 			timelinAlignmentMobile,
 			stack,
@@ -38,13 +37,13 @@ const ContentTimelineComponent = ( props ) => {
         setAttributes( { classMigrate: true } );
         setAttributes( { childMigrate: true } );
 
-        if( timelinAlignment ) {
+        if( attributes.timelinAlignment ) {
             if( 'none' === stack ) {
                 if( undefined === timelinAlignmentTablet ) {
-                    setAttributes( { timelinAlignmentTablet: timelinAlignment } );
+                    setAttributes( { timelinAlignmentTablet: attributes.timelinAlignment } );
                 }
                 if( undefined === timelinAlignmentMobile ) {
-                    setAttributes( { timelinAlignmentMobile: timelinAlignment } );
+                    setAttributes( { timelinAlignmentMobile: attributes.timelinAlignment } );
                 }
             } else {
                 if( undefined === timelinAlignmentTablet && 'tablet' === stack ) {
@@ -54,7 +53,7 @@ const ContentTimelineComponent = ( props ) => {
 
                 if( undefined === timelinAlignmentMobile && 'mobile' === stack ) {
                     setAttributes( { timelinAlignmentMobile: 'left' } );
-                    setAttributes( { timelinAlignmentTablet: timelinAlignment } );
+                    setAttributes( { timelinAlignmentTablet: attributes.timelinAlignment } );
                 }
             }
         }

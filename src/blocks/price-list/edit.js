@@ -88,9 +88,7 @@ const UAGBRestaurantMenu = ( props ) => {
             .getBlocksByClientId( clientId )[0]
             ?.innerBlocks.forEach( function( block ) {
                 dispatch( 'core/block-editor' ).updateBlockAttributes(
-                    block.clientId, {
-                        showImage: showImage,
-                    }
+                    block.clientId, { showImage }
                 );
 
             } );

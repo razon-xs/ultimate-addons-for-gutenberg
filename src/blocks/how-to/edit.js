@@ -113,20 +113,20 @@ const HowToComponent = ( props ) => {
 			}
 
 			if ( attributes.showTools ) {
-				attributes.tools.forEach( ( tools, key ) => {
+				attributes.tools.forEach( ( attrTools, key ) => {
 					toolsData = {
 						'@type': 'HowToTool',
-						'name': tools.add_required_tools,
+						'name': attrTools.add_required_tools,
 					};
 					jsonData.tool[ key ] = toolsData;
 				} );
 			}
 
 			if ( attributes.showMaterials ) {
-				attributes.materials.forEach( ( materials, key ) => {
+				attributes.materials.forEach( ( attrMaterials, key ) => {
 					materialsData = {
 						'@type': 'HowToSupply',
-						'name': materials.add_required_materials,
+						'name': attrMaterials.add_required_materials,
 					};
 					jsonData.supply[ key ] = materialsData;
 				} );

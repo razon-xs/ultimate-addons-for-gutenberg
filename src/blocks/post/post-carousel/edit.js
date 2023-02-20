@@ -471,16 +471,12 @@ const UAGBPostCarousel = ( props ) => {
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
 	const onSelectPostType = ( value ) => {
-		const { setAttributes } = props;
-
 		setAttributes( { postType: value } );
 		setAttributes( { categories: '' } );
 		setAttributes( { taxonomyType: 'category' } );
 	};
 
 	const onSelectTaxonomyType = ( value ) => {
-		const { setAttributes } = props;
-
 		setAttributes( { taxonomyType: value } );
 		setAttributes( { categories: '' } );
 	};

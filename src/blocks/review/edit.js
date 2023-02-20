@@ -56,7 +56,6 @@ const ReviewComponent = ( props ) => {
 			bottomPadding,
 			rightPadding,
 			leftPadding,
-			block_id,
 			enableSchema,
 			items,
 			showFeature,
