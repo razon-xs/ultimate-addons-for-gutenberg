@@ -7,6 +7,7 @@ import { useDeviceType } from '@Controls/getPreviewType';
 import TypographyControl from '@Components/typography';
 import WebfontLoader from '@Components/typography/fontloader';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
+import ImageSizeControl from '@Components/image-size-control';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, {
 	UAGTabs,
@@ -23,7 +24,9 @@ import UAGTextControl from '@Components/text-control';
 import UAGSelectControl from '@Components/select-control';
 import BoxShadowControl from '@Components/box-shadow';
 import UAGPresets from '@Components/presets';
+import { useSelect } from '@wordpress/data';
 import {
+	store as blockEditorStore,
 	InspectorControls,
 } from '@wordpress/block-editor';
 import {
@@ -38,7 +41,7 @@ const MAX_IMAGE_COLUMNS = 8;
 const Settings = ( props ) => {
 	const deviceType = useDeviceType();
 	props = props.parentProps;
-	const { attributes, setAttributes } = props;
+	const { attributes, setAttributes, clientId } = props;
 	const {
 		block_id,
 		readyToRender,
@@ -47,6 +50,9 @@ const Settings = ( props ) => {
 		mediaIDs,
 		feedLayout,
 		imageDisplayCaption,
+		galleryImageSize,
+		galleryImageSizeTablet,
+		galleryImageSizeMobile,
 		
 		columnsDesk,
 		columnsTab,
@@ -236,6 +242,75 @@ const Settings = ( props ) => {
 			<WebfontLoader config={ loadMoreConfig }></WebfontLoader>
 		);
 	}
+	
+	// Get the Image Sizes Available.
+	const { imageSizes } = useSelect( ( select ) => {
+			const { getSettings } = select( blockEditorStore );
+			// eslint-disable-next-line no-shadow
+			const { imageSizes } = getSettings();
+			return { imageSizes };
+		}, [ clientId ]
+	);
+	
+	// Set the Image Size Options.
+	const imageSizeOptions = imageSizes.reduce( ( acc, item ) => {
+		acc.push( { label: item.name, value: item.slug } );
+		return acc;
+	}, [] );
+
+	// // Update the Media Gallery URLs based on the New Slug.
+	// const updateImage = ( newSizeSlug ) => {
+	// 	const newUrl = image?.media_details?.sizes[newSizeSlug]
+	// 	if ( ! newUrl || newUrl?.source_url === url ) {
+	// 		return null;
+	// 	}
+	// 	setAttributes( {
+	// 		url: newUrl?.source_url,
+	// 		sizeSlug: newSizeSlug,
+	// 	} );
+	// };
+
+	// // Update the Media Gallery URLs based on the New Slug for Tablet.
+	// const updateTabletImage =( newSizeSlug ) => {
+	// 	const newUrl = image?.media_details?.sizes[newSizeSlug]
+	// 	if ( ! newUrl || newUrl?.source_url === urlTablet ) {
+	// 		return null;
+	// 	}
+	// 	setAttributes( {
+	// 		urlTablet: newUrl?.source_url,
+	// 		sizeSlugTablet: newSizeSlug,
+	// 	} );
+	// };
+
+	// // Update the Media Gallery URLs based on the New Slug for Mobile.
+	// const updateMobileImage = ( newSizeSlug ) => {
+	// 	const newUrl = image?.media_details?.sizes[newSizeSlug]
+	// 	if ( ! newUrl || newUrl?.source_url === urlMobile ) {
+	// 		return null;
+	// 	}
+	// 	setAttributes( {
+	// 		urlMobile: newUrl?.source_url,
+	// 		sizeSlugMobile: newSizeSlug,
+	// 	} );
+	// }
+
+	// // Update Image Size Slugs in the Editor.
+	// useEffect( () => {
+	// 	if( ! sizeSlug ) {
+	// 		return;
+	// 	}
+	// 	if( 'Tablet' === deviceType ){
+	// 		updateTabletImage( sizeSlugTablet )
+	// 	} else if( 'Mobile' === deviceType ) {
+	// 		updateMobileImage( sizeSlugMobile )
+	// 	} else {
+	// 		updateImage( sizeSlug )
+	// 	}
+	// }, [
+	// 	sizeSlug,
+	// 	sizeSlugTablet,
+	// 	sizeSlugMobile
+	// ] );
 
 	// Internationilized Dynamic Labels.
 	let labelForCaptionBgColor;
@@ -784,6 +859,14 @@ const Settings = ( props ) => {
 						value: 'tiled',
 					},
 				] }
+			/>
+			<ImageSizeControl
+				sizeSlug={ galleryImageSize }
+				sizeSlugTablet={ galleryImageSizeTablet }
+				sizeSlugMobile={ galleryImageSizeMobile }
+				setAttributes={ setAttributes }
+				imageSizeOptions={ imageSizeOptions }
+				isResizable={ false }
 			/>
 			<ResponsiveSlider
 				label={ __( 'Columns', 'ultimate-addons-for-gutenberg' ) }
