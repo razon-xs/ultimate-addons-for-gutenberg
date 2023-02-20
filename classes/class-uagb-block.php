@@ -49,16 +49,12 @@ if ( ! class_exists( 'UAGB_Block' ) ) {
 		 * @since 2.1.0
 		 * @param string $block_file Block File Path.
 		 */
-		public function register( $block_file, $is_pro = NULL ) {
+		public function register( $block_file ) {
 
 			$block_slug = '';
 			$block_data = array();
 
 			include $block_file;
-
-			if( $is_pro ) {
-				die( file_exists( $block_file ) );
-			}
 			
 			if ( ! empty( $block_slug ) && ! empty( $block_data ) ) {
 				self::$blocks[ $block_slug ] = $block_data;
