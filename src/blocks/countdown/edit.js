@@ -7,6 +7,7 @@ import { getSettings as getDateSettings } from '@wordpress/date';
 
 //  Import CSS.
 import './style.scss';
+import attributes from './attributes';
 
 
 const UAGBCountdownEdit = ( props ) => {
@@ -64,7 +65,7 @@ const UAGBCountdownEdit = ( props ) => {
 		const blockStyling = styling( props );
 
         addBlockEditorDynamicStyles( 'uagb-countdown-style-' + props.clientId.substr( 0, 8 ), blockStyling );
-	}, [ props ] );
+	}, [ attributes ] );
 
 	useEffect( () => {
 		if( props.attributes.block_id && timeChanged === 1 ) {
