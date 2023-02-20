@@ -16,9 +16,25 @@ export default function save( props ) {
 		separatorStyle,
 		separatorWeight
 	} = props.attributes;
+	
 	const CustomTag = `${ separatorTextTag }`;
-	const weight=`${separatorWeight}`;
+	const weight = `${ separatorWeight }`;
 	const customSVG = renderCustomSVG( separatorStyle, weight );
+
+	const separatorDiv = () => (
+		<>
+			<div className="wp-block-uagb-separator__after uagb-separator-left"></div>
+			<div className="wp-block-uagb-separator-element">
+				{ elementType === 'icon' ? (
+					renderSVG( separatorIcon )
+				) : (
+					<CustomTag>{ separatorText }</CustomTag>
+				) }
+			</div>
+			<div className="wp-block-uagb-separator__after uagb-separator-right"></div>
+		</>
+	   );
+
 	return (
 		<div
 			className={ classnames(
@@ -32,19 +48,13 @@ export default function save( props ) {
 				}`
 			) }
 		>
-			<div className="wp-block-uagb-separator__inner"
-			 style={{
-				'--my-background-image': `${customSVG}`,
-			  }}>
-				{ elementType !== 'none' && (
-					<div className="wp-block-uagb-separator-element">
-						{ elementType === 'icon' ? (
-							renderSVG( separatorIcon )
-						) : (
-							<CustomTag> { separatorText } </CustomTag>
-						) }
-					</div>
-				) }
+			<div
+				className='wp-block-uagb-separator__border' 
+				style={ {
+					'--my-background-image': `${ customSVG }`,
+				} }
+			>
+				{ elementType !== 'none' ? ( separatorDiv() ) : ( <div className="wp-block-uagb-separator__after"></div> ) }  
 			</div>
 		</div>
 	);

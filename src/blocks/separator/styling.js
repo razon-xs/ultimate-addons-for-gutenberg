@@ -20,16 +20,12 @@ function styling( props ) {
 		separatorWidthMobile,
 		separatorWidthType,
 		separatorColor,
-		separatorThickness,
-		thicknessUnit,
+		separatorHeight,
+		separatorHeightUnit,
 		separatorSize,
 		separatorSizeTablet,
 		separatorSizeMobile,
 		separatorSizeType,
-		separatorHeight,
-		separatorHeightTablet,
-		separatorHeightMobile,
-		separatorHeightType,
 		separatorTopPadding,
 		separatorRightPadding,
 		separatorBottomPadding,
@@ -82,30 +78,26 @@ function styling( props ) {
 	const separatorWidthFallbackTablet = getFallbackNumber( separatorWidthTablet, 'separatorWidthTablet', blockName );
 	const separatorWidthFallbackMobile = getFallbackNumber( separatorWidthMobile, 'separatorWidthMobile', blockName );
 	// Thikness
-	const separatorThicknessFallback = getFallbackNumber( separatorThickness, 'separatorThickness', blockName );
+	const separatorHeightFallback = getFallbackNumber( separatorHeight, 'separatorHeight', blockName );
 	//Size 
 	const separatorSizeFallback = getFallbackNumber( separatorSize, 'separatorSize', blockName );
 	const separatorSizeFallbackTablet = getFallbackNumber( separatorSizeTablet, 'separatorSizeTablet', blockName );
 	const separatorSizeFallbackMobile = getFallbackNumber( separatorSizeMobile, 'separatorSizeMobile', blockName );
-	//Height 
-    const separatorHeightFallback = getFallbackNumber( separatorHeight, 'separatorHeight', blockName);
-	const separatorHeightFallbackTablet = getFallbackNumber( separatorHeightTablet, 'separatorHeightTablet', blockName);
-	const separatorHeightFallbackMobile = getFallbackNumber( separatorHeightMobile, 'separatorHeightMobile', blockName);
+	
 
 	const borderCSS = {
-		'border-top-width': generateCSSUnit( separatorThicknessFallback, thicknessUnit ),
+		'border-top-width': generateCSSUnit( separatorHeightFallback, separatorHeightUnit ),
 		'border-top-color': separatorColor,
 		'border-top-style': separatorStyle,
+		'text-align': separatorAlign,
 	}
 	let borderStyle = {}
 	const iconSpacingStyle  = {}
 	if ( elementType === 'none' ) {
 		borderStyle = {
-			'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
+			'.wp-block-uagb-separator .wp-block-uagb-separator__after': {
 				'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
-				'-webkit-mask-size' : generateCSSUnit( separatorSizeFallback, separatorSizeType ),
-				'-webkit-mask-height': generateCSSUnit( separatorHeightFallback, separatorHeightType ), 
-				'border-top-width': generateCSSUnit( separatorThicknessFallback, thicknessUnit ),
+				'-webkit-mask-size': `${generateCSSUnit( separatorSizeFallback, separatorSizeType )} 100%`, 
 				...borderCSS
 			}
 		}
@@ -122,46 +114,45 @@ function styling( props ) {
 			}
 		}
 		borderStyle = {
-			'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
+			'.wp-block-uagb-separator .wp-block-uagb-separator__after': {
 				'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
-				'-webkit-mask-size' : generateCSSUnit( separatorSizeFallback, separatorSizeType ),
-				'-webkit-mask-height': generateCSSUnit( separatorHeightFallback, separatorHeightType ),
+				'-webkit-mask-size': `${generateCSSUnit( separatorSize, separatorSizeType )} 100%`,
 				...alignCSS
 			},
-			'.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::before': borderCSS,
-			'.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before': borderCSS,
-			'.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::after': borderCSS,
-			'.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::after': borderCSS
+			'.wp-block-uagb-separator .wp-block-uagb-separator__border': {
+				'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
+				'-webkit-mask-size': `${generateCSSUnit( separatorSize, separatorSizeType )} 100%`,
+				...alignCSS
+			},
+			'.wp-block-uagb-separator--text .wp-block-uagb-separator__after': borderCSS,
+			'.wp-block-uagb-separator--icon .wp-block-uagb-separator__after': borderCSS,
 		}
 		if ( elementPosition === 'left' ) {
-			iconSpacingStyle['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+			iconSpacingStyle['.wp-block-uagb-separator .wp-block-uagb-separator__border .wp-block-uagb-separator-element'] = {
 				'margin-right': generateCSSUnit( elementSpacing, elementSpacingUnit ),
-				'z-index': 1
 			}
-			borderStyle['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::before'] = {
+			borderStyle['.wp-block-uagb-separator--icon .wp-block-uagb-separator__after.uagb-separator-left'] = {
 				'display': 'none'
 			}
-			borderStyle['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before'] = {
+			borderStyle['.wp-block-uagb-separator--text .wp-block-uagb-separator__after.uagb-separator-left'] = {
 				'display': 'none'
 			}
 		}
 		if ( elementPosition === 'right' ) {
-			iconSpacingStyle['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+			iconSpacingStyle['.wp-block-uagb-separator .wp-block-uagb-separator__border .wp-block-uagb-separator-element'] = {
 				'margin-left': generateCSSUnit( elementSpacing, elementSpacingUnit ),
-				'z-index': 1
 			}
-			borderStyle['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::after'] = {
+			borderStyle['.wp-block-uagb-separator--icon .wp-block-uagb-separator__after.uagb-separator-right'] = {
 				'display': 'none'
 			}
-			borderStyle['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::after'] = {
+			borderStyle['.wp-block-uagb-separator--text .wp-block-uagb-separator__after.uagb-separator-right'] = {
 				'display': 'none'
 			}
 		}
 		if ( elementPosition === 'center' ) {
-			iconSpacingStyle['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+			iconSpacingStyle['.wp-block-uagb-separator .wp-block-uagb-separator__border .wp-block-uagb-separator-element'] = {
 				'margin-right': generateCSSUnit( elementSpacing, elementSpacingUnit ),
 				'margin-left': generateCSSUnit( elementSpacing, elementSpacingUnit ),
-				'z-index':1
 			}
 		}
 	}
@@ -203,44 +194,39 @@ function styling( props ) {
 	const iconSpacingStyleTablet = {}
 	if ( elementType !== 'none' ) {
 		if ( elementPositionTablet === 'left' ) {
-			iconSpacingStyleTablet['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+			iconSpacingStyleTablet['.wp-block-uagb-separator .wp-block-uagb-separator__border .wp-block-uagb-separator-element'] = {
 				'margin-right': generateCSSUnit( elementSpacingTablet, elementSpacingUnit )
 			}
-			borderStyleTablet['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::before'] = {
-				'display': 'none'
-			}
-			borderStyleTablet['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before'] = {
+			borderStyle['.wp-block-uagb-separator--icon .wp-block-uagb-separator__after.uagb-separator-left'] = {
 				'display': 'none'
 			}
 		}
 		if ( elementPositionTablet === 'center' ) {
-			iconSpacingStyleTablet['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+			iconSpacingStyleTablet['.wp-block-uagb-separator .wp-block-uagb-separator__border .wp-block-uagb-separator-element'] = {
 				'margin-left': generateCSSUnit( elementSpacingTablet, elementSpacingUnit ),
 				'margin-right': generateCSSUnit( elementSpacingTablet, elementSpacingUnit )
 			}
-			borderStyleTablet['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::before'] = {
+			borderStyleTablet['.wp-block-uagb-separator--text .wp-block-uagb-separator__after'] = {
+				'display': 'block'
+
+			}
+			borderStyleTablet['.wp-block-uagb-separator--icon .wp-block-uagb-separator__after'] = {
 				'display': 'block'
 			}
-			borderStyleTablet['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::after'] = {
-				'display': 'block'
-			}
-			borderStyleTablet['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before'] = {
-				'display': 'block'
-			}
-			borderStyleTablet['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::after'] = {
-				'display': 'block'
-			}
+		
 		}
 		if ( elementPositionTablet === 'right' ) {
-			iconSpacingStyleTablet['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+			iconSpacingStyleTablet['.wp-block-uagb-separator .wp-block-uagb-separator__border .wp-block-uagb-separator-element'] = {
 				'margin-left': generateCSSUnit( elementSpacingTablet, elementSpacingUnit ),
 			}
-			borderStyleTablet['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::after'] = {
+			borderStyle['.wp-block-uagb-separator--icon .wp-block-uagb-separator__after.uagb-separator-right'] = {
 				'display': 'none'
 			}
-			borderStyleTablet['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::after'] = {
+			borderStyle['.wp-block-uagb-separator--text .wp-block-uagb-separator__after.uagb-separator-right'] = {
 				'display': 'none'
 			}
+			
+
 		}
 	}
 
@@ -250,12 +236,11 @@ function styling( props ) {
 			'padding-top': generateCSSUnit( separatorPaddingTopTablet, separatorTabletPaddingUnit ),
 			'padding-left': generateCSSUnit( separatorPaddingLeftTablet, separatorTabletPaddingUnit ),
 			'padding-right': generateCSSUnit( separatorPaddingRightTablet, separatorTabletPaddingUnit ),
-			'text-align': separatorAlignTablet,
+			'text-align': separatorAlignTablet
 		},
-		'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
+		'.wp-block-uagb-separator .wp-block-uagb-separator__after': {
 			'width': generateCSSUnit( separatorWidthFallbackTablet, separatorWidthType ),
-			'-webkit-mask-size' : generateCSSUnit( separatorSizeFallbackTablet, separatorSizeType ),
-			'-webkit-mask-height': generateCSSUnit( separatorHeightFallbackTablet, separatorHeightType ),
+			'-webkit-mask-size': `${generateCSSUnit( separatorSizeFallbackTablet, separatorSizeType )} 100%`,
 		},
 		...borderStyle,
 		...borderStyleTablet,
@@ -264,12 +249,13 @@ function styling( props ) {
 			'font-size': generateCSSUnit( elementTextFontSizeTablet, elementTextFontSizeType ),
 			'line-height': generateCSSUnit( elementTextLineHeightTablet, elementTextLineHeightType ),
 			'letter-spacing': generateCSSUnit( elementTextLetterSpacingTablet, elementTextLetterSpacingType ),
+			'border-top-width': generateCSSUnit( separatorHeightFallback, separatorHeightUnit ),
 		},
 		'.wp-block-uagb-separator--icon .wp-block-uagb-separator-element svg': {
 			'font-size': generateCSSUnit( elementIconWidthTablet, elementIconWidthType ),
 			'width': generateCSSUnit( elementIconWidthTablet, elementIconWidthType ),
 			'height': generateCSSUnit( elementIconWidthTablet, elementIconWidthType ),
-			'line-height': generateCSSUnit( elementIconWidthTablet, elementIconWidthType )
+			'line-height': generateCSSUnit( elementIconWidthTablet, elementIconWidthType ),
 		}
 	};
 
@@ -277,42 +263,34 @@ function styling( props ) {
 	const iconSpacingStyleMobile = {}
 	if ( elementType !== 'none' ) {
 		if ( elementPositionMobile === 'left' ) {
-			iconSpacingStyleMobile['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+			iconSpacingStyleMobile['.wp-block-uagb-separator .wp-block-uagb-separator__border .wp-block-uagb-separator-element'] = {
 				'margin-right': generateCSSUnit( elementSpacingMobile, elementSpacingUnit )
 			}
-			borderStyleMobile['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::before'] = {
-				'display': 'none'
-			}
-			borderStyleMobile['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before'] = {
+			borderStyle['.wp-block-uagb-separator--icon .wp-block-uagb-separator__after.uagb-separator-left'] = {
 				'display': 'none'
 			}
 		}
 		if ( elementPositionMobile === 'center' ) {
-			iconSpacingStyleMobile['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+			iconSpacingStyleMobile['.wp-block-uagb-separator .wp-block-uagb-separator__border .wp-block-uagb-separator-element'] = {
 				'margin-left': generateCSSUnit( elementSpacingMobile, elementSpacingUnit ),
 				'margin-right': generateCSSUnit( elementSpacingMobile, elementSpacingUnit )
 			}
-			borderStyleMobile['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::before'] = {
+			borderStyleMobile['.wp-block-uagb-separator--text .wp-block-uagb-separator__after'] = {
 				'display': 'block'
 			}
-			borderStyleMobile['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::after'] = {
+			borderStyleMobile['.wp-block-uagb-separator--icon .wp-block-uagb-separator__after'] = {
 				'display': 'block'
 			}
-			borderStyleMobile['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before'] = {
-				'display': 'block'
-			}
-			borderStyleMobile['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::after'] = {
-				'display': 'block'
-			}
+			
 		}
 		if ( elementPositionMobile === 'right' ) {
-			iconSpacingStyleMobile['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+			iconSpacingStyleMobile['.wp-block-uagb-separator .wp-block-uagb-separator__border .wp-block-uagb-separator-element'] = {
 				'margin-left': generateCSSUnit( elementSpacingMobile, elementSpacingUnit )
 			}
-			borderStyleMobile['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::after'] = {
+			borderStyle['.wp-block-uagb-separator--icon .wp-block-uagb-separator__after.uagb-separator-right'] = {
 				'display': 'none'
 			}
-			borderStyleMobile['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::after'] = {
+			borderStyle['.wp-block-uagb-separator--text .wp-block-uagb-separator__after.uagb-separator-right'] = {
 				'display': 'none'
 			}
 		}
@@ -323,12 +301,11 @@ function styling( props ) {
 			'padding-top': generateCSSUnit( separatorPaddingTopMobile, separatorMobilePaddingUnit ),
 			'padding-left': generateCSSUnit( separatorPaddingLeftMobile, separatorMobilePaddingUnit ),
 			'padding-right': generateCSSUnit( separatorPaddingRightMobile, separatorMobilePaddingUnit ),
-			'text-align': separatorAlignMobile,
+			'text-align': separatorAlignMobile
 		},
-		'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
+		'.wp-block-uagb-separator .wp-block-uagb-separator__after': {
 			'width': generateCSSUnit( separatorWidthFallbackMobile, separatorWidthType ),
-			'-webkit-mask-size' : generateCSSUnit( separatorSizeFallbackMobile, separatorSizeType ),
-			'-webkit-mask-height': generateCSSUnit( separatorHeightFallbackMobile, separatorHeightType ),
+			'-webkit-mask-size': `${generateCSSUnit( separatorSizeFallbackMobile, separatorSizeType )} 100%`,
 		},
 		...borderStyle,
 		...borderStyleMobile,
@@ -342,7 +319,7 @@ function styling( props ) {
 			'font-size': generateCSSUnit( elementIconWidthMobile, elementIconWidthType ),
 			'width': generateCSSUnit( elementIconWidthMobile, elementIconWidthType ),
 			'height': generateCSSUnit( elementIconWidthMobile, elementIconWidthType ),
-			'line-height': generateCSSUnit( elementIconWidthMobile, elementIconWidthType )
+			'line-height': generateCSSUnit( elementIconWidthMobile, elementIconWidthType ),
 		}
 	};
 

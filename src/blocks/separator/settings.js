@@ -6,7 +6,6 @@ import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
-import Range from '@Components/range/Range.js';
 import MultiButtonsControl from '@Components/multi-buttons-control';
 import { __ } from '@wordpress/i18n';
 import {
@@ -35,16 +34,14 @@ const Settings = ( props ) => {
 		separatorWidthMobile,
 		separatorWidthType,
 		separatorColor,
-		separatorThickness,
-		thicknessUnit,
+		separatorHeight,
+	    separatorHeightTablet,
+	    separatorHeightMobile,
+        separatorHeightUnit,
 		separatorSize,
 		separatorSizeMobile,
 		separatorSizeTablet,
 		separatorSizeType,
-		separatorHeight,
-		separatorHeightTablet,
-		separatorHeightMobile,
-		separatorHeightType,
 		separatorTopPadding,
 		separatorRightPadding,
 		separatorBottomPadding,
@@ -98,7 +95,6 @@ const Settings = ( props ) => {
 		separatorWeight,
 		separatorWeightMobile,
 		separatorWeightTablet,
-		separatorWeightType,
 	} = attributes;
 
 	// Separator settings.
@@ -418,6 +414,7 @@ const Settings = ( props ) => {
 					] }
 					setAttributes={ setAttributes }
 				/>
+				{ ( separatorStyle !== 'solid' && separatorStyle !== 'doubled' && separatorStyle !== 'dotted' && separatorStyle !== 'dashed' && separatorStyle !== 'none' ) && (
 				<ResponsiveSlider
 					label={ __(
 						'Size',
@@ -461,6 +458,7 @@ const Settings = ( props ) => {
 					] }
 					setAttributes={ setAttributes }
 				/>
+				) }
 				<ResponsiveSlider
 					label={ __(
 						'Height',
@@ -481,10 +479,10 @@ const Settings = ( props ) => {
 						},
 					} }
 					min={ 0 }
-					max={ '%' === separatorHeightType ? 100 : 500 }
+					max={ '%' === separatorSizeType ? 100 : 500 }
 					unit={ {
-						value: separatorHeightType,
-						label: 'separatorHeightType',
+						value: separatorHeightUnit,
+						label: 'separatorHeightUnit',
 					} }
 					units={ [
 						{
@@ -495,45 +493,13 @@ const Settings = ( props ) => {
 							unitValue: 'px',
 						},
 						{
-							name: __(
-								'%',
-								'ultimate-addons-for-gutenberg'
-							),
+							name: __( '%', 'ultimate-addons-for-gutenberg' ),
 							unitValue: '%',
 						},
 					] }
 					setAttributes={ setAttributes }
 				/>
-				<Range
-					label={ __(
-						'Thickness',
-						'ultimate-addons-for-gutenberg'
-					) }
-					data={ {
-							value: separatorThickness,
-						    label: 'separatorThickness',
-					} }
-					min={ 0 }
-					max={ 100 }
-					unit={ {
-						value: thicknessUnit,
-						label: 'thicknessUnit',
-					} }
-					units={ [
-						{
-							name: __(
-								'Pixel',
-								'ultimate-addons-for-gutenberg'
-							),
-							unitValue: 'px',
-						},
-						{
-							name: __( 'Em', 'ultimate-addons-for-gutenberg' ),
-							unitValue: 'em',
-						},
-					] }
-					setAttributes={ setAttributes }
-				/>
+				{ ( separatorStyle === 'curved' || separatorStyle === 'zigzag' || separatorStyle === 'curly' || separatorStyle === 'square' ) && (
 				<ResponsiveSlider
 					label={ __(
 						'Weight',
@@ -554,13 +520,9 @@ const Settings = ( props ) => {
 						},
 					} }
 					min={ 1 }
-					max={ '%' === separatorWeightType ? 10 : 50 }
-					unit={ {
-						value: separatorWeightType,
-						label: 'separatorWeightType',
-					} }
+					max={ 10 }
 					setAttributes={ setAttributes }
-				/>	
+				/>	)}
 				<AdvancedPopColorControl
 					label={ __(
 						'Color',

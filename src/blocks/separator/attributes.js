@@ -22,14 +22,14 @@ const attributes = {
 	},
 	separatorAlignTablet: {
 		type: 'string',
-		default: '',
+		default: 'center',
 		UAGCopyPaste: {
 			styleType: 'overall-alignment-tablet'
 		}
 	},
 	separatorAlignMobile: {
 		type: 'string',
-		default: '',
+		default: 'center',
 		UAGCopyPaste: {
 			styleType: 'overall-alignment-mobile'
 		}
@@ -69,14 +69,14 @@ const attributes = {
 			styleType: 'separator-width-type'
 		}
 	},
-	separatorThickness: {
+	separatorHeight: {
 		type: 'number',
-		default: 15,
+		default: 20,
 		UAGCopyPaste: {
-			styleType: 'separator-thickness'
+			styleType: 'separator-height'
 		}	
 	},
-	thicknessUnit: {
+	separatorHeightUnit: {
 		type: 'string',
 		default: 'px',
 		UAGCopyPaste: {
@@ -88,12 +88,6 @@ const attributes = {
 		default: 1,
 		UAGCopyPaste: {
 			styleType: 'separator-weight'
-		}
-	},
-	separatorWeightType: {
-		default: '%',
-		UAGCopyPaste: {
-			styleType: 'separator-weight-unit'
 		}
 	},
 	separatorSize: {
@@ -121,33 +115,6 @@ const attributes = {
 		default: 'px',
 		UAGCopyPaste: {
 			styleType: 'separator-size-type'
-		}
-	},
-	separatorHeight:{
-		type: 'number',
-		default: 100,
-		UAGCopyPaste: {
-			styleType: 'separator-height'
-		}
-	},
-	separatorHeightTablet:{
-		type: 'number',
-		default: 100,
-		UAGCopyPaste: {
-			styleType: 'separator-height-tablet'
-		}
-	},
-	separatorHeightMobile:{
-		type: 'number',
-		default: 100,
-		UAGCopyPaste: {
-			styleType: 'separator-height-mobile'
-		}
-	},
-	separatorHeightType: {
-		default: 'px',
-		UAGCopyPaste: {
-			styleType: 'separator-height-type'
 		}
 	},
 	separatorColor: {
@@ -297,24 +264,24 @@ const attributes = {
 	},
 	elementSpacing: {
 		type: 'number',
+		default: 15,
 		UAGCopyPaste: {
 			styleType: 'element-spacing'
 		},
-		default: 15,
 	},
 	elementSpacingTablet: {
 		type: 'number',
+		default: 15,
 		UAGCopyPaste: {
 			styleType: 'element-spacing-tablet'
 		},
-		default: 15,
 	},
 	elementSpacingMobile: {
 		type: 'number',
+		default: 15,
 		UAGCopyPaste: {
 			styleType: 'element-spacing-mobile'
 		},
-		default: 15,
 	},
 	elementSpacingUnit: {
 		type: 'string',
@@ -437,27 +404,28 @@ const attributes = {
 	},
 	elementColor: {
 		type: 'string',
+		default: '#333', 
 		UAGCopyPaste: {
 			styleType: 'main-title-color'
 		}
 	},
 	elementIconWidth:{
 		type: 'number',
-		default: '',
+		default: 30,
 		UAGCopyPaste: {
 			styleType: 'main-icon-width'
 		}
 	},
 	elementIconWidthTablet:{
 		type: 'number',
-		default: '',
+		default: 30,
 		UAGCopyPaste: {
 			styleType: 'main-icon-width-tablet'
 		}
 	},
 	elementIconWidthMobile:{
 		type: 'number',
-		default: '',
+		default: 30,
 		UAGCopyPaste: {
 			styleType: 'main-icon-width-mobile'
 		}
