@@ -23,7 +23,10 @@ export default function save( props ) {
 
 	const separatorDiv = () => (
 		<>
-			<div className="wp-block-uagb-separator__after uagb-separator-left"></div>
+			<div className="wp-block-uagb-separator__after uagb-separator-left"
+			style={ {
+				'--my-background-image': `${ customSVG }`,
+			} }></div>
 			<div className="wp-block-uagb-separator-element">
 				{ elementType === 'icon' ? (
 					renderSVG( separatorIcon )
@@ -31,7 +34,10 @@ export default function save( props ) {
 					<CustomTag>{ separatorText }</CustomTag>
 				) }
 			</div>
-			<div className="wp-block-uagb-separator__after uagb-separator-right"></div>
+			<div className="wp-block-uagb-separator__after uagb-separator-right"
+			style={ {
+				'--my-background-image': `${ customSVG }`,
+			} }></div>
 		</>
 	   );
 
@@ -47,15 +53,15 @@ export default function save( props ) {
 						: ''
 				}`
 			) }
+		>  
+		<div
+			className='wp-block-uagb-separator__border' 
 		>
-			<div
-				className='wp-block-uagb-separator__border' 
-				style={ {
-					'--my-background-image': `${ customSVG }`,
-				} }
-			>
-				{ elementType !== 'none' ? ( separatorDiv() ) : ( <div className="wp-block-uagb-separator__after"></div> ) }  
-			</div>
+			{ elementType !== 'none' ?  separatorDiv(): <div className="wp-block-uagb-separator__after" style={ {
+			'--my-background-image': `${ customSVG }`,
+		} }></div> }    
+		</div>  
+		
 		</div>
 	);
 }

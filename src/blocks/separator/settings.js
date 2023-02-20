@@ -206,7 +206,7 @@ const Settings = ( props ) => {
 					className="uagb-multi-button-alignment-control"
 					options={ [
 						{
-							value: 'left',
+							value: '-webkit-left',
 							icon: (
 								<Icon
 									icon={ renderSVG( 'fa fa-align-left' ) }
@@ -218,7 +218,7 @@ const Settings = ( props ) => {
 							),
 						},
 						{
-							value: 'center',
+							value: '-webkit-center',
 							icon: (
 								<Icon
 									icon={ renderSVG(
@@ -232,7 +232,7 @@ const Settings = ( props ) => {
 							),
 						},
 						{
-							value: 'right',
+							value: '-webkit-right',
 							icon: (
 								<Icon
 									icon={ renderSVG(

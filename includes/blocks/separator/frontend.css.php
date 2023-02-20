@@ -13,7 +13,7 @@ $m_selectors = array();
 $t_selectors = array();
 
 $borderCSS = array(
-	'border-top-width' => UAGB_Helper::get_css_value( $attr['separatorThickness'], $attr['thicknessUnit'] ),
+	'border-top-width' => UAGB_Helper::get_css_value( $attr['separatorHeight'], $attr['separatorHeightUnit'] ),
 	'border-top-color' => $attr['separatorColor'],
 	'border-top-style' => $attr['separatorStyle'],
 );
@@ -26,7 +26,7 @@ if ( $attr['elementType'] === 'none' ) {
 		'.wp-block-uagb-separator .wp-block-uagb-separator__after' => array_merge(
 			array(
 				'width' => UAGB_Helper::get_css_value( $attr['separatorWidth'], $attr['separatorWidthType'] ),
-				'-webkit-mask-size' =>  UAGB_Helper::get_css_value( $attr['separatorSize'], $attr['separatorSizeType'] ) . 100%,
+				'-webkit-mask-size' =>  UAGB_Helper::get_css_value( $attr['separatorSize'], $attr['separatorSizeType'] )
 			),
 			$borderCSS
 		),

@@ -200,6 +200,9 @@ function styling( props ) {
 			borderStyle['.wp-block-uagb-separator--icon .wp-block-uagb-separator__after.uagb-separator-left'] = {
 				'display': 'none'
 			}
+			borderStyle['.wp-block-uagb-separator--text .wp-block-uagb-separator__after.uagb-separator-left'] = {
+				'display': 'none'
+			}
 		}
 		if ( elementPositionTablet === 'center' ) {
 			iconSpacingStyleTablet['.wp-block-uagb-separator .wp-block-uagb-separator__border .wp-block-uagb-separator-element'] = {
@@ -267,6 +270,9 @@ function styling( props ) {
 				'margin-right': generateCSSUnit( elementSpacingMobile, elementSpacingUnit )
 			}
 			borderStyle['.wp-block-uagb-separator--icon .wp-block-uagb-separator__after.uagb-separator-left'] = {
+				'display': 'none'
+			}
+			borderStyle['.wp-block-uagb-separator--text .wp-block-uagb-separator__after.uagb-separator-left'] = {
 				'display': 'none'
 			}
 		}

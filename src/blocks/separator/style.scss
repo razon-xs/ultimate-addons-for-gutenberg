@@ -4,47 +4,35 @@
 //  * CSS for both Frontend+Backend.
 //  */
  
- .wp-block-uagb-separator {
-		line-height: 0;
-	&__border {
-		display: inline-block;
-		width: 30%;
-		
-	}
-	&:not(.wp-block-uagb-separator--text):not(.wp-block-uagb-separator--icon) .wp-block-uagb-separator__border {
-		border-top-width: 4px;
-		border-top-color: #333;
-		border-top-style: var(--my-background-image);
-		-webkit-mask-size: 38px 100%;
-	}
-	&--text,
-	&--icon {
-		.wp-block-uagb-separator {
-			display: flex;
-			justify-content: center;
-			margin: 0 auto;
-			&_after {
-				display: block;
-				content: "";
-				border-bottom: 0;
-				flex-grow: 1;
-				border-top-color: #333;
-				border-top-style: var(--my-background-image);
-				border-top-width: 1px;
-			}
-		}
-	}
-	&--icon {
-		.wp-block-uagb-separator-element {
-			svg {
-				font-size: 30px;
-				color: #333;
-				fill: #333;
-				width: 30px;
-				height: 30px;
-			}
-		}
-	}
-
+.wp-block-uagb-separator__border {
+    display: flex;
+    grid-gap: 15px;
+    align-items: center;
+    width: 100%;
+    .wp-block-uagb-separator__after {
+      width: 100%;
+      border-top-color: #333;
+	  border-top-style: solid;
+	  border-top-width: 1px;
+      -webkit-mask: var(--my-background-image);
+      -webkit-mask-repeat: repeat-x;
+      -webkit-mask-size: 38px 100%;
+    }
+    .wp-block-uagb-separator-element {
+      text-align: center;
+      svg {
+        	font-size: 30px;
+        	color: #333;
+        	fill: #333;
+         }
+    }
 }
+
+            
+
+
+
+
+            
+
 

@@ -20,6 +20,7 @@ return array(
 	'separatorWidth'               => 100,
 	'separatorWidthTablet'         => 100,
 	'separatorWidthMobile'         => 100,
+	'separatorWidthType'           => '',
 	'separatorWeight'              => 1,
 	'separatorSize'                => 20,
 	'separatorSizeTablet'          => 20,
