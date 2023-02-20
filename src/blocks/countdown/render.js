@@ -32,27 +32,20 @@ const Render = ( props ) => {
 		}
 	} = props;
 
-	const blockProps = useBlockProps();
+	const blockProps = useBlockProps( {
+		className: `uagb-block-${ block_id } uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
+		ref: countdownRef
+	} );
 
 	return(
-		<div
-			{ ...blockProps }
-		>
 			<div
-				className={ classnames(
-					props.className,
-					`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
-					`uagb-block-${ block_id }`,
-					'wp-block-uagb-countdown',
-				) }
-				ref = { countdownRef }
+				{ ...blockProps }
 			>
 				<CountdownBox unitType='days' showLabels={ showLabels } label={ labelDays } />
 				<CountdownBox unitType='hours' showLabels={ showLabels } label={ labelHours } />
 				<CountdownBox unitType='minutes' showLabels={ showLabels } label={ labelMinutes } />
 				<CountdownBox unitType='seconds' showLabels={ showLabels } label={ labelSeconds } />
 			</div>
-		</div>
 	);
 };
 

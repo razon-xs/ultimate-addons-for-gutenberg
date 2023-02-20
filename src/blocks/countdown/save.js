@@ -16,24 +16,18 @@ export default function Save( props ) {
 		},
 	} = props;
 
-	const blockProps = useBlockProps.save();
+	const blockProps = useBlockProps.save( {
+		className: `uagb-block-${ block_id } wp-block-uagb-countdown`
+	} );
 
 	return(
-		<div
-			{ ...blockProps }
-		>
 			<div
-				className={ classnames(
-					props.className,
-					`uagb-block-${ block_id }`,
-					'wp-block-uagb-countdown',
-				) }
+				{ ...blockProps }
 			>
 				<CountdownBox unitType='days' showLabels={ showLabels } label={ labelDays } />
 				<CountdownBox unitType='hours' showLabels={ showLabels } label={ labelHours } />
 				<CountdownBox unitType='minutes' showLabels={ showLabels } label={ labelMinutes } />
 				<CountdownBox unitType='seconds' showLabels={ showLabels } label={ labelSeconds } />
 			</div>
-		</div>
 	);
 };
