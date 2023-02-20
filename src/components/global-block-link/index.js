@@ -23,9 +23,6 @@ const GlobalBlockStyles = ( props ) => {
 	}, [] );
 
     const styling = props.styling;
-    const setRefreshEditorGlobal = props.setRefreshEditorGlobal;
-    const refreshEditorGlobal = props.refreshEditorGlobal;
-
 	props = props.parentProps;
 
     const {
@@ -78,9 +75,6 @@ const GlobalBlockStyles = ( props ) => {
 	}, [] );
 
     useEffect( () => {
-        console.log(currentAttributesState);
-        console.log(attributes);
-
         if ( currentAttributesState !== attributes ) {
             setCurrentAttributesState( attributes );
             setAttributesChanged( true );
@@ -110,7 +104,7 @@ const GlobalBlockStyles = ( props ) => {
             return style;
         } );
         const formData = new window.FormData();
-console.log(globalBlockStyles);
+
         formData.append( 'action', 'uag_global_block_styles' );
         formData.append( 'security', uagb_blocks_info.uagb_ajax_nonce );
         formData.append( 'props', JSON.stringify( styleProps ) );
@@ -181,7 +175,6 @@ console.log(globalBlockStyles);
         } );
 
         updateGlobalBlockStyles(spectraGlobalStyles);
-        setRefreshEditorGlobal( !refreshEditorGlobal );
         setSaveToDatabase( true );
     };
     const updateGoogleFontData = ( attrs ) => {

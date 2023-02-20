@@ -2,7 +2,7 @@
  * BLOCK: Advanced Heading
  */
 import styling from './styling';
-import React, {  useState,  useEffect } from 'react';
+import React, { useEffect } from 'react';
 import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
@@ -26,7 +26,6 @@ const UAGBAdvancedHeading = ( props ) => {
 		globalBlockStyleName
 	} = props.attributes;
 
-    const [ refreshEditorGlobal, setRefreshEditorGlobal ] = useState( false );
 	const globalBlockStyles = useSelect( ( spectraStoreSelect ) => {
         return spectraStoreSelect( storeName ).getGlobalBlockStyles();
     } );
@@ -74,7 +73,7 @@ const UAGBAdvancedHeading = ( props ) => {
 
 		} );
 
-	}, [globalBlockStyleId, globalBlockStyleName, refreshEditorGlobal] );
+	}, [globalBlockStyleId, globalBlockStyleName, globalBlockStyles] );
 
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/advanced-heading.svg`;
 
@@ -84,8 +83,6 @@ const UAGBAdvancedHeading = ( props ) => {
 				<Settings 
 					parentProps={ props }
 					styling={styling}
-					setRefreshEditorGlobal={setRefreshEditorGlobal} 
-					refreshEditorGlobal={refreshEditorGlobal} 
 				/>
 				<Render parentProps={ props } />
 			</>
