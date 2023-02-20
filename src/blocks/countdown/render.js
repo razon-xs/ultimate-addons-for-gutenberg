@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import React, { useLayoutEffect } from 'react';
+import { useLayoutEffect } from '@wordpress/element';
 import { useDeviceType } from '@Controls/getPreviewType';
 import styles from './editor.lazy.scss';
 
