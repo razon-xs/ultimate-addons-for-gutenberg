@@ -1,5 +1,5 @@
 UAGBCountdown = { // eslint-disable-line no-undef
-	countdownElement: {},
+	elements: {},
 	countdownInterval: {},
 
 	editorInit( mainSelector, data = {}, countdownRef ) {
@@ -17,7 +17,7 @@ UAGBCountdown = { // eslint-disable-line no-undef
 			data.endDateTime = d;
 		}
 
-        this.countdownElement = this.getElement( mainSelector );
+        this.elements[mainSelector] = this.getElement( mainSelector );
 
 		this.countdownInterval[ mainSelector ] = setInterval( () => {
 			this.updateCountdown( mainSelector, data, true, countdownRef );
@@ -26,9 +26,9 @@ UAGBCountdown = { // eslint-disable-line no-undef
 
 	init( mainSelector, data = {} ) {
 
-        this.countdownElement = this.getElement( mainSelector );
+        this.elements[mainSelector] = this.getElement( mainSelector );
 
-        if( typeof this.countdownElement !== 'undefined' ){
+        if( typeof this.elements[ mainSelector ] !== 'undefined' ){
             this.countdownInterval[ mainSelector ] = setInterval( () => {
                 this.updateCountdown( mainSelector, data );
             }, 1000 );
@@ -41,7 +41,7 @@ UAGBCountdown = { // eslint-disable-line no-undef
 
 		clearInterval( this.countdownInterval[ mainSelector ] );
 
-        if( typeof this.countdownElement !== 'undefined' ){
+        if( typeof this.elements[ mainSelector ] !== 'undefined' ){
             this.countdownInterval[ mainSelector ] = setInterval( () => {
                 this.updateCountdown( mainSelector, data, true, ref );
             }, 1000 );
@@ -102,18 +102,18 @@ UAGBCountdown = { // eslint-disable-line no-undef
 		} else {
 
 			if ( data.showDays ) {
-				daysWrap = this.countdownElement?.querySelector( '.wp-block-uagb-countdown__time-days' );
+				daysWrap = this.elements[ mainSelector ]?.querySelector( '.wp-block-uagb-countdown__time-days' );
 			}
 
 			if ( data.showHours ) {
-				hoursWrap = this.countdownElement?.querySelector( '.wp-block-uagb-countdown__time-hours' );
+				hoursWrap = this.elements[ mainSelector ]?.querySelector( '.wp-block-uagb-countdown__time-hours' );
 			}
 
 			if( data.showMinutes ) {
-				minutesWrap = this.countdownElement?.querySelector( '.wp-block-uagb-countdown__time-minutes' );
+				minutesWrap = this.elements[ mainSelector ]?.querySelector( '.wp-block-uagb-countdown__time-minutes' );
 			}
 
-			secondsWrap = this.countdownElement?.querySelector( '.wp-block-uagb-countdown__time-seconds' );
+			secondsWrap = this.elements[ mainSelector ]?.querySelector( '.wp-block-uagb-countdown__time-seconds' );
 
 		}
 
