@@ -32,12 +32,12 @@ import { getSettings as getDateSettings } from '@wordpress/date';
 
 export default function Settings( props ) {
 
-    props = props.parentProps;
+	props = props.parentProps;
 	const { setAttributes, attributes } = props;
 
 	const deviceType = useDeviceType();
 
-    const {
+	const {
 		block_id,
         timerType,
         displayEndDateTime,
