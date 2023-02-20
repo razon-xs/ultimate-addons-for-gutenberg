@@ -1,4 +1,3 @@
-import classnames from 'classnames';
 import { useBlockProps } from '@wordpress/block-editor';
 
 import CountdownBox from './components/CountdownBox';

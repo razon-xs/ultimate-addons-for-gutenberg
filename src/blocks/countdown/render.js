@@ -1,4 +1,3 @@
-import classnames from 'classnames';
 import { useLayoutEffect, memo } from '@wordpress/element';
 import { useDeviceType } from '@Controls/getPreviewType';
 import styles from './editor.lazy.scss';
