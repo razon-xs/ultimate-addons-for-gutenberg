@@ -27,6 +27,7 @@ import {
 import {
     InspectorControls
 } from '@wordpress/block-editor';
+import Separator from '@Components/separator';
 import { getSettings as getDateSettings } from '@wordpress/date';
 
 export default function Settings( props ) {
@@ -389,10 +390,11 @@ export default function Settings( props ) {
 						}
 						is12Hour={ true }
 						__nextRemoveResetButton={ true }
+						__nextRemoveHelpButton={ true }
 					/>
                 </div>
             }
-			<br />
+			<Separator />
 			<ToggleControl
 				label={ __( 'Show Days', 'ultimate-addons-for-gutenberg' ) }
 				checked={ showDays }
