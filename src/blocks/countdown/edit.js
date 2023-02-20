@@ -7,12 +7,11 @@ import { getSettings as getDateSettings } from '@wordpress/date';
 
 //  Import CSS.
 import './style.scss';
-import attributes from './attributes';
 
 
 const UAGBCountdownEdit = ( props ) => {
 
-	const { setAttributes } = props;
+	const { attributes, setAttributes } = props;
 
     const [ timeChanged, setTimeChanged ] = useState( 0 );
 
