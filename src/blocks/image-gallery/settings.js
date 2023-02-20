@@ -861,9 +861,20 @@ const Settings = ( props ) => {
 				] }
 			/>
 			<ImageSizeControl
-				sizeSlug={ galleryImageSize }
-				sizeSlugTablet={ galleryImageSizeTablet }
-				sizeSlugMobile={ galleryImageSizeMobile }
+				data={ {
+					sizeSlug: {
+						label: 'galleryImageSize',
+						value: galleryImageSize,
+					},
+					sizeSlugTablet: {
+						label: 'galleryImageSize',
+						value: galleryImageSize,
+					},
+					sizeSlugMobile: {
+						label: 'galleryImageSize',
+						value: galleryImageSize,
+					}
+				} }
 				setAttributes={ setAttributes }
 				imageSizeOptions={ imageSizeOptions }
 				isResizable={ false }
