@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import { useLayoutEffect } from '@wordpress/element';
+import { useLayoutEffect, memo } from '@wordpress/element';
 import { useDeviceType } from '@Controls/getPreviewType';
 import styles from './editor.lazy.scss';
 
@@ -49,4 +49,4 @@ const Render = ( props ) => {
 	);
 };
 
-export default Render;
+export default memo( Render );

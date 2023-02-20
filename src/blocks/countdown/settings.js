@@ -29,8 +29,9 @@ import {
 } from '@wordpress/block-editor';
 import Separator from '@Components/separator';
 import { getSettings as getDateSettings } from '@wordpress/date';
+import { memo } from '@wordpress/element';
 
-export default function Settings( props ) {
+function Settings( props ) {
 
 	props = props.parentProps;
 	const { setAttributes, attributes } = props;
@@ -1506,3 +1507,5 @@ export default function Settings( props ) {
 		</>
 	);
 };
+
+export default memo( Settings );
