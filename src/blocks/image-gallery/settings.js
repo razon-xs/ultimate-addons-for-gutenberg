@@ -258,60 +258,6 @@ const Settings = ( props ) => {
 		return acc;
 	}, [] );
 
-	// // Update the Media Gallery URLs based on the New Slug.
-	// const updateImage = ( newSizeSlug ) => {
-	// 	const newUrl = image?.media_details?.sizes[newSizeSlug]
-	// 	if ( ! newUrl || newUrl?.source_url === url ) {
-	// 		return null;
-	// 	}
-	// 	setAttributes( {
-	// 		url: newUrl?.source_url,
-	// 		sizeSlug: newSizeSlug,
-	// 	} );
-	// };
-
-	// // Update the Media Gallery URLs based on the New Slug for Tablet.
-	// const updateTabletImage =( newSizeSlug ) => {
-	// 	const newUrl = image?.media_details?.sizes[newSizeSlug]
-	// 	if ( ! newUrl || newUrl?.source_url === urlTablet ) {
-	// 		return null;
-	// 	}
-	// 	setAttributes( {
-	// 		urlTablet: newUrl?.source_url,
-	// 		sizeSlugTablet: newSizeSlug,
-	// 	} );
-	// };
-
-	// // Update the Media Gallery URLs based on the New Slug for Mobile.
-	// const updateMobileImage = ( newSizeSlug ) => {
-	// 	const newUrl = image?.media_details?.sizes[newSizeSlug]
-	// 	if ( ! newUrl || newUrl?.source_url === urlMobile ) {
-	// 		return null;
-	// 	}
-	// 	setAttributes( {
-	// 		urlMobile: newUrl?.source_url,
-	// 		sizeSlugMobile: newSizeSlug,
-	// 	} );
-	// }
-
-	// // Update Image Size Slugs in the Editor.
-	// useEffect( () => {
-	// 	if( ! sizeSlug ) {
-	// 		return;
-	// 	}
-	// 	if( 'Tablet' === deviceType ){
-	// 		updateTabletImage( sizeSlugTablet )
-	// 	} else if( 'Mobile' === deviceType ) {
-	// 		updateMobileImage( sizeSlugMobile )
-	// 	} else {
-	// 		updateImage( sizeSlug )
-	// 	}
-	// }, [
-	// 	sizeSlug,
-	// 	sizeSlugTablet,
-	// 	sizeSlugMobile
-	// ] );
-
 	// Internationilized Dynamic Labels.
 	let labelForCaptionBgColor;
 	let labelForBgEffectAmount;
