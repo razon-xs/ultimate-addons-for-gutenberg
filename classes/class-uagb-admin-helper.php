@@ -408,17 +408,17 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 		 * @return array
 		 * @access public
 		 */
-		public static function get_insta_media_transients( $specificUser = NULL ) {
-			if ( $specificUser !== NULL ){
-				$linked_users =  self::get_admin_settings_option( 'uag_insta_linked_accounts', array() );
-				$cur_user = NULL;
+		public static function get_insta_media_transients( $specificUser = null ) {
+			if ( $specificUser !== null ) {
+				$linked_users = self::get_admin_settings_option( 'uag_insta_linked_accounts', array() );
+				$cur_user     = null;
 				foreach ( $linked_users as $user ) {
-					if ( $user['userName'] === $specificUser ){
+					if ( $user['userName'] === $specificUser ) {
 						$cur_user = $user;
 						break;
 					}
 				}
-				if( ! $cur_user ){
+				if ( ! $cur_user ) {
 					return;
 				}
 				// If the user is newly linked, delete their previous transient if any.
@@ -426,26 +426,26 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 					delete_transient( 'spectra_ig_posts_of_' . $cur_user['userName'] );
 				}
 				self::refreshUserToken( $cur_user );
-				$curUserMedia = array();
+				$curUserMedia  = array();
 				$transientName = 'spectra_ig_posts_of_' . $cur_user['userName'];
-				if ( false === ( $mediaFetched = get_transient( $transientName ) ) ){
+				if ( false === ( $mediaFetched = get_transient( $transientName ) ) ) {
 					$mediaFetched = wp_remote_get( 'https://graph.instagram.com/' . $cur_user['userID'] . '/media?fields=caption,id,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=' . $cur_user['token'] );
 					if ( ! is_wp_error( $mediaFetched ) ) {
-						$curUserMedia = self::getParsedInstaMedia( $mediaFetched, $cur_user['token'] );
+						$curUserMedia    = self::getParsedInstaMedia( $mediaFetched, $cur_user['token'] );
 						$transientExpiry = HOUR_IN_SECONDS;
 						set_transient( $transientName, $curUserMedia, $transientExpiry );
+					} else {
+						return is_wp_error( $mediaFetched );
 					}
-					else return is_wp_error( $mediaFetched );
 				}
 				return get_transient( $transientName );
-			}
-			else{
-				$insta_user_transients = array();		
+			} else {
+				$insta_user_transients = array();       
 				// Get all users.
-				$linked_users =  self::get_admin_settings_option( 'uag_insta_linked_accounts', array() );
+				$linked_users = self::get_admin_settings_option( 'uag_insta_linked_accounts', array() );
 				// Set all transients for new users ( if any ) and refresh expired transients.
 				foreach ( $linked_users as $user ) {
-					if ( ! $user['isCurrentlyActive'] ){
+					if ( ! $user['isCurrentlyActive'] ) {
 						continue;
 					}
 					// If the user is newly linked, delete their previous transient if any.
@@ -454,16 +454,17 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 					}
 					self::refreshUserToken( $user );
 
-					$curUserMedia = array();
+					$curUserMedia  = array();
 					$transientName = 'spectra_ig_posts_of_' . $user['userName'];
-					if ( false === ( $mediaFetched = get_transient( $transientName ) ) ){
+					if ( false === ( $mediaFetched = get_transient( $transientName ) ) ) {
 						$mediaFetched = wp_remote_get( 'https://graph.instagram.com/' . $user['userID'] . '/media?fields=caption,id,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=' . $user['token'] );
 						if ( ! is_wp_error( $mediaFetched ) ) {
-							$curUserMedia = self::getParsedInstaMedia( $mediaFetched, $user['token'] );
+							$curUserMedia    = self::getParsedInstaMedia( $mediaFetched, $user['token'] );
 							$transientExpiry = HOUR_IN_SECONDS;
 							set_transient( $transientName, $curUserMedia, $transientExpiry );
+						} else {
+							return is_wp_error( $mediaFetched );
 						}
-						else return is_wp_error( $mediaFetched );
 					}
 					$insta_user_transients[ $user['userName'] ] = get_transient( $transientName );
 				}
@@ -476,7 +477,7 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 		 * Get the Parsed Instagram Media.
 		 *
 		 * @since x.x.x
-		 * @param array $fetchedMedia   the Fetched Media.
+		 * @param array  $fetchedMedia   the Fetched Media.
 		 * @param string $theUserToken  the User Token.
 		 * @return array
 		 * @access private
@@ -500,10 +501,10 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 					}
 				}
 				if ( isset( $fetchedMedia['paging']['next'] ) ) {
-					$thereIsMore = true;
-					$fetchedMedia = wp_remote_get( $fetchedMedia['paging']['next']  );
+					$thereIsMore  = true;
+					$fetchedMedia = wp_remote_get( $fetchedMedia['paging']['next'] );
 				}
-			} while( $thereIsMore );
+			} while ( $thereIsMore );
 			return $builtMediaObjects;
 		}
 
@@ -530,10 +531,10 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 		 * @access private
 		 */
 		private static function refreshUserToken( $the_user ) {
-			if( ! $the_user ) {
+			if ( ! $the_user ) {
 				return;
 			}
-			$all_users = self::get_admin_settings_option( 'uag_insta_linked_accounts', array() );
+			$all_users            = self::get_admin_settings_option( 'uag_insta_linked_accounts', array() );
 			$user_details_updated = false;
 			for ( $i = 0; $i < count( $all_users ); $i++ ) {
 				if ( $all_users[ $i ]['userName'] !== $the_user['userName'] ) {
@@ -541,22 +542,22 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 				}
 				if ( 'new' === $the_user['isCurrentlyActive'] ) {
 					$all_users[ $i ]['isCurrentlyActive'] = true;
-					$user_details_updated = true;
+					$user_details_updated                 = true;
 				}
-				$refresh_link = wp_remote_get( 'https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' . $the_user[ 'token' ] );
+				$refresh_link = wp_remote_get( 'https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' . $the_user['token'] );
 				if ( is_wp_error( $refresh_link ) ) {
 					return;
 				}
 				$data = json_decode( $refresh_link['body'], true );
 				if ( isset( $data['error'] ) ) {
 					$all_users[ $i ]['isCurrentlyActive'] = false;
-					$user_details_updated = true;
+					$user_details_updated                 = true;
 					break;
-				} else if ( isset( $data['expires_in'] ) ) {
+				} elseif ( isset( $data['expires_in'] ) ) {
 					$cur_date = date_create( date( 'Y-m-d' ) );
 					date_add( $cur_date, date_interval_create_from_date_string( $data['expires_in'] . ' seconds' ) );
 					$all_users[ $i ]['expiryDate'] = date_format( $cur_date, 'Y-m-d' );
-					$user_details_updated = true;
+					$user_details_updated          = true;
 					break; 
 				}
 			}
