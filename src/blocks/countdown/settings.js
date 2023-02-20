@@ -21,11 +21,11 @@ import InspectorTab, {
 } from '@Components/inspector-tabs/InspectorTab.js';
 import {
 	Icon,
-    ToggleControl,
+	ToggleControl,
 	DateTimePicker,
 } from '@wordpress/components';
 import {
-    InspectorControls
+	InspectorControls
 } from '@wordpress/block-editor';
 import Separator from '@Components/separator';
 import { getSettings as getDateSettings } from '@wordpress/date';
@@ -39,19 +39,19 @@ export default function Settings( props ) {
 
 	const {
 		block_id,
-        timerType,
-        displayEndDateTime,
+		timerType,
+		displayEndDateTime,
 		showDays,
 		showHours,
 		showMinutes,
-        showLabels,
-        labelDays,
-        labelHours,
-        labelMinutes,
-        labelSeconds,
-        showSeparator,
-        separatorType,
-        // digit.
+		showLabels,
+		labelDays,
+		labelHours,
+		labelMinutes,
+		labelSeconds,
+		showSeparator,
+		separatorType,
+		// digit.
 		digitLoadGoogleFonts,
 		digitFontFamily,
 		digitFontWeight,
@@ -70,7 +70,7 @@ export default function Settings( props ) {
 		digitLetterSpacingType,
 		digitLetterSpacingMobile,
 		digitLetterSpacingTablet,
-        // label.
+		// label.
 		labelLoadGoogleFonts,
 		labelFontFamily,
 		labelFontWeight,
@@ -207,7 +207,7 @@ export default function Settings( props ) {
 		boxShadowBlurHover,
 		boxShadowSpreadHover,
 		boxShadowPositionHover,
-    } = attributes;
+	} = attributes;
 
 	// <------------------ OPTIONS/VALUES ------------------>
 	const bgTypeOptions = [
@@ -361,39 +361,39 @@ export default function Settings( props ) {
 
 	const { timezone } = getDateSettings();
 
-    // <------------------ GENERAL TAB ------------------>
-    const generalPanel = (
-        <UAGAdvancedPanelBody
+	// <------------------ GENERAL TAB ------------------>
+	const generalPanel = (
+		<UAGAdvancedPanelBody
 			title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
-            { timerType && 
-                <div className='uagb-countdown__datetime-picker'>
-                    <div><h2>{ __( 'Timer End Date & Time', 'ultimate-addons-for-gutenberg' ) }</h2></div>
-                    <DateTimePicker
+			{ timerType && 
+				<div className='uagb-countdown__datetime-picker'>
+					<div><h2>{ __( 'Timer End Date & Time', 'ultimate-addons-for-gutenberg' ) }</h2></div>
+					<DateTimePicker
 						className="uagb-date-picker"
 						currentDate={ displayEndDateTime }
 						onChange={ ( value ) => {
 
 								// Make sure the time is set in UTC, so that we can easily remove the timezone offset from WP Settings.
-                                const UTCValue = value + 'Z';
+								const UTCValue = value + 'Z';
 								const d = new Date( UTCValue );
 
 								// Remove the timezone offset received from WP Settings.
 								d.setMilliseconds( d.getMilliseconds() - ( timezone.offset * 60 * 60 * 1000 ) );
 
-                                setAttributes( { 
+								setAttributes( { 
 									endDateTime: d,
 									displayEndDateTime: value,
 								} )
-                            }
+							}
 						}
 						is12Hour={ true }
 						__nextRemoveResetButton={ true }
 						__nextRemoveHelpButton={ true }
 					/>
-                </div>
-            }
+				</div>
+			}
 			<Separator />
 			<ToggleControl
 				label={ __( 'Show Days', 'ultimate-addons-for-gutenberg' ) }
@@ -420,8 +420,8 @@ export default function Settings( props ) {
 					}
 				/>
 			}
-        </UAGAdvancedPanelBody>
-    );
+		</UAGAdvancedPanelBody>
+	);
 
 	// <------------------ PRESETS TAB ------------------>
 	const presetsPanel = (
@@ -437,20 +437,20 @@ export default function Settings( props ) {
 		</UAGAdvancedPanelBody>
 	);
 
-    const labelGeneralPanel = (
-        <UAGAdvancedPanelBody
+	const labelGeneralPanel = (
+		<UAGAdvancedPanelBody
 			title={ __( 'Labels', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
-            <ToggleControl
-                label={ __( 'Show Labels', 'ultimate-addons-for-gutenberg' ) }
-                checked={ showLabels }
-                onChange={ () =>
-                    setAttributes( { showLabels: ! showLabels } )
-                }
-            />
-            { showLabels &&
-                <>
+			<ToggleControl
+				label={ __( 'Show Labels', 'ultimate-addons-for-gutenberg' ) }
+				checked={ showLabels }
+				onChange={ () =>
+					setAttributes( { showLabels: ! showLabels } )
+				}
+			/>
+			{ showLabels &&
+				<>
 				{ showDays &&
 					<UAGTextControl
 						label={ __( 'Days', 'ultimate-addons-for-gutenberg' ) }
@@ -487,75 +487,75 @@ export default function Settings( props ) {
 						setAttributes={ setAttributes }
 					/>
 				}
-                    <UAGTextControl
-                        label={ __( 'Seconds', 'ultimate-addons-for-gutenberg' ) }
-                        variant='full-width'
-                        value={ labelSeconds }
-                        data={{
-                            value: labelSeconds,
-                            label: 'labelSeconds',
-                        }}
-                        setAttributes={ setAttributes }
-                    />
-                </>
-            }
-        </UAGAdvancedPanelBody>
-    );
+					<UAGTextControl
+						label={ __( 'Seconds', 'ultimate-addons-for-gutenberg' ) }
+						variant='full-width'
+						value={ labelSeconds }
+						data={{
+							value: labelSeconds,
+							label: 'labelSeconds',
+						}}
+						setAttributes={ setAttributes }
+					/>
+				</>
+			}
+		</UAGAdvancedPanelBody>
+	);
 
-    const separatorGeneralPanel = (
-        <UAGAdvancedPanelBody
+	const separatorGeneralPanel = (
+		<UAGAdvancedPanelBody
 			title={ __( 'Separator', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
-            <ToggleControl
-                label={ __( 'Show Separator', 'ultimate-addons-for-gutenberg' ) }
-                checked={ showSeparator }
-                onChange={ () =>
-                    setAttributes( { showSeparator: ! showSeparator } )
-                }
-            />
-            { showSeparator && 
-                <>
-                    <MultiButtonsControl
-                        setAttributes={ setAttributes }
-                        label={ __( 'Separator Type', 'ultimate-addons-for-gutenberg' ) }
-                        data={ {
-                            value: separatorType,
-                            label: 'separatorType',
-                        } }
-                        options={ [
-                            {
-                                value: ':',
-                                label: __( 'Colon', 'ultimate-addons-for-gutenberg' ),
-                            },
-                            {
-                                value: '|',
-                                label: __( 'Line', 'ultimate-addons-for-gutenberg' ),
-                            },
+			<ToggleControl
+				label={ __( 'Show Separator', 'ultimate-addons-for-gutenberg' ) }
+				checked={ showSeparator }
+				onChange={ () =>
+					setAttributes( { showSeparator: ! showSeparator } )
+				}
+			/>
+			{ showSeparator && 
+				<>
+					<MultiButtonsControl
+						setAttributes={ setAttributes }
+						label={ __( 'Separator Type', 'ultimate-addons-for-gutenberg' ) }
+						data={ {
+							value: separatorType,
+							label: 'separatorType',
+						} }
+						options={ [
 							{
-                                value: '/',
-                                label: __( 'Slash', 'ultimate-addons-for-gutenberg' ),
-                            },
-                        ] }
-                    />
-                </>
-            }
-        </UAGAdvancedPanelBody>
-    );
+								value: ':',
+								label: __( 'Colon', 'ultimate-addons-for-gutenberg' ),
+							},
+							{
+								value: '|',
+								label: __( 'Line', 'ultimate-addons-for-gutenberg' ),
+							},
+							{
+								value: '/',
+								label: __( 'Slash', 'ultimate-addons-for-gutenberg' ),
+							},
+						] }
+					/>
+				</>
+			}
+		</UAGAdvancedPanelBody>
+	);
 
-    // <------------------ STYLE TAB ------------------>
+	// <------------------ STYLE TAB ------------------>
 	const boxStylePanel = (
 		<UAGAdvancedPanelBody
 			title={ __( 'Box', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ true }
 		>
 			<ToggleControl
-                label={ __( 'Square Shaped Box', 'ultimate-addons-for-gutenberg' ) }
-                checked={ isSquareBox }
-                onChange={ () =>
-                    setAttributes( { isSquareBox: ! isSquareBox } )
-                }
-            />
+				label={ __( 'Square Shaped Box', 'ultimate-addons-for-gutenberg' ) }
+				checked={ isSquareBox }
+				onChange={ () =>
+					setAttributes( { isSquareBox: ! isSquareBox } )
+				}
+			/>
 			<MultiButtonsControl
 				setAttributes={ setAttributes }
 				label={ __(
@@ -867,26 +867,26 @@ export default function Settings( props ) {
 		</UAGAdvancedPanelBody>
 	);
 
-    const digitStylePanel = (
-        <UAGAdvancedPanelBody
+	const digitStylePanel = (
+		<UAGAdvancedPanelBody
 			title={ __( 'Digit', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
-            <AdvancedPopColorControl
-                label={ __(
-                    'Color',
-                    'ultimate-addons-for-gutenberg'
-                ) }
-                colorValue={
-                    digitColor ? digitColor : ''
-                }
-                data={ {
-                    value: digitColor,
-                    label: 'digitColor',
-                } }
-                setAttributes={ setAttributes }
-            />
-            <TypographyControl
+			<AdvancedPopColorControl
+				label={ __(
+					'Color',
+					'ultimate-addons-for-gutenberg'
+				) }
+				colorValue={
+					digitColor ? digitColor : ''
+				}
+				data={ {
+					value: digitColor,
+					label: 'digitColor',
+				} }
+				setAttributes={ setAttributes }
+			/>
+			<TypographyControl
 				label={ __(
 					'Typography',
 					'ultimate-addons-for-gutenberg'
@@ -962,29 +962,29 @@ export default function Settings( props ) {
 					label: 'digitLetterSpacingTablet',
 				} }
 			/>
-        </UAGAdvancedPanelBody>
-    );
+		</UAGAdvancedPanelBody>
+	);
 
-    const labelStylePanel = (
-        <UAGAdvancedPanelBody
+	const labelStylePanel = (
+		<UAGAdvancedPanelBody
 			title={ __( 'Label', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
-            <AdvancedPopColorControl
-                label={ __(
-                    'Color',
-                    'ultimate-addons-for-gutenberg'
-                ) }
-                colorValue={
-                    labelColor ? labelColor : ''
-                }
-                data={ {
-                    value: labelColor,
-                    label: 'labelColor',
-                } }
-                setAttributes={ setAttributes }
-            />
-            <TypographyControl
+			<AdvancedPopColorControl
+				label={ __(
+					'Color',
+					'ultimate-addons-for-gutenberg'
+				) }
+				colorValue={
+					labelColor ? labelColor : ''
+				}
+				data={ {
+					value: labelColor,
+					label: 'labelColor',
+				} }
+				setAttributes={ setAttributes }
+			/>
+			<TypographyControl
 				label={ __(
 					'Typography',
 					'ultimate-addons-for-gutenberg'
@@ -1063,8 +1063,8 @@ export default function Settings( props ) {
 					label: 'labelLetterSpacingTablet',
 				} }
 			/>
-        </UAGAdvancedPanelBody>
-    );
+		</UAGAdvancedPanelBody>
+	);
 
 	const separatorStylePanel = (
 		<UAGAdvancedPanelBody
@@ -1322,7 +1322,7 @@ export default function Settings( props ) {
 	);
 
 	const spacingStylePanel = (
-        <UAGAdvancedPanelBody
+		<UAGAdvancedPanelBody
 			title={ __( 'Spacing', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
@@ -1472,23 +1472,23 @@ export default function Settings( props ) {
 					label: 'blockMarginLink',
 				} }
 			/>
-        </UAGAdvancedPanelBody>
-    );
+		</UAGAdvancedPanelBody>
+	);
 
-    return (
-        <>
-            <InspectorControls>
+	return (
+		<>
+			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
 						{ presetsPanel }
-                        { generalPanel }
-                        { labelGeneralPanel }
-                        { separatorGeneralPanel }
+						{ generalPanel }
+						{ labelGeneralPanel }
+						{ separatorGeneralPanel }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
 						{ boxStylePanel }
-                        { digitStylePanel }
-                        { showLabels && labelStylePanel }
+						{ digitStylePanel }
+						{ showLabels && labelStylePanel }
 						{ showSeparator && separatorStylePanel }
 						{ boxShadowSettings }
 						{ spacingStylePanel }
@@ -1503,6 +1503,6 @@ export default function Settings( props ) {
 			{ loadDigitGoogleFonts }
 			{ loadLabelGoogleFonts }
 			{ loadSeparatorGoogleFonts }
-        </>
-    );
+		</>
+	);
 };
