@@ -9,8 +9,6 @@
 
 $selector = '.uagb-block-' . $id;
 
-$block_name = 'countdown';
-
 $countdown_options = apply_filters(
 	'uagb_countdown_options',
 	array(
