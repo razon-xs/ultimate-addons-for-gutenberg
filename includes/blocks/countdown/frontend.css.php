@@ -9,8 +9,6 @@
 
 UAGB_Block_JS::blocks_countdown_gfont( $attr );
 
-$block_name = 'countdown';
-
 $is_rtl = is_rtl();
 
 $child_selector_type          = $is_rtl ? 'first' : 'last';

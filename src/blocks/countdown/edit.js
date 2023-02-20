@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from '@wordpress/element';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import styling from './styling';
 import Settings from './settings';
@@ -11,9 +11,9 @@ import './style.scss';
 
 const UAGBCountdownEdit = ( props ) => {
 
-	const { setAttributes } = props;
+	const { attributes, setAttributes } = props;
 
-    const [ timeChanged, setTimeChanged ] = useState( 0 );
+	const [ timeChanged, setTimeChanged ] = useState( 0 );
 
 	useEffect( () => {
 
@@ -66,13 +66,13 @@ const UAGBCountdownEdit = ( props ) => {
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
 
-        addBlockEditorDynamicStyles( 'uagb-countdown-style-' + props.clientId.substr( 0, 8 ), blockStyling );
-	}, [ props ] );
+		addBlockEditorDynamicStyles( 'uagb-countdown-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+	}, [ attributes ] );
 
 	useEffect( () => {
 		if( props.attributes.block_id && timeChanged === 1 ) {
-		    UAGBCountdown.changeEndTime( '.uagb-block-' + props.attributes.block_id, props.attributes, countdownRef.current ) // eslint-disable-line no-undef
-        }
+			UAGBCountdown.changeEndTime( '.uagb-block-' + props.attributes.block_id, props.attributes, countdownRef.current ) // eslint-disable-line no-undef
+		}
 		setTimeChanged( 1 );
 	}, [
 		props.attributes.endDateTime,
