@@ -20,16 +20,16 @@ const Render = ( props ) => {
 	props = props.parentProps;
 
 	const deviceType = useDeviceType();
-	const { attributes } = props;
-
 	const {
-		block_id,
-		showLabels,
-		labelDays,
-		labelHours,
-		labelMinutes,
-		labelSeconds,
-	} = attributes;
+		attributes: {
+			block_id,
+			showLabels,
+			labelDays,
+			labelHours,
+			labelMinutes,
+			labelSeconds,
+		}
+	} = props;
 
 	return(
 		<div

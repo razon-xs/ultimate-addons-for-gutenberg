@@ -4,16 +4,16 @@ import CountdownBox from './components/CountdownBox';
 
 export default function Save( props ) {
 
-	const { attributes } = props;
-
 	const {
-		block_id,
-		showLabels,
-		labelDays,
-		labelHours,
-		labelMinutes,
-		labelSeconds,
-	} = attributes;
+		attributes: {
+			block_id,
+			showLabels,
+			labelDays,
+			labelHours,
+			labelMinutes,
+			labelSeconds,			
+		},
+	} = props;
 
 	return(
 		<div
