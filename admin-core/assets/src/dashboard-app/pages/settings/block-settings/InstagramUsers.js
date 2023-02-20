@@ -180,7 +180,7 @@ const InstagramUsers = () => {
 		handleInstaLinkUserLable( 'saving' );
 		window.fetch( checkUser ).then( ( response ) => {
 			if ( ! response.ok ) {
-				throw new Exception();
+				throw Error();
 			}
 			return response.json();
 		 } ).then( ( data ) => {
