@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import { useBlockProps } from '@wordpress/block-editor';
 
 import CountdownBox from './components/CountdownBox';
 
@@ -15,18 +16,24 @@ export default function Save( props ) {
 		},
 	} = props;
 
+	const blockProps = useBlockProps.save();
+
 	return(
 		<div
-			className={ classnames(
-				props.className,
-				`uagb-block-${ block_id }`,
-				'wp-block-uagb-countdown',
-			) }
+			{ ...blockProps }
 		>
-			<CountdownBox unitType='days' showLabels={ showLabels } label={ labelDays } />
-			<CountdownBox unitType='hours' showLabels={ showLabels } label={ labelHours } />
-			<CountdownBox unitType='minutes' showLabels={ showLabels } label={ labelMinutes } />
-			<CountdownBox unitType='seconds' showLabels={ showLabels } label={ labelSeconds } />
+			<div
+				className={ classnames(
+					props.className,
+					`uagb-block-${ block_id }`,
+					'wp-block-uagb-countdown',
+				) }
+			>
+				<CountdownBox unitType='days' showLabels={ showLabels } label={ labelDays } />
+				<CountdownBox unitType='hours' showLabels={ showLabels } label={ labelHours } />
+				<CountdownBox unitType='minutes' showLabels={ showLabels } label={ labelMinutes } />
+				<CountdownBox unitType='seconds' showLabels={ showLabels } label={ labelSeconds } />
+			</div>
 		</div>
 	);
 };
