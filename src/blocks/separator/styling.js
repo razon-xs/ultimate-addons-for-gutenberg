@@ -100,18 +100,15 @@ function styling( props ) {
 				'-webkit-mask-size': `${generateCSSUnit( separatorSizeFallback, separatorSizeType )} 100%`, 
 				...borderCSS
 			},
-			'.wp-block-uagb-separator .wp-block-uagb-separator__border': {
-                 'display': 'none',
-			}
 		}
 	} else {
 		let alignCSS = {}
-		if ( separatorAlign === 'left' ) {
+		if ( separatorAlign === '-webkit-left' ) {
 			alignCSS = {
 				'margin-left': 0
 			}
 		}
-		if ( separatorAlign === 'right' ) {
+		if ( separatorAlign === '-webkit-right' ) {
 			alignCSS = {
 				'margin-right': 0
 			}
@@ -120,6 +117,7 @@ function styling( props ) {
 			'.wp-block-uagb-separator .wp-block-uagb-separator__after': {
 				'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
 				'-webkit-mask-size': `${generateCSSUnit( separatorSize, separatorSizeType )} 100%`,
+				'textAlign': 'separatorAlign',
 				...alignCSS
 			},
 			'.wp-block-uagb-separator .wp-block-uagb-separator__border': {
@@ -243,13 +241,13 @@ function styling( props ) {
 			'padding-top': generateCSSUnit( separatorPaddingTopTablet, separatorTabletPaddingUnit ),
 			'padding-left': generateCSSUnit( separatorPaddingLeftTablet, separatorTabletPaddingUnit ),
 			'padding-right': generateCSSUnit( separatorPaddingRightTablet, separatorTabletPaddingUnit ),
+			'width': generateCSSUnit( separatorWidthFallbackTablet, separatorWidthType ),
 			'text-align': separatorAlignTablet
 		},
 		'.wp-block-uagb-separator .wp-block-uagb-separator__after': {
 			'width': generateCSSUnit( separatorWidthFallbackTablet, separatorWidthType ),
 			'-webkit-mask-size': `${generateCSSUnit( separatorSizeFallbackTablet, separatorSizeType )} 100%`,
 		},
-		...borderStyle,
 		...borderStyleTablet,
 		...iconSpacingStyleTablet,
 		'.wp-block-uagb-separator--text .wp-block-uagb-separator-element': {
@@ -311,13 +309,13 @@ function styling( props ) {
 			'padding-top': generateCSSUnit( separatorPaddingTopMobile, separatorMobilePaddingUnit ),
 			'padding-left': generateCSSUnit( separatorPaddingLeftMobile, separatorMobilePaddingUnit ),
 			'padding-right': generateCSSUnit( separatorPaddingRightMobile, separatorMobilePaddingUnit ),
+			'width': generateCSSUnit( separatorWidthFallbackTablet, separatorWidthType ),
 			'text-align': separatorAlignMobile
 		},
 		'.wp-block-uagb-separator .wp-block-uagb-separator__after': {
 			'width': generateCSSUnit( separatorWidthFallbackMobile, separatorWidthType ),
 			'-webkit-mask-size': `${generateCSSUnit( separatorSizeFallbackMobile, separatorSizeType )} 100%`,
 		},
-		...borderStyle,
 		...borderStyleMobile,
 		...iconSpacingStyleMobile,
 		'.wp-block-uagb-separator--text .wp-block-uagb-separator-element': {

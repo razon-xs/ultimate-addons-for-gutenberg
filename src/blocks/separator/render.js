@@ -32,7 +32,7 @@ const Render = ( props ) => {
 	const CustomTag = `${ separatorTextTag }`;
 	const weight = `${ separatorWeight }`;
 	const customSVG = renderCustomSVG( separatorStyle, weight );
-	
+
 	const separatorDiv = () => (
 		<>
 			<div className="wp-block-uagb-separator__after uagb-separator-left"
@@ -70,7 +70,7 @@ const Render = ( props ) => {
 			<div
 				className='wp-block-uagb-separator__border' 
 			>
-				{ elementType !== 'none' ?  separatorDiv(): <div className="wp-block-uagb-separator__after" style={ {
+				{ elementType !== 'none' ?  separatorDiv(): <div className="wp-block-uagb-separator__after uagb-separator-left" style={ {
 				'--my-background-image': `${ customSVG }`,
 			} }></div> }    
 			</div>
