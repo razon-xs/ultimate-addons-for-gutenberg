@@ -1,38 +1,38 @@
-// /**
-//  * #.# Styles
-//  *
-//  * CSS for both Frontend+Backend.
-//  */
- 
-.wp-block-uagb-separator__border {
-    display: flex;
-    grid-gap: 15px;
-    align-items: center;
-    width: 100%;
+.wp-block-uagb-separator {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+  line-height: 0;
+  &__border {
+  display: flex;
+  }
+  .wp-block-uagb-separator__after {
+    border-top-color: #333;
+    border-top-style: solid;
+    border-top-width: 4px;
+  }
+  &--text,
+  &--icon {
     .wp-block-uagb-separator__after {
-      width: 100%;
-      border-top-color: #333;
-	  border-top-style: solid;
-	  border-top-width: 1px;
+      display: flex;
       -webkit-mask: var(--my-background-image);
       -webkit-mask-repeat: repeat-x;
-      -webkit-mask-size: 38px 100%;
     }
+  }
+
+  &--icon {
     .wp-block-uagb-separator-element {
-      text-align: center;
+      align-items: center;
       svg {
-        	font-size: 30px;
-        	color: #333;
-        	fill: #333;
-         }
+       font-size: 30px;
+       color: #333;
+       fill: #333;
+       width: 30px;
+       height: 30px;
+      }
+  
     }
+
+  }
+          
 }
-
-            
-
-
-
-
-            
-
-

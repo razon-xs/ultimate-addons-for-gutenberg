@@ -99,6 +99,9 @@ function styling( props ) {
 				'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
 				'-webkit-mask-size': `${generateCSSUnit( separatorSizeFallback, separatorSizeType )} 100%`, 
 				...borderCSS
+			},
+			'.wp-block-uagb-separator .wp-block-uagb-separator__border': {
+                 'display': 'none',
 			}
 		}
 	} else {
@@ -122,6 +125,7 @@ function styling( props ) {
 			'.wp-block-uagb-separator .wp-block-uagb-separator__border': {
 				'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
 				'-webkit-mask-size': `${generateCSSUnit( separatorSize, separatorSizeType )} 100%`,
+				'text-align': separatorAlign,
 				...alignCSS
 			},
 			'.wp-block-uagb-separator--text .wp-block-uagb-separator__after': borderCSS,

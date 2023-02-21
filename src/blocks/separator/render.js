@@ -32,7 +32,7 @@ const Render = ( props ) => {
 	const CustomTag = `${ separatorTextTag }`;
 	const weight = `${ separatorWeight }`;
 	const customSVG = renderCustomSVG( separatorStyle, weight );
-
+	
 	const separatorDiv = () => (
 		<>
 			<div className="wp-block-uagb-separator__after uagb-separator-left"
