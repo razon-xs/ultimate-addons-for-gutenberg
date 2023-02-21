@@ -164,13 +164,14 @@ const ModalContainer = ( props ) => {
 				</div>
 			);
 		}
-
+		console.log('iconContainerWidth',iconContainerWidth);
 		let applyWidth = iconContainerWidth;
 		let heightAndWidth = iconContainerWidth / iconList[ 0 ].length;
 		if( NUMBER_OF_COLUMN !== iconList[ 0 ].length ){
 			heightAndWidth = 100;
 			applyWidth = iconContainerWidth + 50;
 		}
+		console.log('applyWidth',applyWidth);
 
 		return (
 			<div className="uagb-ip-icons">
