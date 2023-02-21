@@ -7,6 +7,8 @@
  * @package uagb
  */
 
+// Adds Fonts.
+UAGB_Block_JS::blocks_test_price_card_gfont( $attr );
 $selectors = array(
 	' .uagb-block-price-card-title' => array(
 		'color'           => $attr['titleColor'],

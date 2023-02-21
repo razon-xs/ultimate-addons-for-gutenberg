@@ -42,7 +42,7 @@ function styling( props ) {
             'color': desColor,
 		},
 	};
-	const Mobselectors = {
+	const mobselectors = {
 		' .uagb-block-price-card-title': {
 			'color': titleColor,
 			'font-family': headFontFamily,
@@ -64,7 +64,7 @@ function styling( props ) {
             'color': desColor,
 		},
 	};
-	const Tabselectors = {
+	const tabselectors = {
 		' .uagb-block-price-card-title': {
 			'color': titleColor,
 			'font-family': headFontFamily,
@@ -91,14 +91,14 @@ function styling( props ) {
 	const id = `.uagb-block-${ props.clientId.substr( 0, 8 ) }`;
 	stylingCss = generateCSS( selectors, id );
 	stylingCss += generateCSS(
-		Tabselectors,
+		tabselectors,
 		`${ id }.uagb-editor-preview-mode-tablet`,
 		true,
 		'tablet'
 	);
 
 	stylingCss += generateCSS(
-		Mobselectors,
+		mobselectors,
 		`${ id }.uagb-editor-preview-mode-mobile`,
 		true,
 		'mobile'

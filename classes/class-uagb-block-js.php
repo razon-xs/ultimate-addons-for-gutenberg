@@ -35,6 +35,20 @@ if ( ! class_exists( 'UAGB_Block_JS' ) ) {
 			UAGB_Helper::blocks_google_font( $head_load_google_font, $head_font_family, $head_font_weight );
 			UAGB_Helper::blocks_google_font( $subhead_load_google_font, $subhead_font_family, $subhead_font_weight );
 		}
+		/**
+		 * Adds Google fonts for test-price-card block.
+		 *
+		 * @since x.x.x
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_test_price_card_gfont( $attr ) {
+
+			$head_load_google_font = isset( $attr['headLoadGoogleFonts'] ) ? $attr['headLoadGoogleFonts'] : '';
+			$head_font_family      = isset( $attr['headFontFamily'] ) ? $attr['headFontFamily'] : '';
+			$head_font_weight      = isset( $attr['headFontWeight'] ) ? $attr['headFontWeight'] : '';
+
+			UAGB_Helper::blocks_google_font( $head_load_google_font, $head_font_family, $head_font_weight );
+		}
 
 		/**
 		 * Adds Google fonts for How To block.
