@@ -13,7 +13,20 @@ import './style.scss';
 
 const UAGBCountdownEdit = ( props ) => {
 
-	const { attributes, setAttributes } = props;
+	const {
+		attributes,
+		attributes: {
+			timeModified,
+			endDateTime,
+			showDays,
+			showHours,
+			showMinutes,
+			UAGHideDesktop,
+			UAGHideTab,
+			UAGHideMob,
+		},
+		setAttributes
+	} = props;
 
 	const [ timeChanged, setTimeChanged ] = useState( 0 );
 
@@ -23,7 +36,7 @@ const UAGBCountdownEdit = ( props ) => {
 
 		// Dynamically set default value to Jan 1 of next year (UTC),
 		// on drag and drop of a new instance of the block. 
-		if( ! props.attributes.timeModified ) {  // check if time has been modified dynamically using the flag attribute.
+		if( ! timeModified ) {  // check if time has been modified dynamically using the flag attribute.
 
 			// Get WordPress' timezone offset from settings.
 			const { timezone } = getDateSettings();
@@ -76,10 +89,10 @@ const UAGBCountdownEdit = ( props ) => {
 		}
 		setTimeChanged( 1 );
 	}, [
-		props.attributes.endDateTime,
-		props.attributes.showDays,
-		props.attributes.showHours,
-		props.attributes.showMinutes,
+		endDateTime,
+		showDays,
+		showHours,
+		showMinutes,
 	] )
 
 	useEffect( () => {
@@ -87,9 +100,9 @@ const UAGBCountdownEdit = ( props ) => {
 		responsiveConditionPreview( props );
 
 	}, [
-		props.attributes.UAGHideDesktop,
-		props.attributes.UAGHideTab,
-		props.attributes.UAGHideMob,
+		UAGHideDesktop,
+		UAGHideTab,
+		UAGHideMob,
 		deviceType
 	] );
 
