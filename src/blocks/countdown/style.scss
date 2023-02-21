@@ -60,6 +60,13 @@ html:not([dir="rtl"]) {
 					right: 0;
 				}
 			}
+
+			// Hide the separator for seconds (especially when innerblocks are present).
+			&.wp-block-uagb-countdown__box-seconds {
+				.wp-block-uagb-countdown__time-seconds::after {
+					display: none;
+				}
+			}
 		}
 	}
 }
