@@ -45,15 +45,12 @@ const UAGBIcon = ( props ) => {
 		responsiveConditionPreview( props );
 	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/icon.svg`;
 
 	return (
-		attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-			<>
-				{ isSelected && <Settings { ...props } /> }
-				<Render { ...props } />
-			</>
-		)
+		<>
+			{ isSelected && <Settings { ...props } /> }
+			<Render { ...props } />
+		</>
 	);
 };
 
