@@ -11,7 +11,6 @@ function styling( props ) {
 	const blockName = props.name.replace( 'uagb/', '' );
 
 	const {
-		separatorStyle,
 		separatorAlign,
 		separatorAlignTablet,
 		separatorAlignMobile,
@@ -88,8 +87,7 @@ function styling( props ) {
 	const borderCSS = {
 		'border-top-width': generateCSSUnit( separatorHeightFallback, separatorHeightUnit ),
 		'border-top-color': separatorColor,
-		'border-top-style': separatorStyle,
-		'text-align': separatorAlign,
+		
 	}
 	let borderStyle = {}
 	const iconSpacingStyle  = {}
@@ -117,13 +115,11 @@ function styling( props ) {
 			'.wp-block-uagb-separator .wp-block-uagb-separator__after': {
 				'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
 				'-webkit-mask-size': `${generateCSSUnit( separatorSize, separatorSizeType )} 100%`,
-				'textAlign': 'separatorAlign',
 				...alignCSS
 			},
 			'.wp-block-uagb-separator .wp-block-uagb-separator__border': {
 				'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
 				'-webkit-mask-size': `${generateCSSUnit( separatorSize, separatorSizeType )} 100%`,
-				'text-align': separatorAlign,
 				...alignCSS
 			},
 			'.wp-block-uagb-separator--text .wp-block-uagb-separator__after': borderCSS,
@@ -192,7 +188,18 @@ function styling( props ) {
 		}
 	}
 
-	const borderStyleTablet = {}
+	const borderStyleTablet = {
+		'.wp-block-uagb-separator .wp-block-uagb-separator__after': {
+			'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
+			'-webkit-mask-size': `${generateCSSUnit( separatorSize, separatorSizeType )} 100%`,
+		},
+		'.wp-block-uagb-separator .wp-block-uagb-separator__border': {
+			'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
+			'-webkit-mask-size': `${generateCSSUnit( separatorSize, separatorSizeType )} 100%`,
+		},
+		'.wp-block-uagb-separator--text .wp-block-uagb-separator__after': borderCSS,
+		'.wp-block-uagb-separator--icon .wp-block-uagb-separator__after': borderCSS,
+	}
 	const iconSpacingStyleTablet = {}
 	if ( elementType !== 'none' ) {
 		if ( elementPositionTablet === 'left' ) {
@@ -264,7 +271,18 @@ function styling( props ) {
 		}
 	};
 
-	const borderStyleMobile = {}
+	const borderStyleMobile = {
+		'.wp-block-uagb-separator .wp-block-uagb-separator__after': {
+			'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
+			'-webkit-mask-size': `${generateCSSUnit( separatorSizeFallbackMobile, separatorSizeType )} 100%`,
+		},
+		'.wp-block-uagb-separator .wp-block-uagb-separator__border': {
+			'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
+			'-webkit-mask-size': `${generateCSSUnit( separatorSizeFallbackMobile, separatorSizeType )} 100%`,
+		},
+		'.wp-block-uagb-separator--text .wp-block-uagb-separator__after': borderCSS,
+		'.wp-block-uagb-separator--icon .wp-block-uagb-separator__after': borderCSS,
+	}
 	const iconSpacingStyleMobile = {}
 	if ( elementType !== 'none' ) {
 		if ( elementPositionMobile === 'left' ) {
@@ -309,12 +327,8 @@ function styling( props ) {
 			'padding-top': generateCSSUnit( separatorPaddingTopMobile, separatorMobilePaddingUnit ),
 			'padding-left': generateCSSUnit( separatorPaddingLeftMobile, separatorMobilePaddingUnit ),
 			'padding-right': generateCSSUnit( separatorPaddingRightMobile, separatorMobilePaddingUnit ),
-			'width': generateCSSUnit( separatorWidthFallbackTablet, separatorWidthType ),
-			'text-align': separatorAlignMobile
-		},
-		'.wp-block-uagb-separator .wp-block-uagb-separator__after': {
 			'width': generateCSSUnit( separatorWidthFallbackMobile, separatorWidthType ),
-			'-webkit-mask-size': `${generateCSSUnit( separatorSizeFallbackMobile, separatorSizeType )} 100%`,
+			'text-align': separatorAlignMobile
 		},
 		...borderStyleMobile,
 		...iconSpacingStyleMobile,
