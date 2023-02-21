@@ -11,8 +11,9 @@ import HeaderContainer from './header-container';
 const ModalContainer = ( props ) => {
 	const { value, onChange, closeModal, defaultIcons, iconCateList } = props;
 	const defaultIconsWithKeys = { ...uagb_blocks_info.uagb_svg_icons };
+	const NUMBER_OF_COLUMN = 8;
 
-	const setIconListWithChunks = ( icons ) => chunk( icons, 8 );
+	const setIconListWithChunks = ( icons ) => chunk( icons, NUMBER_OF_COLUMN );
 
 	const [ searchIconInputValue, setSearchIconInputValue ] = useState( '' );
 	const [ iconList, setIconList ] = useState(
@@ -146,7 +147,7 @@ const ModalContainer = ( props ) => {
 				? defaultIconsWithKeys[ currentIcon ].label
 				: '';
 			return (
-				<div key={ key } style={ style } icon-slug={ currentIcon }>
+				<div key={ key } style={ style }>
 					<div
 						className={ iconClass }
 						onClick={ () => {
@@ -163,10 +164,13 @@ const ModalContainer = ( props ) => {
 				</div>
 			);
 		}
-		const heightAndWidth =
-			iconList[ 0 ].length === 8
-				? iconContainerWidth / iconList[ 0 ].length
-				: 100;
+
+		let applyWidth = iconContainerWidth;
+		let heightAndWidth = iconContainerWidth / iconList[ 0 ].length;
+		if( NUMBER_OF_COLUMN !== iconList[ 0 ].length ){
+			heightAndWidth = 100;
+			applyWidth = iconContainerWidth + 10;
+		}
 
 		return (
 			<div className="uagb-ip-icons">
@@ -177,7 +181,7 @@ const ModalContainer = ( props ) => {
 					height={ iconContainerHeight }
 					rowCount={ iconList.length }
 					rowHeight={ heightAndWidth }
-					width={ iconContainerWidth }
+					width={ applyWidth }
 					scrollToRow={ rowIndexForFirstTime }
 				/>
 			</div>
