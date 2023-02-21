@@ -63,6 +63,8 @@ html:not([dir="rtl"]) {
 
 			// Hide the separator for seconds (especially when innerblocks are present).
 			&.wp-block-uagb-countdown__box-seconds {
+				margin-right: unset;
+
 				.wp-block-uagb-countdown__time-seconds::after {
 					display: none;
 				}
