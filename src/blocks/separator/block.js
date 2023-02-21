@@ -25,6 +25,6 @@ registerBlockType( 'uagb/separator', {
 	example: {
 		attributes: {
 			isPreview: true,
-		}
+		},
 	},
 } );

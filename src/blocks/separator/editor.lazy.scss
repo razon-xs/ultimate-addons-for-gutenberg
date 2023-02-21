@@ -2,16 +2,18 @@
 	padding-top: 30px;
 	padding-bottom: 30px;
 	line-height: 0;
+
 	&__border {
 		display: flex;
 		align-items: center;
 	}
+
 	.wp-block-uagb-separator__after {
 		width: 100%;
 		border-top-color: #333;
 		border-top-style: solid;
 		border-top-width: 1px;
-		-webkit-mask: var( --my-background-image );
+		-webkit-mask: var(--my-background-image);
 		-webkit-mask-repeat: repeat-x;
 		-webkit-mask-size: 38px 100%;
 	}

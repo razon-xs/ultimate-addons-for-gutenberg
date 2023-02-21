@@ -3,19 +3,22 @@
 	padding-bottom: 30px;
 	text-align: center;
 	line-height: 0;
+
 	&__border {
 		display: flex;
 	}
+
 	.wp-block-uagb-separator__after {
 		border-top-color: #333;
 		border-top-style: solid;
 		border-top-width: 4px;
 	}
+
 	&--text,
 	&--icon {
 		.wp-block-uagb-separator__after {
 			display: flex;
-			-webkit-mask: var( --my-background-image );
+			-webkit-mask: var(--my-background-image);
 			-webkit-mask-repeat: repeat-x;
 		}
 	}
@@ -23,6 +26,7 @@
 	&--icon {
 		.wp-block-uagb-separator-element {
 			align-items: center;
+
 			svg {
 				font-size: 30px;
 				color: #333;
@@ -33,4 +37,3 @@
 		}
 	}
 }
-
