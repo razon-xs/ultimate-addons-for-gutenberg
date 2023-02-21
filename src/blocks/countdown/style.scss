@@ -61,15 +61,19 @@ html:not([dir="rtl"]) {
 				}
 			}
 
-			// Hide the separator for seconds (especially when innerblocks are present).
 			&.wp-block-uagb-countdown__box-seconds {
-				margin-right: unset;
 
+				// So that the separator is not displayed after seconds when the Replace with Content feature is active.
 				.wp-block-uagb-countdown__time-seconds::after {
 					display: none;
 				}
 			}
 		}
+	}
+
+	// Remove margin for seconds (when innerblocks are present).
+	.wp-block-uagb-countdown > .wp-block-uagb-countdown__box.wp-block-uagb-countdown__box-seconds:not(:last-child) {
+		margin-right: unset;
 	}
 }
 
