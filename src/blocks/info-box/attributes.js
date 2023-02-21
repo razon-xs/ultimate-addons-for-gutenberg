@@ -76,10 +76,6 @@
 		type: 'string',
 		default: 'circle-check',
 	},
-	iconSvg: {
-		type: 'object',
-		default: {},
-	},
 	iconimgPosition: {
 		type: 'string',
 		default: 'above-title',

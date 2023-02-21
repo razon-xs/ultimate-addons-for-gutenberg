@@ -29,7 +29,6 @@ export default function save( props ) {
 		showTitle,
 		showDesc,
 		icon,
-		iconSvg,
 		seperatorPosition,
 	} = props.attributes;
 
@@ -38,8 +37,6 @@ export default function save( props ) {
 
 	if ( source_type === 'icon' && icon !== '' ) {
 		isImage = <Icon attributes={ props.attributes } />;
-	} else if ( source_type === 'svg' && iconSvg !== '' ) {
-		isImage = <div className='uagb-ifb-icon-wrap' dangerouslySetInnerHTML={ { __html:iconSvg.svg}}></div>;
 	} else {
 		isImage = <InfoBoxIconImage attributes={ props.attributes } />;
 	}

@@ -97,7 +97,6 @@ const Settings = ( props ) => {
 		subHeadLoadGoogleFonts,
 		separatorWidthType,
 		icon,
-		iconSvg,
 		iconColor,
 		iconSize,
 		iconSizeType,
@@ -323,11 +322,7 @@ const Settings = ( props ) => {
 			const new_img = getImageSize( media.sizes );
 			imageSizeOptions = new_img;
 		}
-		if( 'svg' === source_type ) {
-			setAttributes( { iconSvg: media } );
-		} else {
-			setAttributes( { iconImage: media } );
-		}
+		setAttributes( { iconImage: media } );
 
 	};
 
@@ -335,11 +330,7 @@ const Settings = ( props ) => {
 	 * Event to set Image as null while removing.
 	 */
 	const onRemoveImage = () => {
-		if( 'svg' === source_type ) {
-			setAttributes( { iconSvg: '' } );
-		} else {
-			setAttributes( { iconImage: '' } );
-		}
+		setAttributes( { iconImage: '' } );
 	};
 
 	if ( iconImage && iconImage.sizes ) {
@@ -577,13 +568,6 @@ const Settings = ( props ) => {
 							),
 						},
 						{
-							value: 'svg',
-							label: __(
-								'Custom SVG',
-								'ultimate-addons-for-gutenberg'
-							),
-						},
-						{
 							value: 'image',
 							label: __(
 								'Image',
@@ -605,18 +589,6 @@ const Settings = ( props ) => {
 							onChange={ ( value ) =>
 								setAttributes( { icon: value } )
 							}
-						/>
-					</>
-				) }
-				{ false !== showIcon && source_type === 'svg' && (
-					<>
-						<UAGMediaPicker
-							onSelectImage={ onSelectImage }
-							backgroundImage={ iconSvg }
-							onRemoveImage={ onRemoveImage }
-							label = { __( 'Custom SVG', 'ultimate-addons-for-gutenberg' ) }
-							allow = { 'image/svg+xml' }
-							slug= 'svg'
 						/>
 					</>
 				) }
@@ -1082,10 +1054,10 @@ const Settings = ( props ) => {
 	const styleSettings = () => {
 		return (
 			<>
-				{ ( ( false !== showIcon && source_type !== 'icon' && iconImage && iconImage.url !== 'null' && iconImage.url !== '' ) || ( false !== showIcon && ( source_type === 'icon' || source_type === 'svg' ) && '' !== icon ) ) && (
+				{ ( ( false !== showIcon && source_type !== 'icon' && iconImage && iconImage.url !== 'null' && iconImage.url !== '' ) || ( false !== showIcon && source_type === 'icon' && '' !== icon ) ) && (
 					<UAGAdvancedPanelBody title="Icon/Image" initialOpen={ true }>
 						<>
-							{ ( source_type === 'icon' || source_type === 'svg' ) && (
+							{ source_type === 'icon' && (
 								<>
 									<UAGSelectControl
 										label={ __(
