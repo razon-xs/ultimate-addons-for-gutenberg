@@ -75,9 +75,6 @@ class UAGB_Init_Blocks {
 		if ( current_user_can( 'edit_posts' ) ) {
 			add_action( 'wp_ajax_uagb_svg_confirmation', array( $this, 'confirm_svg_upload' ) );
 		}
-
-		// Needs this as we need to upload svg files for svg picker.
-		add_filter( 'upload_mimes', array( $this, 'custom_upload_mimes' ) ); // phpcs:ignore WordPressVIPMinimum.Hooks.RestrictedHooks.upload_mimes
 	}
 
 	/**
@@ -777,20 +774,6 @@ class UAGB_Init_Blocks {
 
 		update_option( 'spectra_svg_confirmation', 'yes' );
 		wp_send_json_success();
-	}
-
-	/**
-	 * Permits upload of svg files
-	 *
-	 * @param array $mimes allow mimes.
-	 * @return array
-	 * @since x.x.x
-	 */
-	public function custom_upload_mimes( $mimes ) {
-		// Allows svg files.
-		$mimes['svg'] = 'image/svg+xml';
-
-		return $mimes;
 	}
 }
 

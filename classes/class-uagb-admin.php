@@ -57,9 +57,6 @@ if ( ! class_exists( 'UAGB_Admin' ) ) {
 			add_action( 'admin_init', array( $this, 'update_old_user_option_by_url_params' ) );
 
 			add_action( 'admin_post_uag_rollback', array( $this, 'post_uagb_rollback' ) );
-
-			add_filter( 'wp_prepare_attachment_for_js', array( $this, 'prepare_attachment_for_js' ), 10, 1 );
-
 		}
 
 		/**
@@ -275,52 +272,6 @@ if ( ! class_exists( 'UAGB_Admin' ) ) {
 			$plugins['ultimate-addons-for-gutenberg/ultimate-addons-for-gutenberg.php'] = 'Spectra';
 			return $plugins;
 		}
-
-		/**
-		 * Adds svg content to attachment data for svg images
-		 *
-		 * @param array $attachment attachment data.
-		 * @return array
-		 * @since X.X.X
-		 */
-		public function prepare_attachment_for_js( $attachment ) {
-			if ( 'image/svg+xml' !== $attachment['mime'] ) {
-				return $attachment;
-			}
-
-			$attachment['svg'] = self::get_attachment_svg( $attachment['id'] );
-			return $attachment;
-		}
-
-		/**
-		 * Return content from uploaded file.
-		 *
-		 * @param integer $id attachment id.
-		 * @return string
-		 * @since X.X.X
-		 */
-		public static function get_attachment_svg( $id ) {
-			$svg = get_post_meta( $id, '_uagb_svg' );
-			if ( ! empty( $svg ) && is_string( $svg ) && '' !== trim( $svg ) ) {
-				return $svg;
-			}
-
-			$svg_path = get_attached_file( $id );
-
-			if ( false === $svg_path ) {
-				return false;
-			}
-
-			$svg = file_get_contents( $svg_path ); //phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents,WordPressVIPMinimum.Performance.FetchingRemoteData.FileGetContentsUnknown
-			if ( false === $svg || empty( trim( $svg ) ) ) {
-				return false;
-			}
-
-			update_post_meta( $id, '_uagb_svg', $svg );
-			return $svg;
-		}
-
-
 	}
 
 	UAGB_Admin::get_instance();

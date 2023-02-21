@@ -323,7 +323,6 @@ const Settings = ( props ) => {
 			imageSizeOptions = new_img;
 		}
 		setAttributes( { iconImage: media } );
-
 	};
 
 	/*
