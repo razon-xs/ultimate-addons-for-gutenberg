@@ -33,8 +33,6 @@ const Settings = ( props ) => {
 		separatorWidthType,
 		separatorColor,
 		separatorHeight,
-		separatorHeightTablet,
-		separatorHeightMobile,
 		separatorHeightUnit,
 		separatorSize,
 		separatorSizeMobile,
@@ -91,8 +89,6 @@ const Settings = ( props ) => {
 		elementIconWidthMobile,
 		elementIconWidthType,
 		separatorWeight,
-		separatorWeightMobile,
-		separatorWeightTablet,
 	} = attributes;
 
 	// Separator settings.
@@ -507,12 +503,12 @@ const Settings = ( props ) => {
 							label: 'separatorHeight',
 						},
 						tablet: {
-							value: separatorHeightTablet,
-							label: 'separatorHeightTablet',
+							value: separatorHeight,
+							label: 'separatorHeight',
 						},
 						mobile: {
-							value: separatorHeightMobile,
-							label: 'separatorHeightMobile',
+							value: separatorHeight,
+							label: 'separatorHeight',
 						},
 					} }
 					min={ 0 }
@@ -551,12 +547,12 @@ const Settings = ( props ) => {
 								label: 'separatorWeight',
 							},
 							tablet: {
-								value: separatorWeightTablet,
-								label: 'separatorWeightTablet',
+								value: separatorWeight,
+								label: 'separatorWeight',
 							},
 							mobile: {
-								value: separatorWeightMobile,
-								label: 'separatorWeightMobile',
+								value: separatorWeight,
+								label: 'separatorWeight',
 							},
 						} }
 						min={ 1 }

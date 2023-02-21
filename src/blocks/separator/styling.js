@@ -87,7 +87,7 @@ function styling( props ) {
 		'separatorWidthMobile',
 		blockName
 	);
-	// Thikness
+	// Separator Height
 	const separatorHeightFallback = getFallbackNumber(
 		separatorHeight,
 		'separatorHeight',
@@ -97,16 +97,6 @@ function styling( props ) {
 	const separatorSizeFallback = getFallbackNumber(
 		separatorSize,
 		'separatorSize',
-		blockName
-	);
-	const separatorSizeFallbackTablet = getFallbackNumber(
-		separatorSizeTablet,
-		'separatorSizeTablet',
-		blockName
-	);
-	const separatorSizeFallbackMobile = getFallbackNumber(
-		separatorSizeMobile,
-		'separatorSizeMobile',
 		blockName
 	);
 
@@ -294,7 +284,7 @@ function styling( props ) {
 				separatorWidthType
 			),
 			'-webkit-mask-size': `${ generateCSSUnit(
-				separatorSize,
+				separatorSizeTablet,
 				separatorSizeType
 			) } 100%`,
 		},
@@ -304,7 +294,7 @@ function styling( props ) {
 				separatorWidthType
 			),
 			'-webkit-mask-size': `${ generateCSSUnit(
-				separatorSize,
+				separatorSizeTablet,
 				separatorSizeType
 			) } 100%`,
 		},
@@ -403,16 +393,6 @@ function styling( props ) {
 			),
 			'text-align': separatorAlignTablet,
 		},
-		'.wp-block-uagb-separator .wp-block-uagb-separator__after': {
-			width: generateCSSUnit(
-				separatorWidthFallbackTablet,
-				separatorWidthType
-			),
-			'-webkit-mask-size': `${ generateCSSUnit(
-				separatorSizeFallbackTablet,
-				separatorSizeType
-			) } 100%`,
-		},
 		...borderStyleTablet,
 		...iconSpacingStyleTablet,
 		'.wp-block-uagb-separator--text .wp-block-uagb-separator-element': {
@@ -427,10 +407,6 @@ function styling( props ) {
 			'letter-spacing': generateCSSUnit(
 				elementTextLetterSpacingTablet,
 				elementTextLetterSpacingType
-			),
-			'border-top-width': generateCSSUnit(
-				separatorHeightFallback,
-				separatorHeightUnit
 			),
 		},
 		'.wp-block-uagb-separator--icon .wp-block-uagb-separator-element svg': {
@@ -460,9 +436,13 @@ function styling( props ) {
 				separatorWidthType
 			),
 			'-webkit-mask-size': `${ generateCSSUnit(
-				separatorSizeFallbackMobile,
+				separatorSizeMobile,
 				separatorSizeType
 			) } 100%`,
+			'border-top-width': generateCSSUnit(
+				separatorHeightFallback,
+				separatorHeightUnit
+			),
 		},
 		'.wp-block-uagb-separator .wp-block-uagb-separator__border': {
 			width: generateCSSUnit(
@@ -470,9 +450,13 @@ function styling( props ) {
 				separatorWidthType
 			),
 			'-webkit-mask-size': `${ generateCSSUnit(
-				separatorSizeFallbackMobile,
+				separatorSizeMobile,
 				separatorSizeType
 			) } 100%`,
+			'border-top-width': generateCSSUnit(
+				separatorHeightFallback,
+				separatorHeightUnit
+			),
 		},
 		'.wp-block-uagb-separator--text .wp-block-uagb-separator__after': borderCSS,
 		'.wp-block-uagb-separator--icon .wp-block-uagb-separator__after': borderCSS,
