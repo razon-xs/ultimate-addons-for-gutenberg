@@ -4,6 +4,8 @@ import styling from './styling';
 import Settings from './settings';
 import Render from './render';
 import { getSettings as getDateSettings } from '@wordpress/date';
+import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
+import { useDeviceType } from '@Controls/getPreviewType';
 
 //  Import CSS.
 import './style.scss';
@@ -11,15 +13,30 @@ import './style.scss';
 
 const UAGBCountdownEdit = ( props ) => {
 
-	const { attributes, setAttributes } = props;
+	const {
+		attributes,
+		attributes: {
+			timeModified,
+			endDateTime,
+			showDays,
+			showHours,
+			showMinutes,
+			UAGHideDesktop,
+			UAGHideTab,
+			UAGHideMob,
+		},
+		setAttributes
+	} = props;
 
 	const [ timeChanged, setTimeChanged ] = useState( 0 );
+
+	const deviceType = useDeviceType();
 
 	useEffect( () => {
 
 		// Dynamically set default value to Jan 1 of next year (UTC),
 		// on drag and drop of a new instance of the block. 
-		if( ! props.attributes.timeModified ) {  // check if time has been modified dynamically using the flag attribute.
+		if( ! timeModified ) {  // check if time has been modified dynamically using the flag attribute.
 
 			// Get WordPress' timezone offset from settings.
 			const { timezone } = getDateSettings();
@@ -75,13 +92,24 @@ const UAGBCountdownEdit = ( props ) => {
 		}
 		setTimeChanged( 1 );
 	}, [
-		props.attributes.endDateTime,
-		props.attributes.showDays,
-		props.attributes.showHours,
-		props.attributes.showMinutes,
+		endDateTime,
+		showDays,
+		showHours,
+		showMinutes,
 	] )
 
-	const countdownProToolbar = wp.hooks.applyFilters( 'spectra.countdown.toolbar-hook', '', props.name );
+	useEffect( () => {
+
+		responsiveConditionPreview( props );
+
+	}, [
+		UAGHideDesktop,
+		UAGHideTab,
+		UAGHideMob,
+		deviceType
+	] );
+
+	const countdownProToolbar = wp.hooks.applyFilters( 'spectra.countdown.toolbar-hook', '', props.name );	
 
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/countdown.svg`;
 
