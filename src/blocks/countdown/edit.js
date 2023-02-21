@@ -4,6 +4,8 @@ import styling from './styling';
 import Settings from './settings';
 import Render from './render';
 import { getSettings as getDateSettings } from '@wordpress/date';
+import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
+import { useDeviceType } from '@Controls/getPreviewType';
 
 //  Import CSS.
 import './style.scss';
@@ -14,6 +16,8 @@ const UAGBCountdownEdit = ( props ) => {
 	const { attributes, setAttributes } = props;
 
 	const [ timeChanged, setTimeChanged ] = useState( 0 );
+
+	const deviceType = useDeviceType();
 
 	useEffect( () => {
 
@@ -77,6 +81,17 @@ const UAGBCountdownEdit = ( props ) => {
 		props.attributes.showHours,
 		props.attributes.showMinutes,
 	] )
+
+	useEffect( () => {
+
+		responsiveConditionPreview( props );
+
+	}, [
+		props.attributes.UAGHideDesktop,
+		props.attributes.UAGHideTab,
+		props.attributes.UAGHideMob,
+		deviceType
+	] );
 
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/countdown.svg`;
 
