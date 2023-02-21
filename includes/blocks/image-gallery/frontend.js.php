@@ -115,7 +115,7 @@ if ( $attr['mediaGallery'] ) {
 			$js .= Spectra_Image_Gallery::render_image_click( $id );
 			break;
 		case 'url':
-			$js = apply_filters( 'uagb_image_gallery_pro_custom_url_js', $js, $id, $attr['customLinks'] );
+			$js = apply_filters( 'uagb_image_gallery_pro_custom_url_js', $js, $id, $attr );
 			break;
 	}
 }
