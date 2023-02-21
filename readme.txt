@@ -172,11 +172,16 @@ The awesome React FontIconPicker is developed by [Alessandro Benoit](http://code
 
 = 2.4.0 =
 * Fix: Global - If border style set to default then all Border CSS should be removed.
+* New: Introducing the Icon block - Add FontAwesome icons on your website.
 * Improvement: Custom CSS - Disable option for on page-level CSS.
 * Improvement: Typography - Added Fahkwang and Jost Google fonts from in Font Families.
+* Global: Display Conditions - Added day Addition options to display blocks.
+* Fix: Container - Full width issue when adding container block inside Slider block.
 * Fix: Info-box - Icon misaligned on tablet/mobile when padding gets added.
+* Fix: Info-box - CTA hover styling issue on front-end.
 * Fix: Image - Image dimensions width & height box updated as per spectra UI guidelines.
 * Fix: Display conditions - Undefined `key/index` when none is set for Operating system.
+* Fix: Forms/Tabs/Table of contents - JS throws an error in console on blog/home page.
 * Fix: Team - On responsive devices preset images not working as expected.
 
 = 2.3.5 - THURSDAY, 2nd FEBRUARY 2023 =
