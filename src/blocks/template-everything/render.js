@@ -13,7 +13,7 @@ const ALLOWED_BLOCKS = [
 	'uagb/container'
 ];
 
-import { InnerBlocks } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 const Render = ( props ) => {
 
@@ -23,15 +23,17 @@ const Render = ( props ) => {
 
 	const { attributes: { block_id, lockTemplate } } = props;
 
+	const blockProps = useBlockProps( {
+		className: classnames(
+			`uagb-block-${ block_id }`,
+			'uagb-template-everything__wrap',
+			`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`
+		)
+	} );
+	
 	return (
 		<>
-			<div
-				className={ classnames(
-					`uagb-block-${ block_id }`,
-					'uagb-template-everything__wrap',
-					`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`
-				) }
-			>
+			<div { ...blockProps } >
 				<InnerBlocks allowedBlocks={ ALLOWED_BLOCKS }
    					templateLock={ lockTemplate ? 'all' : false } />
 			</div>
