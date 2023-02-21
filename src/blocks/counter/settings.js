@@ -89,6 +89,10 @@ export default function Settings( props ) {
 		headingMarginUnitTablet,
 		headingMarginUnitMobile,
 		headingMarginLink,
+		headingLetterSpacingType,
+		headingLetterSpacing,
+		headingLetterSpacingTablet,
+		headingLetterSpacingMobile,
 		// Block Margin
 		blockTopMargin,
 		blockRightMargin,
@@ -155,6 +159,10 @@ export default function Settings( props ) {
 		numberMarginUnitTablet,
 		numberMarginUnitMobile,
 		numberMarginLink,
+		numberLetterSpacingType,
+		numberLetterSpacing,
+		numberLetterSpacingTablet,
+		numberLetterSpacingMobile,
 		// prefix
 		prefixRightDistance,
 		prefixRightDistanceTablet,
@@ -172,6 +180,7 @@ export default function Settings( props ) {
 		barSize,
 		barForeground,
 		barBackground,
+		barFlip,
 		// box shadow
 		boxShadowColor,
 		boxShadowHOffset,
@@ -489,6 +498,20 @@ export default function Settings( props ) {
 				] }
 				showIcons={ true }
 			/>
+			{ ( layout === 'bars' ) &&
+				<>
+					<ToggleControl
+						checked={ barFlip }
+						onChange={ () =>
+							setAttributes( { barFlip: ! barFlip } )
+						}
+						label={ __(
+							'Flip Title and Bar Positions',
+							'ultimate-addons-for-gutenberg'
+						) }
+					/>
+				</>
+			}
 			<UAGNumberControl
 				label={ __( 'Starting Number', 'ultimate-addons-for-gutenberg' ) }
 				value={ startNumber }
@@ -1168,6 +1191,22 @@ export default function Settings( props ) {
 					value: headingLineHeightTablet,
 					label: 'headingLineHeightTablet',
 				} }
+				letterSpacingType={ {
+					value: headingLetterSpacingType,
+					label: 'headingLetterSpacingType',
+				} }
+				letterSpacing={ {
+					value: headingLetterSpacing,
+					label: 'headingLetterSpacing',
+				} }
+				letterSpacingTablet={ {
+					value: headingLetterSpacingTablet,
+					label: 'headingLetterSpacingTablet',
+				} }
+				letterSpacingMobile={ {
+					value: headingLetterSpacingMobile,
+					label: 'headingLetterSpacingMobile',
+				} }
 			/>
 			<AdvancedPopColorControl
 				label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
@@ -1320,6 +1359,22 @@ export default function Settings( props ) {
 				lineHeightTablet={ {
 					value: numberLineHeightTablet,
 					label: 'numberLineHeightTablet',
+				} }
+				letterSpacingType={ {
+					value: numberLetterSpacingType,
+					label: 'numberLetterSpacingType',
+				} }
+				letterSpacing={ {
+					value: numberLetterSpacing,
+					label: 'numberLetterSpacing',
+				} }
+				letterSpacingTablet={ {
+					value: numberLetterSpacingTablet,
+					label: 'numberLetterSpacingTablet',
+				} }
+				letterSpacingMobile={ {
+					value: numberLetterSpacingMobile,
+					label: 'numberLetterSpacingMobile',
 				} }
 			/>
 			<AdvancedPopColorControl
