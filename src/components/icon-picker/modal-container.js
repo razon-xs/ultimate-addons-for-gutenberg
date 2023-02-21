@@ -169,7 +169,7 @@ const ModalContainer = ( props ) => {
 		let heightAndWidth = iconContainerWidth / iconList[ 0 ].length;
 		if( NUMBER_OF_COLUMN !== iconList[ 0 ].length ){
 			heightAndWidth = 100;
-			applyWidth = iconContainerWidth + 10;
+			applyWidth = iconContainerWidth + 50;
 		}
 
 		return (
