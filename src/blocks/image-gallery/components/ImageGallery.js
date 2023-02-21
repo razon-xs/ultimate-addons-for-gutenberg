@@ -384,6 +384,7 @@ const ImageGallery = ( { attributes, setAttributes, name } ) => {
 		}
 	};
 
+	// Set the Image URL with Size based on the Device Type.
 	const setImageURL = ( image ) => {
 		switch ( deviceType ) {
 			case 'Desktop':

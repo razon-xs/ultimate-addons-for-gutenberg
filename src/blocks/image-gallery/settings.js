@@ -813,12 +813,12 @@ const Settings = ( props ) => {
 						value: galleryImageSize,
 					},
 					sizeSlugTablet: {
-						label: 'galleryImageSize',
-						value: galleryImageSize,
+						label: 'galleryImageSizeTablet',
+						value: galleryImageSizeTablet,
 					},
 					sizeSlugMobile: {
-						label: 'galleryImageSize',
-						value: galleryImageSize,
+						label: 'galleryImageSizeMobile',
+						value: galleryImageSizeMobile,
 					}
 				} }
 				setAttributes={ setAttributes }
