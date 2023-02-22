@@ -112,7 +112,7 @@ function styling( props ) {
 	if ( elementType === 'none' ) {
 		borderStyle = {
 			'.wp-block-uagb-separator .wp-block-uagb-separator__after': {
-				width: generateCSSUnit(
+				'width': generateCSSUnit(
 					separatorWidthFallback,
 					separatorWidthType
 				),
@@ -173,12 +173,12 @@ function styling( props ) {
 			borderStyle[
 				'.wp-block-uagb-separator--icon .wp-block-uagb-separator__after.uagb-separator-left'
 			] = {
-				display: 'none',
+				'display': 'none',
 			};
 			borderStyle[
 				'.wp-block-uagb-separator--text .wp-block-uagb-separator__after.uagb-separator-left'
 			] = {
-				display: 'none',
+				'display': 'none',
 			};
 		}
 		if ( elementPosition === 'right' ) {
@@ -193,12 +193,12 @@ function styling( props ) {
 			borderStyle[
 				'.wp-block-uagb-separator--icon .wp-block-uagb-separator__after.uagb-separator-right'
 			] = {
-				display: 'none',
+				'display': 'none',
 			};
 			borderStyle[
 				'.wp-block-uagb-separator--text .wp-block-uagb-separator__after.uagb-separator-right'
 			] = {
-				display: 'none',
+				'display': 'none',
 			};
 		}
 		if ( elementPosition === 'center' ) {
@@ -266,20 +266,20 @@ function styling( props ) {
 				elementIconWidth,
 				elementIconWidthType
 			),
-			width: generateCSSUnit( elementIconWidth, elementIconWidthType ),
-			height: generateCSSUnit( elementIconWidth, elementIconWidthType ),
+			'width': generateCSSUnit( elementIconWidth, elementIconWidthType ),
+			'height': generateCSSUnit( elementIconWidth, elementIconWidthType ),
 			'line-height': generateCSSUnit(
 				elementIconWidth,
 				elementIconWidthType
 			),
-			color: elementColor,
-			fill: elementColor,
+			'color': elementColor,
+			'fill': elementColor,
 		},
 	};
 
 	const borderStyleTablet = {
 		'.wp-block-uagb-separator .wp-block-uagb-separator__after': {
-			width: generateCSSUnit(
+			'width': generateCSSUnit(
 				separatorWidthFallback,
 				separatorWidthType
 			),
@@ -289,7 +289,7 @@ function styling( props ) {
 			) } 100%`,
 		},
 		'.wp-block-uagb-separator .wp-block-uagb-separator__border': {
-			width: generateCSSUnit(
+			'width': generateCSSUnit(
 				separatorWidthFallback,
 				separatorWidthType
 			),
@@ -312,39 +312,29 @@ function styling( props ) {
 					elementSpacingUnit
 				),
 			};
-			borderStyle[
+			borderStyleTablet[
 				'.wp-block-uagb-separator--icon .wp-block-uagb-separator__after.uagb-separator-left'
 			] = {
-				display: 'none',
+				'display': 'none',
 			};
-			borderStyle[
+			borderStyleTablet[
 				'.wp-block-uagb-separator--text .wp-block-uagb-separator__after.uagb-separator-left'
 			] = {
-				display: 'none',
+				'display': 'none',
 			};
 		}
 		if ( elementPositionTablet === 'center' ) {
 			iconSpacingStyleTablet[
 				'.wp-block-uagb-separator .wp-block-uagb-separator__border .wp-block-uagb-separator-element'
 			] = {
-				'margin-left': generateCSSUnit(
-					elementSpacingTablet,
-					elementSpacingUnit
-				),
 				'margin-right': generateCSSUnit(
 					elementSpacingTablet,
 					elementSpacingUnit
 				),
-			};
-			borderStyleTablet[
-				'.wp-block-uagb-separator--text .wp-block-uagb-separator__after'
-			] = {
-				display: 'block',
-			};
-			borderStyleTablet[
-				'.wp-block-uagb-separator--icon .wp-block-uagb-separator__after'
-			] = {
-				display: 'block',
+				'margin-left': generateCSSUnit(
+					elementSpacingTablet,
+					elementSpacingUnit
+				),
 			};
 		}
 		if ( elementPositionTablet === 'right' ) {
@@ -356,15 +346,15 @@ function styling( props ) {
 					elementSpacingUnit
 				),
 			};
-			borderStyle[
+			borderStyleTablet[
 				'.wp-block-uagb-separator--icon .wp-block-uagb-separator__after.uagb-separator-right'
 			] = {
-				display: 'none',
+				'display': 'none',
 			};
-			borderStyle[
+			borderStyleTablet[
 				'.wp-block-uagb-separator--text .wp-block-uagb-separator__after.uagb-separator-right'
 			] = {
-				display: 'none',
+				'display': 'none',
 			};
 		}
 	}
@@ -387,7 +377,7 @@ function styling( props ) {
 				separatorPaddingRightTablet,
 				separatorTabletPaddingUnit
 			),
-			width: generateCSSUnit(
+			'width': generateCSSUnit(
 				separatorWidthFallbackTablet,
 				separatorWidthType
 			),
@@ -414,11 +404,11 @@ function styling( props ) {
 				elementIconWidthTablet,
 				elementIconWidthType
 			),
-			width: generateCSSUnit(
+			'width': generateCSSUnit(
 				elementIconWidthTablet,
 				elementIconWidthType
 			),
-			height: generateCSSUnit(
+			'height': generateCSSUnit(
 				elementIconWidthTablet,
 				elementIconWidthType
 			),
@@ -431,7 +421,7 @@ function styling( props ) {
 
 	const borderStyleMobile = {
 		'.wp-block-uagb-separator .wp-block-uagb-separator__after': {
-			width: generateCSSUnit(
+			'width': generateCSSUnit(
 				separatorWidthFallback,
 				separatorWidthType
 			),
@@ -445,7 +435,7 @@ function styling( props ) {
 			),
 		},
 		'.wp-block-uagb-separator .wp-block-uagb-separator__border': {
-			width: generateCSSUnit(
+			'width': generateCSSUnit(
 				separatorWidthFallback,
 				separatorWidthType
 			),
@@ -472,15 +462,15 @@ function styling( props ) {
 					elementSpacingUnit
 				),
 			};
-			borderStyle[
+			borderStyleMobile[
 				'.wp-block-uagb-separator--icon .wp-block-uagb-separator__after.uagb-separator-left'
 			] = {
-				display: 'none',
+				'display': 'none',
 			};
-			borderStyle[
+			borderStyleMobile[
 				'.wp-block-uagb-separator--text .wp-block-uagb-separator__after.uagb-separator-left'
 			] = {
-				display: 'none',
+				'display': 'none',
 			};
 		}
 		if ( elementPositionMobile === 'center' ) {
@@ -499,12 +489,12 @@ function styling( props ) {
 			borderStyleMobile[
 				'.wp-block-uagb-separator--text .wp-block-uagb-separator__after'
 			] = {
-				display: 'block',
+				'display': 'block',
 			};
 			borderStyleMobile[
 				'.wp-block-uagb-separator--icon .wp-block-uagb-separator__after'
 			] = {
-				display: 'block',
+				'display': 'block',
 			};
 		}
 		if ( elementPositionMobile === 'right' ) {
@@ -516,15 +506,15 @@ function styling( props ) {
 					elementSpacingUnit
 				),
 			};
-			borderStyle[
+			borderStyleMobile[
 				'.wp-block-uagb-separator--icon .wp-block-uagb-separator__after.uagb-separator-right'
 			] = {
-				display: 'none',
+				'display': 'none',
 			};
-			borderStyle[
+			borderStyleMobile[
 				'.wp-block-uagb-separator--text .wp-block-uagb-separator__after.uagb-separator-right'
 			] = {
-				display: 'none',
+				'display': 'none',
 			};
 		}
 	}
@@ -546,7 +536,7 @@ function styling( props ) {
 				separatorPaddingRightMobile,
 				separatorMobilePaddingUnit
 			),
-			width: generateCSSUnit(
+			'width': generateCSSUnit(
 				separatorWidthFallbackMobile,
 				separatorWidthType
 			),
@@ -573,11 +563,11 @@ function styling( props ) {
 				elementIconWidthMobile,
 				elementIconWidthType
 			),
-			width: generateCSSUnit(
+			'width': generateCSSUnit(
 				elementIconWidthMobile,
 				elementIconWidthType
 			),
-			height: generateCSSUnit(
+			'height': generateCSSUnit(
 				elementIconWidthMobile,
 				elementIconWidthType
 			),

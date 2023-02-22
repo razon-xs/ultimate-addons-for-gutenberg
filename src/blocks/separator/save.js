@@ -63,7 +63,7 @@ export default function save( props ) {
 					separatorDiv()
 				) : (
 					<div
-						className="wp-block-uagb-separator__after"
+						className="wp-block-uagb-separator__after uagb-separator-left"
 						style={ {
 							'--my-background-image': `${ customSVG }`,
 						} }
