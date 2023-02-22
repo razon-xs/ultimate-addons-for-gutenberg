@@ -71,7 +71,7 @@ const attributes = {
 	},
 	galleryImageSizeMobile: {
 		type: 'string',
-		default: 'large',
+		default: 'medium',
 	},
 
 	// Caption Settings

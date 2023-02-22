@@ -134,21 +134,33 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 						),
 						// Gallery Settings.
 						array(
-							'mediaGallery'        => array(
+							'mediaGallery'           => array(
 								'type'    => 'array',
 								'default' => array(),
 							),
-							'mediaIDs'            => array(
+							'mediaIDs'               => array(
 								'type'    => 'array',
 								'default' => array(),
 							),
-							'feedLayout'          => array(
+							'feedLayout'             => array(
 								'type'    => 'string',
 								'default' => 'grid',
 							),
-							'imageDisplayCaption' => array(
+							'imageDisplayCaption'    => array(
 								'type'    => 'boolean',
 								'default' => true,
+							),
+							'galleryImageSize'       => array(
+								'type'    => 'string',
+								'default' => 'large',
+							),
+							'galleryImageSizeTablet' => array(
+								'type'    => 'string',
+								'default' => 'large',
+							),
+							'galleryImageSizeMobile' => array(
+								'type'    => 'string',
+								'default' => 'medium',
 							),
 						),
 						// Caption Settings.
@@ -1088,6 +1100,15 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 		 * @since 2.1
 		 */
 		private function render_media_thumbnail( $mediaArray, $atts ) {
+			// Create the SrcSet and Sizes to use in the Responsively Sized Images.
+			$size     = $atts['galleryImageSize'];
+			$size_tab = $atts['galleryImageSizeTablet'];
+			$size_mob = $atts['galleryImageSizeMobile'];
+
+			$image_url     = isset( $mediaArray['sizes'][ $size ]['url'] ) ? $mediaArray['sizes'][ $size ]['url'] : $mediaArray['url'];
+			$image_url_tab = isset( $mediaArray['sizes'][ $size_tab ]['url'] ) ? $mediaArray['sizes'][ $size_tab ]['url'] : $mediaArray['url'];
+			$image_url_mob = isset( $mediaArray['sizes'][ $size_mob ]['url'] ) ? $mediaArray['sizes'][ $size_mob ]['url'] : $mediaArray['url'];
+
 			if ( 'bar-outside' === $atts['captionDisplayType'] && ( 'top' === UAGB_Block_Helper::get_matrix_alignment( $atts['imageCaptionAlignment'], 1 ) ) && $atts['imageDisplayCaption'] ) {
 				?>
 					<div class="spectra-image-gallery__media-thumbnail-caption-wrapper spectra-image-gallery__media-thumbnail-caption-wrapper--<?php echo esc_attr( $atts['captionDisplayType'] ); ?>">
@@ -1097,7 +1118,7 @@ if ( ! class_exists( 'Spectra_Image_Gallery' ) ) {
 			}
 			?>
 			<div class="spectra-image-gallery__media spectra-image-gallery__media--<?php echo esc_attr( $atts['feedLayout'] ); ?>">
-				<img class="spectra-image-gallery__media-thumbnail spectra-image-gallery__media-thumbnail--<?php echo esc_attr( $atts['feedLayout'] ); ?>" src="<?php echo esc_url( $mediaArray['url'] ); ?>" alt="<?php echo esc_attr( $mediaArray['alt'] ); ?>" loading="lazy"/>
+				<img class="spectra-image-gallery__media-thumbnail spectra-image-gallery__media-thumbnail--<?php echo esc_attr( $atts['feedLayout'] ); ?>" src="<?= esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $mediaArray['alt'] ); ?>" loading="lazy" srcset="<?= esc_url( $image_url ) . ' 1024w, ' . esc_url( $image_url ) . ' 768w'; ?>"/>
 				<div class="spectra-image-gallery__media-thumbnail-blurrer"></div>
 				<?php
 				if ( $atts['imageDisplayCaption'] ) {
