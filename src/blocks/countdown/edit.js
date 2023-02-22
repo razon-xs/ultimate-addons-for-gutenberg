@@ -14,6 +14,7 @@ import './style.scss';
 const UAGBCountdownEdit = ( props ) => {
 
 	const {
+		isSelected,
 		attributes,
 		attributes: {
 			timeModified,
@@ -111,7 +112,7 @@ const UAGBCountdownEdit = ( props ) => {
 	return (
 		props.attributes.isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 		<>
-			<Settings parentProps={ props } />
+			{ isSelected && <Settings parentProps={ props } /> }
 			<Render countdownRef={ countdownRef } parentProps={ props } />
 		</>
 	);
