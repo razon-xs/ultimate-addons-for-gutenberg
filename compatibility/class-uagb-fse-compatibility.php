@@ -37,7 +37,106 @@ class UAGB_FSE_Compatibility {
 	 * @since x.x.x
 	 */
 	public function __construct() {
-		add_action( 'wp', array( $this, 'generate_stylesheet' ), 101 );
+		add_filter( 'pre_get_block_templates', array( $this, 'get_block_fallback_template' ), 10, 3 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'generate_stylesheet' ), 99 );
+	}
+
+	/**
+	 * This function is used on the `pre_get_block_template` hook to return the fallback template from the db in case
+	 * the template is eligible for it.
+	 *
+	 * @param \WP_Block_Template|null $template Block template object to short-circuit the default query,
+	 *                                          or null to allow WP to run its normal queries.
+	 * @param string                  $id Template unique identifier (example: theme_slug//template_slug).
+	 * @param string                  $template_type wp_template or wp_template_part.
+	 *
+	 * @return object|null
+	 */
+	public function get_block_fallback_template( $template, $id, $template_type ) { //phpcs:ignore WordPressVIPMinimum.Hooks.AlwaysReturnInFilter.VoidReturn
+
+		if ( empty( $id['slug__in'] ) ) {
+			return;
+		}
+
+		$templates = get_block_templates( array( 'slugs__in' => $id['slug__in'][0] ), $template_type );
+		foreach ( $templates as $template_data ) {
+			if ( ! empty( $id['slug__in'][0] ) ) {
+
+				foreach ( $id['slug__in'] as $slug ) {
+					if ( $template_data->slug === $slug ) {
+						$id = $template_data->wp_id;
+						if ( ! empty( $id ) ) {
+							$current_post_assets = new UAGB_Post_Assets( $id );
+							$current_post_assets->enqueue_scripts();
+						}
+					}
+				}
+			}
+		}
+
+		return $template;
+	}
+
+	/**
+	 * Collect template_parts Id in head tag.
+	 *
+	 * @param array $blocks array of content.
+	 * @since x.x.x
+	 */
+	public function uagb_get_template_part_ids( $blocks ) {
+		if ( empty( $blocks ) ) {
+			return;
+		}
+		$final_array_of_template_part_ids = array();
+		foreach ( $blocks as $i => $block ) {
+
+			if ( is_array( $block ) ) {
+
+				if ( empty( $block ) ) {
+					return;
+				}
+
+				if ( isset( $block['blockName'] ) ) {
+
+					$block_name = $block['blockName'];
+
+					if ( 'core/template-part' === $block_name ) {
+						$slugs = $block['attrs']['slug'];
+
+						$templates_parts = get_block_templates( array( 'slugs__in' => $slugs ), 'wp_template_part' );
+						foreach ( $templates_parts as $templates_part ) {
+							if ( $slugs === $templates_part->slug ) {
+								$ids = array( $templates_part->wp_id );
+
+								$final_array_of_template_part_ids = array_merge( $final_array_of_template_part_ids, $ids );
+
+							}
+						}
+					} else {
+						if ( isset( $block['innerBlocks'] ) ) {
+							foreach ( $block['innerBlocks'] as $j => $inner_block ) {
+								$inner_block_name = $inner_block['blockName'];
+								if ( 'core/template-part' === $inner_block_name ) {
+									$slugs = $inner_block['attrs']['slug'];
+
+									$templates_parts = get_block_templates( array( 'slugs__in' => $slugs ), 'wp_template_part' );
+
+									foreach ( $templates_parts as $templates_part ) {
+										if ( $slugs === $templates_part->slug ) {
+
+											$ids = array( $templates_part->wp_id );
+
+											$final_array_of_template_part_ids = array_merge( $final_array_of_template_part_ids, $ids );
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return $final_array_of_template_part_ids;
 	}
 
 	/**
@@ -47,15 +146,11 @@ class UAGB_FSE_Compatibility {
 	 */
 	public function generate_stylesheet() {
 
-		$query_args = array(
-			'post_type' => array( 'wp_template', 'wp_template_part' ),
-		);
-
-		$query = new WP_Query( $query_args );
-
-		foreach ( $query->posts as $key => $post ) {
-			$post_id             = $post->ID;
-			$current_post_assets = new UAGB_Post_Assets( intval( $post_id ) );
+		global $_wp_current_template_content;
+		$blocks = parse_blocks( $_wp_current_template_content );
+		$ids    = $this->uagb_get_template_part_ids( $blocks );
+		foreach ( $ids as $id ) {
+			$current_post_assets = new UAGB_Post_Assets( intval( $id ) );
 			$current_post_assets->enqueue_scripts();
 		}
 
