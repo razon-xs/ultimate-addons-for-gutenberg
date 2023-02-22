@@ -34,6 +34,9 @@ const ModalContainer = ( props ) => {
 	 */
 	const [ rowIndexForFirstTime, setRowIndexForFirstTime ] = useState( null );
 
+	// For resize window
+	// const [ currentWindowWidth, setCurrentWindowWidth ] = useState();
+
 	const getContainerHeight = ( property ) => {
 		const element = iconContainerRef?.current;
 		if ( ! element ) {
@@ -51,6 +54,16 @@ const ModalContainer = ( props ) => {
 		);
 		setRowIndexForFirstTime( selectedIconRowIndex );
 	}, [] );
+
+	// useEffect( () => {
+	// 	const handleResize = ( e ) => {
+	// 		setCurrentWindowWidth( window.innerWidth );
+	// 	};
+	// 	window.addEventListener( 'resize', handleResize );
+	// 	return () => {
+	// 		window.removeEventListener( 'resize', handleResize );
+	// 	};
+	// }, [] );
 
 	// Click on category list.
 	const clickToCate = ( cate ) => {
@@ -164,14 +177,40 @@ const ModalContainer = ( props ) => {
 				</div>
 			);
 		}
-		console.log('iconContainerWidth',iconContainerWidth);
-		let applyWidth = iconContainerWidth;
-		let heightAndWidth = iconContainerWidth / iconList[ 0 ].length;
-		if( NUMBER_OF_COLUMN !== iconList[ 0 ].length ){
-			heightAndWidth = 100;
-			applyWidth = iconContainerWidth + 50;
-		}
-		console.log('applyWidth',applyWidth);
+
+		// const heightAndWidth =
+		// 	iconList[ 0 ].length === NUMBER_OF_COLUMN		// 		? iconContainerWidth / iconList[ 0 ].length
+		// 		: 100;
+
+		// console.log( 'iconContainerWidth', iconContainerWidth );
+		// let applyWidth = iconContainerWidth;
+		// let heightAndWidth = iconContainerWidth / iconList[ 0 ].length;
+		// if ( NUMBER_OF_COLUMN !== iconList[ 0 ].length ) {
+		// 	heightAndWidth = 100;
+		// 	applyWidth = iconContainerWidth + 50;
+		// }
+		// // console.log( 'applyWidth', applyWidth );
+
+		// return (
+		// 	<div className="uagb-ip-icons">
+		// 		<Grid
+		// 			cellRenderer={ cellRenderer }
+		// 			columnCount={ iconList[ 0 ].length }
+		// 			columnWidth={ heightAndWidth - 2 }
+		// 			height={ iconContainerHeight }
+		// 			rowCount={ iconList.length }
+		// 			rowHeight={ heightAndWidth }
+		// 			width={ heightAndWidth }
+		// 			scrollToRow={ rowIndexForFirstTime }
+		// 		/>
+		// 	</div>
+		// );
+
+
+		const heightAndWidth =
+			iconList[ 0 ].length === 8
+				? iconContainerWidth / iconList[ 0 ].length
+				: 100;
 
 		return (
 			<div className="uagb-ip-icons">
@@ -182,11 +221,14 @@ const ModalContainer = ( props ) => {
 					height={ iconContainerHeight }
 					rowCount={ iconList.length }
 					rowHeight={ heightAndWidth }
-					width={ applyWidth }
+					width={ iconContainerWidth }
 					scrollToRow={ rowIndexForFirstTime }
+					// 
+					autoContainerWidth={true}
 				/>
 			</div>
 		);
+
 	};
 
 	// List of cate.
